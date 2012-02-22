@@ -40,11 +40,7 @@ public class MainWindow {
 		WineBrewDBFrame.setBounds(100, 100, 1024, 640);
 		WineBrewDBFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		InitializeMenu.InitializeMenuMethod();
-		//InitializePanels.InitializePanelMethod();
-		
-
-		
+		InitializeMenu.InitializeMenuMethod();	
 
 
 
