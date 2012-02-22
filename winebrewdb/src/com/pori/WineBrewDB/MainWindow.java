@@ -37,11 +37,11 @@ public class MainWindow {
 	public void initialize() {
 		WineBrewDBFrame = new JFrame();
 		WineBrewDBFrame.setTitle("WineBrewDB");
-		WineBrewDBFrame.setBounds(100, 100, 1024, 720);
+		WineBrewDBFrame.setBounds(100, 100, 1024, 640);
 		WineBrewDBFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		InitializeMenu.InitializeMenuMethod();
-		InitializePanels.InitializePanelMethod();
+		//InitializePanels.InitializePanelMethod();
 		
 
 		
