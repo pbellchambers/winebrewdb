@@ -1,7 +1,9 @@
 package com.pori.WineBrewDB;
 
-import java.awt.Color;
+import java.awt.Font;
 import java.io.IOException;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -11,18 +13,28 @@ import javax.swing.ScrollPaneConstants;
 
 public class FruitAcidsPanel extends JPanel {
 
-	private static final long serialVersionUID = 4458265931731794998L;
+	private static final long serialVersionUID = -6664688139205966142L;
 	public static JPanel FruitAcidsPanel;
 	public static JScrollPane FruitAcidsScrollPane;
 	public static JEditorPane FruitAcidsText;
+	public static JLabel FruitAcidsHeader;
+	public static JLabel FruitAcidsSubtitle;
 	public static String FruitAcidsPanelStatus = "DeInitialized";
 
 	//public FruitAcidsPanel() {
 	public static void InitializePanel(){
 		
 		FruitAcidsPanel = new JPanel();
-		FruitAcidsPanel.setBackground(Color.WHITE);
-		FruitAcidsPanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
+		FruitAcidsPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
+		
+		//Header
+		FruitAcidsHeader = new JLabel("Fruit Acids");
+		FruitAcidsHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
+		FruitAcidsPanel.add(FruitAcidsHeader, "cell 0 0,grow");
+		//Subtitle
+		FruitAcidsSubtitle = new JLabel("A list of the predominant acid in most common fruits.");
+		FruitAcidsSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
+		FruitAcidsPanel.add(FruitAcidsSubtitle, "cell 0 1,growx,aligny top");
 		
 		//Text area that gets text from external html
 		FruitAcidsText = new JEditorPane();
@@ -43,7 +55,7 @@ public class FruitAcidsPanel extends JPanel {
 
 		
 		//Add it all to the main panel
-		FruitAcidsPanel.add(FruitAcidsScrollPane, "cell 0 0,grow");
+		FruitAcidsPanel.add(FruitAcidsScrollPane, "cell 0 2,grow");
 
 		
 		//Add it all to the main window
@@ -57,6 +69,8 @@ public class FruitAcidsPanel extends JPanel {
 	public static void DeInitializePanel(){
 		if(FruitAcidsPanelStatus.equals("Initialized")) {
 			FruitAcidsPanel.setVisible(false);
+			FruitAcidsPanel.remove(FruitAcidsHeader);
+			FruitAcidsPanel.remove(FruitAcidsSubtitle);
 			FruitAcidsPanel.remove(FruitAcidsScrollPane);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(FruitAcidsPanel);
 			FruitAcidsPanelStatus = "DeInitialized";
