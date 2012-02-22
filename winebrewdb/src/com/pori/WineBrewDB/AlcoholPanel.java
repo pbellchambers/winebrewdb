@@ -56,7 +56,7 @@ public class AlcoholPanel extends JPanel {
 		//TESTING FROM HERE ON
 		
 		txtAlcoholInfo = new JTextPane();
-		txtAlcoholInfo.setText("The standard formula for calculating %ABV is: \"(OG - FG) / F = %ABV\". However the factor (F) needed for an accurate result is actually dependant on the amount of alcohol present in the wine. Two differing methods of calculation are provided here as follows:\r\n\r\nThe \"HMRC Method\" extrapolates from HMRC's published factors (HMRC Ref: Notice 226 (November 2011)) used for calculating ABV in beer so that it can be applied to wine. This is the most accurate method provided here.\r\nThe \"CJJ Berry Method\" (from \"First Steps in Winemaking\" ISBN: ) uses a constant 7.36 for the factor (F).");
+		txtAlcoholInfo.setText("The standard formula for calculating %ABV is: \"(OG - FG) / F = %ABV\". However the factor (F) needed for an accurate result is actually dependant on the amount of alcohol present in the wine. Two differing methods of calculation are provided here as follows:\r\n\r\nThe \"HMRC Method\" extrapolates from HMRC's published factors (HMRC Ref: Notice 226 (November 2011)) used for calculating ABV in beer. This is the most accurate method provided here.\r\nThe \"CJJ Berry Method\" (from \"First Steps in Winemaking\" ISBN: ) uses a constant 7.36 for the factor (F).");
 		AlcoholSubPanel.add(txtAlcoholInfo, "cell 0 0 3 1,grow");
 		
 		lblAlcoholMethod = new JLabel("HMRC Method");
