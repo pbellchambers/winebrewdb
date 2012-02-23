@@ -2,6 +2,9 @@ package com.pori.WineBrewDB;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -127,6 +130,18 @@ public class AlcoholPanel extends JPanel {
 		AlcoholSubPanel.add(fieldCABV, "cell 4 5,growx");
 
 		
+		//Add button listeners
+		btnHCalculateABV.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CalculateAlcoholHMRC();
+			}
+		});
+		
+		btnCCalculateABV.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CalculateAlcoholCJJBerry();
+			}
+		});
 		
 		
 		//Add it all to the main window
@@ -148,5 +163,24 @@ public class AlcoholPanel extends JPanel {
 		}
 	}
 	
+	public static void CalculateAlcoholHMRC(){
+		BigDecimal OG = new BigDecimal(fieldHStartingSG.getText()).multiply(new BigDecimal("1000"));
+		BigDecimal FG = new BigDecimal(fieldHFinishingSG.getText()).multiply(new BigDecimal("1000"));
+		BigDecimal Drop = OG.subtract(FG);
+		BigDecimal interim = Drop.multiply(new BigDecimal("-0.0054"));
+		BigDecimal Factor = interim.add(new BigDecimal("7.914"));
+		BigDecimal Result = Drop.divide(Factor, 2, BigDecimal.ROUND_HALF_UP);
+		
+		fieldHABV.setText(Result.toString());		
+	}
+	
+	public static void CalculateAlcoholCJJBerry(){
+		BigDecimal OG = new BigDecimal(fieldCStartingSG.getText()).multiply(new BigDecimal("1000"));
+		BigDecimal FG = new BigDecimal(fieldCFinishingSG.getText()).multiply(new BigDecimal("1000"));
+		BigDecimal Drop = OG.subtract(FG);
+		BigDecimal Result = Drop.divide(new BigDecimal("7.36"), 2, BigDecimal.ROUND_HALF_UP);
+		
+		fieldCABV.setText(Result.toString());	
+	}
 
 }
