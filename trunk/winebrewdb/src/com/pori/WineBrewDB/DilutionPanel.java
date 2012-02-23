@@ -26,14 +26,18 @@ public class DilutionPanel extends JPanel {
 		DilutionPanel = new JPanel();
 		DilutionPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
 		
+		
 		//Header
 		DilutionHeader = new JLabel("Dilution");
 		DilutionHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
 		DilutionPanel.add(DilutionHeader, "cell 0 0,grow");
+		
+		
 		//Subtitle
-		DilutionSubtitle = new JLabel("Dilution subtitle");
+		DilutionSubtitle = new JLabel("Calculate the adjusted ABV % when diluting a finished wine.");
 		DilutionSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		DilutionPanel.add(DilutionSubtitle, "cell 0 1,growx,aligny top");
+		
 		
 		//Some content
 		txtDilutionPanel = new JTextField();
