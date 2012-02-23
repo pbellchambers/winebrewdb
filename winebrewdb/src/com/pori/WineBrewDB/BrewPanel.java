@@ -26,19 +26,23 @@ public class BrewPanel extends JPanel {
 		BrewPanel = new JPanel();
 		BrewPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
 		
+		
 		//Header
 		BrewHeader = new JLabel("Brew");
 		BrewHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
 		BrewPanel.add(BrewHeader, "cell 0 0,grow");
+		
+		
 		//Subtitle
-		BrewSubtitle = new JLabel("Brew subtitle");
+		BrewSubtitle = new JLabel("Search for brews.");
 		BrewSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		BrewPanel.add(BrewSubtitle, "cell 0 1,growx,aligny top");
+		
 		
 		//Some content
 		txtBrewPanel = new JTextField();
 		txtBrewPanel.setBackground(Color.WHITE);
-		txtBrewPanel.setText("BrewPanel");
+		txtBrewPanel.setText("BrewPanel - Something will go here to search for/filter brews entered in the database, and view their details.");
 		txtBrewPanel.setColumns(10);
 		BrewPanel.add(txtBrewPanel, "cell 0 2,grow");
 		

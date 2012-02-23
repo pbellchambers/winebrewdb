@@ -26,19 +26,23 @@ public class RecipePanel extends JPanel {
 		RecipePanel = new JPanel();
 		RecipePanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
 		
+		
 		//Header
 		RecipeHeader = new JLabel("Recipe");
 		RecipeHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
 		RecipePanel.add(RecipeHeader, "cell 0 0,grow");
+		
+		
 		//Subtitle
-		RecipeSubtitle = new JLabel("Recipe subtitle");
+		RecipeSubtitle = new JLabel("Search for recipes.");
 		RecipeSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		RecipePanel.add(RecipeSubtitle, "cell 0 1,growx,aligny top");
+		
 		
 		//Some content
 		txtRecipePanel = new JTextField();
 		txtRecipePanel.setBackground(Color.WHITE);
-		txtRecipePanel.setText("RecipePanel");
+		txtRecipePanel.setText("RecipePanel - Something will go here to search for/filter recipes entered in the database, and view their details.");
 		txtRecipePanel.setColumns(10);
 		RecipePanel.add(txtRecipePanel, "cell 0 2,grow");
 		

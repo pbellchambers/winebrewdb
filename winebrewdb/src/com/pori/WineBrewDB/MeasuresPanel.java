@@ -26,14 +26,18 @@ public class MeasuresPanel extends JPanel {
 		MeasuresPanel = new JPanel();
 		MeasuresPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
 		
+		
 		//Header
 		MeasuresHeader = new JLabel("Measures");
 		MeasuresHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
 		MeasuresPanel.add(MeasuresHeader, "cell 0 0,grow");
+		
+		
 		//Subtitle
-		MeasuresSubtitle = new JLabel("Measures subtitle");
+		MeasuresSubtitle = new JLabel("Convert between various measures.");
 		MeasuresSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		MeasuresPanel.add(MeasuresSubtitle, "cell 0 1,growx,aligny top");
+		
 		
 		//Some content
 		txtMeasuresPanel = new JTextField();

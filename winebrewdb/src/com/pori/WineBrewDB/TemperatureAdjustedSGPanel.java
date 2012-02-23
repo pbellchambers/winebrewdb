@@ -26,14 +26,18 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 		TemperatureAdjustedSGPanel = new JPanel();
 		TemperatureAdjustedSGPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
 		
+		
 		//Header
-		TemperatureAdjustedSGHeader = new JLabel("TemperatureAdjustedSG");
+		TemperatureAdjustedSGHeader = new JLabel("Temperature Adjusted SG");
 		TemperatureAdjustedSGHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
 		TemperatureAdjustedSGPanel.add(TemperatureAdjustedSGHeader, "cell 0 0,grow");
+		
+		
 		//Subtitle
-		TemperatureAdjustedSGSubtitle = new JLabel("TemperatureAdjustedSG subtitle");
+		TemperatureAdjustedSGSubtitle = new JLabel("Calculate the Temperature Adjusted SG.");
 		TemperatureAdjustedSGSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		TemperatureAdjustedSGPanel.add(TemperatureAdjustedSGSubtitle, "cell 0 1,growx,aligny top");
+		
 		
 		//Some content
 		txtTemperatureAdjustedSGPanel = new JTextField();

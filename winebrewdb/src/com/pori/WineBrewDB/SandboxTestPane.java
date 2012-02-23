@@ -21,7 +21,7 @@ public class SandboxTestPane extends JPanel {
 	 */
 	public SandboxTestPane() {
 		setBackground(Color.LIGHT_GRAY);
-		setLayout(new MigLayout("", "[150px:n:150px,grow,left][150px:n:150px]", "[175px:n:175px,grow][][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px]"));
+		setLayout(new MigLayout("", "[135px:n:135px,grow,left][90px:n:90px][grow]", "[175px:n:175px,grow][][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px]"));
 		
 		JTextPane txtpnTheStandardFormula = new JTextPane();
 		txtpnTheStandardFormula.setText("The standard formula for calculating %ABV is: \"(OG - FG) / F = %ABV\". However the factor (F) needed for an accurate result is actually dependant on the amount of alcohol present in the wine. Two differing methods of calculation are provided here as follows:\r\n\r\nThe \"HMRC Method\" extrapolates from HMRC's published factors (HMRC Ref: Notice 226 (November 2011)) used for calculating ABV in beer so that it can be applied to wine. This is the most accurate method provided here.\r\nThe \"CJJ Berry Method\" (from \"First Steps in Winemaking\" ISBN: ) uses a constant 7.36 for the factor (F).");

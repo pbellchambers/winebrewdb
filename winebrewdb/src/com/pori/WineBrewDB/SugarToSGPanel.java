@@ -26,14 +26,18 @@ public class SugarToSGPanel extends JPanel {
 		SugarToSGPanel = new JPanel();
 		SugarToSGPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
 		
+		
 		//Header
-		SugarToSGHeader = new JLabel("SugarToSG");
+		SugarToSGHeader = new JLabel("Sugar to SG");
 		SugarToSGHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
 		SugarToSGPanel.add(SugarToSGHeader, "cell 0 0,grow");
+		
+		
 		//Subtitle
-		SugarToSGSubtitle = new JLabel("SugarToSG subtitle");
+		SugarToSGSubtitle = new JLabel("Calculate the sugar needed to reach a required SG.");
 		SugarToSGSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		SugarToSGPanel.add(SugarToSGSubtitle, "cell 0 1,growx,aligny top");
+		
 		
 		//Some content
 		txtSugarToSGPanel = new JTextField();
