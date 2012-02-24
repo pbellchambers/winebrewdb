@@ -32,6 +32,8 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 	public static JToggleButton btnKelvin;
 	public static JLabel lblTemperature;
 	public static JFormattedTextField fieldTemperature;
+	public static JLabel lblHydrometerTemperature;
+	public static JFormattedTextField fieldHydrometerTemperature;
 	public static JLabel lblSG;
 	public static JFormattedTextField fieldSG;
 	public static JButton btnCalculateTemperatureAdjustedSG;
@@ -62,13 +64,14 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 		TemperatureAdjustedSGSubPanel = new JPanel();
 		TemperatureAdjustedSGSubPanel.setBackground(Color.WHITE);
 		TemperatureAdjustedSGSubPanel.setBorder(new LineBorder(new Color(128, 128, 128)));
-		TemperatureAdjustedSGSubPanel.setLayout(new MigLayout("", "[150px:n:150px,left][150px:n:150px][150px:n:150px][grow]", "[60px:n,60px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px]"));
+		TemperatureAdjustedSGSubPanel.setLayout(new MigLayout("", "[205px:n:205px,left][205px:n:205px][205px:n:205px][grow]", "[60px:n,60px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px]"));
 		TemperatureAdjustedSGPanel.add(TemperatureAdjustedSGSubPanel, "cell 0 2,grow");
 							
 								
 		//Add Calculators to subpanel		
 		txtSugarToSGInfo = new JTextPane();
-		txtSugarToSGInfo.setText("Blah");
+		//TODO Umm...all text panes are still editable
+		txtSugarToSGInfo.setText("Hydrometers are calibrated to be read at a specific temperature as temperature affects the density of water (they are usually calibrated to either 15°C or 20°C, it will say on the hydrometer). If you are taking a reading at a temperature your hydrometer is not calibrated for then you will need to use the following calculator to adjust the SG.");
 		TemperatureAdjustedSGSubPanel.add(txtSugarToSGInfo, "cell 0 0 6 1,grow");
 		
 		btnCelcius = new JToggleButton("°C");
@@ -82,30 +85,37 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 		TemperatureAdjustedSGSubPanel.add(btnKelvin, "cell 2 1,growx");
 		
 					
-		lblTemperature = new JLabel("Temperature");
+		lblTemperature = new JLabel("Temperature of Liquid");
 		TemperatureAdjustedSGSubPanel.add(lblTemperature, "cell 0 2,alignx trailing");
 							
 		fieldTemperature = new JFormattedTextField(new DecimalFormat("##0.##"));
 		fieldTemperature.setText("0");
 		TemperatureAdjustedSGSubPanel.add(fieldTemperature, "cell 1 2 2,growx");
+		
+		lblHydrometerTemperature = new JLabel("Hydrometer Calibrated Temperature");
+		TemperatureAdjustedSGSubPanel.add(lblHydrometerTemperature, "cell 0 3,alignx trailing");
+							
+		fieldHydrometerTemperature = new JFormattedTextField(new DecimalFormat("##0.##"));
+		fieldHydrometerTemperature.setText("20");
+		TemperatureAdjustedSGSubPanel.add(fieldHydrometerTemperature, "cell 1 3 2,growx");
 						
 		lblSG = new JLabel("SG");
-		TemperatureAdjustedSGSubPanel.add(lblSG, "cell 0 3,alignx trailing");
+		TemperatureAdjustedSGSubPanel.add(lblSG, "cell 0 4,alignx trailing");
 								
 		fieldSG = new JFormattedTextField(new DecimalFormat("0.000"));
 		fieldSG.setText("0.000");
-		TemperatureAdjustedSGSubPanel.add(fieldSG, "cell 1 3 2,growx");
+		TemperatureAdjustedSGSubPanel.add(fieldSG, "cell 1 4 2,growx");
 						
 		btnCalculateTemperatureAdjustedSG = new JButton("Submit");
-		TemperatureAdjustedSGSubPanel.add(btnCalculateTemperatureAdjustedSG, "cell 1 4");
+		TemperatureAdjustedSGSubPanel.add(btnCalculateTemperatureAdjustedSG, "cell 1 5");
 								
 		lblResult = new JLabel("Temperature Adjusted SG");
-		TemperatureAdjustedSGSubPanel.add(lblResult, "cell 0 5,alignx trailing");
+		TemperatureAdjustedSGSubPanel.add(lblResult, "cell 0 6,alignx trailing");
 								
 		fieldResult = new JFormattedTextField(new DecimalFormat("0.000"));
 		fieldResult.setText("0.000");
 		fieldResult.setEditable(false);
-		TemperatureAdjustedSGSubPanel.add(fieldResult, "cell 1 5 2,growx");
+		TemperatureAdjustedSGSubPanel.add(fieldResult, "cell 1 6 2,growx");
 								
 									
 		//Add button listeners
