@@ -67,6 +67,7 @@ public class SugarToSGPanel extends JPanel {
 		//Add Calculators to subpanel		
 		txtSugarToSGInfo = new JTextPane();
 		txtSugarToSGInfo.setText("Use this to calculate approximately how much sugar you need to add to a known volume of liquid that has a known SG to reach a desired SG. This assumes you are adding the sugar to an already existing quantity of liquid, and not adding the liquid to the sugar to reach the specified volume, there is a difference!");
+		txtSugarToSGInfo.setEditable(false);
 		SugarToSGSubPanel.add(txtSugarToSGInfo, "cell 0 0 6 1,grow");
 			
 		lblVolumeSugarToSG = new JLabel("Volume (litres)");

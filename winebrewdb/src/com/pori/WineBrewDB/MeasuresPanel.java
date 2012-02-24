@@ -42,7 +42,8 @@ public class MeasuresPanel extends JPanel {
 		//Some content
 		txtMeasuresPanel = new JTextField();
 		txtMeasuresPanel.setBackground(Color.WHITE);
-		txtMeasuresPanel.setText("MeasuresPanel");
+		txtMeasuresPanel.setEditable(false);
+		txtMeasuresPanel.setText("TODO: lbs oz <--> grams, tsp <--> tbsp, uk gallons <--> us gallons, uk gallons <--> litres, c <--> f,");
 		txtMeasuresPanel.setColumns(10);
 		MeasuresPanel.add(txtMeasuresPanel, "cell 0 2,grow");
 		

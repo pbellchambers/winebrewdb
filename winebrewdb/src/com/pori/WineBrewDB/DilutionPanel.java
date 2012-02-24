@@ -80,6 +80,7 @@ public class DilutionPanel extends JPanel {
 		//Add Calculators to subpanel		
 		txtDilutionInfo = new JTextPane();
 		txtDilutionInfo.setText("The following calculators are to be used when you are diluting your brew. The first is for when you are topping up with water after fermentation is complete and you know the ABV %, the second is for calculating the adjusted starting SG when you are topping up with water during fermentation. \n\nNote: If you are topping up during fermentation with sugar containing liquid that is the same as the Starting SG then you do not need to calculate any adjustments. If you are topping up with sugar containing liquid that is different to the starting SG then that is currently out of the scope of this calculator.");
+		txtDilutionInfo.setEditable(false);
 		DilutionSubPanel.add(txtDilutionInfo, "cell 0 0 6 1,grow");
 		
 		lblDilutionMethodABV = new JLabel("Diluted ABV %");
