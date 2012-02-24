@@ -26,7 +26,7 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 	public static JLabel TemperatureAdjustedSGHeader;
 	public static JLabel TemperatureAdjustedSGSubtitle;
 	public static JPanel TemperatureAdjustedSGSubPanel;
-	public static JTextPane txtSugarToSGInfo;
+	public static JTextPane txtTemperatureAdjustedSG;
 	public static JToggleButton btnCelcius;
 	public static JToggleButton btnFahrenheit;
 	public static JToggleButton btnKelvin;
@@ -69,10 +69,10 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 							
 								
 		//Add Calculators to subpanel		
-		txtSugarToSGInfo = new JTextPane();
-		//TODO Umm...all text panes are still editable
-		txtSugarToSGInfo.setText("Hydrometers are calibrated to be read at a specific temperature as temperature affects the density of water (they are usually calibrated to either 15°C or 20°C, it will say on the hydrometer). If you are taking a reading at a temperature your hydrometer is not calibrated for then you will need to use the following calculator to adjust the SG.");
-		TemperatureAdjustedSGSubPanel.add(txtSugarToSGInfo, "cell 0 0 6 1,grow");
+		txtTemperatureAdjustedSG = new JTextPane();
+		txtTemperatureAdjustedSG.setText("Hydrometers are calibrated to be read at a specific temperature as temperature affects the density of water (they are usually calibrated to either 15°C or 20°C, it will say on the hydrometer). If you are taking a reading at a temperature your hydrometer is not calibrated for then you will need to use the following calculator to adjust the SG.");
+		txtTemperatureAdjustedSG.setEditable(false);
+		TemperatureAdjustedSGSubPanel.add(txtTemperatureAdjustedSG, "cell 0 0 6 1,grow");
 		
 		btnCelcius = new JToggleButton("°C");
 		btnCelcius.setSelected(true);
@@ -89,7 +89,7 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 		TemperatureAdjustedSGSubPanel.add(lblTemperature, "cell 0 2,alignx trailing");
 							
 		fieldTemperature = new JFormattedTextField(new DecimalFormat("##0.##"));
-		fieldTemperature.setText("0");
+		fieldTemperature.setText("20.0");
 		TemperatureAdjustedSGSubPanel.add(fieldTemperature, "cell 1 2 2,growx");
 		
 		lblHydrometerTemperature = new JLabel("Hydrometer Calibrated Temperature");
@@ -167,16 +167,72 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 	
 	
 	public static void CalculateTemperatureAdjustedSG(){
-		//TODO http://www.engineeringtoolbox.com/water-temperature-specific-gravity-d_1179.html
-		//http://hbd.org/brewery/library/HydromCorr0992.html
 		if(btnCelcius.isSelected()){
-			fieldResult.setText(new BigDecimal("1").toString());
+			BigDecimal SpecificGravity = new BigDecimal(fieldSG.getText());
+			BigDecimal TemperatureCelcius = new BigDecimal(fieldTemperature.getText());
+			BigDecimal TemperatureFahrenheit = new BigDecimal("32").add(TemperatureCelcius.multiply(new BigDecimal("1.8")));
+			BigDecimal HydrometerTemperatureCelcius = new BigDecimal(fieldHydrometerTemperature.getText());
+			BigDecimal HydrometerTemperatureFahrenheit = new BigDecimal("32").add(HydrometerTemperatureCelcius.multiply(new BigDecimal("1.8")));
+			BigDecimal TemperatureFahrenheitP2 = TemperatureFahrenheit.pow(2);
+			BigDecimal TemperatureFahrenheitP3 = TemperatureFahrenheit.pow(3);
+			BigDecimal HydrometerTemperatureFahrenheitP2 = HydrometerTemperatureFahrenheit.pow(2);
+			BigDecimal HydrometerTemperatureFahrenheitP3 = HydrometerTemperatureFahrenheit.pow(3);
+			BigDecimal a1 =	new BigDecimal("0.000134722124").multiply(TemperatureFahrenheit);	
+			BigDecimal a2 = new BigDecimal("0.00000204052596").multiply(TemperatureFahrenheitP2);
+			BigDecimal a3 = new BigDecimal("0.00000000232820948").multiply(TemperatureFahrenheitP3);
+			BigDecimal a = new BigDecimal("1.00130346").subtract(a1).add(a2).subtract(a3);
+			BigDecimal b1 =	new BigDecimal("0.000134722124").multiply(HydrometerTemperatureFahrenheit);	
+			BigDecimal b2 = new BigDecimal("0.00000204052596").multiply(HydrometerTemperatureFahrenheitP2);
+			BigDecimal b3 = new BigDecimal("0.00000000232820948").multiply(HydrometerTemperatureFahrenheitP3);
+			BigDecimal b = new BigDecimal("1.00130346").subtract(b1).add(b2).subtract(b3);
+			BigDecimal c = a.divide(b, 4, BigDecimal.ROUND_HALF_UP);
+			BigDecimal result = SpecificGravity.multiply(c);
+			
+			fieldResult.setText(result.setScale(3, BigDecimal.ROUND_HALF_UP).toString());
 		}
 		if(btnFahrenheit.isSelected()){
-			fieldResult.setText(new BigDecimal("2").toString());
+			BigDecimal SpecificGravity = new BigDecimal(fieldSG.getText());
+			BigDecimal TemperatureFahrenheit = new BigDecimal(fieldTemperature.getText());
+			BigDecimal HydrometerTemperatureFahrenheit = new BigDecimal(fieldHydrometerTemperature.getText());
+			BigDecimal TemperatureFahrenheitP2 = TemperatureFahrenheit.pow(2);
+			BigDecimal TemperatureFahrenheitP3 = TemperatureFahrenheit.pow(3);
+			BigDecimal HydrometerTemperatureFahrenheitP2 = HydrometerTemperatureFahrenheit.pow(2);
+			BigDecimal HydrometerTemperatureFahrenheitP3 = HydrometerTemperatureFahrenheit.pow(3);
+			BigDecimal a1 =	new BigDecimal("0.000134722124").multiply(TemperatureFahrenheit);	
+			BigDecimal a2 = new BigDecimal("0.00000204052596").multiply(TemperatureFahrenheitP2);
+			BigDecimal a3 = new BigDecimal("0.00000000232820948").multiply(TemperatureFahrenheitP3);
+			BigDecimal a = new BigDecimal("1.00130346").subtract(a1).add(a2).subtract(a3);
+			BigDecimal b1 =	new BigDecimal("0.000134722124").multiply(HydrometerTemperatureFahrenheit);	
+			BigDecimal b2 = new BigDecimal("0.00000204052596").multiply(HydrometerTemperatureFahrenheitP2);
+			BigDecimal b3 = new BigDecimal("0.00000000232820948").multiply(HydrometerTemperatureFahrenheitP3);
+			BigDecimal b = new BigDecimal("1.00130346").subtract(b1).add(b2).subtract(b3);
+			BigDecimal c = a.divide(b, 4, BigDecimal.ROUND_HALF_UP);
+			BigDecimal result = SpecificGravity.multiply(c);
+			
+			fieldResult.setText(result.setScale(3, BigDecimal.ROUND_HALF_UP).toString());
 		}
 		if(btnKelvin.isSelected()){
-			fieldResult.setText(new BigDecimal("3").toString());
+			BigDecimal SpecificGravity = new BigDecimal(fieldSG.getText());
+			BigDecimal TemperatureKelvin = new BigDecimal(fieldTemperature.getText());
+			BigDecimal TemperatureFahrenheit = new BigDecimal("32").add(new BigDecimal("1.8").multiply(TemperatureKelvin.subtract(new BigDecimal("273"))));
+			BigDecimal HydrometerTemperatureKelvin = new BigDecimal(fieldHydrometerTemperature.getText());			
+			BigDecimal HydrometerTemperatureFahrenheit = new BigDecimal("32").add(new BigDecimal("1.8").multiply(HydrometerTemperatureKelvin.subtract(new BigDecimal("273"))));
+			BigDecimal TemperatureFahrenheitP2 = TemperatureFahrenheit.pow(2);
+			BigDecimal TemperatureFahrenheitP3 = TemperatureFahrenheit.pow(3);
+			BigDecimal HydrometerTemperatureFahrenheitP2 = HydrometerTemperatureFahrenheit.pow(2);
+			BigDecimal HydrometerTemperatureFahrenheitP3 = HydrometerTemperatureFahrenheit.pow(3);
+			BigDecimal a1 =	new BigDecimal("0.000134722124").multiply(TemperatureFahrenheit);	
+			BigDecimal a2 = new BigDecimal("0.00000204052596").multiply(TemperatureFahrenheitP2);
+			BigDecimal a3 = new BigDecimal("0.00000000232820948").multiply(TemperatureFahrenheitP3);
+			BigDecimal a = new BigDecimal("1.00130346").subtract(a1).add(a2).subtract(a3);
+			BigDecimal b1 =	new BigDecimal("0.000134722124").multiply(HydrometerTemperatureFahrenheit);	
+			BigDecimal b2 = new BigDecimal("0.00000204052596").multiply(HydrometerTemperatureFahrenheitP2);
+			BigDecimal b3 = new BigDecimal("0.00000000232820948").multiply(HydrometerTemperatureFahrenheitP3);
+			BigDecimal b = new BigDecimal("1.00130346").subtract(b1).add(b2).subtract(b3);
+			BigDecimal c = a.divide(b, 4, BigDecimal.ROUND_HALF_UP);
+			BigDecimal result = SpecificGravity.multiply(c);
+			
+			fieldResult.setText(result.setScale(3, BigDecimal.ROUND_HALF_UP).toString());
 		}
 
 	}
