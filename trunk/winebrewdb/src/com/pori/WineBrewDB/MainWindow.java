@@ -41,6 +41,7 @@ public class MainWindow {
 		//TODO Make icon nicer (border, curved edges)
 		WineBrewDBFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb64.png")));
 		WineBrewDBFrame.setBounds(100, 100, 1024, 640);
+		WineBrewDBFrame.setLocation(50, 50);
 		WineBrewDBFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		InitializeMenu.InitializeMenuMethod();	
