@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 public class MainWindow {
 
 	public static JFrame WineBrewDBFrame;
-
+	public static MainWindow window;
 
 	/**
 	 * Launch the application.
@@ -16,8 +16,8 @@ public class MainWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow window = new MainWindow();
-					window.WineBrewDBFrame.setVisible(true);
+					window = new MainWindow();
+					MainWindow.WineBrewDBFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -38,7 +38,7 @@ public class MainWindow {
 	public void initialize() {
 		WineBrewDBFrame = new JFrame();
 		WineBrewDBFrame.setTitle("WineBrewDB");
-		//TODO Make icon nicer (border, curved edges)
+		//TODO: Make icon nicer (border, curved edges, buttonise, different small icon)
 		WineBrewDBFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb64.png")));
 		WineBrewDBFrame.setBounds(100, 100, 1024, 640);
 		WineBrewDBFrame.setLocation(50, 50);

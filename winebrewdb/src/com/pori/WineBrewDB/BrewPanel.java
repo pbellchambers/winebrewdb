@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JEditorPane;
@@ -86,7 +85,14 @@ public class BrewPanel extends JPanel {
 	    
 		//Table
 		BrewTable = new JTable();
-		BrewTable.setModel(new DefaultTableModel(data,header));
+		BrewTable.setModel(new DefaultTableModel(data,header){
+			private static final long serialVersionUID = 6716082729584843250L;
+			public boolean isCellEditable(int row, int column) {
+			    	return false;
+			    }}
+
+			);
+		//TODO: Size columns, pick which ones visible in initial table too.
 		//BrewTable.getColumnModel().getColumn(0).setPreferredWidth(760);
 		//BrewTable.getColumnModel().getColumn(0).setMinWidth(16);
 		//BrewTable.getColumnModel().getColumn(0).setMaxWidth(999999);
@@ -94,6 +100,21 @@ public class BrewPanel extends JPanel {
 		//BrewTable.getColumnModel().getColumn(1).setMinWidth(16);
 		//BrewTable.getColumnModel().getColumn(1).setMaxWidth(99999);
 		BrewTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		//TODO: Double click table
+		//Mouse Listener on JTable:
+		//  myJTable.addMouseListener(new MouseAdapter() {
+		//	   public void mouseClicked(MouseEvent e) {
+		//	      if (e.getClickCount() == 2) {
+		//	         JTable target = (JTable)e.getSource();
+		//	         int row = target.getSelectedRow();
+		//	         int column = target.getSelectedColumn();
+		//	         // do some action
+		//	         }
+		//	   }
+		//	});
+		
+		//TODO: Bottom panel with more info on selected cell
 	    
 	    //ScrollPane
 	    BrewScrollPane = new JScrollPane();

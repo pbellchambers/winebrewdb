@@ -28,6 +28,10 @@ public class SandboxTestPane extends JPanel {
 				"New column", "New column2"
 			}
 		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 2995770614591021231L;
 			boolean[] columnEditables = new boolean[] {
 				true, false
 			};
