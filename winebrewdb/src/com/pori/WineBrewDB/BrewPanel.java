@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -36,6 +37,11 @@ public class BrewPanel extends JPanel {
 	public static JTextField txtBrewPanel;
 	public static JTable BrewTable;
 	public static JScrollPane BrewScrollPane;
+	public static JTabbedPane tabbedBrewPane;
+	public static JPanel tabbedBrewPanel;
+	public static JPanel tabbedBrewDataPanel;
+	public static JPanel tabbedBrewNotesPanel;
+	public static JPanel tabbedBrewPicturesPanel;
 	public static String SelectedBrewRef;
 	public static String SelectedBrewName;
 	public static String SelectedDatePlanned;
@@ -79,6 +85,7 @@ public class BrewPanel extends JPanel {
 	public static JCheckBox chckbxInFining;
 	public static JCheckBox chckbxInFermenting;
 	public static JCheckBox chckbxInBottles;
+	public static JCheckBox chckbxInMaturing;
 	public static JCheckBox chckbxDrunk;
 	public static JButton btnShowEntireTable;
 	public static JButton btnSearch;
@@ -88,7 +95,7 @@ public class BrewPanel extends JPanel {
 	public static void InitializePanel(){
 		
 		BrewPanel = new JPanel();
-		BrewPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][150px:n:150px][grow]"));
+		BrewPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
 		
 		
 		//Header
@@ -98,9 +105,17 @@ public class BrewPanel extends JPanel {
 		
 		
 		//Subtitle
-		BrewSubtitle = new JLabel("Search for brews.");
+		BrewSubtitle = new JLabel("Browse and edit the brew database.");
 		BrewSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		BrewPanel.add(BrewSubtitle, "cell 0 1,growx,aligny top");
+		
+		//Tabbed Pane
+		tabbedBrewPane = new JTabbedPane(JTabbedPane.TOP);
+		BrewPanel.add(tabbedBrewPane, "cell 0 2,grow");
+		tabbedBrewPanel = new JPanel();
+		tabbedBrewPanel.setBackground(UIManager.getColor("Panel.background"));
+		tabbedBrewPanel.setLayout(new MigLayout("", "[grow]", "[150px:n:150px][grow]"));
+		
 		
 		//Filter for table
 		BrewFilterPanel = new JPanel();
@@ -168,7 +183,11 @@ public class BrewPanel extends JPanel {
 		comboThumbs.setBackground(Color.WHITE);
 		comboThumbs.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "Up", "Middle", "Down"}));
 		BrewFilterPanel.add(comboThumbs, "cell 1 2,growx");
-			
+		
+		chckbxInMaturing = new JCheckBox("In Maturing");
+		chckbxInMaturing.setSelected(true);
+		BrewFilterPanel.add(chckbxInMaturing, "cell 6 2,growx");
+		
 		chckbxDrunk = new JCheckBox("Drunk");
 		chckbxDrunk.setSelected(true);
 		BrewFilterPanel.add(chckbxDrunk, "cell 7 2,growx");
@@ -179,19 +198,37 @@ public class BrewPanel extends JPanel {
 		btnSearch = new JButton("Search");
 		BrewFilterPanel.add(btnSearch, "cell 6 3 2 1,growx");
 
-	    BrewPanel.add(BrewFilterPanel, "cell 0 2,grow");
+		tabbedBrewPanel.add(BrewFilterPanel, "cell 0 0,grow");
+		tabbedBrewPane.addTab("Search", null, tabbedBrewPanel, null);
 		
 		initializeTable();
 		
 		
 		//TODO: Popup pane/panel with more info on selected cell
+		//Brew Data
+		tabbedBrewDataPanel = new JPanel();
+		tabbedBrewDataPanel.setBackground(UIManager.getColor("Panel.background"));
+		tabbedBrewDataPanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
+		tabbedBrewPane.addTab("Brew Data", null, tabbedBrewDataPanel, null);
+		
+		//Brew Notes
+		tabbedBrewNotesPanel = new JPanel();
+		tabbedBrewNotesPanel.setBackground(UIManager.getColor("Panel.background"));
+		tabbedBrewNotesPanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
+		tabbedBrewPane.addTab("Brew Notes", null, tabbedBrewNotesPanel, null);
+		
+		//Brew Pictures
+		tabbedBrewPicturesPanel = new JPanel();
+		tabbedBrewPicturesPanel.setBackground(UIManager.getColor("Panel.background"));
+		tabbedBrewPicturesPanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
+		tabbedBrewPane.addTab("Brew Pictures", null, tabbedBrewPicturesPanel, null);
 		
 		//TODO: Some form of colouring on table rows
 	    
 	    //ScrollPane
 	    BrewScrollPane = new JScrollPane();
 	    BrewScrollPane.setViewportView(BrewTable);
-	    BrewPanel.add(BrewScrollPane, "cell 0 3,grow");
+	    tabbedBrewPanel.add(BrewScrollPane, "cell 0 1,grow");
 	    
 		//Add button listeners
 	    btnSearch.addActionListener(new ActionListener() {

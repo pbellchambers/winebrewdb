@@ -56,6 +56,12 @@ public class DBEngine {
 	    	InFining = "3";
 	    }
 	    
+	    if(BrewPanel.chckbxInMaturing.isSelected()){
+	    	InMaturing = "1";
+	    } else {
+	    	InMaturing = "3";
+	    }
+	    
 	    if(BrewPanel.chckbxInBottles.isSelected()){
 	    	InBottles = "1";
 	    } else {
@@ -67,16 +73,7 @@ public class DBEngine {
 	    } else {
 	    	Drunk = "3";
 	    }
-	    
-	    System.out.println(Colour);
-	    System.out.println(ThumbsUp);
-	    System.out.println(InPlanning);
-	    System.out.println(InFermenting);
-	    System.out.println(InFining);
-	    System.out.println(InBottles);
-	    System.out.println(Drunk);
-	    System.out.println(BrewPanel.textBrewName.getText());
-	    
+	     
 	    Vector<Vector<String>> Brews = new Vector<Vector<String>>();
 	    PreparedStatement pre = conn.prepareStatement(
 	    		"select * from Brews where BrewName like '%" + 
