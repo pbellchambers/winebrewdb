@@ -1,14 +1,20 @@
 package com.pori.WineBrewDB;
 
-import java.awt.Color;
 import java.awt.Font;
+import java.util.Vector;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JEditorPane;
+import javax.swing.table.DefaultTableModel;
+
+import com.pori.WineBrewDB.SQLite.DBEngine;
 
 public class BrewPanel extends JPanel {
 
@@ -18,6 +24,8 @@ public class BrewPanel extends JPanel {
 	public static JLabel BrewHeader;
 	public static JLabel BrewSubtitle;
 	public static JTextField txtBrewPanel;
+	public static JTable BrewTable;
+	public static JScrollPane BrewScrollPane;
 	public static String BrewPanelStatus = "DeInitialized";
 
 	//public BrewPanel() {
@@ -38,14 +46,60 @@ public class BrewPanel extends JPanel {
 		BrewSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		BrewPanel.add(BrewSubtitle, "cell 0 1,growx,aligny top");
 		
-		
-		//Some content
-		txtBrewPanel = new JTextField();
-		txtBrewPanel.setBackground(Color.WHITE);
-		txtBrewPanel.setText("BrewPanel - Something will go here to search for/filter brews entered in the database, and view their details.");
-		txtBrewPanel.setColumns(10);
-		BrewPanel.add(txtBrewPanel, "cell 0 2,grow");
-		
+		//Get data for table
+	    Vector<Vector<String>> data = null; //used for data from database
+	    Vector<String> header; //used to store data header
+
+	    try {
+			data = DBEngine.getBrews();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	    //Create header for the table
+	    header = new Vector<String>();
+	    header.add("BrewRef");
+	    header.add("BrewName");
+	    header.add("DatePlanned");
+	    header.add("DateStarted");
+	    header.add("DateBottled");
+	    header.add("RecipeFrom");
+	    header.add("Yeast");
+	    header.add("StartSG");
+	    header.add("StartAdjustedSG");
+	    header.add("EndSG");
+	    header.add("AimedABV");
+	    header.add("FinalABV");
+	    header.add("FinalAdjustedABV");
+	    header.add("Notes");
+	    header.add("TastingNotes");
+	    header.add("ThumbsUp");
+	    header.add("InPlanning");
+	    header.add("InFermenting");
+	    header.add("InFining");
+	    header.add("InMaturing");
+	    header.add("InBottles");
+	    header.add("Drunk");
+	    header.add("VolumeMade");
+	    header.add("NumberBottles");
+	    header.add("Colour");
+	    
+		//Table
+		BrewTable = new JTable();
+		BrewTable.setModel(new DefaultTableModel(data,header));
+		//BrewTable.getColumnModel().getColumn(0).setPreferredWidth(760);
+		//BrewTable.getColumnModel().getColumn(0).setMinWidth(16);
+		//BrewTable.getColumnModel().getColumn(0).setMaxWidth(999999);
+		//BrewTable.getColumnModel().getColumn(1).setPreferredWidth(760);
+		//BrewTable.getColumnModel().getColumn(1).setMinWidth(16);
+		//BrewTable.getColumnModel().getColumn(1).setMaxWidth(99999);
+		BrewTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+	    
+	    //ScrollPane
+	    BrewScrollPane = new JScrollPane();
+	    BrewScrollPane.setViewportView(BrewTable);
+	    BrewPanel.add(BrewScrollPane, "cell 0 2,grow");
+	    
 		
 		//Add it all to the main window
 		MainWindow.WineBrewDBFrame.getContentPane().add(BrewPanel, "cell 0 0,grow");
@@ -60,7 +114,7 @@ public class BrewPanel extends JPanel {
 			BrewPanel.setVisible(false);
 			BrewPanel.remove(BrewHeader);
 			BrewPanel.remove(BrewSubtitle);
-			BrewPanel.remove(txtBrewPanel);
+			BrewPanel.remove(BrewTable);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(BrewPanel);
 			BrewPanelStatus = "DeInitialized";
 		}
