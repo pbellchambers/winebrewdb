@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
+import javax.swing.JTabbedPane;
 
 public class SandboxTestFrame extends JFrame {
 
@@ -43,6 +44,21 @@ public class SandboxTestFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		contentPane.add(tabbedPane, BorderLayout.CENTER);
+		
+		JPanel Search = new JPanel();
+		tabbedPane.addTab("Search", null, Search, null);
+		
+		JPanel BrewDetails = new JPanel();
+		tabbedPane.addTab("New tab", null, BrewDetails, null);
+		
+		JPanel panel_2 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_2, null);
+		
+		JPanel panel_3 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_3, null);
 	}
 
 }
