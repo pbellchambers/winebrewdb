@@ -3,7 +3,18 @@ package com.pori.WineBrewDB.SQLite;
 import java.sql.*;
 import java.util.Vector;
 
+import com.pori.WineBrewDB.BrewPanel;
+
 public class DBEngine {
+	
+	public static String Colour;
+	public static String ThumbsUp;
+	public static String InPlanning;
+	public static String InFermenting;
+	public static String InFining;
+	public static String InMaturing;
+	public static String InBottles;
+	public static String Drunk;
 	
 	//Create the connection
 	public static Connection dbConnection() throws Exception {
@@ -14,9 +25,87 @@ public class DBEngine {
 	//Get everything from Brews table
 	public static Vector<Vector<String>> getBrews() throws Exception {
 	    Connection conn = dbConnection();
+	      
+	    if(BrewPanel.comboColour.getSelectedItem().equals("Any")){
+	    	Colour ="White','Red','Rosé','','Other";
+	    } else {
+	    	Colour = (String) BrewPanel.comboColour.getSelectedItem();
+	    }
+	    
+	    if(BrewPanel.comboThumbs.getSelectedItem().equals("Any")){
+	    	ThumbsUp ="Up','Middle','','Down";
+	    } else {
+	    	ThumbsUp = (String) BrewPanel.comboThumbs.getSelectedItem();
+	    }
+	    
+	    if(BrewPanel.chckbxInPlanning.isSelected()){
+	    	InPlanning = "1";
+	    } else {
+	    	InPlanning = "3";
+	    }
+	    
+	    if(BrewPanel.chckbxInFermenting.isSelected()){
+	    	InFermenting = "1";
+	    } else {
+	    	InFermenting = "3";
+	    }
+	    
+	    if(BrewPanel.chckbxInFining.isSelected()){
+	    	InFining = "1";
+	    } else {
+	    	InFining = "3";
+	    }
+	    
+	    if(BrewPanel.chckbxInBottles.isSelected()){
+	    	InBottles = "1";
+	    } else {
+	    	InBottles = "3";
+	    }
+	    
+	    if(BrewPanel.chckbxDrunk.isSelected()){
+	    	Drunk = "1";
+	    } else {
+	    	Drunk = "3";
+	    }
+	    
+	    System.out.println(Colour);
+	    System.out.println(ThumbsUp);
+	    System.out.println(InPlanning);
+	    System.out.println(InFermenting);
+	    System.out.println(InFining);
+	    System.out.println(InBottles);
+	    System.out.println(Drunk);
+	    System.out.println(BrewPanel.textBrewName.getText());
 	    
 	    Vector<Vector<String>> Brews = new Vector<Vector<String>>();
-	    PreparedStatement pre = conn.prepareStatement("select * from Brews");
+	    PreparedStatement pre = conn.prepareStatement(
+	    		"select * from Brews where BrewName like '%" + 
+	    		BrewPanel.textBrewName.getText() + 
+	    		"%' and RecipeFrom like '%" + 
+	    		BrewPanel.textRecipeFrom.getText() + 
+	    		"%' and Yeast like '%" + 
+	    		BrewPanel.textYeast.getText() + 
+	    		"%' and Notes like '%" + 
+	    		BrewPanel.textNotes.getText() + 
+	    		"%' and TastingNotes like '%" + 
+	    		BrewPanel.textTastingNotes.getText() + 
+	    		"%' and Colour in ('" +
+	    		Colour +
+	    		"') and ThumbsUp in('" +
+	    		ThumbsUp +
+				"')	and BrewRef in (select BrewRef from Brews where InPlanning='" +
+				InPlanning +
+	    		"' or InFermenting='" +
+	    		InFermenting +
+				"' or InFining='" +
+				InFining +
+	    		"' or InMaturing='" +
+				InMaturing +
+				"' or InBottles='" +
+	    		InBottles +
+				"' or Drunk='" +
+				Drunk +
+	    		"')");
 
 	    ResultSet rs = pre.executeQuery();
 
