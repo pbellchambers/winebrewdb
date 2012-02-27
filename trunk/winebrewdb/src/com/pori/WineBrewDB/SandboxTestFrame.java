@@ -10,6 +10,10 @@ import java.awt.Toolkit;
 
 public class SandboxTestFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8244604801203734746L;
 	private JPanel contentPane;
 
 	/**

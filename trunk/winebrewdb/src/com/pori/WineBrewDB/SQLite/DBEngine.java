@@ -12,7 +12,7 @@ public class DBEngine {
 	}
 	
 	//Get everything from Brews table
-	public static Vector getBrews() throws Exception {
+	public static Vector<Vector<String>> getBrews() throws Exception {
 	    Connection conn = dbConnection();
 	    
 	    Vector<Vector<String>> Brews = new Vector<Vector<String>>();

@@ -131,7 +131,7 @@ public class SugarToSGPanel extends JPanel {
 	
 	
 	public static void CalculateSugarToSG(){
-		//TODO : Research some more, make it take into account the whole non-linear thing.
+		//TODO: Research some more, make it take into account the whole non-linear thing.
 		BigDecimal StartingVolume = new BigDecimal(fieldVolumeSugarToSG.getText());
 		BigDecimal CurrentSG = new BigDecimal(fieldCurrentSG.getText()).multiply(new BigDecimal("1000"));
 		BigDecimal DesiredSG = new BigDecimal(fieldDesiredSG.getText()).multiply(new BigDecimal("1000"));
