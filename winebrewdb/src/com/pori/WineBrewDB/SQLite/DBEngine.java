@@ -1,9 +1,12 @@
 package com.pori.WineBrewDB.SQLite;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Vector;
 
-import com.pori.WineBrewDB.BrewPanel;
+import com.pori.WineBrewDB.BrewSearchPanel;
 
 public class DBEngine {
 	
@@ -26,49 +29,49 @@ public class DBEngine {
 	public static Vector<Vector<String>> getBrews() throws Exception {
 	    Connection conn = dbConnection();
 	      
-	    if(BrewPanel.comboColour.getSelectedItem().equals("Any")){
+	    if(BrewSearchPanel.comboColour.getSelectedItem().equals("Any")){
 	    	Colour ="White','Red','Rosé','','Other";
 	    } else {
-	    	Colour = (String) BrewPanel.comboColour.getSelectedItem();
+	    	Colour = (String) BrewSearchPanel.comboColour.getSelectedItem();
 	    }
 	    
-	    if(BrewPanel.comboThumbs.getSelectedItem().equals("Any")){
+	    if(BrewSearchPanel.comboThumbs.getSelectedItem().equals("Any")){
 	    	ThumbsUp ="Up','Middle','','Down";
 	    } else {
-	    	ThumbsUp = (String) BrewPanel.comboThumbs.getSelectedItem();
+	    	ThumbsUp = (String) BrewSearchPanel.comboThumbs.getSelectedItem();
 	    }
 	    
-	    if(BrewPanel.chckbxInPlanning.isSelected()){
+	    if(BrewSearchPanel.chckbxInPlanning.isSelected()){
 	    	InPlanning = "1";
 	    } else {
 	    	InPlanning = "3";
 	    }
 	    
-	    if(BrewPanel.chckbxInFermenting.isSelected()){
+	    if(BrewSearchPanel.chckbxInFermenting.isSelected()){
 	    	InFermenting = "1";
 	    } else {
 	    	InFermenting = "3";
 	    }
 	    
-	    if(BrewPanel.chckbxInFining.isSelected()){
+	    if(BrewSearchPanel.chckbxInFining.isSelected()){
 	    	InFining = "1";
 	    } else {
 	    	InFining = "3";
 	    }
 	    
-	    if(BrewPanel.chckbxInMaturing.isSelected()){
+	    if(BrewSearchPanel.chckbxInMaturing.isSelected()){
 	    	InMaturing = "1";
 	    } else {
 	    	InMaturing = "3";
 	    }
 	    
-	    if(BrewPanel.chckbxInBottles.isSelected()){
+	    if(BrewSearchPanel.chckbxInBottles.isSelected()){
 	    	InBottles = "1";
 	    } else {
 	    	InBottles = "3";
 	    }
 	    
-	    if(BrewPanel.chckbxDrunk.isSelected()){
+	    if(BrewSearchPanel.chckbxDrunk.isSelected()){
 	    	Drunk = "1";
 	    } else {
 	    	Drunk = "3";
@@ -77,15 +80,15 @@ public class DBEngine {
 	    Vector<Vector<String>> Brews = new Vector<Vector<String>>();
 	    PreparedStatement pre = conn.prepareStatement(
 	    		"select * from Brews where BrewName like '%" + 
-	    		BrewPanel.textBrewName.getText() + 
+	    		BrewSearchPanel.textBrewName.getText() + 
 	    		"%' and RecipeFrom like '%" + 
-	    		BrewPanel.textRecipeFrom.getText() + 
+	    		BrewSearchPanel.textRecipeFrom.getText() + 
 	    		"%' and Yeast like '%" + 
-	    		BrewPanel.textYeast.getText() + 
+	    		BrewSearchPanel.textYeast.getText() + 
 	    		"%' and Notes like '%" + 
-	    		BrewPanel.textNotes.getText() + 
+	    		BrewSearchPanel.textNotes.getText() + 
 	    		"%' and TastingNotes like '%" + 
-	    		BrewPanel.textTastingNotes.getText() + 
+	    		BrewSearchPanel.textTastingNotes.getText() + 
 	    		"%' and Colour in ('" +
 	    		Colour +
 	    		"') and ThumbsUp in('" +
