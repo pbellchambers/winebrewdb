@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
+import com.pori.WineBrewDB.BrewAddPanel;
 import com.pori.WineBrewDB.BrewDataPanel;
 import com.pori.WineBrewDB.BrewSearchPanel;
 
@@ -25,6 +26,12 @@ public class DBEngine {
 	private static String InMaturingB;
 	private static String InBottlesB;
 	private static String DrunkB;
+	private static String InPlanningAdd;
+	private static String InFermentingAdd;
+	private static String InFiningAdd;
+	private static String InMaturingAdd;
+	private static String InBottlesAdd;
+	private static String DrunkAdd;
 	
 	//Create the connection
 	public static Connection dbConnection() throws Exception {
@@ -37,13 +44,13 @@ public class DBEngine {
 	    Connection conn = dbConnection();
 	      
 	    if(BrewSearchPanel.comboColour.getSelectedItem().equals("Any")){
-	    	Colour ="White','Red','Rosé','','Other";
+	    	Colour ="White','Red','Rosé','',' ','Other";
 	    } else {
 	    	Colour = (String) BrewSearchPanel.comboColour.getSelectedItem();
 	    }
 	    
 	    if(BrewSearchPanel.comboThumbs.getSelectedItem().equals("Any")){
-	    	ThumbsUp ="Up','Middle','','Down";
+	    	ThumbsUp ="Up','Middle','',' ','Down";
 	    } else {
 	    	ThumbsUp = (String) BrewSearchPanel.comboThumbs.getSelectedItem();
 	    }
@@ -155,6 +162,7 @@ public class DBEngine {
 	    
   }
 	
+	
 	//Update Brew
 	public static void updateBrew() throws Exception {
 	    Connection conn = dbConnection();
@@ -197,35 +205,35 @@ public class DBEngine {
 	     
 	    PreparedStatement pre = conn.prepareStatement(
 	    	"update Brews set BrewName='" +
-	    	BrewDataPanel.textBrewNameB.getText() +
+	    	BrewDataPanel.textBrewNameB.getText().replaceAll("'", "''") +
 	    	"',Colour='" +
 	    	BrewDataPanel.comboBrewColourB.getSelectedItem() +
 	    	"',RecipeFrom='" +
-	   		BrewDataPanel.textBrewRecipeB.getText() +
+	   		BrewDataPanel.textBrewRecipeB.getText().replaceAll("'", "''") +
 	    	"',ThumbsUp='" +
 	   		BrewDataPanel.comboBrewThumbsB.getSelectedItem() +
 	    	"',DatePlanned='" +
-	   		BrewDataPanel.textBrewDatePlannedB.getText() +
+	   		BrewDataPanel.textBrewDatePlannedB.getText().replaceAll("'", "''") +
 	    	"',DateStarted='" +
-	   		BrewDataPanel.textBrewDateStartedB.getText() +
+	   		BrewDataPanel.textBrewDateStartedB.getText().replaceAll("'", "''") +
 	    	"',DateBottled='" +
-	   		BrewDataPanel.textBrewDateBottledB.getText() +
+	   		BrewDataPanel.textBrewDateBottledB.getText().replaceAll("'", "''") +
 	    	"',StartSG='" +
-	   		BrewDataPanel.textBrewStartSGB.getText() +
+	   		BrewDataPanel.textBrewStartSGB.getText().replaceAll("'", "''") +
 	    	"',StartAdjustedSG='" +
-	   		BrewDataPanel.textBrewStartAdjustedSGB.getText() +
+	   		BrewDataPanel.textBrewStartAdjustedSGB.getText().replaceAll("'", "''") +
 	    	"',EndSG='" +
-	   		BrewDataPanel.textBrewEndSGB.getText() +
+	   		BrewDataPanel.textBrewEndSGB.getText().replaceAll("'", "''") +
 	    	"',AimedABV='" +
-	   		BrewDataPanel.textBrewAimedABVB.getText() +
+	   		BrewDataPanel.textBrewAimedABVB.getText().replaceAll("'", "''") +
 	    	"',FinalABV='" +
-	   		BrewDataPanel.textBrewFinalABVB.getText() +
+	   		BrewDataPanel.textBrewFinalABVB.getText().replaceAll("'", "''") +
 	    	"',FinalAdjustedABV='" +
-	   		BrewDataPanel.textBrewFinalAdjustedABVB.getText() +
+	   		BrewDataPanel.textBrewFinalAdjustedABVB.getText().replaceAll("'", "''") +
 	    	"',Yeast='" +
-	   		BrewDataPanel.textBrewYeastB.getText() +
+	   		BrewDataPanel.textBrewYeastB.getText().replaceAll("'", "''") +
 	    	"',VolumeMade='" +
-	   		BrewDataPanel.textBrewVolumeMadeB.getText() +
+	   		BrewDataPanel.textBrewVolumeMadeB.getText().replaceAll("'", "''") +
 	    	"',InPlanning='" +
 	   		InPlanningB +
 	    	"',InFermenting='" +
@@ -233,7 +241,7 @@ public class DBEngine {
 	    	"',InFining='" +
 	   		InFiningB +
 	    	"',NumberBottles='" +
-	   		BrewDataPanel.textBrewNumberBottlesB.getText() +
+	   		BrewDataPanel.textBrewNumberBottlesB.getText().replaceAll("'", "''") +
 	    	"',InMaturing='" +
 	   		InMaturingB +
 	    	"',InBottles='" +
@@ -241,12 +249,113 @@ public class DBEngine {
 	    	"',Drunk='" +
 	   		DrunkB +
 	    	"',TastingNotes='" +
-	   		BrewDataPanel.textBrewTastingNotesB.getText() +
+	   		BrewDataPanel.textBrewTastingNotesB.getText().replaceAll("'", "''") +
 	    	"',Notes='" +
-	   		BrewDataPanel.textBrewGeneralNotesB .getText()+
+	   		BrewDataPanel.textBrewGeneralNotesB.getText().replaceAll("'", "''") +
 	    	"' where BrewRef='" +
 	    	BrewDataPanel.textBrewRefB.getText() +
 	    	"'"
+	    );
+	    
+	    pre.executeUpdate();  
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();    
+	    
+	}
+	
+	
+	//Add Brew
+	public static void addBrew() throws Exception {
+	    Connection conn = dbConnection();
+	    
+	    if(BrewAddPanel.chckbxBrewInPlanningAdd.isSelected()){
+	    	InPlanningAdd = "1";
+	    } else {
+	    	InPlanningAdd = "0";
+	    }
+	    
+	    if(BrewAddPanel.chckbxBrewInFermentingAdd.isSelected()){
+	    	InFermentingAdd = "1";
+	    } else {
+	    	InFermentingAdd = "0";
+	    }
+	    
+	    if(BrewAddPanel.chckbxBrewInFiningAdd.isSelected()){
+	    	InFiningAdd = "1";
+	    } else {
+	    	InFiningAdd = "0";
+	    }
+	    
+	    if(BrewAddPanel.chckbxBrewInMaturingAdd.isSelected()){
+	    	InMaturingAdd = "1";
+	    } else {
+	    	InMaturingAdd = "0";
+	    }
+	    
+	    if(BrewAddPanel.chckbxBrewInBottlesAdd.isSelected()){
+	    	InBottlesAdd = "1";
+	    } else {
+	    	InBottlesAdd = "0";
+	    }
+	    
+	    if(BrewAddPanel.chckbxBrewDrunkAdd.isSelected()){
+	    	DrunkAdd = "1";
+	    } else {
+	    	DrunkAdd = "0";
+	    }
+	     
+	    PreparedStatement pre = conn.prepareStatement(
+    		"insert into Brews(BrewName,Colour,RecipeFrom,ThumbsUp,DatePlanned,DateStarted,DateBottled,StartSG,StartAdjustedSG,EndSG,AimedABV,FinalABV,FinalAdjustedABV,Yeast,VolumeMade,InPlanning,InFermenting,InFining,NumberBottles,InMaturing,InBottles,Drunk,TastingNotes,Notes) values('" +
+    		BrewAddPanel.textBrewNameAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.comboBrewColourAdd.getSelectedItem() +
+    		"','" +
+    		BrewAddPanel.textBrewRecipeAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.comboBrewThumbsAdd.getSelectedItem() +
+    		"','" +
+    		BrewAddPanel.textBrewDatePlannedAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewDateStartedAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewDateBottledAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewStartSGAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewStartAdjustedSGAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewEndSGAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewAimedABVAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewFinalABVAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewFinalAdjustedABVAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewYeastAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		BrewAddPanel.textBrewVolumeMadeAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		InPlanningAdd +
+    		"','" +
+    		InFermentingAdd +
+    		"','" +
+    		InFiningAdd +
+    		"','" +
+    		BrewAddPanel.textBrewNumberBottlesAdd.getText().replaceAll("'", "''") +
+    		"','" +
+    		InMaturingAdd +
+    		"','" +
+    		InBottlesAdd +
+    		"','" +
+    		DrunkAdd +
+	   		"','" +
+	   		BrewAddPanel.textBrewTastingNotesAdd.getText().replaceAll("'", "''") +
+	   		"','" +
+	   		BrewAddPanel.textBrewGeneralNotesAdd.getText().replaceAll("'", "''") +
+	    	"')"
 	    );
 	    
 	    pre.executeUpdate();  
