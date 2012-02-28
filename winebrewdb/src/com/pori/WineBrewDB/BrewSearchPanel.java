@@ -79,6 +79,7 @@ public class BrewSearchPanel extends JPanel {
 	public static JCheckBox chckbxDrunk;
 	public static JButton btnShowEntireTable;
 	public static JButton btnSearch;
+	public static int BrewSearchSelectedRow;
 
 	
 	public static void InitializePanel(){
@@ -187,12 +188,14 @@ public class BrewSearchPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				BrewScrollPane.remove(BrewTable);
 				BrewScrollPane.setViewportView(null);
+				BrewDataPanel.clearBrewData();
+				BrewDataPanel.btnBrewDataEdit.setEnabled(false);
 				initializeTable();
 				BrewScrollPane.setViewportView(BrewTable);
-				//BrewPanel.add(BrewScrollPane, "cell 0 3,grow");
 			}
 		});
 		
+	    //TODO: ShowEntireTable button popup window entire table
 	    btnShowEntireTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -322,47 +325,31 @@ public class BrewSearchPanel extends JPanel {
 		BrewTable.getColumnModel().getColumn(24).setPreferredWidth(79);
 		BrewTable.getColumnModel().getColumn(24).setMinWidth(5);
 		BrewTable.getColumnModel().getColumn(24).setMaxWidth(9001);
-		//BrewTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		BrewTable.getTableHeader().setReorderingAllowed(false);
 		BrewTable.setAutoCreateRowSorter(true);
 		
-		//TODO: Double click table
-		//Doubleclick Mouse Listener on JTable:
+
+		//Mouse Listener on JTable:
 		BrewTable.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 1) {
+					JTable target = (JTable)e.getSource();
+					BrewSearchSelectedRow = target.getSelectedRow();
+					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
+					BrewDataPanel.setBrewData();
+				}
+				
 				if (e.getClickCount() == 2) {
 					JTable target = (JTable)e.getSource();
-					int row = target.getSelectedRow();
-					SelectedBrewRef = (String) BrewTable.getValueAt(row,0);
-					SelectedBrewName = (String) BrewTable.getValueAt(row,1);
-					SelectedDatePlanned = (String) BrewTable.getValueAt(row,2);
-					SelectedDateStarted = (String) BrewTable.getValueAt(row,3);
-					SelectedDateBottled = (String) BrewTable.getValueAt(row,4);
-					SelectedRecipeFrom = (String) BrewTable.getValueAt(row,5);
-					SelectedYeast = (String) BrewTable.getValueAt(row,6);
-					SelectedStartSG = (String) BrewTable.getValueAt(row,7);
-					SelectedStartAdjustedSG = (String) BrewTable.getValueAt(row,8);
-					SelectedEndSG = (String) BrewTable.getValueAt(row,9);
-					SelectedAimedABV = (String) BrewTable.getValueAt(row,10);
-					SelectedFinalABV = (String) BrewTable.getValueAt(row,11);
-					SelectedFinalAdjustedABV = (String) BrewTable.getValueAt(row,12);
-					SelectedNotes = (String) BrewTable.getValueAt(row,13);
-					SelectedTastingNotes = (String) BrewTable.getValueAt(row,14);
-					SelectedThumbsUp = (String) BrewTable.getValueAt(row,15);
-					SelectedInPlanning = (String) BrewTable.getValueAt(row,16);
-					SelectedInFermenting = (String) BrewTable.getValueAt(row,17);
-					SelectedInFining = (String) BrewTable.getValueAt(row,18);
-					SelectedInMaturing = (String) BrewTable.getValueAt(row,19);
-					SelectedInBottles = (String) BrewTable.getValueAt(row,20);
-					SelectedDrunk = (String) BrewTable.getValueAt(row,21);
-					SelectedVolumeMade = (String) BrewTable.getValueAt(row,22);
-					SelectedNumberBottles = (String) BrewTable.getValueAt(row,23);
-					SelectedColour = (String) BrewTable.getValueAt(row,24);
-					// do some action
+					BrewSearchSelectedRow = target.getSelectedRow();
+					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
+					BrewDataPanel.setBrewData();
+					BrewPanel.tabbedBrewPane.setSelectedIndex(1);
 				}
 				
 			   }
 			});
+		
 		
 	}
 	
