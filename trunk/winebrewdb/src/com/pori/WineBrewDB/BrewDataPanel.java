@@ -80,7 +80,7 @@ public class BrewDataPanel extends JPanel {
 	public static void InitializePanel(){
 		
 		tabbedBrewDataPanel = new JPanel();
-		tabbedBrewDataPanel.setBackground(UIManager.getColor("Panel.background"));
+		tabbedBrewDataPanel.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.setLayout(new MigLayout("", "[105px:105px:105px][60px:60px, grow][105px:105px:105px][70px:70px, grow][120px:120px:120px][60px:60px, grow][75px:75px:75px][60px:60px, grow]", "[][][][20px:20px][][][][20px:20px][][][20px:20px][][20px:20px][][55px:55,grow][15px:15px][]"));
 		
 		lblBrewRefB = new JLabel("Brew Ref:");
@@ -107,7 +107,7 @@ public class BrewDataPanel extends JPanel {
 	        public void paint(Graphics g) {
 	            setForeground(Color.BLACK);
 	            super.paint(g);
-	            if(comboBrewColourB.getSelectedItem().equals("")){
+	            if(comboBrewColourB.getSelectedItem().equals(" ")){
 	            	setBackground(Color.WHITE);
 		            super.paint(g);
 				}
@@ -130,7 +130,7 @@ public class BrewDataPanel extends JPanel {
 	        }
 	    });
 		comboBrewColourB.setBackground(Color.WHITE);
-		comboBrewColourB.setModel(new DefaultComboBoxModel<String>(new String[] {"","Red", "White", "Rosé", "Other"}));
+		comboBrewColourB.setModel(new DefaultComboBoxModel<String>(new String[] {" ","Red", "White", "Rosé", "Other"}));
 		comboBrewColourB.setEnabled(false);
 		tabbedBrewDataPanel.add(comboBrewColourB, "cell 7 0,growx");
 		
@@ -151,7 +151,7 @@ public class BrewDataPanel extends JPanel {
 	        public void paint(Graphics g) {
 	            setForeground(Color.BLACK);
 	            super.paint(g);
-	            if(comboBrewThumbsB.getSelectedItem().equals("")){
+	            if(comboBrewThumbsB.getSelectedItem().equals(" ")){
 	            	setBackground(Color.WHITE);
 		            super.paint(g);
 				}
@@ -170,7 +170,7 @@ public class BrewDataPanel extends JPanel {
 	        }
 	    });
 		comboBrewThumbsB.setBackground(Color.WHITE);
-		comboBrewThumbsB.setModel(new DefaultComboBoxModel<String>(new String[] {"","Up", "Middle", "Down"}));
+		comboBrewThumbsB.setModel(new DefaultComboBoxModel<String>(new String[] {" ","Up", "Middle", "Down"}));
 		comboBrewThumbsB.setEnabled(false);
 		tabbedBrewDataPanel.add(comboBrewThumbsB, "cell 7 1,growx");
 		
@@ -259,16 +259,19 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewInPlanningB = new JCheckBox("In Planning");
 		chckbxBrewInPlanningB.setSelected(false);
 		chckbxBrewInPlanningB.setEnabled(false);
+		chckbxBrewInPlanningB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewInPlanningB, "cell 3 8,growx");
 		
 		chckbxBrewInFermentingB = new JCheckBox("In Fermenting");
 		chckbxBrewInFermentingB.setSelected(false);
 		chckbxBrewInFermentingB.setEnabled(false);
+		chckbxBrewInFermentingB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewInFermentingB, "cell 4 8,growx");
 			
 		chckbxBrewInFiningB = new JCheckBox("In Fining");
 		chckbxBrewInFiningB.setSelected(false);
 		chckbxBrewInFiningB.setEnabled(false);
+		chckbxBrewInFiningB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewInFiningB, "cell 5 8,growx");
 		
 		lblBrewNumberBottlesB = new JLabel("Number of Bottles:");
@@ -281,16 +284,19 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewInMaturingB = new JCheckBox("In Maturing");
 		chckbxBrewInMaturingB.setSelected(false);
 		chckbxBrewInMaturingB.setEnabled(false);
+		chckbxBrewInMaturingB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewInMaturingB, "cell 3 9,growx");	
 			
 		chckbxBrewInBottlesB = new JCheckBox("In Bottles");
 		chckbxBrewInBottlesB.setSelected(false);
 		chckbxBrewInBottlesB.setEnabled(false);
+		chckbxBrewInBottlesB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewInBottlesB, "cell 4 9,growx");
 		
 		chckbxBrewDrunkB = new JCheckBox("Drunk");
 		chckbxBrewDrunkB.setSelected(false);
 		chckbxBrewDrunkB.setEnabled(false);
+		chckbxBrewDrunkB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewDrunkB, "cell 5 9,growx");	
 		
 		lblBrewTastingNotesB = new JLabel("Tasting Notes:");
@@ -308,7 +314,7 @@ public class BrewDataPanel extends JPanel {
 		textBrewGeneralNotesB.setLineWrap(true);
 		textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
 		
-		//ScrollPane for txtGeneralNotesB
+		//ScrollPane for textBrewGeneralNotesB
 	    BrewDataNotesScrollPane = new JScrollPane();
 	    BrewDataNotesScrollPane.setViewportView(textBrewGeneralNotesB);
 	    tabbedBrewDataPanel.add(BrewDataNotesScrollPane, "cell 1 13 7 2,grow");
@@ -448,8 +454,8 @@ public class BrewDataPanel extends JPanel {
 		textBrewNumberBottlesB.setText("");
 		textBrewTastingNotesB.setText("");
 		textBrewGeneralNotesB.setText("");
-		comboBrewThumbsB.setSelectedItem("");
-		comboBrewColourB.setSelectedItem("");
+		comboBrewThumbsB.setSelectedItem(" ");
+		comboBrewColourB.setSelectedItem(" ");
 		chckbxBrewInPlanningB.setSelected(false);
 		chckbxBrewInFermentingB.setSelected(false);
 		chckbxBrewInFiningB.setSelected(false);

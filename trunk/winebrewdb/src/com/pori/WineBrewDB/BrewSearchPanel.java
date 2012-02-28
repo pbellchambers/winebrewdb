@@ -189,6 +189,7 @@ public class BrewSearchPanel extends JPanel {
 				BrewScrollPane.remove(BrewTable);
 				BrewScrollPane.setViewportView(null);
 				BrewDataPanel.clearBrewData();
+				BrewAddPanel.clearBrewAddData();
 				BrewDataPanel.btnBrewDataEdit.setEnabled(false);
 				initializeTable();
 				BrewScrollPane.setViewportView(BrewTable);
