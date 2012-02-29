@@ -13,6 +13,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -75,6 +76,8 @@ public class BrewDataPanel extends JPanel {
 	public static JCheckBox chckbxBrewInMaturingB;
 	public static JCheckBox chckbxBrewInBottlesB;
 	public static JCheckBox chckbxBrewDrunkB;
+	public static JButton btnBrewDataDelete;
+	public static JButton btnBrewDataCancel;
 	
 	
 	public static void InitializePanel(){
@@ -322,6 +325,14 @@ public class BrewDataPanel extends JPanel {
 		btnBrewDataEdit = new JButton("Edit");
 		btnBrewDataEdit.setEnabled(false);
 		tabbedBrewDataPanel.add(btnBrewDataEdit, "cell 0 16 2 1,growx");
+		
+		btnBrewDataDelete = new JButton("Delete Brew");
+		btnBrewDataDelete.setEnabled(false);
+		tabbedBrewDataPanel.add(btnBrewDataDelete, "cell 2 16,growx");
+		
+		btnBrewDataCancel = new JButton("Cancel");
+		btnBrewDataCancel.setEnabled(false);
+		tabbedBrewDataPanel.add(btnBrewDataCancel, "cell 5 16,growx");
 			
 		btnBrewDataSave = new JButton("Save / Update");
 		btnBrewDataSave.setEnabled(false);
@@ -331,6 +342,8 @@ public class BrewDataPanel extends JPanel {
 		btnBrewDataEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnBrewDataEdit.setEnabled(false);
+				btnBrewDataDelete.setEnabled(true);
+				btnBrewDataCancel.setEnabled(true);
 				btnBrewDataSave.setEnabled(true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(0, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
@@ -365,14 +378,12 @@ public class BrewDataPanel extends JPanel {
 			}
 		});
 		
-		btnBrewDataSave.addActionListener(new ActionListener() {
+		btnBrewDataCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					DBEngine.updateBrew();
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
+				setBrewData();
 				btnBrewDataEdit.setEnabled(true);
+				btnBrewDataDelete.setEnabled(false);
+				btnBrewDataCancel.setEnabled(false);
 				btnBrewDataSave.setEnabled(false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
@@ -406,6 +417,115 @@ public class BrewDataPanel extends JPanel {
 				textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
 			}
 		});
+		
+		btnBrewDataSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					DBEngine.updateBrew();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				btnBrewDataEdit.setEnabled(true);
+				btnBrewDataDelete.setEnabled(false);
+				btnBrewDataCancel.setEnabled(false);
+				btnBrewDataSave.setEnabled(false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
+				BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
+				BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
+				BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
+				BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+				textBrewNameB.setEditable(false);
+				comboBrewColourB.setEnabled(false);
+				textBrewRecipeB.setEditable(false);
+				comboBrewThumbsB.setEnabled(false);
+				textBrewDatePlannedB.setEditable(false);
+				textBrewDateStartedB.setEditable(false);
+				textBrewDateBottledB.setEditable(false);
+				textBrewStartSGB.setEditable(false);
+				textBrewStartAdjustedSGB.setEditable(false);
+				textBrewEndSGB.setEditable(false);
+				textBrewAimedABVB.setEditable(false);
+				textBrewFinalABVB.setEditable(false);
+				textBrewFinalAdjustedABVB.setEditable(false);
+				textBrewYeastB.setEditable(false);
+				textBrewVolumeMadeB.setEditable(false);
+				chckbxBrewInPlanningB.setEnabled(false);
+				chckbxBrewInFermentingB.setEnabled(false);
+				chckbxBrewInFiningB.setEnabled(false);
+				textBrewNumberBottlesB.setEditable(false);
+				chckbxBrewInMaturingB.setEnabled(false);
+				chckbxBrewInBottlesB.setEnabled(false);
+				chckbxBrewDrunkB.setEnabled(false);
+				textBrewTastingNotesB.setEditable(false);
+				textBrewGeneralNotesB.setEditable(false);
+				textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
+			}
+		});
+		
+		btnBrewDataDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int response = JOptionPane.showConfirmDialog(null, "This will irreversibly delete the entire brew, brew notes, and brew pictures.\n\nAre you sure you want to delete?", "Confirm",
+				        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				    if (response == JOptionPane.NO_OPTION) {
+				      //Nothing Happens
+				    	
+				    } else if (response == JOptionPane.YES_OPTION) {  
+					  	try {
+							DBEngine.deleteBrew();
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+						btnBrewDataEdit.setEnabled(false);
+						btnBrewDataDelete.setEnabled(false);
+						btnBrewDataCancel.setEnabled(false);
+						btnBrewDataSave.setEnabled(false);
+						BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
+						BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
+						BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
+						BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
+						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+						textBrewNameB.setEditable(false);
+						comboBrewColourB.setEnabled(false);
+						textBrewRecipeB.setEditable(false);
+						comboBrewThumbsB.setEnabled(false);
+						textBrewDatePlannedB.setEditable(false);
+						textBrewDateStartedB.setEditable(false);
+						textBrewDateBottledB.setEditable(false);
+						textBrewStartSGB.setEditable(false);
+						textBrewStartAdjustedSGB.setEditable(false);
+						textBrewEndSGB.setEditable(false);
+						textBrewAimedABVB.setEditable(false);
+						textBrewFinalABVB.setEditable(false);
+						textBrewFinalAdjustedABVB.setEditable(false);
+						textBrewYeastB.setEditable(false);
+						textBrewVolumeMadeB.setEditable(false);
+						chckbxBrewInPlanningB.setEnabled(false);
+						chckbxBrewInFermentingB.setEnabled(false);
+						chckbxBrewInFiningB.setEnabled(false);
+						textBrewNumberBottlesB.setEditable(false);
+						chckbxBrewInMaturingB.setEnabled(false);
+						chckbxBrewInBottlesB.setEnabled(false);
+						chckbxBrewDrunkB.setEnabled(false);
+						textBrewTastingNotesB.setEditable(false);
+						textBrewGeneralNotesB.setEditable(false);
+						textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
+						BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
+						BrewSearchPanel.BrewScrollPane.setViewportView(null);
+						BrewAddPanel.clearBrewAddData();
+						BrewSearchPanel.initializeTable();
+						BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
+						clearBrewData();
+						BrewPanel.tabbedBrewPane.setSelectedIndex(0);
+				      				      
+				    } else if (response == JOptionPane.CLOSED_OPTION) {
+				    	//Nothing Happens
+				      
+				    }
+				
+			}
+		});
+		
 	}
 	
 	public static void setBrewData(){

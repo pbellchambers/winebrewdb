@@ -65,6 +65,12 @@ public class BrewPanel extends JPanel {
 		BrewAddPanel.InitializePanel();
 		tabbedBrewPane.addTab("Add New Brew", null, BrewAddPanel.tabbedBrewAddPanel, null);
 		
+		
+		//Set some tabs disabled initially
+		tabbedBrewPane.setEnabledAt(1, false);
+		tabbedBrewPane.setEnabledAt(2, false);
+		tabbedBrewPane.setEnabledAt(3, false);
+		
 	   	
 		//Add it all to the main window
 		MainWindow.WineBrewDBFrame.getContentPane().add(BrewPanel, "cell 0 0,grow");

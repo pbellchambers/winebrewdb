@@ -49,7 +49,7 @@ public class InitializeMenu extends MainWindow {
 		mntmAbout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,
-						"WineBrewDB - vAlpha0.5.0 \n\nLicensed under The MIT License\nCopyright (c) 2012 Paul Bellchambers\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this \nsoftware and associated documentation files (the \"Software\"), to deal in the Software \nwithout restriction, including without limitation the rights to use, copy, modify, merge, \npublish, distribute, sublicense, and/or sell copies of the Software, and to permit persons \nto whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies \nor substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, \nINCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR \nPURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE \nFOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR \nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER \nDEALINGS IN THE SOFTWARE.",
+						"WineBrewDB - vAlpha0.5.1\nhttp://code.google.com/p/winebrewdb/\n\nLicensed under The MIT License\nCopyright (c) 2012 Paul Bellchambers\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this \nsoftware and associated documentation files (the \"Software\"), to deal in the Software \nwithout restriction, including without limitation the rights to use, copy, modify, merge, \npublish, distribute, sublicense, and/or sell copies of the Software, and to permit persons \nto whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies \nor substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, \nINCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR \nPURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE \nFOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR \nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER \nDEALINGS IN THE SOFTWARE.",
 						"About",
 						JOptionPane.PLAIN_MESSAGE);
 				}
@@ -57,12 +57,12 @@ public class InitializeMenu extends MainWindow {
 			
 		);
 		
-		final JMenuItem mntmAck = new JMenuItem("Acknowledgements");
+		final JMenuItem mntmAck = new JMenuItem("Credits");
 		mntmAck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,
-						"Acknowledgements go here...",
-						"Acknowledgements",
+						"The following were used in the making of this program:\n\n- Wine icon modified from \"Wine\" symbol by thenounproject.com. CC BY\n- MiGLayout from MiG InfoCom AB. Licensed under the BSD license.\n- Yeast Strains data compiled from information posted by \"goldseal\" and other\n   members of the winesathome.co.uk / homewinemaking.co.uk communities.",
+						"Credits",
 						JOptionPane.PLAIN_MESSAGE);
 				}
 			}

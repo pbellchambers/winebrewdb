@@ -191,6 +191,10 @@ public class BrewSearchPanel extends JPanel {
 				BrewDataPanel.clearBrewData();
 				BrewAddPanel.clearBrewAddData();
 				BrewDataPanel.btnBrewDataEdit.setEnabled(false);
+				BrewDataPanel.btnBrewDataDelete.setEnabled(false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				initializeTable();
 				BrewScrollPane.setViewportView(BrewTable);
 			}
@@ -205,7 +209,7 @@ public class BrewSearchPanel extends JPanel {
 		
 	}
 	
-	private static void initializeTable() {
+	public static void initializeTable() {
 		//Get data for table
 	    Vector<Vector<String>> data = null; //used for data from database
 	    Vector<String> header; //used to store data header
@@ -337,14 +341,22 @@ public class BrewSearchPanel extends JPanel {
 					JTable target = (JTable)e.getSource();
 					BrewSearchSelectedRow = target.getSelectedRow();
 					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
+					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
 					BrewDataPanel.setBrewData();
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 				}
 				
 				if (e.getClickCount() == 2) {
 					JTable target = (JTable)e.getSource();
 					BrewSearchSelectedRow = target.getSelectedRow();
 					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
+					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
 					BrewDataPanel.setBrewData();
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setSelectedIndex(1);
 				}
 				
