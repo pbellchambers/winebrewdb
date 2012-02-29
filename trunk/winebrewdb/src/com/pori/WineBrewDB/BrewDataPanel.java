@@ -420,45 +420,53 @@ public class BrewDataPanel extends JPanel {
 		
 		btnBrewDataSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					DBEngine.updateBrew();
-				} catch (Exception e1) {
-					e1.printStackTrace();
+				if (chckbxBrewInPlanningB.isSelected() == false && chckbxBrewInFermentingB.isSelected() == false && chckbxBrewInFiningB.isSelected() == false && chckbxBrewInMaturingB.isSelected() == false && chckbxBrewInBottlesB.isSelected() == false && chckbxBrewDrunkB.isSelected() == false){
+					JOptionPane.showMessageDialog(null,
+						"You must select at least one state for the brew to be in.",
+						"Error",
+						JOptionPane.ERROR_MESSAGE
+					);
+				} else {
+					try {
+						DBEngine.updateBrew();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					btnBrewDataEdit.setEnabled(true);
+					btnBrewDataDelete.setEnabled(false);
+					btnBrewDataCancel.setEnabled(false);
+					btnBrewDataSave.setEnabled(false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+					textBrewNameB.setEditable(false);
+					comboBrewColourB.setEnabled(false);
+					textBrewRecipeB.setEditable(false);
+					comboBrewThumbsB.setEnabled(false);
+					textBrewDatePlannedB.setEditable(false);
+					textBrewDateStartedB.setEditable(false);
+					textBrewDateBottledB.setEditable(false);
+					textBrewStartSGB.setEditable(false);
+					textBrewStartAdjustedSGB.setEditable(false);
+					textBrewEndSGB.setEditable(false);
+					textBrewAimedABVB.setEditable(false);
+					textBrewFinalABVB.setEditable(false);
+					textBrewFinalAdjustedABVB.setEditable(false);
+					textBrewYeastB.setEditable(false);
+					textBrewVolumeMadeB.setEditable(false);
+					chckbxBrewInPlanningB.setEnabled(false);
+					chckbxBrewInFermentingB.setEnabled(false);
+					chckbxBrewInFiningB.setEnabled(false);
+					textBrewNumberBottlesB.setEditable(false);
+					chckbxBrewInMaturingB.setEnabled(false);
+					chckbxBrewInBottlesB.setEnabled(false);
+					chckbxBrewDrunkB.setEnabled(false);
+					textBrewTastingNotesB.setEditable(false);
+					textBrewGeneralNotesB.setEditable(false);
+					textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
 				}
-				btnBrewDataEdit.setEnabled(true);
-				btnBrewDataDelete.setEnabled(false);
-				btnBrewDataCancel.setEnabled(false);
-				btnBrewDataSave.setEnabled(false);
-				BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
-				textBrewNameB.setEditable(false);
-				comboBrewColourB.setEnabled(false);
-				textBrewRecipeB.setEditable(false);
-				comboBrewThumbsB.setEnabled(false);
-				textBrewDatePlannedB.setEditable(false);
-				textBrewDateStartedB.setEditable(false);
-				textBrewDateBottledB.setEditable(false);
-				textBrewStartSGB.setEditable(false);
-				textBrewStartAdjustedSGB.setEditable(false);
-				textBrewEndSGB.setEditable(false);
-				textBrewAimedABVB.setEditable(false);
-				textBrewFinalABVB.setEditable(false);
-				textBrewFinalAdjustedABVB.setEditable(false);
-				textBrewYeastB.setEditable(false);
-				textBrewVolumeMadeB.setEditable(false);
-				chckbxBrewInPlanningB.setEnabled(false);
-				chckbxBrewInFermentingB.setEnabled(false);
-				chckbxBrewInFiningB.setEnabled(false);
-				textBrewNumberBottlesB.setEditable(false);
-				chckbxBrewInMaturingB.setEnabled(false);
-				chckbxBrewInBottlesB.setEnabled(false);
-				chckbxBrewDrunkB.setEnabled(false);
-				textBrewTastingNotesB.setEditable(false);
-				textBrewGeneralNotesB.setEditable(false);
-				textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
 			}
 		});
 		
