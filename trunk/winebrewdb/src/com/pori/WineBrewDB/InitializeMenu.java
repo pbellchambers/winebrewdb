@@ -239,4 +239,30 @@ public class InitializeMenu extends MainWindow {
 		btnYeastStrains.setSelected(false);
 	};
 	
+	public static void DisableAllMenuButtons(){
+		btnBrew.setEnabled(false);
+		btnRecipe.setEnabled(false);
+		btnAlcohol.setEnabled(false);
+		btnDilution.setEnabled(false);
+		btnMeasures.setEnabled(false);
+		btnSugarToSG.setEnabled(false);
+		btnTemperatureAdjustedSG.setEnabled(false);
+		btnDosages.setEnabled(false);
+		btnFruitAcids.setEnabled(false);
+		btnYeastStrains.setEnabled(false);
+	};
+	
+	public static void EnableAllMenuButtons(){
+		btnBrew.setEnabled(true);
+		btnRecipe.setEnabled(true);
+		btnAlcohol.setEnabled(true);
+		btnDilution.setEnabled(true);
+		btnMeasures.setEnabled(true);
+		btnSugarToSG.setEnabled(true);
+		btnTemperatureAdjustedSG.setEnabled(true);
+		btnDosages.setEnabled(true);
+		btnFruitAcids.setEnabled(true);
+		btnYeastStrains.setEnabled(true);
+	};
+	
 }
