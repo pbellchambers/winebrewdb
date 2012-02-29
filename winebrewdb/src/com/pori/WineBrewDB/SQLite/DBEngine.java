@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import com.pori.WineBrewDB.BrewAddPanel;
 import com.pori.WineBrewDB.BrewDataPanel;
+import com.pori.WineBrewDB.BrewNotesPanel;
 import com.pori.WineBrewDB.BrewSearchPanel;
 
 public class DBEngine {
@@ -33,11 +34,13 @@ public class DBEngine {
 	private static String InBottlesAdd;
 	private static String DrunkAdd;
 	
+	
 	//Create the connection
 	public static Connection dbConnection() throws Exception {
 		Class.forName("org.sqlite.JDBC");
 		return DriverManager.getConnection("jdbc:sqlite:WineBrewDBData.sqlite");
 	}
+	
 	
 	//Get everything from Brews table
 	public static Vector<Vector<String>> getBrews() throws Exception {
@@ -160,7 +163,7 @@ public class DBEngine {
 
 	    return Brews;	    
 	    
-  }
+	}
 	
 	
 	//Update Brew
@@ -366,7 +369,8 @@ public class DBEngine {
 	    
 	}
 	
-	//Add Brew
+	
+	//Delete Brew
 	public static void deleteBrew() throws Exception {
 		Connection conn = dbConnection();
 		
@@ -383,6 +387,96 @@ public class DBEngine {
 	    conn.close();  
 	    
 	}
+	
+
+	//Get Notes from Brew Notes table
+	public static Vector<Vector<String>> getBrewNotes() throws Exception {
+	    Connection conn = dbConnection();
+	     
+	    Vector<Vector<String>> BrewNotes = new Vector<Vector<String>>();
+	    PreparedStatement pre = conn.prepareStatement(
+	    	"select BrewNoteRef,Date,DaysSinceStart,Incident,Notes from BrewNotes where BrewRef='" + 
+	    	BrewDataPanel.textBrewRefB.getText() +
+	    	"' order by BrewNoteRef asc"
+			);
+
+	    ResultSet rs = pre.executeQuery();
+
+	    while(rs.next()){
+	    Vector<String> brewnote = new Vector<String>();
+	    	brewnote.add(rs.getString(1)); //BrewNoteRef
+	    	brewnote.add(rs.getString(2)); //Date
+	    	brewnote.add(rs.getString(3)); //DaysSinceStart
+	    	brewnote.add(rs.getString(4)); //Incident
+	    	brewnote.add(rs.getString(5)); //Notes
+	    	BrewNotes.add(brewnote);
+	    }
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	    return BrewNotes;	    
+	    
+	}
+	
+	
+	//Add Brew Note
+	public static void addBrewNote() throws Exception {
+		Connection conn = dbConnection();
 		
+		PreparedStatement pre = conn.prepareStatement(
+			"insert into BrewNotes(BrewRef,BrewNoteRef,Date,DaysSinceStart,Incident,Notes) values('" + 
+			BrewDataPanel.textBrewRefB.getText() + 
+			"','" +
+			BrewNotesPanel.textBrewNoteRef.getText() +
+			"','" +
+			BrewNotesPanel.textBrewNoteDate.getText() +
+			"','" +
+			BrewNotesPanel.textBrewNoteDaysSinceStart.getText() +
+			"','" +
+			BrewNotesPanel.textBrewNoteIncident.getText().replaceAll("'", "''") +
+			"','" +
+			BrewNotesPanel.textBrewNoteNote.getText().replaceAll("'", "''") +
+			"')"
+		);
+
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
+	    
+	}
+	
+	
+	//Delete Brew Note
+		public static void deleteBrewNote() throws Exception {
+			Connection conn = dbConnection();
+			
+			PreparedStatement pre = conn.prepareStatement("delete from BrewNotes where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "' and BrewNoteRef='" + BrewNotesPanel.textBrewNoteRef.getText() + "'");
+
+			pre.executeUpdate();
+			
+			/*Close the connection after use (MUST)*/
+		    if(conn!=null)
+		    conn.close();  
+		    
+		}
+		
+		
+	//Delete Brew Picture
+		public static void deleteBrewPicture() throws Exception {
+			Connection conn = dbConnection();
+			
+			PreparedStatement pre = conn.prepareStatement("delete from BrewPictures where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "' and BrewPictureRef='" + "'");
+
+			pre.executeUpdate();
+			
+			/*Close the connection after use (MUST)*/
+		    if(conn!=null)
+		    conn.close();  
+		    
+		}
 
 }
