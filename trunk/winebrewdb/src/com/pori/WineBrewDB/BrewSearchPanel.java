@@ -195,6 +195,7 @@ public class BrewSearchPanel extends JPanel {
 				BrewAddPanel.clearBrewAddData();
 				BrewDataPanel.btnBrewDataEdit.setEnabled(false);
 				BrewDataPanel.btnBrewDataDelete.setEnabled(false);
+				BrewNotesPanel.btnBrewNoteEdit.setEnabled(false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
@@ -360,6 +361,8 @@ public class BrewSearchPanel extends JPanel {
 					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
 					BrewDataPanel.setBrewData();
 					BrewNotesPanel.initializeTable();
+					BrewNotesPanel.clearBrewNoteData();
+					BrewNotesPanel.btnBrewNoteEdit.setEnabled(false);
 					BrewNotesPanel.BrewNotesScrollPane.setViewportView(BrewNotesPanel.BrewNotesTable);
 					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);

@@ -47,7 +47,7 @@ public class BrewNotesPanel extends JPanel {
 		
 		tabbedBrewNotesPanel = new JPanel();
 		tabbedBrewNotesPanel.setBackground(UIManager.getColor("Panel.background"));
-		tabbedBrewNotesPanel.setLayout(new MigLayout("", "[][grow][][grow][][grow]", "[grow][][][][grow][][][]"));
+		tabbedBrewNotesPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][90px:90px:90px][grow][130px:130px:130px][grow]", "[200px:200px:200px][][][][grow][][10px:10px:10px][]"));
 		
 		
 		//Initialize Table
@@ -65,45 +65,55 @@ public class BrewNotesPanel extends JPanel {
 	    tabbedBrewNotesPanel.add(lblBrewNoteRef, "cell 0 1,alignx trailing");
 		
 		textBrewNoteRef = new JTextField();
+		textBrewNoteRef.setEditable(false);
 		tabbedBrewNotesPanel.add(textBrewNoteRef, "cell 1 1,growx");
 		
 		lblBrewNoteDate = new JLabel("Date:");
 		tabbedBrewNotesPanel.add(lblBrewNoteDate, "cell 2 1,alignx trailing");
 		
 		textBrewNoteDate = new JTextField();
+		textBrewNoteDate.setEditable(false);
 		tabbedBrewNotesPanel.add(textBrewNoteDate, "cell 3 1,growx");
 		
 		lblBrewNoteDaysSinceStart = new JLabel("Days Since Start:");
 		tabbedBrewNotesPanel.add(lblBrewNoteDaysSinceStart, "cell 4 1,alignx trailing");
 		
 		textBrewNoteDaysSinceStart = new JTextField();
+		textBrewNoteDaysSinceStart.setEditable(false);
 		tabbedBrewNotesPanel.add(textBrewNoteDaysSinceStart, "cell 5 1,growx");
 		
 		lblBrewNoteIncident = new JLabel("Incident:");
 		tabbedBrewNotesPanel.add(lblBrewNoteIncident, "cell 0 3,alignx trailing");
 		
 		textBrewNoteIncident = new JTextField();
+		textBrewNoteIncident.setEditable(false);
 		tabbedBrewNotesPanel.add(textBrewNoteIncident, "cell 1 3 5,growx");
 		
 		lblBrewNoteNote = new JLabel("Note:");
 		tabbedBrewNotesPanel.add(lblBrewNoteNote, "cell 0 4,alignx trailing");
 		
 		textBrewNoteNote = new JTextArea();
+		textBrewNoteNote.setEditable(false);
+		textBrewNoteNote.setBackground(UIManager.getColor("Panel.background"));
 		tabbedBrewNotesPanel.add(textBrewNoteNote, "cell 1 4 5 2,grow");
 		
-		btnBrewNoteAdd = new JButton("Add New Note");
+		btnBrewNoteAdd = new JButton("Add");
 		tabbedBrewNotesPanel.add(btnBrewNoteAdd, "cell 0 7,growx");
 		
 		btnBrewNoteEdit = new JButton("Edit");
+		btnBrewNoteEdit.setEnabled(false);
 		tabbedBrewNotesPanel.add(btnBrewNoteEdit, "cell 1 7,growx");
 		
 		btnBrewNoteDelete = new JButton("Delete");
+		btnBrewNoteDelete.setEnabled(false);
 		tabbedBrewNotesPanel.add(btnBrewNoteDelete, "cell 2 7,growx");
 		
 		btnBrewNoteCancel = new JButton("Cancel");
+		btnBrewNoteCancel.setEnabled(false);
 		tabbedBrewNotesPanel.add(btnBrewNoteCancel, "cell 4 7,growx");
 		
 		btnBrewNoteSave = new JButton("Save / Insert");
+		btnBrewNoteSave.setEnabled(false);
 		tabbedBrewNotesPanel.add(btnBrewNoteSave, "cell 5 7,growx");
 	    
 		
@@ -138,18 +148,20 @@ public class BrewNotesPanel extends JPanel {
 			    }}
 
 			);
-		BrewNotesTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+		BrewNotesTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 		BrewNotesTable.getColumnModel().getColumn(0).setMinWidth(0);
-		BrewNotesTable.getColumnModel().getColumn(0).setMaxWidth(9001);
-		BrewNotesTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-		BrewNotesTable.getColumnModel().getColumn(1).setMaxWidth(9001);
-		BrewNotesTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-		BrewNotesTable.getColumnModel().getColumn(2).setMinWidth(0);
-		BrewNotesTable.getColumnModel().getColumn(2).setMaxWidth(9001);
-		BrewNotesTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+		BrewNotesTable.getColumnModel().getColumn(0).setMaxWidth(0);
+		BrewNotesTable.getColumnModel().getColumn(1).setPreferredWidth(80);
+		BrewNotesTable.getColumnModel().getColumn(1).setMinWidth(80);
+		BrewNotesTable.getColumnModel().getColumn(1).setMaxWidth(80);
+		BrewNotesTable.getColumnModel().getColumn(2).setPreferredWidth(105);
+		BrewNotesTable.getColumnModel().getColumn(2).setMinWidth(105);
+		BrewNotesTable.getColumnModel().getColumn(2).setMaxWidth(105);
+		BrewNotesTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+		BrewNotesTable.getColumnModel().getColumn(3).setMinWidth(5);
 		BrewNotesTable.getColumnModel().getColumn(3).setMaxWidth(9001);
-		BrewNotesTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-		BrewNotesTable.getColumnModel().getColumn(4).setMinWidth(0);
+		BrewNotesTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+		BrewNotesTable.getColumnModel().getColumn(4).setMinWidth(5);
 		BrewNotesTable.getColumnModel().getColumn(4).setMaxWidth(9001);
 		BrewNotesTable.getTableHeader().setReorderingAllowed(false);
 		BrewNotesTable.setAutoCreateRowSorter(false);
@@ -174,7 +186,19 @@ public class BrewNotesPanel extends JPanel {
 	}
 	
 	public static void setBrewNoteData(){
-		
+		textBrewNoteRef.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,0));
+		textBrewNoteDate.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,1));
+		textBrewNoteDaysSinceStart.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,2));
+		textBrewNoteIncident.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,3));
+		textBrewNoteNote.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,4));
+	}
+	
+	public static void clearBrewNoteData(){
+		textBrewNoteRef.setText("");
+		textBrewNoteDate.setText("");
+		textBrewNoteDaysSinceStart.setText("");
+		textBrewNoteIncident.setText("");
+		textBrewNoteNote.setText("");
 	}
 
 	
