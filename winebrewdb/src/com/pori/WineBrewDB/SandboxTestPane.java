@@ -27,7 +27,7 @@ public class SandboxTestPane extends JPanel {
 	 * Create the panel.
 	 */
 	public SandboxTestPane() {;
-		setLayout(new MigLayout("", "[][grow][][grow][][grow]", "[grow][][][][grow][][][]"));
+		setLayout(new MigLayout("", "[100px:100px:100px][grow][100px:100px:100px][grow][100px:100px:100px][grow]", "[300px:300px,grow][][][][grow][][][]"));
 		
 		lblBrewNoteRef = new JLabel("Brew Note Ref:");
 		add(lblBrewNoteRef, "cell 0 0,alignx trailing");
