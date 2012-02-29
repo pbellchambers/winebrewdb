@@ -67,6 +67,7 @@ public class BrewAddPanel extends JPanel {
 	public static JLabel lblBrewGeneralNotesAdd;
 	public static JTextArea textBrewGeneralNotesAdd;
 	public static JButton btnBrewAddEdit;
+	public static JButton btnBrewAddCancel;
 	public static JButton btnBrewAddSave;
 	public static JScrollPane BrewAddNotesScrollPane;
 	public static JCheckBox chckbxBrewInPlanningAdd;
@@ -322,6 +323,10 @@ public class BrewAddPanel extends JPanel {
 		btnBrewAddEdit = new JButton("Add");
 		btnBrewAddEdit.setEnabled(true);
 		tabbedBrewAddPanel.add(btnBrewAddEdit, "cell 0 16 2 1,growx");
+		
+		btnBrewAddCancel = new JButton("Cancel");
+		btnBrewAddCancel.setEnabled(false);
+		tabbedBrewAddPanel.add(btnBrewAddCancel, "cell 5 16,growx");
 			
 		btnBrewAddSave = new JButton("Save / Insert");
 		btnBrewAddSave.setEnabled(false);
@@ -331,6 +336,7 @@ public class BrewAddPanel extends JPanel {
 		btnBrewAddEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnBrewAddEdit.setEnabled(false);
+				btnBrewAddCancel.setEnabled(true);
 				btnBrewAddSave.setEnabled(true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(0, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
@@ -365,6 +371,45 @@ public class BrewAddPanel extends JPanel {
 			}
 		});
 		
+		btnBrewAddCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnBrewAddEdit.setEnabled(true);
+				btnBrewAddCancel.setEnabled(false);
+				btnBrewAddSave.setEnabled(false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
+				BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+				textBrewNameAdd.setEditable(false);
+				comboBrewColourAdd.setEnabled(false);
+				textBrewRecipeAdd.setEditable(false);
+				comboBrewThumbsAdd.setEnabled(false);
+				textBrewDatePlannedAdd.setEditable(false);
+				textBrewDateStartedAdd.setEditable(false);
+				textBrewDateBottledAdd.setEditable(false);
+				textBrewStartSGAdd.setEditable(false);
+				textBrewStartAdjustedSGAdd.setEditable(false);
+				textBrewEndSGAdd.setEditable(false);
+				textBrewAimedABVAdd.setEditable(false);
+				textBrewFinalABVAdd.setEditable(false);
+				textBrewFinalAdjustedABVAdd.setEditable(false);
+				textBrewYeastAdd.setEditable(false);
+				textBrewVolumeMadeAdd.setEditable(false);
+				chckbxBrewInPlanningAdd.setEnabled(false);
+				chckbxBrewInFermentingAdd.setEnabled(false);
+				chckbxBrewInFiningAdd.setEnabled(false);
+				textBrewNumberBottlesAdd.setEditable(false);
+				chckbxBrewInMaturingAdd.setEnabled(false);
+				chckbxBrewInBottlesAdd.setEnabled(false);
+				chckbxBrewDrunkAdd.setEnabled(false);
+				textBrewTastingNotesAdd.setEditable(false);
+				textBrewGeneralNotesAdd.setEditable(false);
+				textBrewGeneralNotesAdd.setBackground(UIManager.getColor("Panel.background"));
+				clearBrewAddData();
+			}
+		});
+		
 		btnBrewAddSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -373,11 +418,12 @@ public class BrewAddPanel extends JPanel {
 					e1.printStackTrace();
 				}
 				btnBrewAddEdit.setEnabled(true);
+				btnBrewAddCancel.setEnabled(false);
 				btnBrewAddSave.setEnabled(false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
+				BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 				textBrewNameAdd.setEditable(false);
 				comboBrewColourAdd.setEnabled(false);

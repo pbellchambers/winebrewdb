@@ -39,6 +39,7 @@ public class DBEngine {
 		return DriverManager.getConnection("jdbc:sqlite:WineBrewDBData.sqlite");
 	}
 	
+	//TODO: Handle 0 for all statuses
 	//Get everything from Brews table
 	public static Vector<Vector<String>> getBrews() throws Exception {
 	    Connection conn = dbConnection();
@@ -366,33 +367,23 @@ public class DBEngine {
 	    
 	}
 	
-    //Statement stat = conn.createStatement();
-    //stat.executeUpdate("drop table if exists people;");
-    //stat.executeUpdate("create table people (name, occupation);");
-     
-    //PreparedStatement prep = conn.prepareStatement("insert into people values (?, ?);");
+	//Add Brew
+	public static void deleteBrew() throws Exception {
+		Connection conn = dbConnection();
+		
+		PreparedStatement pre = conn.prepareStatement("delete from Brews where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "'");
+		PreparedStatement pre2 = conn.prepareStatement("delete from BrewNotes where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "'");
+		PreparedStatement pre3 = conn.prepareStatement("delete from BrewPictures where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "'");
 
-    //prep.setString(1, "Gandhi2");
-    //prep.setString(2, "politics2");
-    //prep.addBatch();
-    //prep.setString(1, "Turing2");
-    //prep.setString(2, "computers2");
-    //prep.addBatch();
-    //prep.setString(1, "Wittgenstein2");
-    //prep.setString(2, "smartypants2");
-    //prep.addBatch();
+		pre.executeUpdate();
+		pre2.executeUpdate();
+		pre3.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
+	    
+	}
+		
 
-    //conn.setAutoCommit(false);
-    //prep.executeBatch();
-    //conn.setAutoCommit(true);
-
-    //ResultSet rs = stat.executeQuery("select * from people;");
-    //while (rs.next()) {
-     	//System.out.println("name = " + rs.getString("name"));
-     	//System.out.println("job = " + rs.getString("occupation"));
-    //}
-    //rs.close();
-    //conn.close();	
-	
-	
 }
