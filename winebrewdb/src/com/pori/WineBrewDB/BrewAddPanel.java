@@ -13,6 +13,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -412,45 +413,53 @@ public class BrewAddPanel extends JPanel {
 		
 		btnBrewAddSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					DBEngine.addBrew();
-				} catch (Exception e1) {
-					e1.printStackTrace();
+				if (chckbxBrewInPlanningAdd.isSelected() == false && chckbxBrewInFermentingAdd.isSelected() == false && chckbxBrewInFiningAdd.isSelected() == false && chckbxBrewInMaturingAdd.isSelected() == false && chckbxBrewInBottlesAdd.isSelected() == false && chckbxBrewDrunkAdd.isSelected() == false){
+					JOptionPane.showMessageDialog(null,
+						"You must select at least one state for the brew to be in.",
+						"Error",
+						JOptionPane.ERROR_MESSAGE
+					);
+				} else {
+					try {
+						DBEngine.addBrew();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					btnBrewAddEdit.setEnabled(true);
+					btnBrewAddCancel.setEnabled(false);
+					btnBrewAddSave.setEnabled(false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+					textBrewNameAdd.setEditable(false);
+					comboBrewColourAdd.setEnabled(false);
+					textBrewRecipeAdd.setEditable(false);
+					comboBrewThumbsAdd.setEnabled(false);
+					textBrewDatePlannedAdd.setEditable(false);
+					textBrewDateStartedAdd.setEditable(false);
+					textBrewDateBottledAdd.setEditable(false);
+					textBrewStartSGAdd.setEditable(false);
+					textBrewStartAdjustedSGAdd.setEditable(false);
+					textBrewEndSGAdd.setEditable(false);
+					textBrewAimedABVAdd.setEditable(false);
+					textBrewFinalABVAdd.setEditable(false);
+					textBrewFinalAdjustedABVAdd.setEditable(false);
+					textBrewYeastAdd.setEditable(false);
+					textBrewVolumeMadeAdd.setEditable(false);
+					chckbxBrewInPlanningAdd.setEnabled(false);
+					chckbxBrewInFermentingAdd.setEnabled(false);
+					chckbxBrewInFiningAdd.setEnabled(false);
+					textBrewNumberBottlesAdd.setEditable(false);
+					chckbxBrewInMaturingAdd.setEnabled(false);
+					chckbxBrewInBottlesAdd.setEnabled(false);
+					chckbxBrewDrunkAdd.setEnabled(false);
+					textBrewTastingNotesAdd.setEditable(false);
+					textBrewGeneralNotesAdd.setEditable(false);
+					textBrewGeneralNotesAdd.setBackground(UIManager.getColor("Panel.background"));
+					clearBrewAddData();
 				}
-				btnBrewAddEdit.setEnabled(true);
-				btnBrewAddCancel.setEnabled(false);
-				btnBrewAddSave.setEnabled(false);
-				BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
-				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
-				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
-				BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
-				textBrewNameAdd.setEditable(false);
-				comboBrewColourAdd.setEnabled(false);
-				textBrewRecipeAdd.setEditable(false);
-				comboBrewThumbsAdd.setEnabled(false);
-				textBrewDatePlannedAdd.setEditable(false);
-				textBrewDateStartedAdd.setEditable(false);
-				textBrewDateBottledAdd.setEditable(false);
-				textBrewStartSGAdd.setEditable(false);
-				textBrewStartAdjustedSGAdd.setEditable(false);
-				textBrewEndSGAdd.setEditable(false);
-				textBrewAimedABVAdd.setEditable(false);
-				textBrewFinalABVAdd.setEditable(false);
-				textBrewFinalAdjustedABVAdd.setEditable(false);
-				textBrewYeastAdd.setEditable(false);
-				textBrewVolumeMadeAdd.setEditable(false);
-				chckbxBrewInPlanningAdd.setEnabled(false);
-				chckbxBrewInFermentingAdd.setEnabled(false);
-				chckbxBrewInFiningAdd.setEnabled(false);
-				textBrewNumberBottlesAdd.setEditable(false);
-				chckbxBrewInMaturingAdd.setEnabled(false);
-				chckbxBrewInBottlesAdd.setEnabled(false);
-				chckbxBrewDrunkAdd.setEnabled(false);
-				textBrewTastingNotesAdd.setEditable(false);
-				textBrewGeneralNotesAdd.setEditable(false);
-				textBrewGeneralNotesAdd.setBackground(UIManager.getColor("Panel.background"));
-				clearBrewAddData();
 			}
 		});
 	}

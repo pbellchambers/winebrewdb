@@ -39,7 +39,6 @@ public class DBEngine {
 		return DriverManager.getConnection("jdbc:sqlite:WineBrewDBData.sqlite");
 	}
 	
-	//TODO: Handle 0 for all statuses
 	//Get everything from Brews table
 	public static Vector<Vector<String>> getBrews() throws Exception {
 	    Connection conn = dbConnection();
