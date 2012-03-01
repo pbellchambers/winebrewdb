@@ -1,9 +1,10 @@
 ﻿======Credits======
 The following were used in the making of this program:
 
-- Wine icon modified from "Wine" symbol by thenounproject.com. CC BY
-- MiGLayout from MiG InfoCom AB. Licensed under the BSD license.
+- Wine icon modified from "Wine" symbol by thenounproject.com, CC BY.
+- MiGLayout from MiG InfoCom AB, licensed under the BSD License.
 - SQLite from sqlite.org, public domain.
-- SQLiteJDBC from David Crawshaw / zentus.com. Licensed under the BSD license.
+- SQLiteJDBC from David Crawshaw / zentus.com, licensed under the BSD License.
 - DateChooser from Adam Lee / gimlisys.com, licensed under the Academic Free License.
+- Joda Time from Joda.org, licensed under the Apache License.
 - Yeast Strains data compiled from information posted by "goldseal" and other members of the winesathome.co.uk / homewinemaking.co.uk communities.

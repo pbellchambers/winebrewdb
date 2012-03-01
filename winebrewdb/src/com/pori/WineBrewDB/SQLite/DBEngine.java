@@ -36,6 +36,14 @@ public class DBEngine {
 	private static String DrunkAdd;
 	private static int NextBrewNoteRef;
 	private static int MaxBrewNoteRef;
+	private static String BrewDatePlannedAddB;
+	private static String BrewDateStartedAddB;
+	private static String BrewDateBottledAddB;
+	private static String BrewDatePlannedUpdateB;
+	private static String BrewDateStartedUpdateB;
+	private static String BrewDateBottledUpdateB;
+	private static String BrewNoteDateAddB;
+	private static String BrewNoteDateUpdateB;
 	
 	
 	//Create the connection
@@ -208,6 +216,23 @@ public class DBEngine {
 	    } else {
 	    	DrunkB = "0";
 	    }
+	    
+	    //Cover empty dates
+	    if(BrewDataPanel.chooserBrewDatePlannedB.getDate() == null){
+	    	BrewDatePlannedUpdateB = "";
+	    } else{
+	    	BrewDatePlannedUpdateB = Dates.dateToString(BrewDataPanel.chooserBrewDatePlannedB.getDate());
+	    }
+	    if(BrewDataPanel.chooserBrewDateStartedB.getDate() == null){
+	    	BrewDateStartedUpdateB = "";
+	    } else{
+	    	BrewDateStartedUpdateB = Dates.dateToString(BrewDataPanel.chooserBrewDateStartedB.getDate());
+	    }
+	    if(BrewDataPanel.chooserBrewDateBottledB.getDate() == null){
+	    	BrewDateBottledUpdateB = "";
+	    } else{
+	    	BrewDateBottledUpdateB = Dates.dateToString(BrewDataPanel.chooserBrewDateBottledB.getDate());
+	    }
 	     
 	    PreparedStatement pre = conn.prepareStatement(
 	    	"update Brews set BrewName='" +
@@ -219,11 +244,11 @@ public class DBEngine {
 	    	"',ThumbsUp='" +
 	   		BrewDataPanel.comboBrewThumbsB.getSelectedItem() +
 	    	"',DatePlanned='" +
-	   		BrewDataPanel.textBrewDatePlannedB.getText().replaceAll("'", "''") +
+	    	BrewDatePlannedUpdateB +
 	    	"',DateStarted='" +
-	   		BrewDataPanel.textBrewDateStartedB.getText().replaceAll("'", "''") +
+	    	BrewDateStartedUpdateB +
 	    	"',DateBottled='" +
-	   		BrewDataPanel.textBrewDateBottledB.getText().replaceAll("'", "''") +
+	    	BrewDateBottledUpdateB +
 	    	"',StartSG='" +
 	   		BrewDataPanel.textBrewStartSGB.getText().replaceAll("'", "''") +
 	    	"',StartAdjustedSG='" +
@@ -311,6 +336,24 @@ public class DBEngine {
 	    } else {
 	    	DrunkAdd = "0";
 	    }
+	    
+	    //Cover empty dates
+	    if(BrewAddPanel.chooserBrewDatePlannedAdd.getDate() == null){
+	    	BrewDatePlannedAddB = "";
+	    } else{
+	    	BrewDatePlannedAddB = Dates.dateToString(BrewAddPanel.chooserBrewDatePlannedAdd.getDate());
+	    }
+	    if(BrewAddPanel.chooserBrewDateStartedAdd.getDate() == null){
+	    	BrewDateStartedAddB = "";
+	    } else{
+	    	BrewDateStartedAddB = Dates.dateToString(BrewAddPanel.chooserBrewDateStartedAdd.getDate());
+	    }
+	    if(BrewAddPanel.chooserBrewDateBottledAdd.getDate() == null){
+	    	BrewDateBottledAddB = "";
+	    } else{
+	    	BrewDateBottledAddB = Dates.dateToString(BrewAddPanel.chooserBrewDateBottledAdd.getDate());
+	    }
+	    
 	     
 	    PreparedStatement pre = conn.prepareStatement(
     		"insert into Brews(BrewName,Colour,RecipeFrom,ThumbsUp,DatePlanned,DateStarted,DateBottled,StartSG,StartAdjustedSG,EndSG,AimedABV,FinalABV,FinalAdjustedABV,Yeast,VolumeMade,InPlanning,InFermenting,InFining,NumberBottles,InMaturing,InBottles,Drunk,TastingNotes,Notes) values('" +
@@ -322,11 +365,11 @@ public class DBEngine {
     		"','" +
     		BrewAddPanel.comboBrewThumbsAdd.getSelectedItem() +
     		"','" +
-    		BrewAddPanel.textBrewDatePlannedAdd.getText().replaceAll("'", "''") +
+    		BrewDatePlannedAddB +
     		"','" +
-    		BrewAddPanel.textBrewDateStartedAdd.getText().replaceAll("'", "''") +
+    		BrewDateStartedAddB +
     		"','" +
-    		BrewAddPanel.textBrewDateBottledAdd.getText().replaceAll("'", "''") +
+    		BrewDateBottledAddB +
     		"','" +
     		BrewAddPanel.textBrewStartSGAdd.getText().replaceAll("'", "''") +
     		"','" +
@@ -428,13 +471,20 @@ public class DBEngine {
 	public static void addBrewNote() throws Exception {
 		Connection conn = dbConnection();
 		
+		//Cover empty dates
+	    if(BrewNotesPanel.chooserBrewNoteDate.getDate() == null){
+	    	BrewNoteDateAddB = "";
+	    } else{
+	    	BrewNoteDateAddB = Dates.dateToString(BrewNotesPanel.chooserBrewNoteDate.getDate());
+	    }
+		
 		PreparedStatement pre = conn.prepareStatement(
 			"insert into BrewNotes(BrewRef,BrewNoteRef,Date,DaysSinceStart,Incident,Notes) values('" + 
 			BrewDataPanel.textBrewRefB.getText() + 
 			"','" +
 			BrewNotesPanel.textBrewNoteRef.getText() +
 			"','" +
-			Dates.dateToString(BrewNotesPanel.pickerBrewNoteDate.getDate()) +
+			BrewNoteDateAddB +
 			"','" +
 			BrewNotesPanel.textBrewNoteDaysSinceStart.getText() +
 			"','" +
@@ -483,32 +533,39 @@ public class DBEngine {
 	
 	
 	//Update Brew Note
-		public static void updateBrewNote() throws Exception {
-			Connection conn = dbConnection();
-			
-			PreparedStatement pre = conn.prepareStatement(
-				"update BrewNotes set Date='" + 
-				Dates.dateToString(BrewNotesPanel.pickerBrewNoteDate.getDate()) + 
-				"',DaysSinceStart='" +
-				BrewNotesPanel.textBrewNoteDaysSinceStart.getText() +
-				"',Incident='" +
-				BrewNotesPanel.textBrewNoteIncident.getText().replaceAll("'", "''") +
-				"',Notes='" +
-				BrewNotesPanel.textBrewNoteNote.getText().replaceAll("'", "''") +
-				"' where BrewRef='" +
-				BrewDataPanel.textBrewRefB.getText() +
-				"' and BrewNoteRef='" +
-				BrewNotesPanel.textBrewNoteRef.getText() +
-				"'"
-			);
+	public static void updateBrewNote() throws Exception {
+		Connection conn = dbConnection();
+		
+		//Cover empty dates
+	    if(BrewNotesPanel.chooserBrewNoteDate.getDate() == null){
+	    	BrewNoteDateUpdateB = "";
+	    } else{
+	    	BrewNoteDateUpdateB = Dates.dateToString(BrewNotesPanel.chooserBrewNoteDate.getDate());
+	    }
+		
+		PreparedStatement pre = conn.prepareStatement(
+			"update BrewNotes set Date='" + 
+			BrewNoteDateUpdateB + 
+			"',DaysSinceStart='" +
+			BrewNotesPanel.textBrewNoteDaysSinceStart.getText() +
+			"',Incident='" +
+			BrewNotesPanel.textBrewNoteIncident.getText().replaceAll("'", "''") +
+			"',Notes='" +
+			BrewNotesPanel.textBrewNoteNote.getText().replaceAll("'", "''") +
+			"' where BrewRef='" +
+			BrewDataPanel.textBrewRefB.getText() +
+			"' and BrewNoteRef='" +
+			BrewNotesPanel.textBrewNoteRef.getText() +
+			"'"
+		);
 
-			pre.executeUpdate();
-			
-			/*Close the connection after use (MUST)*/
-		    if(conn!=null)
-		    conn.close();  
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
 		    
-		}
+	}
 	
 	
 	//Delete Brew Note

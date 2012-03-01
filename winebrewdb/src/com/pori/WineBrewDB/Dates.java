@@ -2,8 +2,10 @@ package com.pori.WineBrewDB;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 public class Dates {
 	public static Date convertedDate;
@@ -25,27 +27,15 @@ public class Dates {
 	}
 	
 	
-	//TODO: Joda time. datediff
-	//assert: startDate must be before endDate
 	public static String daysBetween(Date startDate, Date endDate) {
-		System.out.println("Start: " + startDate);
-		System.out.println("End: " + endDate);
-	
-		Calendar calendarStartDate = Calendar.getInstance();
-		calendarStartDate.setTime(startDate);
+		DateTime startDateTime = new DateTime(startDate);
+		DateTime endDateTime = new DateTime(endDate);
 		
-		Calendar calendarEndDate = Calendar.getInstance();
-		calendarStartDate.setTime(endDate);
-		
-		System.out.println("calendarStart: " + calendarStartDate);
-		System.out.println("calendarEnd: " + calendarEndDate);
-		
-		long daysBetween = 0;
-		while (calendarStartDate.before(calendarEndDate)) {
-			calendarStartDate.add(Calendar.DAY_OF_MONTH, 1);
-			daysBetween++;
-		}
-	  return String.valueOf(daysBetween);
+		Days d = Days.daysBetween(startDateTime, endDateTime);
+		String dstring = d.toString();
+		String cleandstring = dstring.replaceAll("P", "").replaceAll("D", "");
+			
+		return cleandstring;
 	}
 
 }
