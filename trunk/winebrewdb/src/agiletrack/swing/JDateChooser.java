@@ -48,7 +48,7 @@ public class JDateChooser extends JPanel {
 	private static final long serialVersionUID = 3260205260772126658L;
 
 	/** Stores the last date formatter that successfully parsed a date */
-    protected static DateFormat lastDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    protected static DateFormat lastDateFormat = new SimpleDateFormat("yyyy/MM/dd");
     
     /** A set of date formatters that could be used for parsing dates */
     protected static final SimpleDateFormat[] DATE_FORMATS = new SimpleDateFormat[] {

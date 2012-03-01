@@ -20,6 +20,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import agiletrack.swing.JDateChooser;
+
 import com.pori.WineBrewDB.SQLite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;
@@ -39,11 +41,11 @@ public class BrewAddPanel extends JPanel {
 	public static JLabel lblBrewThumbsAdd;
 	public static JComboBox<String> comboBrewThumbsAdd;
 	public static JLabel lblBrewDatePlannedAdd;
-	public static JTextField textBrewDatePlannedAdd;
+	public static JDateChooser chooserBrewDatePlannedAdd;
 	public static JLabel lblBrewDateStartedAdd;
-	public static JTextField textBrewDateStartedAdd;
+	public static JDateChooser chooserBrewDateStartedAdd;
 	public static JLabel lblBrewDateBottledAdd;
-	public static JTextField textBrewDateBottledAdd;
+	public static JDateChooser chooserBrewDateBottledAdd;
 	public static JLabel lblBrewYeastAdd;
 	public static JTextField textBrewYeastAdd;
 	public static JLabel lblBrewStartSGAdd;
@@ -176,27 +178,26 @@ public class BrewAddPanel extends JPanel {
 		comboBrewThumbsAdd.setEnabled(false);
 		tabbedBrewAddPanel.add(comboBrewThumbsAdd, "cell 7 1,growx");
 		
-		//TODO: Make these some form of date picker
 		lblBrewDatePlannedAdd = new JLabel("Date Planned:");
 		tabbedBrewAddPanel.add(lblBrewDatePlannedAdd, "flowx,cell 0 2,alignx right");
 			
-		textBrewDatePlannedAdd = new JTextField();
-		textBrewDatePlannedAdd.setEditable(false);
-		tabbedBrewAddPanel.add(textBrewDatePlannedAdd, "cell 1 2,growx");
+		chooserBrewDatePlannedAdd = new JDateChooser();
+		chooserBrewDatePlannedAdd.setDisabled();
+		tabbedBrewAddPanel.add(chooserBrewDatePlannedAdd, "cell 1 2,growx");
 		
 		lblBrewDateStartedAdd = new JLabel("Date Started:");
 		tabbedBrewAddPanel.add(lblBrewDateStartedAdd, "flowx,cell 2 2,alignx right");
 			
-		textBrewDateStartedAdd = new JTextField();
-		textBrewDateStartedAdd.setEditable(false);
-		tabbedBrewAddPanel.add(textBrewDateStartedAdd, "cell 3 2,growx");
+		chooserBrewDateStartedAdd = new JDateChooser();
+		chooserBrewDateStartedAdd.setDisabled();
+		tabbedBrewAddPanel.add(chooserBrewDateStartedAdd, "cell 3 2,growx");
 		
 		lblBrewDateBottledAdd = new JLabel("Date Bottled:");
 		tabbedBrewAddPanel.add(lblBrewDateBottledAdd, "flowx,cell 4 2,alignx right");
 			
-		textBrewDateBottledAdd = new JTextField();
-		textBrewDateBottledAdd.setEditable(false);
-		tabbedBrewAddPanel.add(textBrewDateBottledAdd, "cell 5 2,growx");
+		chooserBrewDateBottledAdd = new JDateChooser();
+		chooserBrewDateBottledAdd.setDisabled();
+		tabbedBrewAddPanel.add(chooserBrewDateBottledAdd, "cell 5 2,growx");
 			
 		lblBrewStartSGAdd = new JLabel("Start SG:");
 		tabbedBrewAddPanel.add(lblBrewStartSGAdd, "flowx,cell 0 4,alignx right");
@@ -349,9 +350,9 @@ public class BrewAddPanel extends JPanel {
 				comboBrewColourAdd.setEnabled(true);
 				textBrewRecipeAdd.setEditable(true);
 				comboBrewThumbsAdd.setEnabled(true);
-				textBrewDatePlannedAdd.setEditable(true);
-				textBrewDateStartedAdd.setEditable(true);
-				textBrewDateBottledAdd.setEditable(true);
+				chooserBrewDatePlannedAdd.setEnabled();
+				chooserBrewDateStartedAdd.setEnabled();
+				chooserBrewDateBottledAdd.setEnabled();
 				textBrewStartSGAdd.setEditable(true);
 				textBrewStartAdjustedSGAdd.setEditable(true);
 				textBrewEndSGAdd.setEditable(true);
@@ -388,9 +389,9 @@ public class BrewAddPanel extends JPanel {
 				comboBrewColourAdd.setEnabled(false);
 				textBrewRecipeAdd.setEditable(false);
 				comboBrewThumbsAdd.setEnabled(false);
-				textBrewDatePlannedAdd.setEditable(false);
-				textBrewDateStartedAdd.setEditable(false);
-				textBrewDateBottledAdd.setEditable(false);
+				chooserBrewDatePlannedAdd.setDisabled();
+				chooserBrewDateStartedAdd.setDisabled();
+				chooserBrewDateBottledAdd.setDisabled();
 				textBrewStartSGAdd.setEditable(false);
 				textBrewStartAdjustedSGAdd.setEditable(false);
 				textBrewEndSGAdd.setEditable(false);
@@ -440,9 +441,9 @@ public class BrewAddPanel extends JPanel {
 					comboBrewColourAdd.setEnabled(false);
 					textBrewRecipeAdd.setEditable(false);
 					comboBrewThumbsAdd.setEnabled(false);
-					textBrewDatePlannedAdd.setEditable(false);
-					textBrewDateStartedAdd.setEditable(false);
-					textBrewDateBottledAdd.setEditable(false);
+					chooserBrewDatePlannedAdd.setDisabled();
+					chooserBrewDateStartedAdd.setDisabled();
+					chooserBrewDateBottledAdd.setDisabled();
 					textBrewStartSGAdd.setEditable(false);
 					textBrewStartAdjustedSGAdd.setEditable(false);
 					textBrewEndSGAdd.setEditable(false);
@@ -471,9 +472,9 @@ public class BrewAddPanel extends JPanel {
 		textBrewRefAdd.setText("");
 		textBrewNameAdd.setText("");
 		textBrewRecipeAdd.setText("");
-		textBrewDatePlannedAdd.setText("");
-		textBrewDateStartedAdd.setText("");
-		textBrewDateBottledAdd.setText("");
+		chooserBrewDatePlannedAdd.setDate(null);
+		chooserBrewDateStartedAdd.setDate(null);
+		chooserBrewDateBottledAdd.setDate(null);
 		textBrewYeastAdd.setText("");
 		textBrewStartSGAdd.setText("");
 		textBrewStartAdjustedSGAdd.setText("");
