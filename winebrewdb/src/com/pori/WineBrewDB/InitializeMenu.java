@@ -72,6 +72,7 @@ public class InitializeMenu extends MainWindow {
 		mnHelp.add(mntmAbout);
 		mnHelp.add(mntmAck);
 		
+		//TODO: Welcome pane
 		
 		//Main Content Pane
 		MainWindow.WineBrewDBFrame.getContentPane().setLayout(new MigLayout("", "[grow]", "[grow]"));
