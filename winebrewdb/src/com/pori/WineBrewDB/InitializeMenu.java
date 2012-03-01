@@ -35,7 +35,7 @@ public class InitializeMenu extends MainWindow {
 	
 	public static void InitializeMenuMethod(){
 		
-		WineBrewDBVersion = "vAlpha0.6.4";
+		WineBrewDBVersion = "vAlpha0.7.0";
 		
 		//Top Menu Bar
 		JMenuBar menuBar = new JMenuBar();

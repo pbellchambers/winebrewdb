@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JEditorPane;
 
+import com.pori.WineBrewDB.SQLite.DBEngine;
+
 public class RecipePanel extends JPanel {
 
 	private static final long serialVersionUID = -7290586613655558447L;
@@ -23,8 +25,20 @@ public class RecipePanel extends JPanel {
 	//public RecipePanel() {
 	public static void InitializePanel(){
 		
+		try {
+			DBEngine.insertBrewPicture();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			DBEngine.getBrewPicture();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		RecipePanel = new JPanel();
-		RecipePanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
+		RecipePanel.setLayout(new MigLayout("", "[grow][100px:n:100px]", "[20px:n:20px][25px:n:25px][grow][50px:n:50px]"));
 		
 		
 		//Header
@@ -40,11 +54,14 @@ public class RecipePanel extends JPanel {
 		
 		
 		//Some content
+		JLabel piclabel = new JLabel(DBEngine.scaledImageIcon(100,50));
+		RecipePanel.add(piclabel, "cell 1 3,grow");
+		
 		txtRecipePanel = new JTextField();
 		txtRecipePanel.setBackground(Color.WHITE);
 		txtRecipePanel.setText("RecipePanel - Something will go here to search for/filter recipes entered in the database, and view their details.");
 		txtRecipePanel.setColumns(10);
-		RecipePanel.add(txtRecipePanel, "cell 0 2,grow");
+		//RecipePanel.add(txtRecipePanel, "cell 0 2,grow");
 		
 		
 		//Add it all to the main window
@@ -52,9 +69,10 @@ public class RecipePanel extends JPanel {
 		RecipePanel.setVisible(false);
 
 		RecipePanelStatus = "Initialized";
+		
 	}
-
 	
+
 	public static void DeInitializePanel(){
 		if(RecipePanelStatus.equals("Initialized")) {
 			RecipePanel.setVisible(false);
