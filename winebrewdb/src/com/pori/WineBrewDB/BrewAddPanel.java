@@ -83,6 +83,7 @@ public class BrewAddPanel extends JPanel {
 	
 	public static void InitializePanel(){
 		
+		//TODO: Format issues with date fields, as with brewdatapanel
 		tabbedBrewAddPanel = new JPanel();
 		tabbedBrewAddPanel.setBackground(Color.WHITE);
 		tabbedBrewAddPanel.setLayout(new MigLayout("", "[105px:105px:105px][60px:60px, grow][105px:105px:105px][70px:70px, grow][120px:120px:120px][60px:60px, grow][75px:75px:75px][60px:60px, grow]", "[][][][20px:20px][][][][20px:20px][][][20px:20px][][20px:20px][][55px:55,grow][15px:15px][]"));
