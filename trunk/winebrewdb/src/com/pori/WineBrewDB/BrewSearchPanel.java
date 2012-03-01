@@ -188,9 +188,8 @@ public class BrewSearchPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				BrewScrollPane.remove(BrewTable);
 				BrewScrollPane.setViewportView(null);
-				BrewNotesPanel.BrewNotesScrollPane.remove(BrewTable);
+				BrewNotesPanel.BrewNotesScrollPane.remove(BrewNotesPanel.BrewNotesTable);
 				BrewNotesPanel.BrewNotesScrollPane.setViewportView(null);
-				//BrewNotesPanel.clearBrewNotesData();
 				BrewDataPanel.clearBrewData();
 				BrewAddPanel.clearBrewAddData();
 				BrewDataPanel.btnBrewDataEdit.setEnabled(false);

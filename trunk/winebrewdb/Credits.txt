@@ -5,4 +5,5 @@ The following were used in the making of this program:
 - MiGLayout from MiG InfoCom AB. Licensed under the BSD license.
 - SQLite from sqlite.org, public domain.
 - SQLiteJDBC from David Crawshaw / zentus.com. Licensed under the BSD license.
+- DateChooser from Adam Lee / gimlisys.com, licensed under the Academic Free License.
 - Yeast Strains data compiled from information posted by "goldseal" and other members of the winesathome.co.uk / homewinemaking.co.uk communities.

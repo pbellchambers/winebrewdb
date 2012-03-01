@@ -10,6 +10,7 @@ import com.pori.WineBrewDB.BrewAddPanel;
 import com.pori.WineBrewDB.BrewDataPanel;
 import com.pori.WineBrewDB.BrewNotesPanel;
 import com.pori.WineBrewDB.BrewSearchPanel;
+import com.pori.WineBrewDB.Dates;
 
 public class DBEngine {
 	
@@ -33,6 +34,8 @@ public class DBEngine {
 	private static String InMaturingAdd;
 	private static String InBottlesAdd;
 	private static String DrunkAdd;
+	private static int NextBrewNoteRef;
+	private static int MaxBrewNoteRef;
 	
 	
 	//Create the connection
@@ -431,7 +434,7 @@ public class DBEngine {
 			"','" +
 			BrewNotesPanel.textBrewNoteRef.getText() +
 			"','" +
-			BrewNotesPanel.textBrewNoteDate.getText() +
+			Dates.dateToString(BrewNotesPanel.pickerBrewNoteDate.getDate()) +
 			"','" +
 			BrewNotesPanel.textBrewNoteDaysSinceStart.getText() +
 			"','" +
@@ -448,6 +451,64 @@ public class DBEngine {
 	    conn.close();  
 	    
 	}
+	
+	
+	//Get next brew note ref
+	public static String getNextBrewNoteRef() throws Exception {
+		Connection conn = dbConnection();
+				
+		PreparedStatement pre = conn.prepareStatement(
+			"SELECT BrewNoteRef from BrewNotes where BrewRef='" +
+			BrewDataPanel.textBrewRefB.getText() +
+			"' order by BrewNoteRef desc limit 1"
+		);
+
+		MaxBrewNoteRef = 0;
+		ResultSet rs = pre.executeQuery();
+		
+		while(rs.next()){
+			//Add one to the current highest
+			MaxBrewNoteRef = rs.getInt(1);			
+		}
+		
+		NextBrewNoteRef = MaxBrewNoteRef + 1;
+	    
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	    return Integer.toString(NextBrewNoteRef);
+			    
+	}
+	
+	
+	//Update Brew Note
+		public static void updateBrewNote() throws Exception {
+			Connection conn = dbConnection();
+			
+			PreparedStatement pre = conn.prepareStatement(
+				"update BrewNotes set Date='" + 
+				Dates.dateToString(BrewNotesPanel.pickerBrewNoteDate.getDate()) + 
+				"',DaysSinceStart='" +
+				BrewNotesPanel.textBrewNoteDaysSinceStart.getText() +
+				"',Incident='" +
+				BrewNotesPanel.textBrewNoteIncident.getText().replaceAll("'", "''") +
+				"',Notes='" +
+				BrewNotesPanel.textBrewNoteNote.getText().replaceAll("'", "''") +
+				"' where BrewRef='" +
+				BrewDataPanel.textBrewRefB.getText() +
+				"' and BrewNoteRef='" +
+				BrewNotesPanel.textBrewNoteRef.getText() +
+				"'"
+			);
+
+			pre.executeUpdate();
+			
+			/*Close the connection after use (MUST)*/
+		    if(conn!=null)
+		    conn.close();  
+		    
+		}
 	
 	
 	//Delete Brew Note
