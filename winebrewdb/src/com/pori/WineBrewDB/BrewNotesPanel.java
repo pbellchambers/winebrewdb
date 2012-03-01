@@ -49,6 +49,7 @@ public class BrewNotesPanel extends JPanel {
 	public static JButton btnBrewNoteSave;
 	public static JScrollPane BrewNotesNoteScrollPane;
 	public static String isNewNote;
+	private static boolean mouseListenerIsActive;
 
 	
 	public static void InitializePanel(){
@@ -130,12 +131,13 @@ public class BrewNotesPanel extends JPanel {
 		tabbedBrewNotesPanel.add(btnBrewNoteSave, "cell 5 8,growx");
 		
 		//Add button listeners
-		//TODO: If Add then click table
 		btnBrewNoteAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				mouseListenerIsActive = false;
 				clearBrewNoteData();
 				isNewNote = "true";
 				BrewNotesTable.setEnabled(false);
+				BrewNotesTable.setRowSelectionAllowed(false);
 				btnBrewNoteAdd.setEnabled(false);
 				btnBrewNoteEdit.setEnabled(false);
 				btnBrewNoteDelete.setEnabled(false);
@@ -158,8 +160,10 @@ public class BrewNotesPanel extends JPanel {
 		
 		btnBrewNoteEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				mouseListenerIsActive = false;
 				isNewNote = "false";
 				BrewNotesTable.setEnabled(false);
+				BrewNotesTable.setRowSelectionAllowed(false);
 				btnBrewNoteAdd.setEnabled(false);
 				btnBrewNoteEdit.setEnabled(false);
 				btnBrewNoteDelete.setEnabled(true);
@@ -192,7 +196,9 @@ public class BrewNotesPanel extends JPanel {
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
-					  	BrewNotesTable.setEnabled(true);
+						mouseListenerIsActive = true;
+						BrewNotesTable.setEnabled(true);
+						BrewNotesTable.setRowSelectionAllowed(true);
 					  	btnBrewNoteAdd.setEnabled(true);
 						btnBrewNoteEdit.setEnabled(false);
 						btnBrewNoteDelete.setEnabled(false);
@@ -224,24 +230,53 @@ public class BrewNotesPanel extends JPanel {
 
 		btnBrewNoteCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				isNewNote = "false";
-				setBrewNoteData();
-				BrewNotesTable.setEnabled(true);
-				btnBrewNoteAdd.setEnabled(true);
-				btnBrewNoteEdit.setEnabled(true);
-				btnBrewNoteDelete.setEnabled(false);
-				btnBrewNoteCancel.setEnabled(false);
-				btnBrewNoteSave.setEnabled(false);
-				BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
-				BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
-				InitializeMenu.EnableAllMenuButtons();
-				chooserBrewNoteDate.setDisabled();
-				textBrewNoteIncident.setEditable(false);
-				textBrewNoteNote.setEditable(false);
-				textBrewNoteNote.setBackground(UIManager.getColor("Panel.background"));
+				if (isNewNote.equals("true")){
+					isNewNote = "false";
+					mouseListenerIsActive = true;
+					BrewNotesScrollPane.remove(BrewNotesTable);
+					BrewNotesScrollPane.setViewportView(null);
+					initializeTable();
+					BrewNotesScrollPane.setViewportView(BrewNotesTable);
+					clearBrewNoteData();
+					BrewNotesTable.setEnabled(true);
+					BrewNotesTable.setRowSelectionAllowed(true);
+					btnBrewNoteAdd.setEnabled(true);
+					btnBrewNoteEdit.setEnabled(false);
+					btnBrewNoteDelete.setEnabled(false);
+					btnBrewNoteCancel.setEnabled(false);
+					btnBrewNoteSave.setEnabled(false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+					InitializeMenu.EnableAllMenuButtons();
+					chooserBrewNoteDate.setDisabled();
+					textBrewNoteIncident.setEditable(false);
+					textBrewNoteNote.setEditable(false);
+					textBrewNoteNote.setBackground(UIManager.getColor("Panel.background"));
+				}else {
+					mouseListenerIsActive = true;
+					isNewNote = "false";
+					setBrewNoteData();
+					BrewNotesTable.setEnabled(true);
+					BrewNotesTable.setRowSelectionAllowed(true);
+					btnBrewNoteAdd.setEnabled(true);
+					btnBrewNoteEdit.setEnabled(true);
+					btnBrewNoteDelete.setEnabled(false);
+					btnBrewNoteCancel.setEnabled(false);
+					btnBrewNoteSave.setEnabled(false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+					InitializeMenu.EnableAllMenuButtons();
+					chooserBrewNoteDate.setDisabled();
+					textBrewNoteIncident.setEditable(false);
+					textBrewNoteNote.setEditable(false);
+					textBrewNoteNote.setBackground(UIManager.getColor("Panel.background"));
+				}
 			}
 		});
 		
@@ -263,7 +298,9 @@ public class BrewNotesPanel extends JPanel {
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
+						mouseListenerIsActive = true;
 						BrewNotesTable.setEnabled(true);
+						BrewNotesTable.setRowSelectionAllowed(true);
 						btnBrewNoteAdd.setEnabled(true);
 						btnBrewNoteEdit.setEnabled(false);
 						btnBrewNoteDelete.setEnabled(false);
@@ -299,7 +336,9 @@ public class BrewNotesPanel extends JPanel {
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
+						mouseListenerIsActive = true;
 						BrewNotesTable.setEnabled(true);
+						BrewNotesTable.setRowSelectionAllowed(true);
 						btnBrewNoteAdd.setEnabled(true);
 						btnBrewNoteEdit.setEnabled(false);
 						btnBrewNoteDelete.setEnabled(false);
@@ -375,33 +414,43 @@ public class BrewNotesPanel extends JPanel {
 		BrewNotesTable.getTableHeader().setReorderingAllowed(false);
 		BrewNotesTable.setAutoCreateRowSorter(false);
 		
-
-		//Mouse Listener on JTable:
-		BrewNotesTable.addMouseListener(new MouseAdapter() {
-			
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 1) {
-					JTable target = (JTable)e.getSource();
-					BrewNotesSelectedRow = target.getSelectedRow();
-					btnBrewNoteEdit.setEnabled(true);
-					btnBrewNoteDelete.setEnabled(false);
-					setBrewNoteData();
-				}
-				
-			   }
-			});
-				
+		addBrewNotesMouseListener();
 		
 	}
 	
-	//TODO: If add then cancel with no selected row.
+	public static void addBrewNotesMouseListener(){
+		mouseListenerIsActive = true;
+		
+		BrewNotesTable.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(mouseListenerIsActive){
+					if (e.getClickCount() == 1) {
+						JTable target = (JTable)e.getSource();
+						BrewNotesSelectedRow = target.getSelectedRow();
+						if(BrewNotesSelectedRow != -1){
+							btnBrewNoteEdit.setEnabled(true);
+							btnBrewNoteDelete.setEnabled(false);
+							setBrewNoteData();
+						}
+					}
+				}			
+			}
+		});
+	}
+	
+	public static void removeBrewNotesMouseListener(){
+		mouseListenerIsActive = false;
+	}
+	
 	public static void setBrewNoteData(){
-		textBrewNoteRef.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,0));
-		chooserBrewNoteDate.setDate(Dates.stringToDate((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,1)));
-		textBrewNoteDaysSinceStart.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,2));
-		textBrewNoteIncident.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,3));
-		textBrewNoteNote.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,4));
-		chooserBrewNoteDate.setDisabled();
+		if(BrewNotesSelectedRow != -1){
+			textBrewNoteRef.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,0));
+			chooserBrewNoteDate.setDate(Dates.stringToDate((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,1)));
+			textBrewNoteDaysSinceStart.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,2));
+			textBrewNoteIncident.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,3));
+			textBrewNoteNote.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,4));
+			chooserBrewNoteDate.setDisabled();
+		}
 	}
 	
 	public static void clearBrewNoteData(){

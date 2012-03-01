@@ -6,6 +6,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 
 public class SandboxTestPane extends JPanel {
 
@@ -22,12 +23,16 @@ public class SandboxTestPane extends JPanel {
 	private JButton btnBrewNoteDelete;
 	private JButton btnBrewNoteCancel;
 	private JButton btnBrewNoteSave;
+	private JFormattedTextField formattedTextField;
 
 	/**
 	 * Create the panel.
 	 */
 	public SandboxTestPane() {;
 		setLayout(new MigLayout("", "[100px:100px:100px][grow][100px:100px:100px][grow][100px:100px:100px][grow]", "[300px:300px,grow][][][][grow][][][]"));
+		
+		formattedTextField = new JFormattedTextField();
+		add(formattedTextField, "flowx,cell 0 0");
 		
 		lblBrewNoteRef = new JLabel("Brew Note Ref:");
 		add(lblBrewNoteRef, "cell 0 0,alignx trailing");

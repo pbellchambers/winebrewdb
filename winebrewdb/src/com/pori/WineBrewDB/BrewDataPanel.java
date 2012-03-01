@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import agiletrack.swing.JDateChooser;
 
@@ -80,13 +82,19 @@ public class BrewDataPanel extends JPanel {
 	public static JCheckBox chckbxBrewDrunkB;
 	public static JButton btnBrewDataDelete;
 	public static JButton btnBrewDataCancel;
+	private static String unformattedtextBrewStartSGB;
+	private static String unformattedtextBrewStartAdjustedSGB;
+	private static String unformattedtextBrewEndSGB;
+	private static String unformattedtextBrewAimedABVB;
+	private static String unformattedtextBrewFinalABVB;
+	private static String unformattedtextBrewFinalAdjustedABVB;
 	
 	
 	public static void InitializePanel(){
 		
 		tabbedBrewDataPanel = new JPanel();
 		tabbedBrewDataPanel.setBackground(Color.WHITE);
-		tabbedBrewDataPanel.setLayout(new MigLayout("", "[105px:105px:105px][30px:30px, grow][grow][105px:105px:105px][30px:30px, grow][grow][120px:120px:120px][30px:30px, grow][grow]", "[][][][20px:20px][][][][20px:20px][][][20px:20px][][20px:20px][][55px:55,grow][15px:15px][]"));
+		tabbedBrewDataPanel.setLayout(new MigLayout("", "[105px:105px:105px][30px:30px, grow][grow][105px:105px:105px][30px:30px, grow][grow][120px:120px:120px][30px:30px, grow][grow]", "[][][][10px:10px][][][][10px:10px][][][][10px:10px][][10px:10px][][55px:55,grow][15px:15px][]"));
 		
 		lblBrewRefB = new JLabel("Brew Ref:");
 		tabbedBrewDataPanel.add(lblBrewRefB, "flowx,cell 0 0,alignx right");
@@ -133,7 +141,6 @@ public class BrewDataPanel extends JPanel {
 		lblBrewStartSGB = new JLabel("Start SG:");
 		tabbedBrewDataPanel.add(lblBrewStartSGB, "flowx,cell 0 4,alignx right");
 		
-		//TODO: Format these number fields properly
 		textBrewStartSGB = new JFormattedTextField(new DecimalFormat("0.000"));
 		textBrewStartSGB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewStartSGB, "cell 1 4 2,growx");
@@ -190,7 +197,6 @@ public class BrewDataPanel extends JPanel {
 		lblBrewVolumeMade2B = new JLabel("(gallons)");
 		tabbedBrewDataPanel.add(lblBrewVolumeMade2B, "flowx,cell 2 8,alignx left");
 		
-		//TODO: Make box position nicer
 		chckbxBrewInPlanningB = new JCheckBox("In Planning");
 		chckbxBrewInPlanningB.setSelected(false);
 		chckbxBrewInPlanningB.setEnabled(false);
@@ -202,12 +208,6 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewInFermentingB.setEnabled(false);
 		chckbxBrewInFermentingB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewInFermentingB, "cell 4 8,growx");
-			
-		chckbxBrewInFiningB = new JCheckBox("In Fining");
-		chckbxBrewInFiningB.setSelected(false);
-		chckbxBrewInFiningB.setEnabled(false);
-		chckbxBrewInFiningB.setBackground(Color.WHITE);
-		tabbedBrewDataPanel.add(chckbxBrewInFiningB, "cell 3 7,growx");
 		
 		lblBrewColourB = new JLabel("Colour:");
 		tabbedBrewDataPanel.add(lblBrewColourB, "flowx,cell 6 8,alignx right");
@@ -253,23 +253,17 @@ public class BrewDataPanel extends JPanel {
 		textBrewNumberBottlesB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewNumberBottlesB, "cell 1 9,growx");
 		
+		chckbxBrewInFiningB = new JCheckBox("In Fining");
+		chckbxBrewInFiningB.setSelected(false);
+		chckbxBrewInFiningB.setEnabled(false);
+		chckbxBrewInFiningB.setBackground(Color.WHITE);
+		tabbedBrewDataPanel.add(chckbxBrewInFiningB, "cell 3 9,growx");
+		
 		chckbxBrewInMaturingB = new JCheckBox("In Maturing");
 		chckbxBrewInMaturingB.setSelected(false);
 		chckbxBrewInMaturingB.setEnabled(false);
 		chckbxBrewInMaturingB.setBackground(Color.WHITE);
-		tabbedBrewDataPanel.add(chckbxBrewInMaturingB, "cell 3 9,growx");	
-			
-		chckbxBrewInBottlesB = new JCheckBox("In Bottles");
-		chckbxBrewInBottlesB.setSelected(false);
-		chckbxBrewInBottlesB.setEnabled(false);
-		chckbxBrewInBottlesB.setBackground(Color.WHITE);
-		tabbedBrewDataPanel.add(chckbxBrewInBottlesB, "cell 4 9,growx");
-		
-		chckbxBrewDrunkB = new JCheckBox("Drunk");
-		chckbxBrewDrunkB.setSelected(false);
-		chckbxBrewDrunkB.setEnabled(false);
-		chckbxBrewDrunkB.setBackground(Color.WHITE);
-		tabbedBrewDataPanel.add(chckbxBrewDrunkB, "cell 4 7,growx");
+		tabbedBrewDataPanel.add(chckbxBrewInMaturingB, "cell 4 9,growx");
 		
 		lblBrewThumbsB = new JLabel("Thumbs Up?");
 		tabbedBrewDataPanel.add(lblBrewThumbsB, "flowx,cell 6 9,alignx right");
@@ -302,17 +296,29 @@ public class BrewDataPanel extends JPanel {
 		comboBrewThumbsB.setBackground(Color.WHITE);
 		comboBrewThumbsB.setModel(new DefaultComboBoxModel<String>(new String[] {" ","Up", "Middle", "Down"}));
 		comboBrewThumbsB.setEnabled(false);
-		tabbedBrewDataPanel.add(comboBrewThumbsB, "cell 7 9 2,growx");
+		tabbedBrewDataPanel.add(comboBrewThumbsB, "cell 7 9 2,growx");		
+		
+		chckbxBrewInBottlesB = new JCheckBox("In Bottles");
+		chckbxBrewInBottlesB.setSelected(false);
+		chckbxBrewInBottlesB.setEnabled(false);
+		chckbxBrewInBottlesB.setBackground(Color.WHITE);
+		tabbedBrewDataPanel.add(chckbxBrewInBottlesB, "cell 3 10,growx");
+		
+		chckbxBrewDrunkB = new JCheckBox("Drunk");
+		chckbxBrewDrunkB.setSelected(false);
+		chckbxBrewDrunkB.setEnabled(false);
+		chckbxBrewDrunkB.setBackground(Color.WHITE);
+		tabbedBrewDataPanel.add(chckbxBrewDrunkB, "cell 4 10,growx");
 		
 		lblBrewTastingNotesB = new JLabel("Tasting Notes:");
-		tabbedBrewDataPanel.add(lblBrewTastingNotesB, "flowx,cell 0 11,alignx right");
+		tabbedBrewDataPanel.add(lblBrewTastingNotesB, "flowx,cell 0 12,alignx right");
 			
 		textBrewTastingNotesB = new JTextField();
 		textBrewTastingNotesB.setEditable(false);
-		tabbedBrewDataPanel.add(textBrewTastingNotesB, "cell 1 11 8,growx");
+		tabbedBrewDataPanel.add(textBrewTastingNotesB, "cell 1 12 8,growx");
 		
 		lblBrewGeneralNotesB = new JLabel("General Notes:");
-		tabbedBrewDataPanel.add(lblBrewGeneralNotesB, "flowx,cell 0 13,alignx right");
+		tabbedBrewDataPanel.add(lblBrewGeneralNotesB, "flowx,cell 0 14,alignx right");
 		
 		textBrewGeneralNotesB = new JTextArea();
 		textBrewGeneralNotesB.setEditable(false);
@@ -322,23 +328,66 @@ public class BrewDataPanel extends JPanel {
 		//ScrollPane for textBrewGeneralNotesB
 	    BrewDataNotesScrollPane = new JScrollPane();
 	    BrewDataNotesScrollPane.setViewportView(textBrewGeneralNotesB);
-	    tabbedBrewDataPanel.add(BrewDataNotesScrollPane, "cell 1 13 8 2,grow");
+	    tabbedBrewDataPanel.add(BrewDataNotesScrollPane, "cell 1 14 8 2,grow");
 		
 		btnBrewDataEdit = new JButton("Edit");
 		btnBrewDataEdit.setEnabled(false);
-		tabbedBrewDataPanel.add(btnBrewDataEdit, "cell 0 16 2 1,growx");
+		tabbedBrewDataPanel.add(btnBrewDataEdit, "cell 0 17 2 1,growx");
 		
 		btnBrewDataDelete = new JButton("Delete Brew");
 		btnBrewDataDelete.setEnabled(false);
-		tabbedBrewDataPanel.add(btnBrewDataDelete, "cell 2 16,growx");
+		tabbedBrewDataPanel.add(btnBrewDataDelete, "cell 2 17,growx");
 		
 		btnBrewDataCancel = new JButton("Cancel");
 		btnBrewDataCancel.setEnabled(false);
-		tabbedBrewDataPanel.add(btnBrewDataCancel, "cell 6 16,growx");
+		tabbedBrewDataPanel.add(btnBrewDataCancel, "cell 6 17,growx");
 			
 		btnBrewDataSave = new JButton("Save / Update");
 		btnBrewDataSave.setEnabled(false);
-		tabbedBrewDataPanel.add(btnBrewDataSave, "cell 7 16 2 1,growx");
+		tabbedBrewDataPanel.add(btnBrewDataSave, "cell 7 17 2 1,growx");
+		
+		//Add decimal format document listener
+		textBrewStartSGB.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+				  String d = textBrewStartSGB.getText();
+				  DecimalFormat df = new DecimalFormat("0.000");
+				  textBrewStartSGB.setText(df.format(d));
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+			  
+			  }
+			  public void insertUpdate(DocumentEvent e) {
+				  
+			  }
+		});
+		
+		textBrewStartAdjustedSGB.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+				  String d = textBrewStartAdjustedSGB.getText();
+				  DecimalFormat df = new DecimalFormat("0.000");
+				  textBrewStartAdjustedSGB.setText(df.format(d));
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+		  
+			  }
+			  public void insertUpdate(DocumentEvent e) {
+
+			  }
+		});
+		
+		textBrewEndSGB.getDocument().addDocumentListener(new DocumentListener() {
+			  public void changedUpdate(DocumentEvent e) {
+				  String d = textBrewEndSGB.getText();
+				  DecimalFormat df = new DecimalFormat("0.000");
+				  textBrewEndSGB.setText(df.format(d));
+			  }
+			  public void removeUpdate(DocumentEvent e) {
+			  
+			  }
+			  public void insertUpdate(DocumentEvent e) {
+
+			  }
+		});
 		
 		//Add button listeners
 		btnBrewDataEdit.addActionListener(new ActionListener() {
@@ -562,12 +611,61 @@ public class BrewDataPanel extends JPanel {
 			chooserBrewDateBottledB.setDate(Dates.stringToDate((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,4)));
 		};
 		textBrewYeastB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,6));
-		textBrewStartSGB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,7));
-		textBrewStartAdjustedSGB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,8));
-		textBrewEndSGB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,9));
-		textBrewAimedABVB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,10));
-		textBrewFinalABVB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,11));
-		textBrewFinalAdjustedABVB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,12));
+		
+		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,7).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,7).equals("")){
+			textBrewStartSGB.setText("");
+		}else {
+			unformattedtextBrewStartSGB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,7);
+			Float unformattedfloatBrewStartSGB = Float.valueOf(unformattedtextBrewStartSGB);
+			DecimalFormat SG = new DecimalFormat("0.000");
+			textBrewStartSGB.setText(SG.format(unformattedfloatBrewStartSGB));
+		};
+		
+		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,8).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,8).equals("")){
+			textBrewStartAdjustedSGB.setText("");
+		}else {
+			unformattedtextBrewStartAdjustedSGB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,8);
+			Float unformattedfloatBrewStartAdjustedSGB = Float.valueOf(unformattedtextBrewStartAdjustedSGB);
+			DecimalFormat SG = new DecimalFormat("0.000");
+			textBrewStartAdjustedSGB.setText(SG.format(unformattedfloatBrewStartAdjustedSGB));
+		};
+		
+		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,9).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,9).equals("")){
+			textBrewEndSGB.setText("");
+		}else {
+			unformattedtextBrewEndSGB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,9);
+			Float unformattedfloatBrewEndSGB = Float.valueOf(unformattedtextBrewEndSGB);
+			DecimalFormat SG = new DecimalFormat("0.000");
+			textBrewEndSGB.setText(SG.format(unformattedfloatBrewEndSGB));
+		};
+		
+		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,10).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,10).equals("")){
+			textBrewAimedABVB.setText("");
+		}else {
+			unformattedtextBrewAimedABVB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,10);
+			Float unformattedfloatBrewAimedABVB = Float.valueOf(unformattedtextBrewAimedABVB);
+			DecimalFormat ABV = new DecimalFormat("##0.00");
+			textBrewAimedABVB.setText(ABV.format(unformattedfloatBrewAimedABVB));
+		};
+		
+		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,11).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,11).equals("")){
+			textBrewFinalABVB.setText("");
+		}else {
+			unformattedtextBrewFinalABVB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,11);
+			Float unformattedfloatBrewFinalABVB = Float.valueOf(unformattedtextBrewFinalABVB);
+			DecimalFormat ABV = new DecimalFormat("##0.00");
+			textBrewFinalABVB.setText(ABV.format(unformattedfloatBrewFinalABVB));
+		};
+		
+		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,12).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,12).equals("")){
+			textBrewFinalAdjustedABVB.setText("");
+		}else {
+			unformattedtextBrewFinalAdjustedABVB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,12);
+			Float unformattedfloatBrewFinalAdjustedABVB = Float.valueOf(unformattedtextBrewFinalAdjustedABVB);
+			DecimalFormat ABV = new DecimalFormat("##0.00");
+			textBrewFinalAdjustedABVB.setText(ABV.format(unformattedfloatBrewFinalAdjustedABVB));
+		};
+		
 		textBrewVolumeMadeB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,22));
 		textBrewNumberBottlesB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,23));
 		textBrewTastingNotesB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,14));

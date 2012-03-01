@@ -175,8 +175,6 @@ public class BrewSearchPanel extends JPanel {
 		//Initialize Table
 		initializeTable();
 		
-		//TODO: Some form of colouring on table rows
-		
 		//ScrollPane
 	    BrewScrollPane = new JScrollPane();
 	    BrewScrollPane.setViewportView(BrewTable);
