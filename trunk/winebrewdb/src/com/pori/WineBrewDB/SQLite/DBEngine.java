@@ -1,10 +1,17 @@
 package com.pori.WineBrewDB.SQLite;
 
+import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
+
+import javax.swing.ImageIcon;
 
 import com.pori.WineBrewDB.BrewAddPanel;
 import com.pori.WineBrewDB.BrewDataPanel;
@@ -44,6 +51,10 @@ public class DBEngine {
 	private static String BrewDateBottledUpdateB;
 	private static String BrewNoteDateAddB;
 	private static String BrewNoteDateUpdateB;
+	private static ImageIcon imageIconBrewPicture;
+	private static Image imageBrewPicture;
+	private static Image imageScaledBrewPicture;
+	public static ImageIcon imageIconScaledBrewPicture;
 	
 	
 	//Create the connection
@@ -569,32 +580,117 @@ public class DBEngine {
 	
 	
 	//Delete Brew Note
-		public static void deleteBrewNote() throws Exception {
-			Connection conn = dbConnection();
-			
-			PreparedStatement pre = conn.prepareStatement("delete from BrewNotes where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "' and BrewNoteRef='" + BrewNotesPanel.textBrewNoteRef.getText() + "'");
+	public static void deleteBrewNote() throws Exception {
+		Connection conn = dbConnection();
+		
+		PreparedStatement pre = conn.prepareStatement("delete from BrewNotes where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "' and BrewNoteRef='" + BrewNotesPanel.textBrewNoteRef.getText() + "'");
 
-			pre.executeUpdate();
-			
-			/*Close the connection after use (MUST)*/
-		    if(conn!=null)
-		    conn.close();  
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	   if(conn!=null)
+	  conn.close();  
 		    
-		}
+	}
 		
 		
 	//Delete Brew Picture
-		public static void deleteBrewPicture() throws Exception {
-			Connection conn = dbConnection();
+	public static void deleteBrewPicture() throws Exception {
+		Connection conn = dbConnection();
 			
-			PreparedStatement pre = conn.prepareStatement("delete from BrewPictures where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "' and BrewPictureRef='" + "'");
+		PreparedStatement pre = conn.prepareStatement("delete from BrewPictures where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "' and BrewPictureRef='" + "'");
 
-			pre.executeUpdate();
+		pre.executeUpdate();
 			
-			/*Close the connection after use (MUST)*/
-		    if(conn!=null)
-		    conn.close();  
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
 		    
-		}
+	}
+	
+		
+	//Get Brew Picture
+	public static void getBrewPicture() throws Exception {
+		Connection conn = dbConnection();
+		
+		PreparedStatement pre = conn.prepareStatement("select Picture from BrewPictures where RowID='12'");
 
+		ResultSet rs = pre.executeQuery();
+       
+		while(rs.next()){
+	        imageIconBrewPicture = new ImageIcon(rs.getBytes(1));
+		}
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	}
+	
+	
+	//Insert Brew Picture
+	public static void insertBrewPicture() throws Exception {
+		Connection conn = dbConnection();
+		
+		PreparedStatement pre = conn.prepareStatement("insert into BrewPictures(Picture,BrewRef,BrewPicRef) values(?,'1','30')");
+		 
+		pre.setBytes(1, getBytesFromFile(new File("C:\\workspace\\WineBrewDB\\src\\com\\pori\\WineBrewDB\\Images\\winebrewdb256.png")));
+		
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();		
+		
+	}
+	
+	
+	//Get Bytes From File
+	public static byte[] getBytesFromFile(File file) throws IOException {
+		InputStream is = new FileInputStream(file);
+		
+		// Get the size of the file
+	    long length = file.length();
+	    
+	    // You cannot create an array using a long type.
+	    // It needs to be an int type.
+	    // Before converting to an int type, check
+	    // to ensure that file is not larger than Integer.MAX_VALUE.
+	    if (length > Integer.MAX_VALUE) {
+	        // File is too large
+	    }
+	    
+	    // Create the byte array to hold the data
+	    byte[] bytes = new byte[(int)length];
+	    
+	    // Read in the bytes
+	    int offset = 0;
+	    int numRead = 0;
+	    while (offset < bytes.length
+	           && (numRead=is.read(bytes, offset, bytes.length-offset)) >= 0) {
+	        offset += numRead;
+	    }
+	    
+	    // Ensure all the bytes have been read in
+	    if (offset < bytes.length) {
+	        throw new IOException("Could not completely read file "+file.getName());
+	    }
+	    
+	    // Close the input stream and return bytes
+	    is.close();
+	    return bytes;
+	}
+	
+	
+	//Scaled Image Icon
+	public static ImageIcon scaledImageIcon(int width, int height) {
+		imageBrewPicture = imageIconBrewPicture.getImage();
+		System.out.println(imageIconBrewPicture.getIconWidth());
+		System.out.println(imageIconBrewPicture.getIconHeight());
+        imageScaledBrewPicture = imageBrewPicture.getScaledInstance(width, height, Image.SCALE_SMOOTH); 
+        imageIconScaledBrewPicture = new ImageIcon(imageScaledBrewPicture);
+		return imageIconScaledBrewPicture;
+		
+	}
+	
+	
 }
