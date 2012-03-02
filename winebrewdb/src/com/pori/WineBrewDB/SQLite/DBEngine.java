@@ -816,29 +816,34 @@ public class DBEngine {
 		int NewNewWidth;
 		int NewNewHeight;
 		
-		if (imageIconBrewPicture.getIconWidth() >= imageIconBrewPicture.getIconHeight()) {
-			factor = DecimalIconWidth.divide(DecimalPanelWidth, 0, BigDecimal.ROUND_HALF_UP);
-			NewWidth = Integer.valueOf(DecimalIconWidth.divide(factor).intValue());
-			NewHeight = Integer.valueOf(DecimalIconHeight.divide(factor).intValue());
-			if (NewHeight > Integer.valueOf(DecimalPanelHeight.intValue())){
-				factor2 = new BigDecimal(NewHeight).divide(DecimalPanelHeight, 0, BigDecimal.ROUND_HALF_UP);
-				NewNewWidth = Integer.valueOf(new BigDecimal(NewWidth).divide(factor2).intValue());
-				NewNewHeight = Integer.valueOf(new BigDecimal(NewHeight).divide(factor2).intValue());
-			} else {
-				NewNewWidth = NewWidth;
-				NewNewHeight = NewHeight;
-			}
-		}else {
-			factor = DecimalIconHeight.divide(DecimalPanelHeight, 0, BigDecimal.ROUND_HALF_UP);
-			NewWidth = Integer.valueOf(DecimalIconWidth.divide(factor).intValue());
-			NewHeight = Integer.valueOf(DecimalIconHeight.divide(factor).intValue());
-			if (NewWidth > Integer.valueOf(DecimalPanelWidth.intValue())){
-				factor2 = new BigDecimal(NewWidth).divide(DecimalPanelWidth, 0, BigDecimal.ROUND_HALF_UP);
-				NewNewWidth = Integer.valueOf(new BigDecimal(NewWidth).divide(factor2).intValue());
-				NewNewHeight = Integer.valueOf(new BigDecimal(NewHeight).divide(factor2).intValue());
-			} else {
-				NewNewWidth = NewWidth;
-				NewNewHeight = NewHeight;
+		if (imageIconBrewPicture.getIconWidth() <= panelwidth && imageIconBrewPicture.getIconHeight() <= panelheight){
+			NewNewWidth = imageIconBrewPicture.getIconWidth();
+			NewNewHeight = imageIconBrewPicture.getIconHeight();
+		} else{
+			if (imageIconBrewPicture.getIconWidth() >= imageIconBrewPicture.getIconHeight()) {
+				factor = DecimalIconWidth.divide(DecimalPanelWidth, 0, BigDecimal.ROUND_HALF_UP);
+				NewWidth = Integer.valueOf(DecimalIconWidth.divide(factor).intValue());
+				NewHeight = Integer.valueOf(DecimalIconHeight.divide(factor).intValue());
+				if (NewHeight > Integer.valueOf(DecimalPanelHeight.intValue())){
+					factor2 = new BigDecimal(NewHeight).divide(DecimalPanelHeight, 0, BigDecimal.ROUND_HALF_UP);
+					NewNewWidth = Integer.valueOf(new BigDecimal(NewWidth).divide(factor2).intValue());
+					NewNewHeight = Integer.valueOf(new BigDecimal(NewHeight).divide(factor2).intValue());
+				} else {
+					NewNewWidth = NewWidth;
+					NewNewHeight = NewHeight;
+				}
+			}else {
+				factor = DecimalIconHeight.divide(DecimalPanelHeight, 0, BigDecimal.ROUND_HALF_UP);
+				NewWidth = Integer.valueOf(DecimalIconWidth.divide(factor).intValue());
+				NewHeight = Integer.valueOf(DecimalIconHeight.divide(factor).intValue());
+				if (NewWidth > Integer.valueOf(DecimalPanelWidth.intValue())){
+					factor2 = new BigDecimal(NewWidth).divide(DecimalPanelWidth, 0, BigDecimal.ROUND_HALF_UP);
+					NewNewWidth = Integer.valueOf(new BigDecimal(NewWidth).divide(factor2).intValue());
+					NewNewHeight = Integer.valueOf(new BigDecimal(NewHeight).divide(factor2).intValue());
+				} else {
+					NewNewWidth = NewWidth;
+					NewNewHeight = NewHeight;
+				}
 			}
 		}
 		
