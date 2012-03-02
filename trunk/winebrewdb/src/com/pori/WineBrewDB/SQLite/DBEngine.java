@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import javax.swing.ImageIcon;
 import com.pori.WineBrewDB.BrewAddPanel;
 import com.pori.WineBrewDB.BrewDataPanel;
 import com.pori.WineBrewDB.BrewNotesPanel;
+import com.pori.WineBrewDB.BrewPicturesPanel;
 import com.pori.WineBrewDB.BrewSearchPanel;
 import com.pori.WineBrewDB.Dates;
 
@@ -55,6 +57,8 @@ public class DBEngine {
 	private static Image imageBrewPicture;
 	private static Image imageScaledBrewPicture;
 	public static ImageIcon imageIconScaledBrewPicture;
+	private static int MaxBrewPictureRef;
+	private static int NextMaxBrewPictureRef;
 	
 	
 	//Create the connection
@@ -594,11 +598,97 @@ public class DBEngine {
 	}
 		
 		
+	//Get Brew Picture Table Data
+	public static Vector<Vector<String>> getBrewPictureTable() throws Exception {
+	    Connection conn = dbConnection();
+	     
+	    Vector<Vector<String>> BrewPictureTable = new Vector<Vector<String>>();
+	    PreparedStatement pre = conn.prepareStatement(
+	    	"select BrewPicRef,Description from BrewPictures where BrewRef='" + 
+	    	BrewDataPanel.textBrewRefB.getText() +
+	    	"' order by BrewPicRef asc"
+			);
+
+	    ResultSet rs = pre.executeQuery();
+
+	    while(rs.next()){
+	    Vector<String> brewpicture = new Vector<String>();
+	    	brewpicture.add(rs.getString(1)); //BrewPicRef
+	    	brewpicture.add(rs.getString(2)); //Description
+	    	BrewPictureTable.add(brewpicture);
+	    }
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	    return BrewPictureTable;	    
+	    
+	}
+	
+	
+	//Get next brew picture ref
+	public static String getNextBrewPictureRef() throws Exception {
+		Connection conn = dbConnection();
+					
+		PreparedStatement pre = conn.prepareStatement(
+			"SELECT BrewPicRef from BrewPictures where BrewRef='" +
+			BrewDataPanel.textBrewRefB.getText() +
+			"' order by BrewPicRef desc limit 1"
+		);
+
+		MaxBrewPictureRef = 0;
+		ResultSet rs = pre.executeQuery();
+		
+		while(rs.next()){
+			//Add one to the current highest
+			MaxBrewPictureRef = rs.getInt(1);			
+		}
+		
+		NextMaxBrewPictureRef = MaxBrewPictureRef + 1;
+	    
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	    return Integer.toString(NextMaxBrewPictureRef);
+				    
+	}
+	
+	
+	//Update Brew Picture
+	public static void updateBrewPicture() throws Exception {
+		Connection conn = dbConnection();
+	
+		PreparedStatement pre = conn.prepareStatement(
+			"update BrewPictures set Description='" + 
+			BrewPicturesPanel.textBrewPictureDescription.getText().replaceAll("'", "''") + 
+			"' where BrewRef='" +
+			BrewDataPanel.textBrewRefB.getText() +
+			"' and BrewPicRef='" +
+			BrewPicturesPanel.textBrewPictureRef.getText() +
+			"'"
+		);
+
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
+		    
+	}
+	
+	
 	//Delete Brew Picture
 	public static void deleteBrewPicture() throws Exception {
 		Connection conn = dbConnection();
 			
-		PreparedStatement pre = conn.prepareStatement("delete from BrewPictures where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "' and BrewPictureRef='" + "'");
+		PreparedStatement pre = conn.prepareStatement(
+				"delete from BrewPictures where BrewRef='" + 
+				BrewDataPanel.textBrewRefB.getText() + 
+				"' and BrewPicRef='" +
+				BrewPicturesPanel.textBrewPictureRef.getText() +
+				"'");
 
 		pre.executeUpdate();
 			
@@ -608,32 +698,46 @@ public class DBEngine {
 		    
 	}
 	
-		
-	//Get Brew Picture
-	public static void getBrewPicture() throws Exception {
-		Connection conn = dbConnection();
-		
-		PreparedStatement pre = conn.prepareStatement("select Picture from BrewPictures where RowID='12'");
+	
+	//Get Brew Picture from DB
+		public static void getBrewPicture() throws Exception {
+			Connection conn = dbConnection();
+			
+			PreparedStatement pre = conn.prepareStatement(
+					"select Picture from BrewPictures where BrewRef='" +
+					BrewDataPanel.textBrewRefB.getText() +
+					"' and BrewPicRef='" +
+					BrewPicturesPanel.textBrewPictureRef.getText() + 
+					"'"
+				);
 
-		ResultSet rs = pre.executeQuery();
-       
-		while(rs.next()){
-	        imageIconBrewPicture = new ImageIcon(rs.getBytes(1));
+			ResultSet rs = pre.executeQuery();
+	       
+			while(rs.next()){
+		        imageIconBrewPicture = new ImageIcon(rs.getBytes(1));
+			}
+			
+			/*Close the connection after use (MUST)*/
+		    if(conn!=null)
+		    conn.close();
 		}
-		
-		/*Close the connection after use (MUST)*/
-	    if(conn!=null)
-	    conn.close();
-	}
 	
 	
 	//Insert Brew Picture
 	public static void insertBrewPicture() throws Exception {
 		Connection conn = dbConnection();
 		
-		PreparedStatement pre = conn.prepareStatement("insert into BrewPictures(Picture,BrewRef,BrewPicRef) values(?,'1','30')");
+		PreparedStatement pre = conn.prepareStatement(
+				"insert into BrewPictures(Picture,BrewRef,BrewPicRef,Description) values(?,'" +
+				BrewDataPanel.textBrewRefB.getText() +
+				"','" +
+				BrewPicturesPanel.textBrewPictureRef.getText() + 
+				"','" +
+				BrewPicturesPanel.textBrewPictureDescription.getText().replaceAll("'", "''") +
+				"')"
+			);
 		 
-		pre.setBytes(1, getBytesFromFile(new File("C:\\workspace\\WineBrewDB\\src\\com\\pori\\WineBrewDB\\Images\\winebrewdb256.png")));
+		pre.setBytes(1, getBytesFromFile(new File(BrewPicturesPanel.textBrewPictureFilename.getText().replace("\\", "\\\\"))));
 		
 		pre.executeUpdate();
 		
@@ -680,13 +784,66 @@ public class DBEngine {
 	    return bytes;
 	}
 	
-	
+
 	//Scaled Image Icon
-	public static ImageIcon scaledImageIcon(int width, int height) {
+	public static ImageIcon scaledImageIcon(int panelwidth, int panelheight, String location) {
+		if(location.equals("file")){
+			try {
+				imageIconBrewPicture = new ImageIcon(getBytesFromFile(new File(BrewPicturesPanel.textBrewPictureFilename.getText().replace("\\", "\\\\"))));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				getBrewPicture();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}		
+		
+		//Get sizes
 		imageBrewPicture = imageIconBrewPicture.getImage();
-		System.out.println(imageIconBrewPicture.getIconWidth());
-		System.out.println(imageIconBrewPicture.getIconHeight());
-        imageScaledBrewPicture = imageBrewPicture.getScaledInstance(width, height, Image.SCALE_SMOOTH); 
+		BigDecimal DecimalIconWidth = new BigDecimal(imageIconBrewPicture.getIconWidth());
+		BigDecimal DecimalPanelWidth = new BigDecimal(panelwidth);
+		BigDecimal DecimalIconHeight = new BigDecimal(imageIconBrewPicture.getIconHeight());
+		BigDecimal DecimalPanelHeight = new BigDecimal(panelheight);
+		
+		//Calculate new sizes
+		BigDecimal factor;
+		BigDecimal factor2;
+		int NewWidth;
+		int NewHeight;
+		int NewNewWidth;
+		int NewNewHeight;
+		
+		if (imageIconBrewPicture.getIconWidth() >= imageIconBrewPicture.getIconHeight()) {
+			factor = DecimalIconWidth.divide(DecimalPanelWidth, 0, BigDecimal.ROUND_HALF_UP);
+			NewWidth = Integer.valueOf(DecimalIconWidth.divide(factor).intValue());
+			NewHeight = Integer.valueOf(DecimalIconHeight.divide(factor).intValue());
+			if (NewHeight > Integer.valueOf(DecimalPanelHeight.intValue())){
+				factor2 = new BigDecimal(NewHeight).divide(DecimalPanelHeight, 0, BigDecimal.ROUND_HALF_UP);
+				NewNewWidth = Integer.valueOf(new BigDecimal(NewWidth).divide(factor2).intValue());
+				NewNewHeight = Integer.valueOf(new BigDecimal(NewHeight).divide(factor2).intValue());
+			} else {
+				NewNewWidth = NewWidth;
+				NewNewHeight = NewHeight;
+			}
+		}else {
+			factor = DecimalIconHeight.divide(DecimalPanelHeight, 0, BigDecimal.ROUND_HALF_UP);
+			NewWidth = Integer.valueOf(DecimalIconWidth.divide(factor).intValue());
+			NewHeight = Integer.valueOf(DecimalIconHeight.divide(factor).intValue());
+			if (NewWidth > Integer.valueOf(DecimalPanelWidth.intValue())){
+				factor2 = new BigDecimal(NewWidth).divide(DecimalPanelWidth, 0, BigDecimal.ROUND_HALF_UP);
+				NewNewWidth = Integer.valueOf(new BigDecimal(NewWidth).divide(factor2).intValue());
+				NewNewHeight = Integer.valueOf(new BigDecimal(NewHeight).divide(factor2).intValue());
+			} else {
+				NewNewWidth = NewWidth;
+				NewNewHeight = NewHeight;
+			}
+		}
+		
+		//Resize and return
+		imageScaledBrewPicture = imageBrewPicture.getScaledInstance(NewNewWidth, NewNewHeight, Image.SCALE_SMOOTH); 
         imageIconScaledBrewPicture = new ImageIcon(imageScaledBrewPicture);
 		return imageIconScaledBrewPicture;
 		
