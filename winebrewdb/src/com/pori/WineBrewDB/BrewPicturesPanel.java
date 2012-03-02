@@ -3,6 +3,8 @@ package com.pori.WineBrewDB;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
@@ -45,6 +47,7 @@ public class BrewPicturesPanel extends JPanel {
 	public static JTextField textBrewPictureFilename;
 	public static JLabel labelBrewPicture;
 	public static JButton btnBrewPictureLoad;
+	private static boolean resizeListenerIsActive;
 
 	
 	public static void InitializePanel(){
@@ -113,7 +116,9 @@ public class BrewPicturesPanel extends JPanel {
 		btnBrewPictureSave.setEnabled(false);
 		tabbedBrewPicturesPanel.add(btnBrewPictureSave, "cell 5 4,growx");
 		
-		//Add button listeners
+		resizeListenerIsActive = false;
+		
+		//Add listeners
 		btnBrewPictureAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mouseListenerIsActive = false;
@@ -152,6 +157,7 @@ public class BrewPicturesPanel extends JPanel {
 			    	  BrewPictureScrollPane.setViewportView(null);
 			    	  labelBrewPicture = new JLabel(DBEngine.scaledImageIcon(BrewPictureScrollPane.getWidth(),BrewPictureScrollPane.getHeight(), "file"));
 			    	  BrewPictureScrollPane.setViewportView(labelBrewPicture);
+			    	  resizeListenerIsActive = true;
 			      }
 			      if (rVal == JFileChooser.CANCEL_OPTION) {
 			    	  
@@ -159,10 +165,46 @@ public class BrewPicturesPanel extends JPanel {
 		        
 			}
 		});
+		
+		BrewPictureScrollPane.addComponentListener(new ComponentListener() {
+			public void componentResized(ComponentEvent evt) {
+				if (resizeListenerIsActive){
+					if (btnBrewPictureLoad.isEnabled()){
+						tabbedBrewPicturesPanel.remove(labelBrewPicture);
+				    	BrewPictureScrollPane.remove(labelBrewPicture);
+				    	BrewPictureScrollPane.setViewportView(null);
+				    	labelBrewPicture = new JLabel(DBEngine.scaledImageIcon(BrewPictureScrollPane.getWidth(),BrewPictureScrollPane.getHeight(), "file"));
+				    	BrewPictureScrollPane.setViewportView(labelBrewPicture);
+					} else {
+						tabbedBrewPicturesPanel.remove(labelBrewPicture);
+				    	BrewPictureScrollPane.remove(labelBrewPicture);
+				    	BrewPictureScrollPane.setViewportView(null);
+				    	labelBrewPicture = new JLabel(DBEngine.scaledImageIcon(BrewPictureScrollPane.getWidth(),BrewPictureScrollPane.getHeight(), "DB"));
+				    	BrewPictureScrollPane.setViewportView(labelBrewPicture);
+					}
+				}
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				
+			}
+
+			@Override
+			public void componentShown(ComponentEvent e) {
+				
+			}
+
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				
+			}
+		});
 
 
 		btnBrewPictureEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+		    	resizeListenerIsActive = true;
 				mouseListenerIsActive = false;
 				isNewPicture = "false";
 				BrewPicturesTable.setEnabled(false);
@@ -197,6 +239,7 @@ public class BrewPicturesPanel extends JPanel {
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
+				    	resizeListenerIsActive = false;
 						mouseListenerIsActive = true;
 						BrewPicturesTable.setEnabled(true);
 						BrewPicturesTable.setRowSelectionAllowed(true);
@@ -231,6 +274,7 @@ public class BrewPicturesPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (isNewPicture.equals("true")){
 					isNewPicture = "false";
+			    	resizeListenerIsActive = false;
 					mouseListenerIsActive = true;
 					BrewPicturesTableScrollPane.remove(BrewPicturesTable);
 					BrewPicturesTableScrollPane.setViewportView(null);
@@ -254,6 +298,7 @@ public class BrewPicturesPanel extends JPanel {
 					textBrewPictureDescription.setEditable(false);
 				}else {
 					mouseListenerIsActive = true;
+			    	resizeListenerIsActive = true;
 					isNewPicture = "false";
 					setBrewPictureData();
 					BrewPicturesTable.setEnabled(true);
@@ -293,6 +338,7 @@ public class BrewPicturesPanel extends JPanel {
 							e1.printStackTrace();
 						}
 						mouseListenerIsActive = true;
+				    	resizeListenerIsActive = false;
 						BrewPicturesTable.setEnabled(true);
 						BrewPicturesTable.setRowSelectionAllowed(true);
 						btnBrewPictureLoad.setEnabled(false);
@@ -322,6 +368,7 @@ public class BrewPicturesPanel extends JPanel {
 						e1.printStackTrace();
 					}
 					mouseListenerIsActive = true;
+			    	resizeListenerIsActive = false;
 					BrewPicturesTable.setEnabled(true);
 					BrewPicturesTable.setRowSelectionAllowed(true);
 					btnBrewPictureLoad.setEnabled(false);
@@ -395,6 +442,7 @@ public class BrewPicturesPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if(mouseListenerIsActive){
 					if (e.getClickCount() == 1) {
+				    	resizeListenerIsActive = true;
 						JTable target = (JTable)e.getSource();
 						BrewPicturesSelectedRow = target.getSelectedRow();
 						if(BrewPicturesSelectedRow != -1){
@@ -412,7 +460,7 @@ public class BrewPicturesPanel extends JPanel {
 		mouseListenerIsActive = false;
 	}
 	
-	//TODO: Add on resize event
+
 	public static void setBrewPictureData(){
 		if(BrewPicturesSelectedRow != -1){
 			textBrewPictureRef.setText((String) BrewPicturesTable.getValueAt(BrewPicturesSelectedRow,0));
@@ -436,6 +484,7 @@ public class BrewPicturesPanel extends JPanel {
 	public static void clearBrewPictureData(){
 		textBrewPictureRef.setText("");
 		textBrewPictureDescription.setText("");
+		textBrewPictureFilename.setText("");
 		BrewPictureScrollPane.remove(labelBrewPicture);
 		BrewPictureScrollPane.setViewportView(null);
 		BrewPictureScrollPane.repaint();
