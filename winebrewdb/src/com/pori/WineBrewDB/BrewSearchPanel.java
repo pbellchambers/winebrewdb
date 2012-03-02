@@ -3,6 +3,8 @@ package com.pori.WineBrewDB;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
@@ -77,12 +79,15 @@ public class BrewSearchPanel extends JPanel {
 	public static JCheckBox chckbxInBottles;
 	public static JCheckBox chckbxInMaturing;
 	public static JCheckBox chckbxDrunk;
-	public static JButton btnShowEntireTable;
 	public static JButton btnSearch;
 	public static int BrewSearchSelectedRow;
+	public static String BrewTableFields;
+	private static JCheckBox chckbxAllFields;
 
 	
 	public static void InitializePanel(){
+		
+		BrewTableFields = "Summary";
 		
 		//Main Panel
 		tabbedBrewSearchPanel = new JPanel();
@@ -164,9 +169,9 @@ public class BrewSearchPanel extends JPanel {
 		chckbxDrunk.setSelected(true);
 		BrewFilterPanel.add(chckbxDrunk, "cell 7 2,growx");
 			
-		btnShowEntireTable = new JButton("Show Entire Table");
-		BrewFilterPanel.add(btnShowEntireTable, "cell 0 3 2 1,growx");
-			
+		chckbxAllFields = new JCheckBox("Show All Fields?");
+		BrewFilterPanel.add(chckbxAllFields, "cell 4 3 2 1,alignx right");
+		
 		btnSearch = new JButton("Search");
 		BrewFilterPanel.add(btnSearch, "cell 6 3 2 1,growx");
 
@@ -201,12 +206,45 @@ public class BrewSearchPanel extends JPanel {
 			}
 		});
 		
-	    //TODO: ShowEntireTable button popup window entire table
-	    btnShowEntireTable.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+	    chckbxAllFields.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED){
+					BrewTableFields = "All";
+					BrewScrollPane.remove(BrewTable);
+					BrewScrollPane.setViewportView(null);
+					BrewNotesPanel.BrewNotesScrollPane.remove(BrewNotesPanel.BrewNotesTable);
+					BrewNotesPanel.BrewNotesScrollPane.setViewportView(null);
+					BrewDataPanel.clearBrewData();
+					BrewAddPanel.clearBrewAddData();
+					BrewDataPanel.btnBrewDataEdit.setEnabled(false);
+					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
+					BrewNotesPanel.btnBrewNoteEdit.setEnabled(false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
+					initializeTable();
+					BrewScrollPane.setViewportView(BrewTable);
+				}
+				if (e.getStateChange() == ItemEvent.DESELECTED){
+					BrewTableFields = "Summary";
+					BrewScrollPane.remove(BrewTable);
+					BrewScrollPane.setViewportView(null);
+					BrewNotesPanel.BrewNotesScrollPane.remove(BrewNotesPanel.BrewNotesTable);
+					BrewNotesPanel.BrewNotesScrollPane.setViewportView(null);
+					BrewDataPanel.clearBrewData();
+					BrewAddPanel.clearBrewAddData();
+					BrewDataPanel.btnBrewDataEdit.setEnabled(false);
+					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
+					BrewNotesPanel.btnBrewNoteEdit.setEnabled(false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
+					initializeTable();
+					BrewScrollPane.setViewportView(BrewTable);
+				}
 			}
 		});
+	    
 		
 	}
 	
@@ -259,6 +297,133 @@ public class BrewSearchPanel extends JPanel {
 			    }}
 
 			);
+		
+		if (BrewTableFields.equals("Summary")){
+			showDefaultRows();
+		}else {
+			showAllRows();
+		}
+		
+		BrewTable.getTableHeader().setReorderingAllowed(false);
+		BrewTable.setAutoCreateRowSorter(true);
+		
+
+		//Mouse Listener on JTable:
+		BrewTable.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 1) {
+					JTable target = (JTable)e.getSource();
+					BrewSearchSelectedRow = target.getSelectedRow();
+					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
+					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
+					BrewDataPanel.setBrewData();
+					BrewNotesPanel.initializeTable();
+					BrewNotesPanel.BrewNotesScrollPane.setViewportView(BrewNotesPanel.BrewNotesTable);
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
+				}
+				
+				if (e.getClickCount() == 2) {
+					JTable target = (JTable)e.getSource();
+					BrewSearchSelectedRow = target.getSelectedRow();
+					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
+					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
+					BrewDataPanel.setBrewData();
+					BrewNotesPanel.initializeTable();
+					BrewNotesPanel.clearBrewNoteData();
+					BrewNotesPanel.btnBrewNoteEdit.setEnabled(false);
+					BrewNotesPanel.BrewNotesScrollPane.setViewportView(BrewNotesPanel.BrewNotesTable);
+					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
+					BrewPanel.tabbedBrewPane.setSelectedIndex(1);
+				}
+				
+			   }
+			});
+		
+		
+	}
+	
+	public static void showAllRows(){
+		BrewTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		BrewTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(0).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(0).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(1).setPreferredWidth(260);
+		BrewTable.getColumnModel().getColumn(1).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(2).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(2).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(2).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(3).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(4).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(4).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(4).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(5).setPreferredWidth(260);
+		BrewTable.getColumnModel().getColumn(5).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(6).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(6).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(6).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(7).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(7).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(7).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(8).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(8).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(8).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(9).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(9).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(9).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(10).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(10).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(10).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(11).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(11).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(11).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(12).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(12).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(12).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(13).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(13).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(13).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(14).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(14).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(14).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(15).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(15).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(15).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(16).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(16).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(16).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(17).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(17).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(17).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(18).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(18).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(18).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(19).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(19).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(19).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(20).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(20).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(20).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(21).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(21).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(21).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(22).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(22).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(22).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(23).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(23).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(23).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(24).setPreferredWidth(79);
+		BrewTable.getColumnModel().getColumn(24).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(24).setMaxWidth(9001);
+	}
+	
+	public static void showDefaultRows(){
+		BrewTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		BrewTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 		BrewTable.getColumnModel().getColumn(0).setMinWidth(0);
 		BrewTable.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -331,46 +496,6 @@ public class BrewSearchPanel extends JPanel {
 		BrewTable.getColumnModel().getColumn(24).setPreferredWidth(79);
 		BrewTable.getColumnModel().getColumn(24).setMinWidth(5);
 		BrewTable.getColumnModel().getColumn(24).setMaxWidth(9001);
-		BrewTable.getTableHeader().setReorderingAllowed(false);
-		BrewTable.setAutoCreateRowSorter(true);
-		
-
-		//Mouse Listener on JTable:
-		BrewTable.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 1) {
-					JTable target = (JTable)e.getSource();
-					BrewSearchSelectedRow = target.getSelectedRow();
-					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
-					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
-					BrewDataPanel.setBrewData();
-					BrewNotesPanel.initializeTable();
-					BrewNotesPanel.BrewNotesScrollPane.setViewportView(BrewNotesPanel.BrewNotesTable);
-					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
-					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
-					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
-				}
-				
-				if (e.getClickCount() == 2) {
-					JTable target = (JTable)e.getSource();
-					BrewSearchSelectedRow = target.getSelectedRow();
-					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
-					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
-					BrewDataPanel.setBrewData();
-					BrewNotesPanel.initializeTable();
-					BrewNotesPanel.clearBrewNoteData();
-					BrewNotesPanel.btnBrewNoteEdit.setEnabled(false);
-					BrewNotesPanel.BrewNotesScrollPane.setViewportView(BrewNotesPanel.BrewNotesTable);
-					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
-					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
-					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
-					BrewPanel.tabbedBrewPane.setSelectedIndex(1);
-				}
-				
-			   }
-			});
-		
-		
 	}
 	
 }
