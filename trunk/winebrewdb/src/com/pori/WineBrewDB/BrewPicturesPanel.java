@@ -138,7 +138,7 @@ public class BrewPicturesPanel extends JPanel {
 			}
 		});
 		
-		
+		//TODO: Add a save picture button
 		btnBrewPictureLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser c = new JFileChooser();
