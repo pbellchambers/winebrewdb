@@ -12,7 +12,7 @@ import javax.swing.JEditorPane;
 import javax.swing.ScrollPaneConstants;
 
 public class FruitAcidsPanel extends JPanel {
-
+	
 	private static final long serialVersionUID = -6664688139205966142L;
 	public static JPanel FruitAcidsPanel;
 	public static JScrollPane FruitAcidsScrollPane;
@@ -32,7 +32,7 @@ public class FruitAcidsPanel extends JPanel {
 		FruitAcidsHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
 		FruitAcidsPanel.add(FruitAcidsHeader, "cell 0 0,grow");
 		//Subtitle
-		FruitAcidsSubtitle = new JLabel("A list of the predominant acid in most common fruits.");
+		FruitAcidsSubtitle = new JLabel("A list of the predominant acid in most common fruits/vegetables.");
 		FruitAcidsSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		FruitAcidsPanel.add(FruitAcidsSubtitle, "cell 0 1,growx,aligny top");
 		
