@@ -69,6 +69,16 @@ public class InitializeMenu extends MainWindow {
 		);
 		mnFile.add(mntmNew);
 		
+		final JMenuItem mntmLoad = new JMenuItem("Load Database");
+		mntmLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnFile.add(mntmLoad);
+		
 		final JMenuItem mntmSaveAs = new JMenuItem("Save Database As");
 		mntmSaveAs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,13 +147,16 @@ public class InitializeMenu extends MainWindow {
 				
 				
 		//Database Menu
-		mnDatabase = new JMenu("Database");
+		mnDatabase = new JMenu("Data");
 		menuBar.add(mnDatabase);
 		
 		final JMenuItem mntmBrew = new JMenuItem("Brew");
 		mntmBrew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnBrew.setSelected(true);
+				BrewPanel.InitializePanel();
+				BrewPanel.BrewPanel.setVisible(true);
 				}
 			}
 			
@@ -153,7 +166,10 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmRecipe = new JMenuItem("Recipe");
 		mntmRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnRecipe.setSelected(true);
+				RecipePanel.InitializePanel();
+				RecipePanel.RecipePanel.setVisible(true);				
 				}
 			}
 			
@@ -166,9 +182,12 @@ public class InitializeMenu extends MainWindow {
 		menuBar.add(mnCalculators);
 		
 		final JMenuItem mntmAlcohol = new JMenuItem("Alcohol %");
-		mntmBrew.addActionListener(new ActionListener() {
+		mntmAlcohol.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnAlcohol.setSelected(true);
+				AlcoholPanel.InitializePanel();
+				AlcoholPanel.AlcoholPanel.setVisible(true);				
 				}
 			}
 			
@@ -176,9 +195,12 @@ public class InitializeMenu extends MainWindow {
 		mnCalculators.add(mntmAlcohol);
 		
 		final JMenuItem mntmDilution = new JMenuItem("Dilution");
-		mntmBrew.addActionListener(new ActionListener() {
+		mntmDilution.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnDilution.setSelected(true);
+				DilutionPanel.InitializePanel();
+				DilutionPanel.DilutionPanel.setVisible(true);				
 				}
 			}
 			
@@ -186,9 +208,12 @@ public class InitializeMenu extends MainWindow {
 		mnCalculators.add(mntmDilution);
 		
 		final JMenuItem mntmMeasures = new JMenuItem("Measures");
-		mntmBrew.addActionListener(new ActionListener() {
+		mntmMeasures.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnMeasures.setSelected(true);
+				MeasuresPanel.InitializePanel();
+				MeasuresPanel.MeasuresPanel.setVisible(true);				
 				}
 			}
 			
@@ -196,9 +221,12 @@ public class InitializeMenu extends MainWindow {
 		mnCalculators.add(mntmMeasures);
 		
 		final JMenuItem mntmSugarToSG = new JMenuItem("Sugar to SG");
-		mntmBrew.addActionListener(new ActionListener() {
+		mntmSugarToSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnSugarToSG.setSelected(true);
+				SugarToSGPanel.InitializePanel();
+				SugarToSGPanel.SugarToSGPanel.setVisible(true);				
 				}
 			}
 			
@@ -206,9 +234,12 @@ public class InitializeMenu extends MainWindow {
 		mnCalculators.add(mntmSugarToSG);
 		
 		final JMenuItem mntmTemperatureAdjustedSG = new JMenuItem("Temperature Adjusted SG");
-		mntmBrew.addActionListener(new ActionListener() {
+		mntmTemperatureAdjustedSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnTemperatureAdjustedSG.setSelected(true);
+				TemperatureAdjustedSGPanel.InitializePanel();
+				TemperatureAdjustedSGPanel.TemperatureAdjustedSGPanel.setVisible(true);				
 				}
 			}
 			
@@ -221,9 +252,12 @@ public class InitializeMenu extends MainWindow {
 		menuBar.add(mnInformation);
 		
 		final JMenuItem mntmDosages = new JMenuItem("Dosages");
-		mntmBrew.addActionListener(new ActionListener() {
+		mntmDosages.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnDosages.setSelected(true);
+				DosagesPanel.InitializePanel();
+				DosagesPanel.DosagesPanel.setVisible(true);				
 				}
 			}
 			
@@ -231,9 +265,12 @@ public class InitializeMenu extends MainWindow {
 		mnInformation.add(mntmDosages);
 		
 		final JMenuItem mntmFruitAcids = new JMenuItem("Fruit Acids");
-		mntmBrew.addActionListener(new ActionListener() {
+		mntmFruitAcids.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnFruitAcids.setSelected(true);
+				FruitAcidsPanel.InitializePanel();
+				FruitAcidsPanel.FruitAcidsPanel.setVisible(true);				
 				}
 			}
 			
@@ -241,9 +278,12 @@ public class InitializeMenu extends MainWindow {
 		mnInformation.add(mntmFruitAcids);
 		
 		final JMenuItem mntmYeastStrains = new JMenuItem("Yeast Strains");
-		mntmBrew.addActionListener(new ActionListener() {
+		mntmYeastStrains.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DeinitializeAllPanels();
+				btnYeastStrains.setSelected(true);
+				YeastStrainsPanel.InitializePanel();
+				YeastStrainsPanel.YeastStrainsPanel.setVisible(true);				
 				}
 			}
 			
