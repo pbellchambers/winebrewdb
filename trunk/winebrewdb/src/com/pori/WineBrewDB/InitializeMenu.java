@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JToggleButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
@@ -12,6 +13,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -32,18 +35,224 @@ public class InitializeMenu extends MainWindow {
 	public static JToggleButton btnFruitAcids;
 	public static JToggleButton btnYeastStrains;
 	public static String WineBrewDBVersion;
+	private static JMenu mnLAF;
+	private static JRadioButtonMenuItem radioSystemLAF;
+	private static JRadioButtonMenuItem radioJavaLAF;
+	private static JPanel MenuPanel;
+	private static JMenuBar menuBar;
+	private static JMenu mnFile;
+	private static JMenu mnDatabase;
+	private static JMenu mnCalculators;
+	private static JMenu mnInformation;
+	private static JMenu mnHelp;
 	
-	public static void InitializeMenuMethod(){
+	public static void InitializeTopMenuMethod(){
 		
-		WineBrewDBVersion = "v0.7.1";
+		WineBrewDBVersion = "v0.7.2";
 		
 		//Top Menu Bar
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		MainWindow.WineBrewDBFrame.setJMenuBar(menuBar);
+		
+		//TODO: Finish menu bar
+		//File Menu
+		mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		final JMenuItem mntmNew = new JMenuItem("New Database");
+		mntmNew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnFile.add(mntmNew);
+		
+		final JMenuItem mntmSaveAs = new JMenuItem("Save Database As");
+		mntmSaveAs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnFile.add(mntmSaveAs);
+		
+		mnFile.addSeparator();
+		
+		mnLAF = new JMenu("Look and Feel");
+		mnFile.add(mnLAF);
+		
+		radioSystemLAF = new JRadioButtonMenuItem("System");
+		radioSystemLAF.setSelected(true);
+		radioSystemLAF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{ 
+					   UIManager.setLookAndFeel(
+					        UIManager.getSystemLookAndFeelClassName());
+					}
+					catch(Exception ex){
+					 ex.printStackTrace();
+					}
+				SwingUtilities.updateComponentTreeUI(MainWindow.WineBrewDBFrame);
+				radioSystemLAF.setSelected(true);
+				radioJavaLAF.setSelected(false);
+				}
+			}
+			
+		);
+		mnLAF.add(radioSystemLAF);
+		
+		radioJavaLAF = new JRadioButtonMenuItem("Java");
+		radioJavaLAF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{ 
+						UIManager.setLookAndFeel(
+				            UIManager.getCrossPlatformLookAndFeelClassName());
+					}
+					catch(Exception ex){
+					 ex.printStackTrace();
+					}
+				SwingUtilities.updateComponentTreeUI(MainWindow.WineBrewDBFrame);
+				radioSystemLAF.setSelected(false);
+				radioJavaLAF.setSelected(true);
+				}
+			}	
+		);
+		mnLAF.add(radioJavaLAF);
+		
+		mnFile.addSeparator();
+		
+		final JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainWindow.WineBrewDBFrame.dispose();
+				}
+			}
+			
+		);
+		mnFile.add(mntmExit);
+		
+				
+				
+		//Database Menu
+		mnDatabase = new JMenu("Database");
+		menuBar.add(mnDatabase);
+		
+		final JMenuItem mntmBrew = new JMenuItem("Brew");
+		mntmBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnDatabase.add(mntmBrew);
+		
+		final JMenuItem mntmRecipe = new JMenuItem("Recipe");
+		mntmRecipe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnDatabase.add(mntmRecipe);
+				
+				
+		//Calculators Menu
+		mnCalculators = new JMenu("Calculators");
+		menuBar.add(mnCalculators);
+		
+		final JMenuItem mntmAlcohol = new JMenuItem("Alcohol %");
+		mntmBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnCalculators.add(mntmAlcohol);
+		
+		final JMenuItem mntmDilution = new JMenuItem("Dilution");
+		mntmBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnCalculators.add(mntmDilution);
+		
+		final JMenuItem mntmMeasures = new JMenuItem("Measures");
+		mntmBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnCalculators.add(mntmMeasures);
+		
+		final JMenuItem mntmSugarToSG = new JMenuItem("Sugar to SG");
+		mntmBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnCalculators.add(mntmSugarToSG);
+		
+		final JMenuItem mntmTemperatureAdjustedSG = new JMenuItem("Temperature Adjusted SG");
+		mntmBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnCalculators.add(mntmTemperatureAdjustedSG);
+				
+				
+		//Information Menu
+		mnInformation = new JMenu("Information");
+		menuBar.add(mnInformation);
+		
+		final JMenuItem mntmDosages = new JMenuItem("Dosages");
+		mntmBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnInformation.add(mntmDosages);
+		
+		final JMenuItem mntmFruitAcids = new JMenuItem("Fruit Acids");
+		mntmBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnInformation.add(mntmFruitAcids);
+		
+		final JMenuItem mntmYeastStrains = new JMenuItem("Yeast Strains");
+		mntmBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				}
+			}
+			
+		);
+		mnInformation.add(mntmYeastStrains);
 		
 		
 		//Help Menu
-		JMenu mnHelp = new JMenu("Help");
+		mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
 		
 		
@@ -58,6 +267,7 @@ public class InitializeMenu extends MainWindow {
 			}
 			
 		);
+		mnHelp.add(mntmAbout);
 		
 		final JMenuItem mntmAck = new JMenuItem("Credits");
 		mntmAck.addActionListener(new ActionListener() {
@@ -70,9 +280,11 @@ public class InitializeMenu extends MainWindow {
 			}
 			
 		);
-	
-		mnHelp.add(mntmAbout);
 		mnHelp.add(mntmAck);
+		
+	}
+	
+	public static void InitializeMenuMethod(){
 		
 		//TODO: Welcome pane
 		
@@ -80,7 +292,7 @@ public class InitializeMenu extends MainWindow {
 		MainWindow.WineBrewDBFrame.getContentPane().setLayout(new MigLayout("", "[grow]", "[grow]"));
 		
 		//Menu Panel
-		JPanel MenuPanel = new JPanel();
+		MenuPanel = new JPanel();
 		MenuPanel.setBackground(Color.LIGHT_GRAY);
 		MainWindow.WineBrewDBFrame.getContentPane().add(MenuPanel, "flowx,cell 0 0,alignx left,growy");
 		MenuPanel.setLayout(new MigLayout("", "[200px:n,grow]", "[][][][][][][][][][][][][][][][grow]"));
@@ -253,6 +465,11 @@ public class InitializeMenu extends MainWindow {
 		btnDosages.setEnabled(false);
 		btnFruitAcids.setEnabled(false);
 		btnYeastStrains.setEnabled(false);
+		mnFile.setEnabled(false);
+		mnDatabase.setEnabled(false);
+		mnCalculators.setEnabled(false);
+		mnInformation.setEnabled(false);
+		mnHelp.setEnabled(false);
 	};
 	
 	public static void EnableAllMenuButtons(){
@@ -266,6 +483,11 @@ public class InitializeMenu extends MainWindow {
 		btnDosages.setEnabled(true);
 		btnFruitAcids.setEnabled(true);
 		btnYeastStrains.setEnabled(true);
+		mnFile.setEnabled(true);
+		mnDatabase.setEnabled(true);
+		mnCalculators.setEnabled(true);
+		mnInformation.setEnabled(true);
+		mnHelp.setEnabled(true);
 	};
 	
 }
