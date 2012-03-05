@@ -28,6 +28,16 @@ public class MainWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				Font defaultFont = new Font("Arial",Font.PLAIN,12);
+				
+				//TODO: Add graphical buttons, maybe get rid of side menu bar, expand top menu bar, more like a proper application.
+				try{ 
+					   UIManager.setLookAndFeel(
+					        UIManager.getSystemLookAndFeelClassName());
+					}
+					catch(Exception e){
+					 e.printStackTrace();
+					}
+				
 				UIManager.put("Button.font", defaultFont);				
 				UIManager.put("ToggleButton.font", defaultFont);
 				UIManager.put("RadioButton.font", defaultFont);

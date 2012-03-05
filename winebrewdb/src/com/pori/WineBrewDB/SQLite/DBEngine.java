@@ -808,6 +808,7 @@ public class DBEngine {
 		BigDecimal DecimalIconHeight = new BigDecimal(imageIconBrewPicture.getIconHeight());
 		BigDecimal DecimalPanelHeight = new BigDecimal(panelheight);
 		
+		//TODO: Something still seems slightly iffy about this.
 		//Calculate new sizes
 		BigDecimal factor;
 		BigDecimal factor2;

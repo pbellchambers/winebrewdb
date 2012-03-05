@@ -23,6 +23,7 @@ public class RecipePanel extends JPanel {
 	//public RecipePanel() {
 	public static void InitializePanel(){
 		
+		//TODO: Finish recipe panels.
 		RecipePanel = new JPanel();
 		RecipePanel.setLayout(new MigLayout("", "[grow][100px:n:100px]", "[20px:n:20px][25px:n:25px][grow][50px:n:50px]"));
 		
