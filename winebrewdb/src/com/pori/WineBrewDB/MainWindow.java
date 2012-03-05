@@ -131,6 +131,7 @@ public class MainWindow {
 		WineBrewDBFrame.setLocation(50, 50);
 		WineBrewDBFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		InitializeMenu.InitializeTopMenuMethod();
 		InitializeMenu.InitializeMenuMethod();	
 
 
