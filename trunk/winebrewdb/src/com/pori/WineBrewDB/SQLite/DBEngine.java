@@ -20,6 +20,9 @@ import com.pori.WineBrewDB.BrewNotesPanel;
 import com.pori.WineBrewDB.BrewPicturesPanel;
 import com.pori.WineBrewDB.BrewSearchPanel;
 import com.pori.WineBrewDB.Dates;
+import com.pori.WineBrewDB.RecipeAddPanel;
+import com.pori.WineBrewDB.RecipeDataPanel;
+import com.pori.WineBrewDB.RecipeSearchPanel;
 
 public class DBEngine {
 	
@@ -853,6 +856,135 @@ public class DBEngine {
         imageIconScaledBrewPicture = new ImageIcon(imageScaledBrewPicture);
 		return imageIconScaledBrewPicture;
 		
+	}
+	
+	
+	//Get everything from Recipes table
+	public static Vector<Vector<String>> getRecipes() throws Exception {
+	    Connection conn = dbConnection();
+	          
+	    Vector<Vector<String>> Recipes = new Vector<Vector<String>>();
+	    PreparedStatement pre = conn.prepareStatement(
+	    	"select * from Recipes where RecipeName like '%" + 
+	    	RecipeSearchPanel.textRecipeName.getText() + 
+	    	"%' and Inspiration like '%" + 
+	    	RecipeSearchPanel.textInspiration.getText() + 
+	    	"%' and Ingredients like '%" + 
+	    	RecipeSearchPanel.textIngredients.getText() + 
+	    	"%' and SuggestedYeast like '%" + 
+	    	RecipeSearchPanel.textSuggestedYeast.getText() + 
+	    	"%' and Method like '%" + 
+	    	RecipeSearchPanel.textMethod.getText() + 
+	    	"%' and Notes like '%" + 
+	    	RecipeSearchPanel.textNotes.getText() + 
+	    	"%'"
+			);
+
+	    ResultSet rs = pre.executeQuery();
+
+	    while(rs.next()){
+	    Vector<String> Recipe = new Vector<String>();
+		    Recipe.add(rs.getString(1)); //RecipeRef
+		    Recipe.add(rs.getString(2)); //RecipeName
+		    Recipe.add(rs.getString(3)); //Inspiration
+		    Recipe.add(rs.getString(4)); //Ingredients
+		    Recipe.add(rs.getString(5)); //SuggestedYeast
+		    Recipe.add(rs.getString(6)); //Method
+		    Recipe.add(rs.getString(7)); //Notes
+		    Recipe.add(rs.getString(8)); //References
+		    Recipe.add(rs.getString(9)); //Volume
+		    Recipes.add(Recipe);
+	    }
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+
+	    return Recipes;	    
+	    
+	}
+
+
+	//Update Recipe
+	public static void updateRecipe() throws Exception {
+	    Connection conn = dbConnection();
+	        
+	    PreparedStatement pre = conn.prepareStatement(
+	    	"update Recipes set RecipeName='" +
+	    	RecipeDataPanel.textRecipeNameB.getText().replaceAll("'", "''") +
+	    	"',Inspiration='" +
+	    	RecipeDataPanel.textInspirationB.getText().replaceAll("'", "''") +
+	    	"',Ingredients='" +
+	   		RecipeDataPanel.textIngredientsB.getText().replaceAll("'", "''") +
+	    	"',SuggestedYeast='" +
+	   		RecipeDataPanel.textSuggestedYeastB.getText().replaceAll("'", "''") +
+	    	"',Method='" +
+	    	RecipeDataPanel.textMethodB.getText().replaceAll("'", "''") +
+	    	"',Notes='" +
+	    	RecipeDataPanel.textNotesB.getText().replaceAll("'", "''") +
+	    	"',Reffs='" +
+	    	RecipeDataPanel.textReferencesB.getText().replaceAll("'", "''") +
+	    	"',Volume='" +
+	   		RecipeDataPanel.textVolumeB.getText().replaceAll("'", "''") +
+	    	"' where RecipeRef='" +
+			RecipeDataPanel.textRecipeRefB.getText() +
+			"'"
+	    );
+	    
+	    pre.executeUpdate();  
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();    
+	    
+	}
+
+
+	//Add Recipe
+	public static void addRecipe() throws Exception {
+	    Connection conn = dbConnection(); 
+	     
+	    PreparedStatement pre = conn.prepareStatement(
+	    	"insert into Recipes(RecipeName,Inspiration,Ingredients,SuggestedYeast,Method,Notes,Reffs,Volume) values('" +
+	    	RecipeAddPanel.textRecipeNameAdd.getText().replaceAll("'", "''") +
+	    	"','" +
+	    	RecipeAddPanel.textInspirationAdd.getText().replaceAll("'", "''") +
+	    	"','" +
+	    	RecipeAddPanel.textIngredientsAdd.getText().replaceAll("'", "''") +
+	    	"','" +
+	    	RecipeAddPanel.textSuggestedYeastAdd.getText().replaceAll("'", "''") +
+	    	"','" +
+	    	RecipeAddPanel.textMethodAdd.getText().replaceAll("'", "''") +
+	    	"','" +
+	    	RecipeAddPanel.textNotesAdd.getText().replaceAll("'", "''") +
+	    	"','" +
+	    	RecipeAddPanel.textReferencesAdd.getText().replaceAll("'", "''") +
+	    	"','" +
+	    	RecipeAddPanel.textVolumeAdd.getText().replaceAll("'", "''") +
+	    	"')"
+	    );
+	    
+	    pre.executeUpdate();  
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();    
+	    
+	}
+
+
+	//Delete Recipe
+	public static void deleteRecipe() throws Exception {
+		Connection conn = dbConnection();
+		
+		PreparedStatement pre = conn.prepareStatement("delete from Recipes where RecipeRef='" + RecipeDataPanel.textRecipeRefB.getText() + "'");
+
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
+	    
 	}
 	
 	
