@@ -1,7 +1,6 @@
 package com.pori.WineBrewDB;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -14,16 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JEditorPane;
-import javax.swing.border.LineBorder;
 
 public class SugarToSGPanel extends JPanel {
 
 	private static final long serialVersionUID = -6105676849516060237L;
-	public static JPanel SugarToSGPanel;
-	public static JEditorPane SugarToSGText;
-	public static JLabel SugarToSGHeader;
-	public static JLabel SugarToSGSubtitle;
 	public static JPanel SugarToSGSubPanel;
 	public static JTextPane txtSugarToSGInfo;
 	public static JLabel lblVolumeSugarToSG;
@@ -40,29 +33,12 @@ public class SugarToSGPanel extends JPanel {
 	//public SugarToSGPanel() {
 	public static void InitializePanel(){
 		
-		SugarToSGPanel = new JPanel();
-		SugarToSGPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
-		
-		
-		//Header
-		SugarToSGHeader = new JLabel("Sugar to SG");
-		SugarToSGHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
-		SugarToSGPanel.add(SugarToSGHeader, "cell 0 0,grow");
-		
-		
-		//Subtitle
-		SugarToSGSubtitle = new JLabel("Calculate the approximate sugar needed to reach a required SG.");
-		SugarToSGSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
-		SugarToSGPanel.add(SugarToSGSubtitle, "cell 0 1,growx,aligny top");
-		
 		
 		//Subpanel
 		SugarToSGSubPanel = new JPanel();
 		SugarToSGSubPanel.setBackground(Color.WHITE);
-		SugarToSGSubPanel.setBorder(new LineBorder(new Color(128, 128, 128)));
 		SugarToSGSubPanel.setLayout(new MigLayout("", "[135px:n:135px,left][90px:n:90px][grow]", "[60px:n,60px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px]"));
-		SugarToSGPanel.add(SugarToSGSubPanel, "cell 0 2,grow");
-					
+
 						
 		//Add Calculators to subpanel		
 		txtSugarToSGInfo = new JTextPane();
@@ -112,8 +88,8 @@ public class SugarToSGPanel extends JPanel {
 		
 		
 		//Add it all to the main window
-		MainWindow.WineBrewDBFrame.getContentPane().add(SugarToSGPanel, "cell 0 0,grow");
-		SugarToSGPanel.setVisible(false);
+		MainWindow.WineBrewDBFrame.getContentPane().add(SugarToSGSubPanel, "cell 0 0,grow");
+		SugarToSGSubPanel.setVisible(false);
 
 		SugarToSGPanelStatus = "Initialized";
 	}
@@ -121,10 +97,8 @@ public class SugarToSGPanel extends JPanel {
 	
 	public static void DeInitializePanel(){
 		if(SugarToSGPanelStatus.equals("Initialized")) {
-			SugarToSGPanel.setVisible(false);
-			SugarToSGPanel.remove(SugarToSGHeader);
-			SugarToSGPanel.remove(SugarToSGSubtitle);
-			MainWindow.WineBrewDBFrame.getContentPane().remove(SugarToSGPanel);
+			SugarToSGSubPanel.setVisible(false);
+			MainWindow.WineBrewDBFrame.getContentPane().remove(SugarToSGSubPanel);
 			SugarToSGPanelStatus = "DeInitialized";
 		}
 	}

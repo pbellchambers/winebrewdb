@@ -1,7 +1,6 @@
 package com.pori.WineBrewDB;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -15,16 +14,10 @@ import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JEditorPane;
-import javax.swing.border.LineBorder;
 
 public class TemperatureAdjustedSGPanel extends JPanel {
 
 	private static final long serialVersionUID = -2859114835526520455L;
-	public static JPanel TemperatureAdjustedSGPanel;
-	public static JEditorPane TemperatureAdjustedSGText;
-	public static JLabel TemperatureAdjustedSGHeader;
-	public static JLabel TemperatureAdjustedSGSubtitle;
 	public static JPanel TemperatureAdjustedSGSubPanel;
 	public static JTextPane txtTemperatureAdjustedSG;
 	public static JToggleButton btnCelcius;
@@ -44,28 +37,11 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 	//public TemperatureAdjustedSGPanel() {
 	public static void InitializePanel(){
 		
-		TemperatureAdjustedSGPanel = new JPanel();
-		TemperatureAdjustedSGPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
-		
-		
-		//Header
-		TemperatureAdjustedSGHeader = new JLabel("Temperature Adjusted SG");
-		TemperatureAdjustedSGHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
-		TemperatureAdjustedSGPanel.add(TemperatureAdjustedSGHeader, "cell 0 0,grow");
-		
-		
-		//Subtitle
-		TemperatureAdjustedSGSubtitle = new JLabel("Calculate the Temperature Adjusted SG.");
-		TemperatureAdjustedSGSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
-		TemperatureAdjustedSGPanel.add(TemperatureAdjustedSGSubtitle, "cell 0 1,growx,aligny top");
-		
 		
 		//Subpanel
 		TemperatureAdjustedSGSubPanel = new JPanel();
 		TemperatureAdjustedSGSubPanel.setBackground(Color.WHITE);
-		TemperatureAdjustedSGSubPanel.setBorder(new LineBorder(new Color(128, 128, 128)));
 		TemperatureAdjustedSGSubPanel.setLayout(new MigLayout("", "[205px:n:205px,left][205px:n:205px][205px:n:205px][grow]", "[60px:n,60px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px]"));
-		TemperatureAdjustedSGPanel.add(TemperatureAdjustedSGSubPanel, "cell 0 2,grow");
 							
 								
 		//Add Calculators to subpanel		
@@ -148,8 +124,8 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 		});
 		
 		//Add it all to the main window
-		MainWindow.WineBrewDBFrame.getContentPane().add(TemperatureAdjustedSGPanel, "cell 0 0,grow");
-		TemperatureAdjustedSGPanel.setVisible(false);
+		MainWindow.WineBrewDBFrame.getContentPane().add(TemperatureAdjustedSGSubPanel, "cell 0 0,grow");
+		TemperatureAdjustedSGSubPanel.setVisible(false);
 
 		TemperatureAdjustedSGPanelStatus = "Initialized";
 	}
@@ -157,10 +133,8 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 	
 	public static void DeInitializePanel(){
 		if(TemperatureAdjustedSGPanelStatus.equals("Initialized")) {
-			TemperatureAdjustedSGPanel.setVisible(false);
-			TemperatureAdjustedSGPanel.remove(TemperatureAdjustedSGHeader);
-			TemperatureAdjustedSGPanel.remove(TemperatureAdjustedSGSubtitle);
-			MainWindow.WineBrewDBFrame.getContentPane().remove(TemperatureAdjustedSGPanel);
+			TemperatureAdjustedSGSubPanel.setVisible(false);
+			MainWindow.WineBrewDBFrame.getContentPane().remove(TemperatureAdjustedSGSubPanel);
 			TemperatureAdjustedSGPanelStatus = "DeInitialized";
 		}
 	}

@@ -1,7 +1,6 @@
 package com.pori.WineBrewDB;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -13,15 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
 import net.miginfocom.swing.MigLayout;
-import javax.swing.border.LineBorder;
 
 public class AlcoholPanel extends JPanel {
 
 	private static final long serialVersionUID = -8187974481712023349L;
-	public static JPanel AlcoholPanel;
 	public static JPanel AlcoholSubPanel;
-	public static JLabel AlcoholHeader;
-	public static JLabel AlcoholSubtitle;
 	public static JLabel lblHStartingSG;
 	public static JLabel lblHFinishingSG;
 	public static JLabel lblHABV;
@@ -44,28 +39,11 @@ public class AlcoholPanel extends JPanel {
 	//public AlcoholPanel() {
 	public static void InitializePanel(){
 		
-		AlcoholPanel = new JPanel();
-		AlcoholPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
-		
-		
-		//Header
-		AlcoholHeader = new JLabel("Alcohol %");
-		AlcoholHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
-		AlcoholPanel.add(AlcoholHeader, "cell 0 0,grow");
-		
-		
-		//Subtitle
-		AlcoholSubtitle = new JLabel("Calculate ABV % from SG.");
-		AlcoholSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
-		AlcoholPanel.add(AlcoholSubtitle, "cell 0 1,growx,aligny top");
-		
-		
+
 		//Subpanel
 		AlcoholSubPanel = new JPanel();
 		AlcoholSubPanel.setBackground(Color.WHITE);
-		AlcoholSubPanel.setBorder(new LineBorder(new Color(128, 128, 128)));
 		AlcoholSubPanel.setLayout(new MigLayout("", "[135px:n:135px,left][90px:n:90px][75px:n:75px][135px:n:135px,left][90px:n:90px][grow]", "[150px:n,150px][30px:n:30px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px]"));
-		AlcoholPanel.add(AlcoholSubPanel, "cell 0 2,grow");
 		
 		
 		//Add Calculators to subpanel		
@@ -146,8 +124,8 @@ public class AlcoholPanel extends JPanel {
 		
 		
 		//Add it all to the main window
-		MainWindow.WineBrewDBFrame.getContentPane().add(AlcoholPanel, "cell 0 0,grow");
-		AlcoholPanel.setVisible(false);
+		MainWindow.WineBrewDBFrame.getContentPane().add(AlcoholSubPanel, "cell 0 0,grow");
+		AlcoholSubPanel.setVisible(false);
 
 		AlcoholPanelStatus = "Initialized";
 	}
@@ -155,11 +133,8 @@ public class AlcoholPanel extends JPanel {
 	
 	public static void DeInitializePanel(){
 		if(AlcoholPanelStatus.equals("Initialized")) {
-			AlcoholPanel.setVisible(false);
-			AlcoholPanel.remove(AlcoholHeader);
-			AlcoholPanel.remove(AlcoholSubtitle);
-			AlcoholPanel.remove(AlcoholSubPanel);
-			MainWindow.WineBrewDBFrame.getContentPane().remove(AlcoholPanel);
+			AlcoholSubPanel.setVisible(false);
+			MainWindow.WineBrewDBFrame.getContentPane().remove(AlcoholSubPanel);
 			AlcoholPanelStatus = "DeInitialized";
 		}
 	}
