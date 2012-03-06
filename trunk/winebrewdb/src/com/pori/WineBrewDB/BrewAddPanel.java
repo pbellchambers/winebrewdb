@@ -462,6 +462,10 @@ public class BrewAddPanel extends JPanel {
 					textBrewTastingNotesAdd.setEditable(false);
 					textBrewGeneralNotesAdd.setEditable(false);
 					textBrewGeneralNotesAdd.setBackground(UIManager.getColor("Panel.background"));
+					BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
+					BrewSearchPanel.BrewScrollPane.setViewportView(null);
+					BrewSearchPanel.initializeTable();
+					BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
 					clearBrewAddData();
 				}
 			}
