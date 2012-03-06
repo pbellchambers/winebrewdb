@@ -54,6 +54,8 @@ public class InitializeMenu extends MainWindow {
 		//TODO: First run database save location popup (use .ini file)
 		//TODO: Figure out Launch4j maybe
 		//TODO: Figure out how to release memory?
+		//TODO: ini4j and set look and feel to ini file
+		
 		//File Menu
 		mnFile = new JMenu("File");
 		menuBar.add(mnFile);
@@ -96,12 +98,11 @@ public class InitializeMenu extends MainWindow {
 		mnFile.add(mnLAF);
 		
 		radioSystemLAF = new JRadioButtonMenuItem("System");
-		radioSystemLAF.setSelected(true);
+		if(MainWindow.LookAndFeel.equals("system")){radioSystemLAF.setSelected(true);}
 		radioSystemLAF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{ 
-					   UIManager.setLookAndFeel(
-					        UIManager.getSystemLookAndFeelClassName());
+					   UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					}
 					catch(Exception ex){
 					 ex.printStackTrace();
@@ -116,11 +117,11 @@ public class InitializeMenu extends MainWindow {
 		mnLAF.add(radioSystemLAF);
 		
 		radioJavaLAF = new JRadioButtonMenuItem("Java");
+		if(MainWindow.LookAndFeel.equals("java")){radioJavaLAF.setSelected(true);}
 		radioJavaLAF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{ 
-						UIManager.setLookAndFeel(
-				            UIManager.getCrossPlatformLookAndFeelClassName());
+						UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 					}
 					catch(Exception ex){
 					 ex.printStackTrace();
@@ -433,5 +434,6 @@ public class InitializeMenu extends MainWindow {
 		mnInformation.setEnabled(true);
 		mnHelp.setEnabled(true);
 	};
+	
 	
 }

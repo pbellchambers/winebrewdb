@@ -17,6 +17,7 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 
 import com.pori.WineBrewDB.Dates;
+import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.Brew.BrewAddPanel;
 import com.pori.WineBrewDB.Brew.BrewDataPanel;
 import com.pori.WineBrewDB.Brew.BrewNotesPanel;
@@ -35,7 +36,7 @@ public class DBEngine {
 	//Create the connection
 	public static Connection dbConnection() throws Exception {
 		Class.forName("org.sqlite.JDBC");
-		return DriverManager.getConnection("jdbc:sqlite:WineBrewDBData.sqlite");
+		return DriverManager.getConnection("jdbc:sqlite:" + MainWindow.DatabaseLocationFromIni);
 	}
 	
 	
@@ -52,7 +53,7 @@ public class DBEngine {
 	    String Drunk = null;
 	      
 	    if(BrewSearchPanel.comboColour.getSelectedItem().equals("Any")){
-	    	Colour ="White','Red','Rosé','',' ','Other";
+	    	Colour ="White','Red','Rosï¿½','',' ','Other";
 	    } else {
 	    	Colour = (String) BrewSearchPanel.comboColour.getSelectedItem();
 	    }
