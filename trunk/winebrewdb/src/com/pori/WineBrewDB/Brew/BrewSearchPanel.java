@@ -31,22 +31,14 @@ public class BrewSearchPanel extends JPanel {
 
 	private static final long serialVersionUID = 1271175051561946054L;
 	static JPanel tabbedBrewSearchPanel;
-	private static JPanel BrewFilterPanel;
 	static JScrollPane BrewScrollPane;
 	static JTable BrewTable;
-	private static JLabel lblBrewName;
-	private static JLabel lblRecipeFrom;
-	private static JLabel lblYeast;
-	private static JLabel lblNotes;
-	private static JLabel lblTastingNotes;
-	private static JLabel lblColour;
 	public static JTextField textBrewName;
 	public static JTextField textRecipeFrom;
 	public static JTextField textNotes;
 	public static JTextField textTastingNotes;
 	public static JTextField textYeast;
 	public static JComboBox<String> comboColour;
-	private static JLabel lblThumbs;
 	public static JComboBox<String> comboThumbs;
 	public static JCheckBox chckbxInPlanning;
 	public static JCheckBox chckbxInFining;
@@ -54,10 +46,8 @@ public class BrewSearchPanel extends JPanel {
 	public static JCheckBox chckbxInBottles;
 	public static JCheckBox chckbxInMaturing;
 	public static JCheckBox chckbxDrunk;
-	private static JButton btnSearch;
 	static int BrewSearchSelectedRow;
 	private static String BrewTableFields;
-	private static JCheckBox chckbxAllFields;
 
 	
 	public static void InitializePanel(){
@@ -70,41 +60,41 @@ public class BrewSearchPanel extends JPanel {
 		tabbedBrewSearchPanel.setLayout(new MigLayout("", "[grow]", "[150px:n:150px][grow]"));
 		
 		//Filter Panel
-		BrewFilterPanel = new JPanel();
+		JPanel BrewFilterPanel = new JPanel();
 		BrewFilterPanel.setBackground(UIManager.getColor("Panel.background"));
 		BrewFilterPanel.setLayout(new MigLayout("", "[70px:70px:70px][70px:70px, grow][85px:85px:85px][70px:70px, grow][50px:50px:50px][70px:70px, grow][80px:80px:80px][90px:90px:90px]", "[][][][45px:45px:45px]"));
 			
-		lblBrewName = new JLabel("Brew Name:");
+		JLabel lblBrewName = new JLabel("Brew Name:");
 		BrewFilterPanel.add(lblBrewName, "flowx,cell 0 0,alignx right");
 			
 		textBrewName = new JTextField();
 		BrewFilterPanel.add(textBrewName, "cell 1 0,growx");
 			
-		lblRecipeFrom = new JLabel("Recipe From:");
+		JLabel lblRecipeFrom = new JLabel("Recipe From:");
 		BrewFilterPanel.add(lblRecipeFrom, "flowx,cell 2 0,alignx right");
 			
 		textRecipeFrom = new JTextField();
 		BrewFilterPanel.add(textRecipeFrom, "cell 3 0,growx");
 			
-		lblYeast = new JLabel("Yeast:");
+		JLabel lblYeast = new JLabel("Yeast:");
 		BrewFilterPanel.add(lblYeast, "flowx,cell 4 0,alignx right");
 			
 		textYeast = new JTextField();
 		BrewFilterPanel.add(textYeast, "cell 5 0,growx");
 			
-		lblNotes = new JLabel("Notes:");
+		JLabel lblNotes = new JLabel("Notes:");
 		BrewFilterPanel.add(lblNotes, "flowx,cell 0 1,alignx right");
 			
 		textNotes = new JTextField();
 		BrewFilterPanel.add(textNotes, "cell 1 1,growx");
 			
-		lblTastingNotes = new JLabel("Tasting Notes:");
+		JLabel lblTastingNotes = new JLabel("Tasting Notes:");
 		BrewFilterPanel.add(lblTastingNotes, "flowx,cell 2 1,alignx right");
 			
 		textTastingNotes = new JTextField();
 		BrewFilterPanel.add(textTastingNotes, "cell 3 1,growx");
 			
-		lblColour = new JLabel("Colour:");
+		JLabel lblColour = new JLabel("Colour:");
 		BrewFilterPanel.add(lblColour, "flowx,cell 4 1,alignx right");
 			
 		comboColour = new JComboBox<String>();
@@ -112,7 +102,7 @@ public class BrewSearchPanel extends JPanel {
 		comboColour.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "Red", "White", "Ros\u00E9", "Other"}));
 		BrewFilterPanel.add(comboColour, "cell 5 1,growx");
 			
-		lblThumbs = new JLabel("Thumbs:");
+		JLabel lblThumbs = new JLabel("Thumbs:");
 		BrewFilterPanel.add(lblThumbs, "flowx,cell 0 2,alignx right");
 			
 		chckbxInPlanning = new JCheckBox("In Planning");
@@ -144,10 +134,10 @@ public class BrewSearchPanel extends JPanel {
 		chckbxDrunk.setSelected(true);
 		BrewFilterPanel.add(chckbxDrunk, "cell 7 2,growx");
 			
-		chckbxAllFields = new JCheckBox("Show All Fields?");
+		JCheckBox chckbxAllFields = new JCheckBox("Show All Fields?");
 		BrewFilterPanel.add(chckbxAllFields, "cell 4 3 2 1,alignx right");
 		
-		btnSearch = new JButton("Search");
+		JButton btnSearch = new JButton("Search");
 		BrewFilterPanel.add(btnSearch, "cell 6 3 2 1,growx");
 
 		tabbedBrewSearchPanel.add(BrewFilterPanel, "cell 0 0,grow");

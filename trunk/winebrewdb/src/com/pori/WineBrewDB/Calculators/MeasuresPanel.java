@@ -21,43 +21,16 @@ public class MeasuresPanel extends JPanel {
 	private static final long serialVersionUID = -7839159138359581270L;
 	private static String MeasuresPanelStatus = "DeInitialized";
 	static JPanel MeasuresSubPanel;
-	private static JTextPane txtMeasuresInfo;
-	private static JLabel lblWeight;
-	private static JLabel lbllbs;
 	private static JFormattedTextField fieldlbs;
-	private static JLabel lbloz;
 	private static JFormattedTextField fieldoz;
-	private static JButton btnWeightToGrams;
-	private static JButton btnWeightToOz;
-	private static JLabel lblgrams;
 	private static JFormattedTextField fieldgrams;
-	private static JLabel lblSpoons;
-	private static JLabel lbltsp;
 	private static JFormattedTextField fieldtsp;
-	private static JButton btnTspToTbsp;
-	private static JButton btnTbspToTsp;
-	private static JLabel lbltbsp;
 	private static JFormattedTextField fieldtbsp;
-	private static JLabel lblUKUSGallons;
-	private static JLabel lblUKGallons;
 	private static JFormattedTextField fieldUKGallons;
-	private static JButton btnUKToUSGallons;
-	private static JButton btnUSToUKGallons;
-	private static JLabel lblUSGallons;
 	private static JFormattedTextField fieldUSGallons;
-	private static JLabel lblUKGallonsLitres;
-	private static JLabel lblUKGallonsB;
 	private static JFormattedTextField fieldUKGallonsB;
-	private static JButton btnUKGallonsToLitres;
-	private static JButton btnLitresToUKGallons;
-	private static JLabel lblLitres;
 	private static JFormattedTextField fieldLitres;
-	private static JLabel lblCToF;
-	private static JLabel lblC;
 	private static JFormattedTextField fieldC;
-	private static JButton btnCToF;
-	private static JButton btnFToC;
-	private static JLabel lblF;
 	private static JFormattedTextField fieldF;
 	
 	public static String AlcoholPanelStatus = "DeInitialized";
@@ -74,127 +47,127 @@ public class MeasuresPanel extends JPanel {
 				
 				
 		//Add Calculators to subpanel		
-		txtMeasuresInfo = new JTextPane();
+		JTextPane txtMeasuresInfo = new JTextPane();
 		txtMeasuresInfo.setText("");
 		txtMeasuresInfo.setEditable(false);
 		MeasuresSubPanel.add(txtMeasuresInfo, "cell 0 0 16,grow");
 				
-		lblWeight = new JLabel("Weight");
+		JLabel lblWeight = new JLabel("Weight");
 		MeasuresSubPanel.add(lblWeight, "cell 0 1 3");
 		
-		lbllbs = new JLabel("Lbs");
+		JLabel lbllbs = new JLabel("Lbs");
 		MeasuresSubPanel.add(lbllbs, "cell 2 2,alignx trailing");
 				
 		fieldlbs = new JFormattedTextField(new DecimalFormat("####0"));
 		fieldlbs.setText("1");
 		MeasuresSubPanel.add(fieldlbs, "cell 3 2,growx");
 				
-		lbloz = new JLabel("Oz");
+		JLabel lbloz = new JLabel("Oz");
 		MeasuresSubPanel.add(lbloz, "cell 2 3,alignx trailing");
 				
 		fieldoz = new JFormattedTextField(new DecimalFormat("####0.00"));
 		fieldoz.setText("8.00");
 		MeasuresSubPanel.add(fieldoz, "cell 3 3,growx");
 				
-		btnWeightToGrams = new JButton(">");
+		JButton btnWeightToGrams = new JButton(">");
 		MeasuresSubPanel.add(btnWeightToGrams, "cell 4 3");
 		
-		btnWeightToOz = new JButton("<");
+		JButton btnWeightToOz = new JButton("<");
 		MeasuresSubPanel.add(btnWeightToOz, "cell 5 3");
 				
-		lblgrams = new JLabel("Grams");
+		JLabel lblgrams = new JLabel("Grams");
 		MeasuresSubPanel.add(lblgrams, "cell 7 3,alignx left");
 				
 		fieldgrams = new JFormattedTextField(new DecimalFormat("#######0.0"));
 		fieldgrams.setText("680.4");
 		MeasuresSubPanel.add(fieldgrams, "cell 6 3,growx");
 				
-		lblSpoons = new JLabel("Spoons");
+		JLabel lblSpoons = new JLabel("Spoons");
 		MeasuresSubPanel.add(lblSpoons, "cell 9 1");
 
-		lbltsp = new JLabel("Tsp");
+		JLabel lbltsp = new JLabel("Tsp");
 		MeasuresSubPanel.add(lbltsp, "cell 9 3,alignx trailing");
 				
 		fieldtsp = new JFormattedTextField(new DecimalFormat("####0.00"));
 		fieldtsp.setText("3.00");
 		MeasuresSubPanel.add(fieldtsp, "cell 10 3,growx");
 				
-		btnTspToTbsp = new JButton(">");
+		JButton btnTspToTbsp = new JButton(">");
 		MeasuresSubPanel.add(btnTspToTbsp, "cell 11 3");
 
-		btnTbspToTsp = new JButton("<");
+		JButton btnTbspToTsp = new JButton("<");
 		MeasuresSubPanel.add(btnTbspToTsp, "cell 12 3");
 				
-		lbltbsp = new JLabel("Tbsp");
+		JLabel lbltbsp = new JLabel("Tbsp");
 		MeasuresSubPanel.add(lbltbsp, "cell 14 3,alignx left");
 				
 		fieldtbsp = new JFormattedTextField(new DecimalFormat("####0.00"));
 		fieldtbsp.setText("1.00");
 		MeasuresSubPanel.add(fieldtbsp, "cell 13 3,growx");
 		
-		lblUKUSGallons = new JLabel("UK/US Gallons");
+		JLabel lblUKUSGallons = new JLabel("UK/US Gallons");
 		MeasuresSubPanel.add(lblUKUSGallons, "cell 0 5 3");
 
-		lblUKGallons = new JLabel("UK Gallons");
+		JLabel lblUKGallons = new JLabel("UK Gallons");
 		MeasuresSubPanel.add(lblUKGallons, "cell 0 6 3,alignx trailing");
 				
 		fieldUKGallons = new JFormattedTextField(new DecimalFormat("####0.000"));
 		fieldUKGallons.setText("1.000");
 		MeasuresSubPanel.add(fieldUKGallons, "cell 3 6,growx");
 				
-		btnUKToUSGallons = new JButton(">");
+		JButton btnUKToUSGallons = new JButton(">");
 		MeasuresSubPanel.add(btnUKToUSGallons, "cell 4 6");
 
-		btnUSToUKGallons = new JButton("<");
+		JButton btnUSToUKGallons = new JButton("<");
 		MeasuresSubPanel.add(btnUSToUKGallons, "cell 5 6");
 				
-		lblUSGallons = new JLabel("US Gallons");
+		JLabel lblUSGallons = new JLabel("US Gallons");
 		MeasuresSubPanel.add(lblUSGallons, "cell 7 6,alignx left");
 				
 		fieldUSGallons = new JFormattedTextField(new DecimalFormat("####0.000"));
 		fieldUSGallons.setText("1.201");
 		MeasuresSubPanel.add(fieldUSGallons, "cell 6 6,growx");
 		
-		lblUKGallonsLitres = new JLabel("Gallons/Litres");
+		JLabel lblUKGallonsLitres = new JLabel("Gallons/Litres");
 		MeasuresSubPanel.add(lblUKGallonsLitres, "cell 9 5");
 
-		lblUKGallonsB = new JLabel("UK Gallons");
+		JLabel lblUKGallonsB = new JLabel("UK Gallons");
 		MeasuresSubPanel.add(lblUKGallonsB, "cell 9 6,alignx trailing");
 				
 		fieldUKGallonsB = new JFormattedTextField(new DecimalFormat("####0.000"));
 		fieldUKGallonsB.setText("1.000");
 		MeasuresSubPanel.add(fieldUKGallonsB, "cell 10 6,growx");
 				
-		btnUKGallonsToLitres = new JButton(">");
+		JButton btnUKGallonsToLitres = new JButton(">");
 		MeasuresSubPanel.add(btnUKGallonsToLitres, "cell 11 6");
 
-		btnLitresToUKGallons = new JButton("<");
+		JButton btnLitresToUKGallons = new JButton("<");
 		MeasuresSubPanel.add(btnLitresToUKGallons, "cell 12 6");
 				
-		lblLitres = new JLabel("Litres");
+		JLabel lblLitres = new JLabel("Litres");
 		MeasuresSubPanel.add(lblLitres, "cell 14 6,alignx left");
 				
 		fieldLitres = new JFormattedTextField(new DecimalFormat("####0.000"));
 		fieldLitres.setText("4.546");
 		MeasuresSubPanel.add(fieldLitres, "cell 13 6,growx");
 		
-		lblCToF = new JLabel("Temperature");
+		JLabel lblCToF = new JLabel("Temperature");
 		MeasuresSubPanel.add(lblCToF, "cell 0 8 3");
 
-		lblC = new JLabel("°C");
+		JLabel lblC = new JLabel("°C");
 		MeasuresSubPanel.add(lblC, "cell 0 9 3,alignx trailing");
 				
 		fieldC = new JFormattedTextField(new DecimalFormat("####0.0"));
 		fieldC.setText("0.0");
 		MeasuresSubPanel.add(fieldC, "cell 3 9,growx");
 				
-		btnCToF = new JButton(">");
+		JButton btnCToF = new JButton(">");
 		MeasuresSubPanel.add(btnCToF, "cell 4 9");
 
-		btnFToC = new JButton("<");
+		JButton btnFToC = new JButton("<");
 		MeasuresSubPanel.add(btnFToC, "cell 5 9");
 				
-		lblF = new JLabel("°F");
+		JLabel lblF = new JLabel("°F");
 		MeasuresSubPanel.add(lblF, "cell 7 9,alignx left");
 				
 		fieldF = new JFormattedTextField(new DecimalFormat("####0.0"));

@@ -8,7 +8,6 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 
 public class Dates {
-	public static Date convertedDate;
 
 	public static String dateToString(Date date) {
 		SimpleDateFormat dateYYYYMMDD = new SimpleDateFormat("yyyy/MM/dd");
@@ -18,6 +17,7 @@ public class Dates {
 
 	public static Date stringToDate(String stringtochange){ 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date convertedDate = null;
 		try {
 			convertedDate = dateFormat.parse(stringtochange);
 		} catch (ParseException e) {

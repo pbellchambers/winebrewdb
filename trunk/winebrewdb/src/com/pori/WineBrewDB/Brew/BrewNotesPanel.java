@@ -35,21 +35,17 @@ public class BrewNotesPanel extends JPanel {
 	static JTable BrewNotesTable;
 	private static int BrewNotesSelectedRow;
 	public static JTextField textBrewNoteRef;
-	private static JLabel lblBrewNoteDate;
 	public static JDateChooser chooserBrewNoteDate;
 	public static JTextField textBrewNoteDaysSinceStart;
-	private static JLabel lblBrewNoteIncident;
 	public static JTextField textBrewNoteIncident;
-	private static JLabel lblBrewNoteNote;
 	public static JTextArea textBrewNoteNote;
-	private static JButton btnBrewNoteAdd;
 	static JButton btnBrewNoteEdit;
 	private static JButton btnBrewNoteDelete;
 	private static JButton btnBrewNoteCancel;
 	private static JButton btnBrewNoteSave;
-	private static JScrollPane BrewNotesNoteScrollPane;
 	private static String isNewNote;
 	private static boolean mouseListenerIsActive;
+	private static JButton btnBrewNoteAdd;
 
 	
 	public static void InitializePanel(){
@@ -72,7 +68,7 @@ public class BrewNotesPanel extends JPanel {
 		textBrewNoteRef.setEditable(false);
 		//tabbedBrewNotesPanel.add(textBrewNoteRef, "cell 1 1,growx");
 		
-		lblBrewNoteDate = new JLabel("Date:");
+		JLabel lblBrewNoteDate = new JLabel("Date:");
 		tabbedBrewNotesPanel.add(lblBrewNoteDate, "cell 0 1,alignx trailing");
 		
 		chooserBrewNoteDate = new JDateChooser();
@@ -83,14 +79,14 @@ public class BrewNotesPanel extends JPanel {
 		textBrewNoteDaysSinceStart.setEditable(false);
 		//tabbedBrewNotesPanel.add(textBrewNoteDaysSinceStart, "cell 5 1,growx");
 		
-		lblBrewNoteIncident = new JLabel("Incident:");
+		JLabel lblBrewNoteIncident = new JLabel("Incident:");
 		tabbedBrewNotesPanel.add(lblBrewNoteIncident, "cell 0 3,alignx trailing");
 		
 		textBrewNoteIncident = new JTextField();
 		textBrewNoteIncident.setEditable(false);
 		tabbedBrewNotesPanel.add(textBrewNoteIncident, "cell 1 3 5,growx");
 		
-		lblBrewNoteNote = new JLabel("Note:");
+		JLabel lblBrewNoteNote = new JLabel("Note:");
 		tabbedBrewNotesPanel.add(lblBrewNoteNote, "cell 0 5,alignx trailing");
 		
 		textBrewNoteNote = new JTextArea();
@@ -99,7 +95,7 @@ public class BrewNotesPanel extends JPanel {
 		textBrewNoteNote.setBackground(UIManager.getColor("Panel.background"));
 		
 		//ScrollPane for textBrewNoteNote
-	    BrewNotesNoteScrollPane = new JScrollPane();
+	    JScrollPane BrewNotesNoteScrollPane = new JScrollPane();
 	    BrewNotesNoteScrollPane.setViewportView(textBrewNoteNote);
 	    tabbedBrewNotesPanel.add(BrewNotesNoteScrollPane, "cell 1 5 5 2,grow");
 		

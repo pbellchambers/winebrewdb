@@ -19,23 +19,12 @@ public class AlcoholPanel extends JPanel {
 
 	private static final long serialVersionUID = -8187974481712023349L;
 	static JPanel AlcoholSubPanel;
-	private static JLabel lblHStartingSG;
-	private static JLabel lblHFinishingSG;
-	private static JLabel lblHABV;
-	private static JLabel lblHAlcoholMethod;
-	private static JTextPane txtAlcoholInfo;
 	private static JFormattedTextField fieldHStartingSG;
 	private static JFormattedTextField fieldHFinishingSG;
 	private static JFormattedTextField fieldHABV;
-	private static JButton btnHCalculateABV;
-	private static JLabel lblCStartingSG;
-	private static JLabel lblCFinishingSG;
-	private static JLabel lblCABV;
-	private static JLabel lblCAlcoholMethod;
 	private static JFormattedTextField fieldCStartingSG;
 	private static JFormattedTextField fieldCFinishingSG;
 	private static JFormattedTextField fieldCABV;
-	private static JButton btnCCalculateABV;
 	private static String AlcoholPanelStatus = "DeInitialized";
 
 	//public AlcoholPanel() {
@@ -49,32 +38,32 @@ public class AlcoholPanel extends JPanel {
 		
 		
 		//Add Calculators to subpanel		
-		txtAlcoholInfo = new JTextPane();
+		JTextPane txtAlcoholInfo = new JTextPane();
 		txtAlcoholInfo.setText("The standard formula for calculating %ABV is: \"(OG - FG) / F = %ABV\". However the factor (F) needed for an accurate result is actually dependant on the amount of alcohol present in the wine. Two differing methods of calculation are provided here as follows:\r\n\r\nThe \"HMRC Method\" extrapolates from HMRC's published factors (HMRC Ref: Notice 226 (November 2011)) used for calculating ABV in beer. This is the most accurate method provided here.\r\n\nThe \"CJJ Berry Method\" (from \"First Steps in Winemaking\" ISBN: 978-1854861399) uses a constant 7.36 for the factor (F).");
 		txtAlcoholInfo.setEditable(false);
 		AlcoholSubPanel.add(txtAlcoholInfo, "cell 0 0 6 1,grow");
 		
-		lblHAlcoholMethod = new JLabel("HMRC Method");
+		JLabel lblHAlcoholMethod = new JLabel("HMRC Method");
 		AlcoholSubPanel.add(lblHAlcoholMethod, "cell 0 1");
 		
-		lblHStartingSG = new JLabel("Starting SG (e.g. 1.080)");
+		JLabel lblHStartingSG = new JLabel("Starting SG (e.g. 1.080)");
 		AlcoholSubPanel.add(lblHStartingSG, "cell 0 2,alignx trailing");
 		
 		fieldHStartingSG = new JFormattedTextField(new DecimalFormat("0.000"));
 		fieldHStartingSG.setText("0.000");
 		AlcoholSubPanel.add(fieldHStartingSG, "cell 1 2,growx");
 		
-		lblHFinishingSG = new JLabel("Finishing SG (e.g. 0.994)");
+		JLabel lblHFinishingSG = new JLabel("Finishing SG (e.g. 0.994)");
 		AlcoholSubPanel.add(lblHFinishingSG, "cell 0 3,alignx trailing");
 		
 		fieldHFinishingSG = new JFormattedTextField(new DecimalFormat("0.000"));
 		fieldHFinishingSG.setText("0.000");
 		AlcoholSubPanel.add(fieldHFinishingSG, "cell 1 3,growx");
 		
-		btnHCalculateABV = new JButton("Submit");
+		JButton btnHCalculateABV = new JButton("Submit");
 		AlcoholSubPanel.add(btnHCalculateABV, "cell 1 4");
 		
-		lblHABV = new JLabel("ABV %");
+		JLabel lblHABV = new JLabel("ABV %");
 		AlcoholSubPanel.add(lblHABV, "cell 0 5,alignx trailing");
 		
 		fieldHABV = new JFormattedTextField(new DecimalFormat("#0.00"));
@@ -82,27 +71,27 @@ public class AlcoholPanel extends JPanel {
 		fieldHABV.setEditable(false);
 		AlcoholSubPanel.add(fieldHABV, "cell 1 5,growx");
 		
-		lblCAlcoholMethod = new JLabel("CJJ Berry Method");
+		JLabel lblCAlcoholMethod = new JLabel("CJJ Berry Method");
 		AlcoholSubPanel.add(lblCAlcoholMethod, "cell 3 1");
 		
-		lblCStartingSG = new JLabel("Starting SG (e.g. 1.080)");
+		JLabel lblCStartingSG = new JLabel("Starting SG (e.g. 1.080)");
 		AlcoholSubPanel.add(lblCStartingSG, "cell 3 2,alignx trailing");
 		
 		fieldCStartingSG = new JFormattedTextField(new DecimalFormat("0.000"));
 		fieldCStartingSG.setText("0.000");
 		AlcoholSubPanel.add(fieldCStartingSG, "cell 4 2,growx");
 		
-		lblCFinishingSG = new JLabel("Finishing SG (e.g. 0.994)");
+		JLabel lblCFinishingSG = new JLabel("Finishing SG (e.g. 0.994)");
 		AlcoholSubPanel.add(lblCFinishingSG, "cell 3 3,alignx trailing");
 		
 		fieldCFinishingSG = new JFormattedTextField(new DecimalFormat("0.000"));
 		fieldCFinishingSG.setText("0.000");
 		AlcoholSubPanel.add(fieldCFinishingSG, "cell 4 3,growx");
 		
-		btnCCalculateABV = new JButton("Submit");
+		JButton btnCCalculateABV = new JButton("Submit");
 		AlcoholSubPanel.add(btnCCalculateABV, "cell 4 4");
 		
-		lblCABV = new JLabel("ABV %");
+		JLabel lblCABV = new JLabel("ABV %");
 		AlcoholSubPanel.add(lblCABV, "cell 3 5,alignx trailing");
 		
 		fieldCABV = new JFormattedTextField(new DecimalFormat("#0.00"));

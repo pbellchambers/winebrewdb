@@ -14,12 +14,7 @@ import javax.swing.UIManager;
 public class MainWindow {
 
 	public static JFrame WineBrewDBFrame;
-	public static MainWindow window;
-	public static URL img16;
-	public static URL img32;
-	public static URL img64;
-	public static URL img128;
-	public static URL img256;
+	public static String WineBrewDBVersion = "v0.8.2";
 
 	/**
 	 * Launch the application.
@@ -69,8 +64,10 @@ public class MainWindow {
 				UIManager.put("ToolTip.font", defaultFont);
 				UIManager.put("Tree.font", defaultFont);
 				
+
+				
 				try {
-					window = new MainWindow();
+					new MainWindow();
 					MainWindow.WineBrewDBFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -92,11 +89,11 @@ public class MainWindow {
 	public void initialize() {
 		WineBrewDBFrame = new JFrame();
 		WineBrewDBFrame.setTitle("WineBrewDB");
-		img16 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb16.png");
-		img32 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb32.png");
-		img64 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb64.png");
-		img128 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb128.png");
-		img256 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb256.png");
+		URL img16 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb16.png");
+		URL img32 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb32.png");
+		URL img64 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb64.png");
+		URL img128 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb128.png");
+		URL img256 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb256.png");
 
         final ArrayList<Image> icons = new ArrayList<Image>();
         try {

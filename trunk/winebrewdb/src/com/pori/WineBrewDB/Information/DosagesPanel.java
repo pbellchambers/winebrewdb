@@ -14,7 +14,6 @@ public class DosagesPanel extends JPanel {
 
 	private static final long serialVersionUID = -7871618682975760889L;
 	static JScrollPane DosagesScrollPane;
-	private static JEditorPane DosagesText;
 	private static String DosagesPanelStatus = "DeInitialized";
 
 	//public DosagesPanel() {
@@ -22,7 +21,7 @@ public class DosagesPanel extends JPanel {
 		
 		
 		//Text area that gets text from external html
-		DosagesText = new JEditorPane();
+		JEditorPane DosagesText = new JEditorPane();
 		DosagesText.setEditable(false);
 		java.net.URL helpURL = DosagesPanel.class.getResource("/com/pori/WineBrewDB/HTMLContent/Dosages.html");
 		if (helpURL != null) {

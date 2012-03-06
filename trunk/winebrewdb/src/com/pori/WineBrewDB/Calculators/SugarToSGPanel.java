@@ -20,15 +20,9 @@ public class SugarToSGPanel extends JPanel {
 
 	private static final long serialVersionUID = -6105676849516060237L;
 	static JPanel SugarToSGSubPanel;
-	private static JTextPane txtSugarToSGInfo;
-	private static JLabel lblVolumeSugarToSG;
 	private static JFormattedTextField fieldVolumeSugarToSG;
-	private static JLabel lblCurrentSG;
 	private static JFormattedTextField fieldCurrentSG;
-	private static JLabel lblDesiredSG;
 	private static JFormattedTextField fieldDesiredSG;
-	private static JButton btnCalculateSugarToSG;
-	private static JLabel lblResult;
 	private static JFormattedTextField fieldResult;	
 	private static String SugarToSGPanelStatus = "DeInitialized";
 
@@ -43,36 +37,36 @@ public class SugarToSGPanel extends JPanel {
 
 						
 		//Add Calculators to subpanel		
-		txtSugarToSGInfo = new JTextPane();
+		JTextPane txtSugarToSGInfo = new JTextPane();
 		txtSugarToSGInfo.setText("Use this to calculate approximately how much sugar you need to add to a known volume of liquid that has a known SG to reach a desired SG. This assumes you are adding the sugar to an already existing quantity of liquid, and not adding the liquid to the sugar to reach the specified volume, there is a difference!");
 		txtSugarToSGInfo.setEditable(false);
 		SugarToSGSubPanel.add(txtSugarToSGInfo, "cell 0 0 6 1,grow");
 			
-		lblVolumeSugarToSG = new JLabel("Volume (litres)");
+		JLabel lblVolumeSugarToSG = new JLabel("Volume (litres)");
 		SugarToSGSubPanel.add(lblVolumeSugarToSG, "cell 0 1,alignx trailing");
 						
 		fieldVolumeSugarToSG = new JFormattedTextField(new DecimalFormat("#0.###"));
 		fieldVolumeSugarToSG.setText("0.000");
 		SugarToSGSubPanel.add(fieldVolumeSugarToSG, "cell 1 1,growx");
 				
-		lblCurrentSG = new JLabel("Current SG");
+		JLabel lblCurrentSG = new JLabel("Current SG");
 		SugarToSGSubPanel.add(lblCurrentSG, "cell 0 2,alignx trailing");
 						
 		fieldCurrentSG = new JFormattedTextField(new DecimalFormat("0.000"));
 		fieldCurrentSG.setText("0.000");
 		SugarToSGSubPanel.add(fieldCurrentSG, "cell 1 2,growx");
 						
-		lblDesiredSG = new JLabel("Desired SG");
+		JLabel lblDesiredSG = new JLabel("Desired SG");
 		SugarToSGSubPanel.add(lblDesiredSG, "cell 0 3,alignx trailing");
 						
 		fieldDesiredSG = new JFormattedTextField(new DecimalFormat("0.000"));
 		fieldDesiredSG.setText("0.000");
 		SugarToSGSubPanel.add(fieldDesiredSG, "cell 1 3,growx");
 						
-		btnCalculateSugarToSG = new JButton("Submit");
+		JButton btnCalculateSugarToSG = new JButton("Submit");
 		SugarToSGSubPanel.add(btnCalculateSugarToSG, "cell 1 4");
 						
-		lblResult = new JLabel("Sugar Required (grams)");
+		JLabel lblResult = new JLabel("Sugar Required (grams)");
 		SugarToSGSubPanel.add(lblResult, "cell 0 5,alignx trailing");
 						
 		fieldResult = new JFormattedTextField(new DecimalFormat("####0"));

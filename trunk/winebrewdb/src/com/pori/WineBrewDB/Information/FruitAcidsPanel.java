@@ -14,7 +14,6 @@ public class FruitAcidsPanel extends JPanel {
 	
 	private static final long serialVersionUID = -6664688139205966142L;
 	static JScrollPane FruitAcidsScrollPane;
-	private static JEditorPane FruitAcidsText;
 	private static String FruitAcidsPanelStatus = "DeInitialized";
 
 	//public FruitAcidsPanel() {
@@ -22,7 +21,7 @@ public class FruitAcidsPanel extends JPanel {
 		
 		
 		//Text area that gets text from external html
-		FruitAcidsText = new JEditorPane();
+		JEditorPane FruitAcidsText = new JEditorPane();
 		FruitAcidsText.setEditable(false);
 		java.net.URL helpURL = FruitAcidsPanel.class.getResource("/com/pori/WineBrewDB/HTMLContent/FruitAcids.html");
 		if (helpURL != null) {
