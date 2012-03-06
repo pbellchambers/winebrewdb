@@ -2,7 +2,6 @@ package com.pori.WineBrewDB.Information;
 
 import java.io.IOException;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -14,11 +13,9 @@ import com.pori.WineBrewDB.MainWindow;
 public class YeastStrainsPanel extends JPanel {
 
 	private static final long serialVersionUID = 2117258858258100582L;
-	public static JScrollPane YeastStrainsScrollPane;
-	public static JEditorPane YeastStrainsText;
-	public static JLabel YeastStrainsHeader;
-	public static JLabel YeastStrainsSubtitle;
-	public static String YeastStrainsPanelStatus = "DeInitialized";
+	static JScrollPane YeastStrainsScrollPane;
+	private static JEditorPane YeastStrainsText;
+	private static String YeastStrainsPanelStatus = "DeInitialized";
 
 	//public YeastStrainsPanel() {
 	public static void InitializePanel(){

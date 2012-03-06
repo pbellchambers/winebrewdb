@@ -14,10 +14,10 @@ public class RecipePanel extends JPanel {
 
 	private static final long serialVersionUID = 1332318777984759664L;
 	public static JPanel RecipePanel;
-	public static JLabel RecipeHeader;
-	public static JLabel RecipeSubtitle;
-	public static JTabbedPane tabbedRecipePane;
-	public static String RecipePanelStatus = "DeInitialized";
+	private static JLabel RecipeHeader;
+	private static JLabel RecipeSubtitle;
+	static JTabbedPane tabbedRecipePane;
+	private static String RecipePanelStatus = "DeInitialized";
 
 	//public RecipePanel() {
 	public static void InitializePanel(){

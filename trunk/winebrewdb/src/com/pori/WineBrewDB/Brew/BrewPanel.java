@@ -14,10 +14,10 @@ public class BrewPanel extends JPanel {
 
 	private static final long serialVersionUID = 6339618777984753664L;
 	public static JPanel BrewPanel;
-	public static JLabel BrewHeader;
-	public static JLabel BrewSubtitle;
-	public static JTabbedPane tabbedBrewPane;
-	public static String BrewPanelStatus = "DeInitialized";
+	private static JLabel BrewHeader;
+	private static JLabel BrewSubtitle;
+	static JTabbedPane tabbedBrewPane;
+	private static String BrewPanelStatus = "DeInitialized";
 
 	//public BrewPanel() {
 	public static void InitializePanel(){

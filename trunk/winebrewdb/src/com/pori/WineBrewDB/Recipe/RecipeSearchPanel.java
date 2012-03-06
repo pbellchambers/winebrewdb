@@ -26,30 +26,26 @@ public class RecipeSearchPanel extends JPanel {
 	
 
 	private static final long serialVersionUID = 1271194251562646054L;
-	public static JPanel tabbedRecipeSearchPanel;
-	public static JPanel RecipeFilterPanel;
-	public static JScrollPane RecipeScrollPane;
-	public static JTable RecipeTable;
-	public static JButton btnSearch;
-	public static int RecipeSearchSelectedRow;
-	public static String RecipeTableFields;
-	public static JCheckBox chckbxAllFields;
-	public static JLabel lblRecipeName;
+	static JPanel tabbedRecipeSearchPanel;
+	private static JPanel RecipeFilterPanel;
+	static JScrollPane RecipeScrollPane;
+	static JTable RecipeTable;
+	private static JButton btnSearch;
+	static int RecipeSearchSelectedRow;
+	private static String RecipeTableFields;
+	private static JCheckBox chckbxAllFields;
+	private static JLabel lblRecipeName;
 	public static JTextField textRecipeName;
-	public static JLabel lblInspiration;
+	private static JLabel lblInspiration;
 	public static JTextField textInspiration;
-	public static JLabel lblIngredients;
+	private static JLabel lblIngredients;
 	public static JTextField textIngredients;
-	public static JLabel lblSuggestedYeast;
+	private static JLabel lblSuggestedYeast;
 	public static JTextField textSuggestedYeast;
-	public static JLabel lblMethod;
+	private static JLabel lblMethod;
 	public static JTextField textMethod;
-	public static JLabel lblNotes;
+	private static JLabel lblNotes;
 	public static JTextField textNotes;
-	public static JLabel lblReferences;
-	public static JTextField textReferences;
-	public static JLabel lblVolume;
-	public static JTextField textVolume;
 
 	
 	public static void InitializePanel(){
@@ -101,14 +97,6 @@ public class RecipeSearchPanel extends JPanel {
 		
 		textNotes = new JTextField();
 		RecipeFilterPanel.add(textNotes, "cell 3 2,growx");
-			
-		lblReferences = new JLabel("References:");
-		
-		textReferences = new JTextField();
-		
-		lblVolume = new JLabel("Volume:");
-		
-		textVolume = new JTextField();
 			
 		chckbxAllFields = new JCheckBox("Show All Fields?");
 		RecipeFilterPanel.add(chckbxAllFields, "cell 2 3,alignx right");

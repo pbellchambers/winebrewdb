@@ -30,27 +30,25 @@ import net.miginfocom.swing.MigLayout;
 public class BrewNotesPanel extends JPanel {
 	
 	private static final long serialVersionUID = -1974511040788382066L;
-	public static JPanel tabbedBrewNotesPanel;
-	public static JScrollPane BrewNotesScrollPane;
-	public static JTable BrewNotesTable;
-	public static int BrewNotesSelectedRow;
-	public static JLabel lblBrewNoteRef;
+	static JPanel tabbedBrewNotesPanel;
+	static JScrollPane BrewNotesScrollPane;
+	static JTable BrewNotesTable;
+	private static int BrewNotesSelectedRow;
 	public static JTextField textBrewNoteRef;
-	public static JLabel lblBrewNoteDate;
+	private static JLabel lblBrewNoteDate;
 	public static JDateChooser chooserBrewNoteDate;
-	public static JLabel lblBrewNoteDaysSinceStart;
 	public static JTextField textBrewNoteDaysSinceStart;
-	public static JLabel lblBrewNoteIncident;
+	private static JLabel lblBrewNoteIncident;
 	public static JTextField textBrewNoteIncident;
-	public static JLabel lblBrewNoteNote;
+	private static JLabel lblBrewNoteNote;
 	public static JTextArea textBrewNoteNote;
-	public static JButton btnBrewNoteAdd;
-	public static JButton btnBrewNoteEdit;
-	public static JButton btnBrewNoteDelete;
-	public static JButton btnBrewNoteCancel;
-	public static JButton btnBrewNoteSave;
-	public static JScrollPane BrewNotesNoteScrollPane;
-	public static String isNewNote;
+	private static JButton btnBrewNoteAdd;
+	static JButton btnBrewNoteEdit;
+	private static JButton btnBrewNoteDelete;
+	private static JButton btnBrewNoteCancel;
+	private static JButton btnBrewNoteSave;
+	private static JScrollPane BrewNotesNoteScrollPane;
+	private static String isNewNote;
 	private static boolean mouseListenerIsActive;
 
 	
@@ -69,12 +67,7 @@ public class BrewNotesPanel extends JPanel {
 	    BrewNotesScrollPane = new JScrollPane();
 	    BrewNotesScrollPane.setViewportView(BrewNotesTable);
 	    tabbedBrewNotesPanel.add(BrewNotesScrollPane, "cell 0 0 6 1,grow");
-	    
-	    
-	    //Main Fields
-	    lblBrewNoteRef = new JLabel("Brew Note Ref:");
-	    //tabbedBrewNotesPanel.add(lblBrewNoteRef, "cell 0 1,alignx trailing");
-		
+
 		textBrewNoteRef = new JTextField();
 		textBrewNoteRef.setEditable(false);
 		//tabbedBrewNotesPanel.add(textBrewNoteRef, "cell 1 1,growx");
@@ -85,9 +78,6 @@ public class BrewNotesPanel extends JPanel {
 		chooserBrewNoteDate = new JDateChooser();
 		chooserBrewNoteDate.setDisabled();
 		tabbedBrewNotesPanel.add(chooserBrewNoteDate, "cell 1 1,growx");
-		
-		lblBrewNoteDaysSinceStart = new JLabel("Days Since Start:");
-		//tabbedBrewNotesPanel.add(lblBrewNoteDaysSinceStart, "cell 4 1,alignx trailing");
 		
 		textBrewNoteDaysSinceStart = new JTextField();
 		textBrewNoteDaysSinceStart.setEditable(false);
@@ -294,6 +284,7 @@ public class BrewNotesPanel extends JPanel {
 						);
 					} else {
 						try {
+							//TODO: Handle where start date is null
 							textBrewNoteDaysSinceStart.setText(Dates.daysBetween(BrewDataPanel.chooserBrewDateStartedB.getDate(), chooserBrewNoteDate.getDate()));
 							textBrewNoteRef.setText(DBEngine.getNextBrewNoteRef());
 							DBEngine.addBrewNote();

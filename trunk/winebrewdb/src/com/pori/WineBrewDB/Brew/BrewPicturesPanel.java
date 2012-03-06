@@ -29,26 +29,26 @@ import net.miginfocom.swing.MigLayout;
 public class BrewPicturesPanel extends JPanel {
 	
 	private static final long serialVersionUID = -476275486314448039L;
-	public static JPanel tabbedBrewPicturesPanel;
-	public static JScrollPane BrewPicturesTableScrollPane;
-	public static JScrollPane BrewPictureScrollPane;
-	public static JTable BrewPicturesTable;
+	static JPanel tabbedBrewPicturesPanel;
+	static JScrollPane BrewPicturesTableScrollPane;
+	private static JScrollPane BrewPictureScrollPane;
+	static JTable BrewPicturesTable;
 	private static boolean mouseListenerIsActive;
-	public static int BrewPicturesSelectedRow;
-	public static JLabel lblBrewPictureRef;
+	private static int BrewPicturesSelectedRow;
 	public static JTextField textBrewPictureRef;
-	public static JLabel lblBrewPictureDescription;
+	private static JLabel lblBrewPictureDescription;
 	public static JTextField textBrewPictureDescription;
-	public static JButton btnBrewPictureAdd;
-	public static JButton btnBrewPictureEdit;
-	public static JButton btnBrewPictureDelete;
-	public static JButton btnBrewPictureCancel;
-	public static JButton btnBrewPictureSave;
-	public static String isNewPicture;
+	private static JButton btnBrewPictureAdd;
+	static JButton btnBrewPictureEdit;
+	private static JButton btnBrewPictureDelete;
+	private static JButton btnBrewPictureCancel;
+	private static JButton btnBrewPictureSave;
+	private static String isNewPicture;
 	public static JTextField textBrewPictureFilename;
-	public static JLabel labelBrewPicture;
-	public static JButton btnBrewPictureLoad;
+	private static JLabel labelBrewPicture;
+	private static JButton btnBrewPictureLoad;
 	private static boolean resizeListenerIsActive;
+	private static JButton btnBrewPictureSavePic;
 
 	
 	public static void InitializePanel(){
@@ -70,9 +70,6 @@ public class BrewPicturesPanel extends JPanel {
 	    
 	    
 	    //Main Fields
-	    lblBrewPictureRef = new JLabel("Brew Picture Ref:");
-	    //tabbedBrewPicturesPanel.add(lblBrewPictureRef, "cell 0 1,alignx trailing");
-		
 		textBrewPictureRef = new JTextField();
 		textBrewPictureRef.setEditable(false);
 		//tabbedBrewPicturesPanel.add(textBrewPictureRef, "cell 1 1,growx");
@@ -117,6 +114,10 @@ public class BrewPicturesPanel extends JPanel {
 		btnBrewPictureSave.setEnabled(false);
 		tabbedBrewPicturesPanel.add(btnBrewPictureSave, "cell 5 4,growx");
 		
+		btnBrewPictureSavePic = new JButton("Save Picture to Disk");
+		btnBrewPictureSavePic.setEnabled(false);
+		//tabbedBrewPicturesPanel.add(btnBrewPictureSavePic, "cell 5 4,growx");
+		
 		resizeListenerIsActive = false;
 		
 		//Add listeners
@@ -144,7 +145,7 @@ public class BrewPicturesPanel extends JPanel {
 			}
 		});
 		
-		//TODO: Add a save picture button
+		//TODO: Add a save picture button with error capture popup
 		btnBrewPictureLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser c = new JFileChooser();

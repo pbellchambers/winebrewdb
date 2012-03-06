@@ -9,8 +9,8 @@ import java.text.DecimalFormat;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import com.pori.WineBrewDB.MainWindow;
@@ -20,30 +20,29 @@ import net.miginfocom.swing.MigLayout;
 public class DilutionPanel extends JPanel {
 
 	private static final long serialVersionUID = -5260637755405545904L;
-	public static JPanel DilutionSubPanel;
-	public static JTextField txtDilutionPanel;
-	public static JTextPane txtDilutionInfo;
-	public static JLabel lblDilutionMethodABV;
-	public static JLabel lblStartingVolumeABV;
-	public static JFormattedTextField fieldStartingVolumeABV;
-	public static JLabel lblVolumeAddedABV;
-	public static JFormattedTextField fieldVolumeAddedABV;
-	public static JLabel lblCurrentABV;
-	public static JFormattedTextField fieldCurrentABV;
-	public static JLabel lblResultABV;
-	public static JFormattedTextField fieldResultABV;
-	public static JButton btnCalculateDilutionABV;
-	public static JLabel lblDilutionMethodSG;
-	public static JLabel lblStartingVolumeSG;
-	public static JFormattedTextField fieldStartingVolumeSG;
-	public static JLabel lblVolumeAddedSG;
-	public static JFormattedTextField fieldVolumeAddedSG;
-	public static JLabel lblCurrentSG;
-	public static JFormattedTextField fieldCurrentSG;
-	public static JLabel lblResultSG;
-	public static JFormattedTextField fieldResultSG;
-	public static JButton btnCalculateDilutionSG;
-	public static String DilutionPanelStatus = "DeInitialized";
+	static JPanel DilutionSubPanel;
+	private static JTextPane txtDilutionInfo;
+	private static JLabel lblDilutionMethodABV;
+	private static JLabel lblStartingVolumeABV;
+	private static JFormattedTextField fieldStartingVolumeABV;
+	private static JLabel lblVolumeAddedABV;
+	private static JFormattedTextField fieldVolumeAddedABV;
+	private static JLabel lblCurrentABV;
+	private static JFormattedTextField fieldCurrentABV;
+	private static JLabel lblResultABV;
+	private static JFormattedTextField fieldResultABV;
+	private static JButton btnCalculateDilutionABV;
+	private static JLabel lblDilutionMethodSG;
+	private static JLabel lblStartingVolumeSG;
+	private static JFormattedTextField fieldStartingVolumeSG;
+	private static JLabel lblVolumeAddedSG;
+	private static JFormattedTextField fieldVolumeAddedSG;
+	private static JLabel lblCurrentSG;
+	private static JFormattedTextField fieldCurrentSG;
+	private static JLabel lblResultSG;
+	private static JFormattedTextField fieldResultSG;
+	private static JButton btnCalculateDilutionSG;
+	private static String DilutionPanelStatus = "DeInitialized";
 
 	//public DilutionPanel() {
 	public static void InitializePanel(){
@@ -162,14 +161,23 @@ public class DilutionPanel extends JPanel {
 		}
 	}
 	
-	//TODO: Prevent / by 0	
+
 	public static void CalculateDilutionABV(){
 		BigDecimal StartingVolume = new BigDecimal(fieldStartingVolumeABV.getText());
 		BigDecimal VolumeAdded = new BigDecimal(fieldVolumeAddedABV.getText());
 		BigDecimal TotalNewVolume = StartingVolume.add(VolumeAdded);
 		BigDecimal CurrentABV = new BigDecimal(fieldCurrentABV.getText());
-		BigDecimal interim = CurrentABV.divide(TotalNewVolume, 5, BigDecimal.ROUND_HALF_UP);
-		BigDecimal Result = interim.multiply(StartingVolume);
+		BigDecimal Result = new BigDecimal("0");
+		try{
+			BigDecimal interim = CurrentABV.divide(TotalNewVolume, 5, BigDecimal.ROUND_HALF_UP);
+			Result = interim.multiply(StartingVolume);
+		}catch(ArithmeticException ex){
+			JOptionPane.showMessageDialog(null,
+			"You seem to have tried to divide by zero.",
+			"Error",
+			JOptionPane.ERROR_MESSAGE
+			);
+		}
 		
 		fieldResultABV.setText(Result.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 	}
@@ -180,10 +188,19 @@ public class DilutionPanel extends JPanel {
 		BigDecimal TotalNewVolume = StartingVolume.add(VolumeAdded);
 		BigDecimal CurrentSGMinus1 = new BigDecimal(fieldCurrentSG.getText()).subtract(new BigDecimal("1"));
 		BigDecimal CurrentSGPoints = CurrentSGMinus1.multiply(new BigDecimal("1000"));
-		BigDecimal interim = CurrentSGPoints.multiply(StartingVolume);
-		BigDecimal interimpoints = interim.divide(TotalNewVolume, 5, BigDecimal.ROUND_HALF_UP);
-		BigDecimal interimminus1 = interimpoints.divide(new BigDecimal("1000"), 3, BigDecimal.ROUND_HALF_UP);
-		BigDecimal Result = interimminus1.add(new BigDecimal("1"));
+		BigDecimal Result = new BigDecimal("0");
+		try{
+			BigDecimal interim = CurrentSGPoints.multiply(StartingVolume);
+			BigDecimal interimpoints = interim.divide(TotalNewVolume, 5, BigDecimal.ROUND_HALF_UP);
+			BigDecimal interimminus1 = interimpoints.divide(new BigDecimal("1000"), 3, BigDecimal.ROUND_HALF_UP);
+			Result = interimminus1.add(new BigDecimal("1"));
+		}catch(ArithmeticException ex){
+			JOptionPane.showMessageDialog(null,
+			"You seem to have tried to divide by zero.",
+			"Error",
+			JOptionPane.ERROR_MESSAGE
+			);			
+		}		
 		
 		fieldResultSG.setText(Result.toString());
 	}

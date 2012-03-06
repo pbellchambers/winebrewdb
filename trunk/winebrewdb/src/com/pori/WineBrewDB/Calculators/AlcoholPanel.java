@@ -18,25 +18,25 @@ import net.miginfocom.swing.MigLayout;
 public class AlcoholPanel extends JPanel {
 
 	private static final long serialVersionUID = -8187974481712023349L;
-	public static JPanel AlcoholSubPanel;
-	public static JLabel lblHStartingSG;
-	public static JLabel lblHFinishingSG;
-	public static JLabel lblHABV;
-	public static JLabel lblHAlcoholMethod;
-	public static JTextPane txtAlcoholInfo;
-	public static JFormattedTextField fieldHStartingSG;
-	public static JFormattedTextField fieldHFinishingSG;
-	public static JFormattedTextField fieldHABV;
-	public static JButton btnHCalculateABV;
-	public static JLabel lblCStartingSG;
-	public static JLabel lblCFinishingSG;
-	public static JLabel lblCABV;
-	public static JLabel lblCAlcoholMethod;
-	public static JFormattedTextField fieldCStartingSG;
-	public static JFormattedTextField fieldCFinishingSG;
-	public static JFormattedTextField fieldCABV;
-	public static JButton btnCCalculateABV;
-	public static String AlcoholPanelStatus = "DeInitialized";
+	static JPanel AlcoholSubPanel;
+	private static JLabel lblHStartingSG;
+	private static JLabel lblHFinishingSG;
+	private static JLabel lblHABV;
+	private static JLabel lblHAlcoholMethod;
+	private static JTextPane txtAlcoholInfo;
+	private static JFormattedTextField fieldHStartingSG;
+	private static JFormattedTextField fieldHFinishingSG;
+	private static JFormattedTextField fieldHABV;
+	private static JButton btnHCalculateABV;
+	private static JLabel lblCStartingSG;
+	private static JLabel lblCFinishingSG;
+	private static JLabel lblCABV;
+	private static JLabel lblCAlcoholMethod;
+	private static JFormattedTextField fieldCStartingSG;
+	private static JFormattedTextField fieldCFinishingSG;
+	private static JFormattedTextField fieldCABV;
+	private static JButton btnCCalculateABV;
+	private static String AlcoholPanelStatus = "DeInitialized";
 
 	//public AlcoholPanel() {
 	public static void InitializePanel(){
