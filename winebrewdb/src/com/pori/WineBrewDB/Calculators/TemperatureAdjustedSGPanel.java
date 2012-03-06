@@ -20,21 +20,21 @@ import net.miginfocom.swing.MigLayout;
 public class TemperatureAdjustedSGPanel extends JPanel {
 
 	private static final long serialVersionUID = -2859114835526520455L;
-	public static JPanel TemperatureAdjustedSGSubPanel;
-	public static JTextPane txtTemperatureAdjustedSG;
-	public static JToggleButton btnCelcius;
-	public static JToggleButton btnFahrenheit;
-	public static JToggleButton btnKelvin;
-	public static JLabel lblTemperature;
-	public static JFormattedTextField fieldTemperature;
-	public static JLabel lblHydrometerTemperature;
-	public static JFormattedTextField fieldHydrometerTemperature;
-	public static JLabel lblSG;
-	public static JFormattedTextField fieldSG;
-	public static JButton btnCalculateTemperatureAdjustedSG;
-	public static JLabel lblResult;
-	public static JFormattedTextField fieldResult;
-	public static String TemperatureAdjustedSGPanelStatus = "DeInitialized";
+	static JPanel TemperatureAdjustedSGSubPanel;
+	private static JTextPane txtTemperatureAdjustedSG;
+	private static JToggleButton btnCelcius;
+	private static JToggleButton btnFahrenheit;
+	private static JToggleButton btnKelvin;
+	private static JLabel lblTemperature;
+	private static JFormattedTextField fieldTemperature;
+	private static JLabel lblHydrometerTemperature;
+	private static JFormattedTextField fieldHydrometerTemperature;
+	private static JLabel lblSG;
+	private static JFormattedTextField fieldSG;
+	private static JButton btnCalculateTemperatureAdjustedSG;
+	private static JLabel lblResult;
+	private static JFormattedTextField fieldResult;
+	private static String TemperatureAdjustedSGPanelStatus = "DeInitialized";
 
 	//public TemperatureAdjustedSGPanel() {
 	public static void InitializePanel(){

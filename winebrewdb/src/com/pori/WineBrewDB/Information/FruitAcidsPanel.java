@@ -2,7 +2,6 @@ package com.pori.WineBrewDB.Information;
 
 import java.io.IOException;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -14,11 +13,9 @@ import com.pori.WineBrewDB.MainWindow;
 public class FruitAcidsPanel extends JPanel {
 	
 	private static final long serialVersionUID = -6664688139205966142L;
-	public static JScrollPane FruitAcidsScrollPane;
-	public static JEditorPane FruitAcidsText;
-	public static JLabel FruitAcidsHeader;
-	public static JLabel FruitAcidsSubtitle;
-	public static String FruitAcidsPanelStatus = "DeInitialized";
+	static JScrollPane FruitAcidsScrollPane;
+	private static JEditorPane FruitAcidsText;
+	private static String FruitAcidsPanelStatus = "DeInitialized";
 
 	//public FruitAcidsPanel() {
 	public static void InitializePanel(){

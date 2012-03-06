@@ -20,32 +20,31 @@ import net.miginfocom.swing.MigLayout;
 public class RecipeDataPanel extends JPanel {
 
 	private static final long serialVersionUID = -744103763529915749L;
-	public static JPanel tabbedRecipeDataPanel;
-	public static JLabel lblRecipeNameB;
+	static JPanel tabbedRecipeDataPanel;
+	private static JLabel lblRecipeNameB;
 	public static JTextField textRecipeNameB;
-	public static JLabel lblInspirationB;
+	private static JLabel lblInspirationB;
 	public static JTextField textInspirationB;
-	public static JLabel lblIngredientsB;
+	private static JLabel lblIngredientsB;
 	public static JTextArea textIngredientsB;
-	public static JLabel lblSuggestedYeastB;
+	private static JLabel lblSuggestedYeastB;
 	public static JTextField textSuggestedYeastB;
-	public static JLabel lblMethodB;
+	private static JLabel lblMethodB;
 	public static JTextArea textMethodB;
-	public static JLabel lblNotesB;
+	private static JLabel lblNotesB;
 	public static JTextArea textNotesB;
-	public static JLabel lblReferencesB;
+	private static JLabel lblReferencesB;
 	public static JTextField textReferencesB;
-	public static JLabel lblVolumeB;
+	private static JLabel lblVolumeB;
 	public static JTextField textVolumeB;
-	public static JLabel lblRecipeRefB;
 	public static JTextField textRecipeRefB;
-	public static JScrollPane RecipeDataIngredientsScrollPane;
-	public static JScrollPane RecipeDataMethodScrollPane;
-	public static JScrollPane RecipeDataNotesScrollPane;
-	public static JButton btnRecipeDataEdit;
-	public static JButton btnRecipeDataDelete;
-	public static JButton btnRecipeDataCancel;
-	public static JButton btnRecipeDataSave;
+	private static JScrollPane RecipeDataIngredientsScrollPane;
+	private static JScrollPane RecipeDataMethodScrollPane;
+	private static JScrollPane RecipeDataNotesScrollPane;
+	static JButton btnRecipeDataEdit;
+	static JButton btnRecipeDataDelete;
+	private static JButton btnRecipeDataCancel;
+	private static JButton btnRecipeDataSave;
 	
 	
 	public static void InitializePanel(){
@@ -53,9 +52,7 @@ public class RecipeDataPanel extends JPanel {
 		tabbedRecipeDataPanel = new JPanel();
 		tabbedRecipeDataPanel.setBackground(Color.WHITE);
 		tabbedRecipeDataPanel.setLayout(new MigLayout("", "[110px:110px:110px][70px:70px, grow][70px:70px, grow][120px:120px:120px][70px:70px, grow]", "[][][100px:100px, grow][][130px:130px, grow][70px:70px, grow][][15px:15px][]"));
-		
-		lblRecipeRefB = new JLabel("Recipe Ref:");
-			
+				
 		textRecipeRefB = new JTextField();
 		textRecipeRefB.setEditable(false);
 		

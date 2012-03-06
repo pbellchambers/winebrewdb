@@ -19,18 +19,18 @@ import net.miginfocom.swing.MigLayout;
 public class SugarToSGPanel extends JPanel {
 
 	private static final long serialVersionUID = -6105676849516060237L;
-	public static JPanel SugarToSGSubPanel;
-	public static JTextPane txtSugarToSGInfo;
-	public static JLabel lblVolumeSugarToSG;
-	public static JFormattedTextField fieldVolumeSugarToSG;
-	public static JLabel lblCurrentSG;
-	public static JFormattedTextField fieldCurrentSG;
-	public static JLabel lblDesiredSG;
-	public static JFormattedTextField fieldDesiredSG;
-	public static JButton btnCalculateSugarToSG;
-	public static JLabel lblResult;
-	public static JFormattedTextField fieldResult;	
-	public static String SugarToSGPanelStatus = "DeInitialized";
+	static JPanel SugarToSGSubPanel;
+	private static JTextPane txtSugarToSGInfo;
+	private static JLabel lblVolumeSugarToSG;
+	private static JFormattedTextField fieldVolumeSugarToSG;
+	private static JLabel lblCurrentSG;
+	private static JFormattedTextField fieldCurrentSG;
+	private static JLabel lblDesiredSG;
+	private static JFormattedTextField fieldDesiredSG;
+	private static JButton btnCalculateSugarToSG;
+	private static JLabel lblResult;
+	private static JFormattedTextField fieldResult;	
+	private static String SugarToSGPanelStatus = "DeInitialized";
 
 	//public SugarToSGPanel() {
 	public static void InitializePanel(){

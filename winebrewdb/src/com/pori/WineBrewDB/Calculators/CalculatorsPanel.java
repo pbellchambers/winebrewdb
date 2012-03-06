@@ -14,10 +14,10 @@ public class CalculatorsPanel extends JPanel {
 
 	private static final long serialVersionUID = 2339618745984753667L;
 	public static JPanel CalculatorsPanel;
-	public static JLabel CalculatorsHeader;
-	public static JLabel CalculatorsSubtitle;
+	private static JLabel CalculatorsHeader;
+	private static JLabel CalculatorsSubtitle;
 	public static JTabbedPane tabbedCalculatorsPane;
-	public static String CalculatorsPanelStatus = "DeInitialized";
+	private static String CalculatorsPanelStatus = "DeInitialized";
 
 	//public CalculatorsPanel() {
 	public static void InitializePanel(){

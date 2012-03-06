@@ -73,6 +73,8 @@ public class InitializeMenu extends MainWindow {
 		
 		//TODO: Finish menu bar (load and save)
 		//TODO: First run database save location popup (use .ini file)
+		//TODO: Figure out Launch4j maybe
+		//TODO: Don't statically declare label fields everywhere (possibly look at all private ones)
 		//File Menu
 		mnFile = new JMenu("File");
 		menuBar.add(mnFile);

@@ -14,10 +14,10 @@ public class InformationPanel extends JPanel {
 
 	private static final long serialVersionUID = 3331794777984753664L;
 	public static JPanel InformationPanel;
-	public static JLabel InformationHeader;
-	public static JLabel InformationSubtitle;
+	private static JLabel InformationHeader;
+	private static JLabel InformationSubtitle;
 	public static JTabbedPane tabbedInformationPane;
-	public static String InformationPanelStatus = "DeInitialized";
+	private static String InformationPanelStatus = "DeInitialized";
 
 	//public InformationPanel() {
 	public static void InitializePanel(){
