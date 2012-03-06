@@ -29,7 +29,6 @@ public class MainWindow {
 			public void run() {
 				Font defaultFont = new Font("Arial",Font.PLAIN,12);
 				
-				//TODO: Add graphical buttons, maybe get rid of side menu bar, expand top menu bar, more like a proper application.
 				try{ 
 					   UIManager.setLookAndFeel(
 					        UIManager.getSystemLookAndFeelClassName());

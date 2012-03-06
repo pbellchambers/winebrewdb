@@ -1,7 +1,6 @@
 package com.pori.WineBrewDB;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -15,17 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JEditorPane;
-import javax.swing.border.LineBorder;
 
 public class DilutionPanel extends JPanel {
 
 	private static final long serialVersionUID = -5260637755405545904L;
-	public static JPanel DilutionPanel;
 	public static JPanel DilutionSubPanel;
-	public static JEditorPane DilutionText;
-	public static JLabel DilutionHeader;
-	public static JLabel DilutionSubtitle;
 	public static JTextField txtDilutionPanel;
 	public static JTextPane txtDilutionInfo;
 	public static JLabel lblDilutionMethodABV;
@@ -53,28 +46,11 @@ public class DilutionPanel extends JPanel {
 	//public DilutionPanel() {
 	public static void InitializePanel(){
 		
-		DilutionPanel = new JPanel();
-		DilutionPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
-		
-		
-		//Header
-		DilutionHeader = new JLabel("Dilution");
-		DilutionHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
-		DilutionPanel.add(DilutionHeader, "cell 0 0,grow");
-		
-		
-		//Subtitle
-		DilutionSubtitle = new JLabel("Calculate the adjusted ABV % / SG when diluting a brew.");
-		DilutionSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
-		DilutionPanel.add(DilutionSubtitle, "cell 0 1,growx,aligny top");
-		
 		
 		//Subpanel
 		DilutionSubPanel = new JPanel();
 		DilutionSubPanel.setBackground(Color.WHITE);
-		DilutionSubPanel.setBorder(new LineBorder(new Color(128, 128, 128)));
 		DilutionSubPanel.setLayout(new MigLayout("", "[135px:n:135px,left][90px:n:90px][100px:n:100px][135px:n:135px,left][90px:n:90px][grow]", "[150px:n,150px][30px:n:30px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px][40px:n:40px]"));
-		DilutionPanel.add(DilutionSubPanel, "cell 0 2,grow");
 			
 				
 		//Add Calculators to subpanel		
@@ -169,8 +145,8 @@ public class DilutionPanel extends JPanel {
 				
 				
 		//Add it all to the main window
-		MainWindow.WineBrewDBFrame.getContentPane().add(DilutionPanel, "cell 0 0,grow");
-		DilutionPanel.setVisible(false);
+		MainWindow.WineBrewDBFrame.getContentPane().add(DilutionSubPanel, "cell 0 0,grow");
+		DilutionSubPanel.setVisible(false);
 
 		DilutionPanelStatus = "Initialized";
 	}
@@ -178,11 +154,8 @@ public class DilutionPanel extends JPanel {
 			
 	public static void DeInitializePanel(){
 		if(DilutionPanelStatus.equals("Initialized")) {
-			DilutionPanel.setVisible(false);
-			DilutionPanel.remove(DilutionHeader);
-			DilutionPanel.remove(DilutionSubtitle);
-			DilutionPanel.remove(DilutionSubPanel);
-			MainWindow.WineBrewDBFrame.getContentPane().remove(DilutionPanel);
+			DilutionSubPanel.setVisible(false);
+			MainWindow.WineBrewDBFrame.getContentPane().remove(DilutionSubPanel);
 			DilutionPanelStatus = "DeInitialized";
 		}
 	}

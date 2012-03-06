@@ -1,7 +1,6 @@
 package com.pori.WineBrewDB;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -14,16 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JEditorPane;
-import javax.swing.border.LineBorder;
 
 public class MeasuresPanel extends JPanel {
 
 	private static final long serialVersionUID = -7839159138359581270L;
-	public static JPanel MeasuresPanel;
-	public static JEditorPane MeasuresText;
-	public static JLabel MeasuresHeader;
-	public static JLabel MeasuresSubtitle;
 	public static String MeasuresPanelStatus = "DeInitialized";
 	public static JPanel MeasuresSubPanel;
 	public static JTextPane txtMeasuresInfo;
@@ -70,29 +63,12 @@ public class MeasuresPanel extends JPanel {
 	
 	//public MeasuresPanel() {
 	public static void InitializePanel(){
-		
-		MeasuresPanel = new JPanel();
-		MeasuresPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
-		
-		
-		//Header
-		MeasuresHeader = new JLabel("Measures");
-		MeasuresHeader.setFont(new Font("Tahoma", Font.BOLD, 18));
-		MeasuresPanel.add(MeasuresHeader, "cell 0 0,grow");
-		
-		
-		//Subtitle
-		MeasuresSubtitle = new JLabel("Convert between various measures.");
-		MeasuresSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
-		MeasuresPanel.add(MeasuresSubtitle, "cell 0 1,growx,aligny top");
-		
+			
 		
 		//Subpanel
 		MeasuresSubPanel = new JPanel();
 		MeasuresSubPanel.setBackground(Color.WHITE);
-		MeasuresSubPanel.setBorder(new LineBorder(new Color(128, 128, 128)));
 		MeasuresSubPanel.setLayout(new MigLayout("", "[20px:n:20px,left][15px:n:15px][20px:n:20px,left][60px:n:60px][40px:n:40px][40px:n:40px][60px:n:60px,left][60px:n:60px][60px:n:60px][60px:n:60px,left][60px:n:60px][40px:n:40px][40px:n:40px][60px:n:60px,left][60px:n:60px][grow]", "[5px:n,5px][15px:n:15px][20px:n:20px][40px:n:40px][40px:n:40px][20px:n:20px][40px:n:40px][40px:n:40px][20px:n:20px][40px:n:40px]"));
-		MeasuresPanel.add(MeasuresSubPanel, "cell 0 2,grow");
 				
 				
 		//Add Calculators to subpanel		
@@ -286,8 +262,8 @@ public class MeasuresPanel extends JPanel {
 		});
 		
 		//Add it all to the main window
-		MainWindow.WineBrewDBFrame.getContentPane().add(MeasuresPanel, "cell 0 0,grow");
-		MeasuresPanel.setVisible(false);
+		MainWindow.WineBrewDBFrame.getContentPane().add(MeasuresSubPanel, "cell 0 0,grow");
+		MeasuresSubPanel.setVisible(false);
 
 		MeasuresPanelStatus = "Initialized";
 	}
@@ -295,10 +271,8 @@ public class MeasuresPanel extends JPanel {
 	
 	public static void DeInitializePanel(){
 		if(MeasuresPanelStatus.equals("Initialized")) {
-			MeasuresPanel.setVisible(false);
-			MeasuresPanel.remove(MeasuresHeader);
-			MeasuresPanel.remove(MeasuresSubtitle);
-			MainWindow.WineBrewDBFrame.getContentPane().remove(MeasuresPanel);
+			MeasuresSubPanel.setVisible(false);
+			MainWindow.WineBrewDBFrame.getContentPane().remove(MeasuresSubPanel);
 			MeasuresPanelStatus = "DeInitialized";
 		}
 	}

@@ -1,9 +1,10 @@
 package com.pori.WineBrewDB;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JToggleButton;
 import javax.swing.JLayeredPane;
@@ -11,8 +12,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -24,8 +26,8 @@ public class InitializeMenu extends MainWindow {
 	public static JTextField txtCalculators;
 	public static JTextField txtInformation;
 	public static JLayeredPane ContentPane;
-	public static JToggleButton btnBrew;
-	public static JToggleButton btnRecipe;
+	public static JButton btnBrew;
+	public static JButton btnRecipe;
 	public static JToggleButton btnAlcohol;
 	public static JToggleButton btnDilution;
 	public static JToggleButton btnMeasures;
@@ -38,17 +40,19 @@ public class InitializeMenu extends MainWindow {
 	private static JMenu mnLAF;
 	private static JRadioButtonMenuItem radioSystemLAF;
 	private static JRadioButtonMenuItem radioJavaLAF;
-	private static JPanel MenuPanel;
+	private static JToolBar MenuPanel;
 	private static JMenuBar menuBar;
 	private static JMenu mnFile;
 	private static JMenu mnDatabase;
 	private static JMenu mnCalculators;
 	private static JMenu mnInformation;
 	private static JMenu mnHelp;
+	public static JButton btnCalculators;
+	public static JButton btnInformation;
 	
 	public static void InitializeTopMenuMethod(){
 		
-		WineBrewDBVersion = "v0.8.0";
+		WineBrewDBVersion = "v0.8.1";
 		
 		//Top Menu Bar
 		menuBar = new JMenuBar();
@@ -70,6 +74,7 @@ public class InitializeMenu extends MainWindow {
 		mnFile.add(mntmNew);
 		
 		final JMenuItem mntmLoad = new JMenuItem("Load Database");
+		mntmLoad.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/load.png")));
 		mntmLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -80,6 +85,7 @@ public class InitializeMenu extends MainWindow {
 		mnFile.add(mntmLoad);
 		
 		final JMenuItem mntmSaveAs = new JMenuItem("Save Database As");
+		mntmSaveAs.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/save.png")));
 		mntmSaveAs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -154,7 +160,6 @@ public class InitializeMenu extends MainWindow {
 		mntmBrew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnBrew.setSelected(true);
 				BrewPanel.InitializePanel();
 				BrewPanel.BrewPanel.setVisible(true);
 				}
@@ -167,7 +172,6 @@ public class InitializeMenu extends MainWindow {
 		mntmRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnRecipe.setSelected(true);
 				RecipePanel.InitializePanel();
 				RecipePanel.RecipePanel.setVisible(true);				
 				}
@@ -185,9 +189,9 @@ public class InitializeMenu extends MainWindow {
 		mntmAlcohol.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnAlcohol.setSelected(true);
-				AlcoholPanel.InitializePanel();
-				AlcoholPanel.AlcoholPanel.setVisible(true);				
+				CalculatorsPanel.InitializePanel();
+				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(0);
+				CalculatorsPanel.CalculatorsPanel.setVisible(true);				
 				}
 			}
 			
@@ -198,9 +202,9 @@ public class InitializeMenu extends MainWindow {
 		mntmDilution.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnDilution.setSelected(true);
-				DilutionPanel.InitializePanel();
-				DilutionPanel.DilutionPanel.setVisible(true);				
+				CalculatorsPanel.InitializePanel();
+				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(1);
+				CalculatorsPanel.CalculatorsPanel.setVisible(true);			
 				}
 			}
 			
@@ -211,9 +215,9 @@ public class InitializeMenu extends MainWindow {
 		mntmMeasures.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnMeasures.setSelected(true);
-				MeasuresPanel.InitializePanel();
-				MeasuresPanel.MeasuresPanel.setVisible(true);				
+				CalculatorsPanel.InitializePanel();
+				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(2);
+				CalculatorsPanel.CalculatorsPanel.setVisible(true);				
 				}
 			}
 			
@@ -224,9 +228,9 @@ public class InitializeMenu extends MainWindow {
 		mntmSugarToSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnSugarToSG.setSelected(true);
-				SugarToSGPanel.InitializePanel();
-				SugarToSGPanel.SugarToSGPanel.setVisible(true);				
+				CalculatorsPanel.InitializePanel();
+				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(3);
+				CalculatorsPanel.CalculatorsPanel.setVisible(true);			
 				}
 			}
 			
@@ -237,9 +241,9 @@ public class InitializeMenu extends MainWindow {
 		mntmTemperatureAdjustedSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnTemperatureAdjustedSG.setSelected(true);
-				TemperatureAdjustedSGPanel.InitializePanel();
-				TemperatureAdjustedSGPanel.TemperatureAdjustedSGPanel.setVisible(true);				
+				CalculatorsPanel.InitializePanel();
+				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(4);
+				CalculatorsPanel.CalculatorsPanel.setVisible(true);				
 				}
 			}
 			
@@ -255,9 +259,9 @@ public class InitializeMenu extends MainWindow {
 		mntmDosages.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnDosages.setSelected(true);
-				DosagesPanel.InitializePanel();
-				DosagesPanel.DosagesPanel.setVisible(true);				
+				InformationPanel.InitializePanel();
+				InformationPanel.tabbedInformationPane.setSelectedIndex(0);
+				InformationPanel.InformationPanel.setVisible(true);					
 				}
 			}
 			
@@ -268,9 +272,9 @@ public class InitializeMenu extends MainWindow {
 		mntmFruitAcids.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnFruitAcids.setSelected(true);
-				FruitAcidsPanel.InitializePanel();
-				FruitAcidsPanel.FruitAcidsPanel.setVisible(true);				
+				InformationPanel.InitializePanel();
+				InformationPanel.tabbedInformationPane.setSelectedIndex(1);
+				InformationPanel.InformationPanel.setVisible(true);				
 				}
 			}
 			
@@ -281,9 +285,9 @@ public class InitializeMenu extends MainWindow {
 		mntmYeastStrains.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnYeastStrains.setSelected(true);
-				YeastStrainsPanel.InitializePanel();
-				YeastStrainsPanel.YeastStrainsPanel.setVisible(true);				
+				InformationPanel.InitializePanel();
+				InformationPanel.tabbedInformationPane.setSelectedIndex(2);
+				InformationPanel.InformationPanel.setVisible(true);				
 				}
 			}
 			
@@ -332,65 +336,40 @@ public class InitializeMenu extends MainWindow {
 		MainWindow.WineBrewDBFrame.getContentPane().setLayout(new MigLayout("", "[grow]", "[grow]"));
 		
 		//Menu Panel
-		MenuPanel = new JPanel();
-		MenuPanel.setBackground(Color.LIGHT_GRAY);
+		MenuPanel = new JToolBar();
+		MenuPanel.setFloatable(false);
+		MenuPanel.setOrientation(SwingConstants.VERTICAL);
 		MainWindow.WineBrewDBFrame.getContentPane().add(MenuPanel, "flowx,cell 0 0,alignx left,growy");
-		MenuPanel.setLayout(new MigLayout("", "[200px:n,grow]", "[][][][][][][][][][][][][][][][grow]"));
 		
-		txtDatabase = new JTextField();
-		txtDatabase.setEditable(false);
-		txtDatabase.setText("Database");
-		MenuPanel.add(txtDatabase, "cell 0 0,growx");
-		txtDatabase.setColumns(10);
+		btnBrew = new JButton();
+		btnBrew.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/brew.png")));
+		btnBrew.setToolTipText("Add/Edit Brews");
+		MenuPanel.add(btnBrew);
 		
-		btnBrew = new JToggleButton("Brew");
-		MenuPanel.add(btnBrew, "cell 0 1,growx");
+		btnRecipe = new JButton();
+		btnRecipe.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/recipe.png")));
+		btnRecipe.setToolTipText("Add/Edit Recipes");
+		MenuPanel.add(btnRecipe);
 		
-		btnRecipe = new JToggleButton("Recipe");
-		MenuPanel.add(btnRecipe, "cell 0 2,growx");
+		MenuPanel.addSeparator();
 		
-		txtCalculators = new JTextField();
-		txtCalculators.setEditable(false);
-		txtCalculators.setText("Calculators");
-		MenuPanel.add(txtCalculators, "cell 0 4,growx");
-		txtCalculators.setColumns(10);
+		btnCalculators = new JButton();
+		btnCalculators.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/calculator.png")));
+		btnCalculators.setToolTipText("Various Calculators");
+		MenuPanel.add(btnCalculators);
 		
-		btnAlcohol = new JToggleButton("Alcohol %");
-		MenuPanel.add(btnAlcohol, "cell 0 5,growx");
-		
-		btnDilution = new JToggleButton("Dilution");
-		MenuPanel.add(btnDilution, "cell 0 6,growx");
-		
-		btnMeasures = new JToggleButton("Measures");
-		MenuPanel.add(btnMeasures, "cell 0 7,growx");
-		
-		btnSugarToSG = new JToggleButton("Sugar to SG");
-		MenuPanel.add(btnSugarToSG, "cell 0 8,growx");
-		
-		btnTemperatureAdjustedSG = new JToggleButton("Temperature Adjusted SG");
-		MenuPanel.add(btnTemperatureAdjustedSG, "cell 0 9,growx");
-		
-		txtInformation = new JTextField();
-		txtInformation.setEditable(false);
-		txtInformation.setText("Information");
-		MenuPanel.add(txtInformation, "cell 0 11,growx");
-		txtInformation.setColumns(10);
-		
-		btnDosages = new JToggleButton("Dosages");
-		MenuPanel.add(btnDosages, "cell 0 12,growx");
-		
-		btnFruitAcids = new JToggleButton("Fruit Acids");
-		MenuPanel.add(btnFruitAcids, "cell 0 13,growx");
-		
-		btnYeastStrains = new JToggleButton("Yeast Strains");
-		MenuPanel.add(btnYeastStrains, "cell 0 14,growx");
+		MenuPanel.addSeparator();
+
+		btnInformation = new JButton();
+		btnInformation.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/information.png")));
+		btnInformation.setToolTipText("Useful Information");
+		MenuPanel.add(btnInformation);
 		
 
 		//Menu Button Actions
 		btnBrew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnBrew.setSelected(true);
 				BrewPanel.InitializePanel();
 				BrewPanel.BrewPanel.setVisible(true);
 			}
@@ -398,73 +377,24 @@ public class InitializeMenu extends MainWindow {
 		btnRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnRecipe.setSelected(true);
 				RecipePanel.InitializePanel();
 				RecipePanel.RecipePanel.setVisible(true);
 			}
 		});
-		btnAlcohol.addActionListener(new ActionListener() {
+		btnCalculators.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnAlcohol.setSelected(true);
-				AlcoholPanel.InitializePanel();
-				AlcoholPanel.AlcoholPanel.setVisible(true);
+				CalculatorsPanel.InitializePanel();
+				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(0);
+				CalculatorsPanel.CalculatorsPanel.setVisible(true);			
 			}
 		});
-		btnDilution.addActionListener(new ActionListener() {
+		btnInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
-				btnDilution.setSelected(true);
-				DilutionPanel.InitializePanel();
-				DilutionPanel.DilutionPanel.setVisible(true);
-			}
-		});
-		btnMeasures.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				btnMeasures.setSelected(true);
-				MeasuresPanel.InitializePanel();
-				MeasuresPanel.MeasuresPanel.setVisible(true);
-			}
-		});
-		btnSugarToSG.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				btnSugarToSG.setSelected(true);
-				SugarToSGPanel.InitializePanel();
-				SugarToSGPanel.SugarToSGPanel.setVisible(true);
-			}
-		});
-		btnTemperatureAdjustedSG.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				btnTemperatureAdjustedSG.setSelected(true);
-				TemperatureAdjustedSGPanel.InitializePanel();
-				TemperatureAdjustedSGPanel.TemperatureAdjustedSGPanel.setVisible(true);
-			}
-		});
-		btnDosages.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				btnDosages.setSelected(true);
-				DosagesPanel.InitializePanel();
-				DosagesPanel.DosagesPanel.setVisible(true);
-			}
-		});
-		btnFruitAcids.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				btnFruitAcids.setSelected(true);
-				FruitAcidsPanel.InitializePanel();
-				FruitAcidsPanel.FruitAcidsPanel.setVisible(true);
-			}
-		});
-		btnYeastStrains.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				btnYeastStrains.setSelected(true);
-				YeastStrainsPanel.InitializePanel();
-				YeastStrainsPanel.YeastStrainsPanel.setVisible(true);
+				InformationPanel.InitializePanel();
+				InformationPanel.tabbedInformationPane.setSelectedIndex(0);
+				InformationPanel.InformationPanel.setVisible(true);		
 			}
 		});
 		
@@ -473,6 +403,8 @@ public class InitializeMenu extends MainWindow {
 	public static void DeinitializeAllPanels(){
 		BrewPanel.DeInitializePanel();
 		RecipePanel.DeInitializePanel();
+		CalculatorsPanel.DeInitializePanel();
+		InformationPanel.DeInitializePanel();
 		AlcoholPanel.DeInitializePanel();
 		DilutionPanel.DeInitializePanel();
 		MeasuresPanel.DeInitializePanel();
@@ -484,27 +416,15 @@ public class InitializeMenu extends MainWindow {
 		
 		btnBrew.setSelected(false);
 		btnRecipe.setSelected(false);
-		btnAlcohol.setSelected(false);
-		btnDilution.setSelected(false);
-		btnMeasures.setSelected(false);
-		btnSugarToSG.setSelected(false);
-		btnTemperatureAdjustedSG.setSelected(false);
-		btnDosages.setSelected(false);
-		btnFruitAcids.setSelected(false);
-		btnYeastStrains.setSelected(false);
+		btnCalculators.setSelected(false);
+		btnInformation.setSelected(false);
 	};
 	
 	public static void DisableAllMenuButtons(){
 		btnBrew.setEnabled(false);
 		btnRecipe.setEnabled(false);
-		btnAlcohol.setEnabled(false);
-		btnDilution.setEnabled(false);
-		btnMeasures.setEnabled(false);
-		btnSugarToSG.setEnabled(false);
-		btnTemperatureAdjustedSG.setEnabled(false);
-		btnDosages.setEnabled(false);
-		btnFruitAcids.setEnabled(false);
-		btnYeastStrains.setEnabled(false);
+		btnCalculators.setEnabled(false);
+		btnInformation.setEnabled(false);
 		mnFile.setEnabled(false);
 		mnDatabase.setEnabled(false);
 		mnCalculators.setEnabled(false);
@@ -515,14 +435,8 @@ public class InitializeMenu extends MainWindow {
 	public static void EnableAllMenuButtons(){
 		btnBrew.setEnabled(true);
 		btnRecipe.setEnabled(true);
-		btnAlcohol.setEnabled(true);
-		btnDilution.setEnabled(true);
-		btnMeasures.setEnabled(true);
-		btnSugarToSG.setEnabled(true);
-		btnTemperatureAdjustedSG.setEnabled(true);
-		btnDosages.setEnabled(true);
-		btnFruitAcids.setEnabled(true);
-		btnYeastStrains.setEnabled(true);
+		btnCalculators.setEnabled(true);
+		btnInformation.setEnabled(true);
 		mnFile.setEnabled(true);
 		mnDatabase.setEnabled(true);
 		mnCalculators.setEnabled(true);
