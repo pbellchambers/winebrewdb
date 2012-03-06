@@ -175,7 +175,7 @@ public class RecipeSearchPanel extends JPanel {
 	    header.add("Method");
 	    header.add("Notes");
 	    header.add("References");
-	    header.add("Volume");
+	    header.add("Volume (gallons)");
 	    
 		//Table
 		RecipeTable = new JTable();

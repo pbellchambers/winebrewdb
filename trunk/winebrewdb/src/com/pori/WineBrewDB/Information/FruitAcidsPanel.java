@@ -35,6 +35,7 @@ public class FruitAcidsPanel extends JPanel {
 		
 		//Put it in a scrollpane
 		FruitAcidsScrollPane = new JScrollPane(FruitAcidsText);
+		FruitAcidsScrollPane.setBorder(null);
 		FruitAcidsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		

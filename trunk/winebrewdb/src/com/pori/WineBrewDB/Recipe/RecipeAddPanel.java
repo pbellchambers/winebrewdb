@@ -39,7 +39,7 @@ public class RecipeAddPanel extends JPanel {
 		
 		tabbedRecipeAddPanel = new JPanel();
 		tabbedRecipeAddPanel.setBackground(Color.WHITE);
-		tabbedRecipeAddPanel.setLayout(new MigLayout("", "[110px:110px:110px][70px:70px, grow][70px:70px, grow][120px:120px:120px][70px:70px, grow]", "[][][100px:100px, grow][][130px:130px, grow][70px:70px, grow][][15px:15px][]"));
+		tabbedRecipeAddPanel.setLayout(new MigLayout("", "[110px:110px:110px][70px:70px, grow][70px:70px, grow][120px:120px:120px][70px:70px][70px:70px, grow]", "[][][100px:100px, grow][][130px:130px, grow][70px:70px, grow][][15px:15px][]"));
 	
 		textRecipeRefAdd = new JTextField();
 		textRecipeRefAdd.setEditable(false);
@@ -49,14 +49,14 @@ public class RecipeAddPanel extends JPanel {
 			
 		textRecipeNameAdd = new JTextField();
 		textRecipeNameAdd.setEditable(false);
-		tabbedRecipeAddPanel.add(textRecipeNameAdd, "cell 1 0 4,growx");
+		tabbedRecipeAddPanel.add(textRecipeNameAdd, "cell 1 0 5,growx");
 
 		JLabel lblInspirationAdd = new JLabel("Inspiration:");
 		tabbedRecipeAddPanel.add(lblInspirationAdd, "flowx,cell 0 1,alignx right");
 			
 		textInspirationAdd = new JTextField();
 		textInspirationAdd.setEditable(false);
-		tabbedRecipeAddPanel.add(textInspirationAdd, "cell 1 1 4,growx");
+		tabbedRecipeAddPanel.add(textInspirationAdd, "cell 1 1 5,growx");
 
 		JLabel lblIngredientsAdd = new JLabel("Ingredients:");
 		tabbedRecipeAddPanel.add(lblIngredientsAdd, "flowx,cell 0 2,alignx right");
@@ -69,7 +69,7 @@ public class RecipeAddPanel extends JPanel {
 		//ScrollPane for textIngredientsB
 		JScrollPane RecipeAddIngredientsScrollPane = new JScrollPane();
 		RecipeAddIngredientsScrollPane.setViewportView(textIngredientsAdd);
-		tabbedRecipeAddPanel.add(RecipeAddIngredientsScrollPane, "cell 1 2 4,grow");
+		tabbedRecipeAddPanel.add(RecipeAddIngredientsScrollPane, "cell 1 2 5,grow");
 
 		JLabel lblSuggestedYeastAdd = new JLabel("Suggested Yeast:");
 		tabbedRecipeAddPanel.add(lblSuggestedYeastAdd, "flowx,cell 0 3,alignx right");
@@ -84,6 +84,9 @@ public class RecipeAddPanel extends JPanel {
 		textVolumeAdd = new JTextField();
 		textVolumeAdd.setEditable(false);
 		tabbedRecipeAddPanel.add(textVolumeAdd, "cell 4 3,growx");
+		
+		JLabel lblVolumeUnitAdd = new JLabel("(gallons)");
+		tabbedRecipeAddPanel.add(lblVolumeUnitAdd, "flowx,cell 5 3,alignx left");
 
 		JLabel lblMethodAdd = new JLabel("Method:");
 		tabbedRecipeAddPanel.add(lblMethodAdd, "flowx,cell 0 4,alignx right");
@@ -96,7 +99,7 @@ public class RecipeAddPanel extends JPanel {
 		//ScrollPane for textMethodB
 		JScrollPane RecipeAddMethodScrollPane = new JScrollPane();
 		RecipeAddMethodScrollPane.setViewportView(textMethodAdd);
-		tabbedRecipeAddPanel.add(RecipeAddMethodScrollPane, "cell 1 4 4,grow");
+		tabbedRecipeAddPanel.add(RecipeAddMethodScrollPane, "cell 1 4 5,grow");
 
 		JLabel lblNotesAdd = new JLabel("Notes:");
 		tabbedRecipeAddPanel.add(lblNotesAdd, "flowx,cell 0 5,alignx right");
@@ -109,14 +112,14 @@ public class RecipeAddPanel extends JPanel {
 		//ScrollPane for textNotesB
 		JScrollPane RecipeAddNotesScrollPane = new JScrollPane();
 		RecipeAddNotesScrollPane.setViewportView(textNotesAdd);
-		tabbedRecipeAddPanel.add(RecipeAddNotesScrollPane, "cell 1 5 4,grow");
+		tabbedRecipeAddPanel.add(RecipeAddNotesScrollPane, "cell 1 5 5,grow");
 
 		JLabel lblReferencesAdd = new JLabel("References:");
 		tabbedRecipeAddPanel.add(lblReferencesAdd, "flowx,cell 0 6,alignx right");
 			
 		textReferencesAdd = new JTextField();
 		textReferencesAdd.setEditable(false);
-		tabbedRecipeAddPanel.add(textReferencesAdd, "cell 1 6 4,growx");
+		tabbedRecipeAddPanel.add(textReferencesAdd, "cell 1 6 5,growx");
 
 		btnRecipeAddEdit = new JButton("Add");
 		btnRecipeAddEdit.setEnabled(true);
@@ -124,11 +127,11 @@ public class RecipeAddPanel extends JPanel {
 
 		btnRecipeAddCancel = new JButton("Cancel");
 		btnRecipeAddCancel.setEnabled(false);
-		tabbedRecipeAddPanel.add(btnRecipeAddCancel, "cell 3 8,growx");
+		tabbedRecipeAddPanel.add(btnRecipeAddCancel, "cell 4 8,growx");
 			
 		btnRecipeAddSave = new JButton("Save / Insert");
 		btnRecipeAddSave.setEnabled(false);
-		tabbedRecipeAddPanel.add(btnRecipeAddSave, "cell 4 8,growx");
+		tabbedRecipeAddPanel.add(btnRecipeAddSave, "cell 5 8,growx");
 		
 		//Add button listeners
 		btnRecipeAddEdit.addActionListener(new ActionListener() {

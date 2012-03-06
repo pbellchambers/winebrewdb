@@ -1,8 +1,10 @@
 package com.pori.WineBrewDB.SQLite;
 
 import java.awt.Image;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -784,6 +786,48 @@ public class DBEngine {
 	    // Close the input stream and return bytes
 	    is.close();
 	    return bytes;
+	}
+	
+		
+	//Write to file
+	public static void writeToFile(File filename) throws Exception {
+		byte[] imageBytes = null;
+		BufferedOutputStream bufferedOutput = null;
+		
+		//Get Bytes for picture
+		Connection conn = dbConnection();
+			
+		PreparedStatement pre;
+		pre = conn.prepareStatement(
+			"select Picture from BrewPictures where BrewRef='" +
+			BrewDataPanel.textBrewRefB.getText() +
+			"' and BrewPicRef='" +
+			BrewPicturesPanel.textBrewPictureRef.getText() + 
+			"'"
+		);
+
+		ResultSet rs = pre.executeQuery();
+			       
+		while(rs.next()){
+			imageBytes = rs.getBytes(1);
+		}
+					
+		/*Close the connection after use (MUST)*/
+		if(conn!=null)
+		conn.close();
+		     
+		//Construct the BufferedOutputStream object
+	    bufferedOutput = new BufferedOutputStream(new FileOutputStream(filename));
+	        
+	    //Start writing to the output stream
+	    bufferedOutput.write(imageBytes);       
+	        
+	    //Close the BufferedOutputStream
+	    if (bufferedOutput != null) {
+	    	bufferedOutput.flush();
+	    	bufferedOutput.close();
+	    }
+
 	}
 	
 
