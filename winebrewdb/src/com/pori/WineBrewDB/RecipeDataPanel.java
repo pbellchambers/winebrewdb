@@ -231,6 +231,10 @@ public class RecipeDataPanel extends JPanel {
 					textIngredientsB.setBackground(UIManager.getColor("Panel.background"));
 					textMethodB.setBackground(UIManager.getColor("Panel.background"));
 					textNotesB.setBackground(UIManager.getColor("Panel.background"));
+					RecipeSearchPanel.RecipeScrollPane.remove(RecipeSearchPanel.RecipeTable);
+					RecipeSearchPanel.RecipeScrollPane.setViewportView(null);
+					RecipeSearchPanel.initializeTable();
+					RecipeSearchPanel.RecipeScrollPane.setViewportView(RecipeSearchPanel.RecipeTable);
 				}
 			}
 		});

@@ -471,6 +471,7 @@ public class BrewDataPanel extends JPanel {
 			}
 		});
 		
+
 		btnBrewDataSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (chckbxBrewInPlanningB.isSelected() == false && chckbxBrewInFermentingB.isSelected() == false && chckbxBrewInFiningB.isSelected() == false && chckbxBrewInMaturingB.isSelected() == false && chckbxBrewInBottlesB.isSelected() == false && chckbxBrewDrunkB.isSelected() == false){
@@ -520,6 +521,10 @@ public class BrewDataPanel extends JPanel {
 					textBrewTastingNotesB.setEditable(false);
 					textBrewGeneralNotesB.setEditable(false);
 					textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
+					BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
+					BrewSearchPanel.BrewScrollPane.setViewportView(null);
+					BrewSearchPanel.initializeTable();
+					BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
 				}
 			}
 		});

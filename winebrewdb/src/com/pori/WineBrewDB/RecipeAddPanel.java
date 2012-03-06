@@ -223,6 +223,11 @@ public class RecipeAddPanel extends JPanel {
 					textMethodAdd.setBackground(UIManager.getColor("Panel.background"));
 					textNotesAdd.setBackground(UIManager.getColor("Panel.background"));
 					clearRecipeAddData();
+					RecipeSearchPanel.RecipeScrollPane.remove(RecipeSearchPanel.RecipeTable);
+					RecipeSearchPanel.RecipeScrollPane.setViewportView(null);
+					RecipeAddPanel.clearRecipeAddData();
+					RecipeSearchPanel.initializeTable();
+					RecipeSearchPanel.RecipeScrollPane.setViewportView(RecipeSearchPanel.RecipeTable);
 				}
 			}
 		});
