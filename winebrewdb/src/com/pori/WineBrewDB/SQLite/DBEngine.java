@@ -36,6 +36,7 @@ public class DBEngine {
 	//Create the connection
 	public static Connection dbConnection() throws Exception {
 		Class.forName("org.sqlite.JDBC");
+		//TODO: Handle DB not existing.
 		return DriverManager.getConnection("jdbc:sqlite:" + MainWindow.DatabaseLocationFromIni);
 	}
 	

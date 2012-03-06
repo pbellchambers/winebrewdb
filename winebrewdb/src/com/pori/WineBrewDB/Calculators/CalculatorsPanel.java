@@ -25,7 +25,6 @@ public class CalculatorsPanel extends JPanel {
 		CalculatorsPanel = new JPanel();
 		CalculatorsPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
 		
-		//TODO: Replace arrow buttons with arrow icons
 		
 		//Header
 		CalculatorsHeader = new JLabel("Calculators");
