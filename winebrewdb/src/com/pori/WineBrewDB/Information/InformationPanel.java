@@ -1,10 +1,12 @@
-package com.pori.WineBrewDB;
+package com.pori.WineBrewDB.Information;
 
 import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
+import com.pori.WineBrewDB.MainWindow;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -31,7 +33,7 @@ public class InformationPanel extends JPanel {
 		
 		
 		//Subtitle
-		InformationSubtitle = new JLabel("Various useful Information.");
+		InformationSubtitle = new JLabel("Various useful information.");
 		InformationSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		InformationPanel.add(InformationSubtitle, "cell 0 1,growx,aligny top");
 		

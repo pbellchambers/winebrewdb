@@ -1,4 +1,4 @@
-package com.pori.WineBrewDB;
+package com.pori.WineBrewDB.Brew;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 
 import agiletrack.swing.JDateChooser;
 
+import com.pori.WineBrewDB.Dates;
+import com.pori.WineBrewDB.InitializeMenu;
 import com.pori.WineBrewDB.SQLite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;

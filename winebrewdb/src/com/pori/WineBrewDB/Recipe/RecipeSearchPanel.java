@@ -1,4 +1,4 @@
-package com.pori.WineBrewDB;
+package com.pori.WineBrewDB.Recipe;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

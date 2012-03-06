@@ -1,4 +1,4 @@
-package com.pori.WineBrewDB;
+package com.pori.WineBrewDB.Recipe;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import com.pori.WineBrewDB.InitializeMenu;
 import com.pori.WineBrewDB.SQLite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;

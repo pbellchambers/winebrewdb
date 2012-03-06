@@ -1,10 +1,12 @@
-package com.pori.WineBrewDB;
+package com.pori.WineBrewDB.Recipe;
 
 import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
+import com.pori.WineBrewDB.MainWindow;
 
 import net.miginfocom.swing.MigLayout;
 

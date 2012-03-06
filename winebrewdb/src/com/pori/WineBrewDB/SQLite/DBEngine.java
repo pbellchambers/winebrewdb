@@ -14,15 +14,15 @@ import java.util.Vector;
 
 import javax.swing.ImageIcon;
 
-import com.pori.WineBrewDB.BrewAddPanel;
-import com.pori.WineBrewDB.BrewDataPanel;
-import com.pori.WineBrewDB.BrewNotesPanel;
-import com.pori.WineBrewDB.BrewPicturesPanel;
-import com.pori.WineBrewDB.BrewSearchPanel;
 import com.pori.WineBrewDB.Dates;
-import com.pori.WineBrewDB.RecipeAddPanel;
-import com.pori.WineBrewDB.RecipeDataPanel;
-import com.pori.WineBrewDB.RecipeSearchPanel;
+import com.pori.WineBrewDB.Brew.BrewAddPanel;
+import com.pori.WineBrewDB.Brew.BrewDataPanel;
+import com.pori.WineBrewDB.Brew.BrewNotesPanel;
+import com.pori.WineBrewDB.Brew.BrewPicturesPanel;
+import com.pori.WineBrewDB.Brew.BrewSearchPanel;
+import com.pori.WineBrewDB.Recipe.RecipeAddPanel;
+import com.pori.WineBrewDB.Recipe.RecipeDataPanel;
+import com.pori.WineBrewDB.Recipe.RecipeSearchPanel;
 
 public class DBEngine {
 	
