@@ -35,6 +35,7 @@ public class YeastStrainsPanel extends JPanel {
 		
 		//Put it in a scrollpane
 		YeastStrainsScrollPane = new JScrollPane(YeastStrainsText);
+		YeastStrainsScrollPane.setBorder(null);
 		YeastStrainsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		

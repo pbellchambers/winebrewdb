@@ -35,6 +35,7 @@ public class DosagesPanel extends JPanel {
 		
 		//Put it in a scrollpane
 		DosagesScrollPane = new JScrollPane(DosagesText);
+		DosagesScrollPane.setBorder(null);
 		DosagesScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		

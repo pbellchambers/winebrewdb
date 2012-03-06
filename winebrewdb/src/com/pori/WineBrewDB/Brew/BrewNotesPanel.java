@@ -280,9 +280,12 @@ public class BrewNotesPanel extends JPanel {
 						);
 					} else {
 						try {
-							//TODO: Handle where start date is null
-							textBrewNoteDaysSinceStart.setText(Dates.daysBetween(BrewDataPanel.chooserBrewDateStartedB.getDate(), chooserBrewNoteDate.getDate()));
-							textBrewNoteRef.setText(DBEngine.getNextBrewNoteRef());
+							if(BrewDataPanel.chooserBrewDateStartedB.getDate() == null){
+								textBrewNoteDaysSinceStart.setText("");
+							}else {
+								textBrewNoteDaysSinceStart.setText(Dates.daysBetween(BrewDataPanel.chooserBrewDateStartedB.getDate(), chooserBrewNoteDate.getDate()));
+								textBrewNoteRef.setText(DBEngine.getNextBrewNoteRef());
+							}
 							DBEngine.addBrewNote();
 						} catch (Exception e1) {
 							e1.printStackTrace();

@@ -7,6 +7,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -47,7 +48,7 @@ public class BrewPicturesPanel extends JPanel {
 	private static boolean resizeListenerIsActive;
 	private static JButton btnBrewPictureSavePic;
 	private static JScrollPane BrewPictureScrollPane;
-	private static JLabel labelBrewPicture;
+	public static JLabel labelBrewPicture;
 
 	
 	public static void InitializePanel(){
@@ -73,26 +74,29 @@ public class BrewPicturesPanel extends JPanel {
 		textBrewPictureRef.setEditable(false);
 		//tabbedBrewPicturesPanel.add(textBrewPictureRef, "cell 1 1,growx");
 		
+		//Picture ScrollPane
+		labelBrewPicture = new JLabel();
+		BrewPictureScrollPane = new JScrollPane();
+		BrewPictureScrollPane.setViewportView(labelBrewPicture);
+	    tabbedBrewPicturesPanel.add(BrewPictureScrollPane, "cell 0 1 6 1,grow");
+		
 		btnBrewPictureLoad = new JButton("Load File");
 		btnBrewPictureLoad.setEnabled(false);
 		tabbedBrewPicturesPanel.add(btnBrewPictureLoad, "cell 0 2,growx");
 		
 		textBrewPictureFilename = new JTextField();
 		textBrewPictureFilename.setEditable(false);
-		textBrewPictureFilename.setText("C:\\test.jpg");
 		
 		JLabel lblBrewPictureDescription = new JLabel("Description:");
 		tabbedBrewPicturesPanel.add(lblBrewPictureDescription, "cell 1 2,alignx trailing");
 		
 		textBrewPictureDescription = new JTextField();
 		textBrewPictureDescription.setEditable(false);
-		tabbedBrewPicturesPanel.add(textBrewPictureDescription, "cell 2 2 4,growx");
+		tabbedBrewPicturesPanel.add(textBrewPictureDescription, "cell 2 2 3,growx");
 		
-		//Picture ScrollPane
-		labelBrewPicture = new JLabel();
-		BrewPictureScrollPane = new JScrollPane();
-		BrewPictureScrollPane.setViewportView(labelBrewPicture);
-	    tabbedBrewPicturesPanel.add(BrewPictureScrollPane, "cell 0 1 6 1,grow");
+		btnBrewPictureSavePic = new JButton("Save Picture to Disk");
+		btnBrewPictureSavePic.setEnabled(false);
+		tabbedBrewPicturesPanel.add(btnBrewPictureSavePic, "cell 5 2,growx");
 				
 		btnBrewPictureAdd = new JButton("Add");
 		tabbedBrewPicturesPanel.add(btnBrewPictureAdd, "cell 0 4,growx");
@@ -113,13 +117,34 @@ public class BrewPicturesPanel extends JPanel {
 		btnBrewPictureSave.setEnabled(false);
 		tabbedBrewPicturesPanel.add(btnBrewPictureSave, "cell 5 4,growx");
 		
-		btnBrewPictureSavePic = new JButton("Save Picture to Disk");
-		btnBrewPictureSavePic.setEnabled(false);
-		//tabbedBrewPicturesPanel.add(btnBrewPictureSavePic, "cell 5 4,growx");
-		
 		resizeListenerIsActive = false;
 		
 		//Add listeners
+		btnBrewPictureSavePic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File FileSaveLocation = null;
+				JFileChooser c = new JFileChooser();
+			      int rVal = c.showSaveDialog(BrewPictureScrollPane);
+			      if (rVal == JFileChooser.APPROVE_OPTION) {
+			    	  FileSaveLocation = new File (c.getCurrentDirectory(), c.getSelectedFile().getName() + ".jpg");
+			    	  try {
+						DBEngine.writeToFile(FileSaveLocation);
+				    	JOptionPane.showMessageDialog(null,"File saved successfully.","Complete",JOptionPane.INFORMATION_MESSAGE);
+			    	  } catch (Exception e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null,
+						"An error has occurred saving this file, please check you have permission to save to this location.",
+						"Error",
+						JOptionPane.ERROR_MESSAGE);
+			    	  }
+			      }
+			      if (rVal == JFileChooser.CANCEL_OPTION) {
+			    	  
+			      }
+				
+			}
+		});		
+		
 		btnBrewPictureAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mouseListenerIsActive = false;
@@ -133,6 +158,7 @@ public class BrewPicturesPanel extends JPanel {
 				btnBrewPictureDelete.setEnabled(false);
 				btnBrewPictureCancel.setEnabled(true);
 				btnBrewPictureSave.setEnabled(true);
+				btnBrewPictureSavePic.setEnabled(false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(0, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
@@ -144,7 +170,6 @@ public class BrewPicturesPanel extends JPanel {
 			}
 		});
 		
-		//TODO: Add a save picture button with error capture popup
 		btnBrewPictureLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser c = new JFileChooser();
@@ -216,6 +241,7 @@ public class BrewPicturesPanel extends JPanel {
 				btnBrewPictureDelete.setEnabled(true);
 				btnBrewPictureCancel.setEnabled(true);
 				btnBrewPictureSave.setEnabled(true);
+				btnBrewPictureSavePic.setEnabled(false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(0, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(1, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
@@ -250,6 +276,7 @@ public class BrewPicturesPanel extends JPanel {
 						btnBrewPictureDelete.setEnabled(false);
 						btnBrewPictureCancel.setEnabled(false);
 						btnBrewPictureSave.setEnabled(false);
+						btnBrewPictureSavePic.setEnabled(false);
 						BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
@@ -290,6 +317,7 @@ public class BrewPicturesPanel extends JPanel {
 					btnBrewPictureDelete.setEnabled(false);
 					btnBrewPictureCancel.setEnabled(false);
 					btnBrewPictureSave.setEnabled(false);
+					btnBrewPictureSavePic.setEnabled(false);
 					BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
@@ -310,6 +338,7 @@ public class BrewPicturesPanel extends JPanel {
 					btnBrewPictureDelete.setEnabled(false);
 					btnBrewPictureCancel.setEnabled(false);
 					btnBrewPictureSave.setEnabled(false);
+					btnBrewPictureSavePic.setEnabled(true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
@@ -348,6 +377,7 @@ public class BrewPicturesPanel extends JPanel {
 						btnBrewPictureDelete.setEnabled(false);
 						btnBrewPictureCancel.setEnabled(false);
 						btnBrewPictureSave.setEnabled(false);
+						btnBrewPictureSavePic.setEnabled(false);
 						BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
@@ -378,6 +408,7 @@ public class BrewPicturesPanel extends JPanel {
 					btnBrewPictureDelete.setEnabled(false);
 					btnBrewPictureCancel.setEnabled(false);
 					btnBrewPictureSave.setEnabled(false);
+					btnBrewPictureSavePic.setEnabled(false);
 					BrewPanel.tabbedBrewPane.setEnabledAt(0, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
@@ -447,6 +478,7 @@ public class BrewPicturesPanel extends JPanel {
 						JTable target = (JTable)e.getSource();
 						BrewPicturesSelectedRow = target.getSelectedRow();
 						if(BrewPicturesSelectedRow != -1){
+							btnBrewPictureSavePic.setEnabled(true);
 							btnBrewPictureEdit.setEnabled(true);
 							btnBrewPictureDelete.setEnabled(false);
 							setBrewPictureData();
