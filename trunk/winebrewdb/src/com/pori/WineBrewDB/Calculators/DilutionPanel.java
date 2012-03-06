@@ -1,4 +1,4 @@
-package com.pori.WineBrewDB;
+package com.pori.WineBrewDB.Calculators;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+
+import com.pori.WineBrewDB.MainWindow;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -159,7 +161,8 @@ public class DilutionPanel extends JPanel {
 			DilutionPanelStatus = "DeInitialized";
 		}
 	}
-			
+	
+	//TODO: Prevent / by 0	
 	public static void CalculateDilutionABV(){
 		BigDecimal StartingVolume = new BigDecimal(fieldStartingVolumeABV.getText());
 		BigDecimal VolumeAdded = new BigDecimal(fieldVolumeAddedABV.getText());

@@ -18,6 +18,19 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import com.pori.WineBrewDB.Brew.BrewPanel;
+import com.pori.WineBrewDB.Calculators.AlcoholPanel;
+import com.pori.WineBrewDB.Calculators.CalculatorsPanel;
+import com.pori.WineBrewDB.Calculators.DilutionPanel;
+import com.pori.WineBrewDB.Calculators.MeasuresPanel;
+import com.pori.WineBrewDB.Calculators.SugarToSGPanel;
+import com.pori.WineBrewDB.Calculators.TemperatureAdjustedSGPanel;
+import com.pori.WineBrewDB.Information.DosagesPanel;
+import com.pori.WineBrewDB.Information.FruitAcidsPanel;
+import com.pori.WineBrewDB.Information.InformationPanel;
+import com.pori.WineBrewDB.Information.YeastStrainsPanel;
+import com.pori.WineBrewDB.Recipe.RecipePanel;
+
 import net.miginfocom.swing.MigLayout;
 
 public class InitializeMenu extends MainWindow {
@@ -52,13 +65,14 @@ public class InitializeMenu extends MainWindow {
 	
 	public static void InitializeTopMenuMethod(){
 		
-		WineBrewDBVersion = "v0.8.1";
+		WineBrewDBVersion = "v0.8.2";
 		
 		//Top Menu Bar
 		menuBar = new JMenuBar();
 		MainWindow.WineBrewDBFrame.setJMenuBar(menuBar);
 		
-		//TODO: Finish menu bar
+		//TODO: Finish menu bar (load and save)
+		//TODO: First run database save location popup (use .ini file)
 		//File Menu
 		mnFile = new JMenu("File");
 		menuBar.add(mnFile);

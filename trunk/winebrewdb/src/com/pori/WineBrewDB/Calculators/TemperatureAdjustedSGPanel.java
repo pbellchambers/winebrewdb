@@ -1,4 +1,4 @@
-package com.pori.WineBrewDB;
+package com.pori.WineBrewDB.Calculators;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
+
+import com.pori.WineBrewDB.MainWindow;
 
 import net.miginfocom.swing.MigLayout;
 

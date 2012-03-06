@@ -1,4 +1,4 @@
-package com.pori.WineBrewDB;
+package com.pori.WineBrewDB.Brew;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;

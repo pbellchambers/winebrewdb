@@ -1,4 +1,4 @@
-package com.pori.WineBrewDB;
+package com.pori.WineBrewDB.Information;
 
 import java.io.IOException;
 
@@ -8,6 +8,8 @@ import javax.swing.JScrollPane;
 
 import javax.swing.JEditorPane;
 import javax.swing.ScrollPaneConstants;
+
+import com.pori.WineBrewDB.MainWindow;
 
 public class DosagesPanel extends JPanel {
 
