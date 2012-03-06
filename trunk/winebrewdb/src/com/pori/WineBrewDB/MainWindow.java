@@ -3,34 +3,62 @@ package com.pori.WineBrewDB;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+
+import org.ini4j.InvalidFileFormatException;
+import org.ini4j.Wini;
 
 public class MainWindow {
 
 	public static JFrame WineBrewDBFrame;
-	public static String WineBrewDBVersion = "v0.8.2";
-
+	public static String WineBrewDBVersion = "v0.8.3";
+	public static String DatabaseLocationFromIni;
+	public static String LookAndFeel;
+	private static Wini brewIni;
+	
 	/**
 	 * Launch the application.
 	 */	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
+
 			public void run() {
 				Font defaultFont = new Font("Arial",Font.PLAIN,12);
 				
+				try {
+					brewIni = new Wini(new File("WineBrewDBConfig.ini"));
+					DatabaseLocationFromIni = brewIni.get("WineBrewDB", "DatabaseLocation");
+					LookAndFeel = brewIni.get("WineBrewDB", "LookAndFeel");						
+					} catch (InvalidFileFormatException e1) {
+					// TODO Invalid .ini file error
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO .ini IO error
+					e1.printStackTrace();
+				}
+				
 				try{ 
-					   UIManager.setLookAndFeel(
-					        UIManager.getSystemLookAndFeelClassName());
+					   if(LookAndFeel.equals("system")){
+						   UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					   }
+					   if(LookAndFeel.equals("java")){
+						   UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+					   }
 					}
 					catch(Exception e){
 					 e.printStackTrace();
 					}
+				
 				
 				UIManager.put("Button.font", defaultFont);				
 				UIManager.put("ToggleButton.font", defaultFont);
@@ -76,6 +104,7 @@ public class MainWindow {
 		});
 	}
 
+
 	/**
 	 * Create the application.
 	 */
@@ -88,7 +117,7 @@ public class MainWindow {
 	 */
 	public void initialize() {
 		WineBrewDBFrame = new JFrame();
-		WineBrewDBFrame.setTitle("WineBrewDB");
+		WineBrewDBFrame.setTitle("WineBrewDB " + WineBrewDBVersion + " - Current Database: " + DatabaseLocationFromIni);
 		URL img16 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb16.png");
 		URL img32 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb32.png");
 		URL img64 = MainWindow.class.getResource("/com/pori/WineBrewDB/Images/winebrewdb64.png");
@@ -129,9 +158,35 @@ public class MainWindow {
 		
 		InitializeMenu.InitializeTopMenuMethod();
 		InitializeMenu.InitializeMenuMethod();	
+		CheckAndSetCurrentDB();
 
 
+	}
 
+	private void CheckAndSetCurrentDB() {
+		if(DatabaseLocationFromIni.equals("") || DatabaseLocationFromIni == null){
+			JFileChooser c = new JFileChooser();
+		      int rVal = c.showSaveDialog(WineBrewDBFrame);
+		      if (rVal == JFileChooser.APPROVE_OPTION) {
+		    	  DatabaseLocationFromIni = c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite";
+		    	  System.out.println(DatabaseLocationFromIni);
+		    	  brewIni.put("WineBrewDB", "DatabaseLocation", DatabaseLocationFromIni);
+		    	  try {
+					brewIni.store();
+				} catch (IOException e) {
+					//TODO: Failed saving ini
+					e.printStackTrace();
+				}
+		    	  System.out.println(brewIni.get("WineBrewDB", "DatabaseLocation"));
+		    	  JOptionPane.showMessageDialog(null,"Database location set successfully.","Complete",JOptionPane.INFORMATION_MESSAGE);
+		    	  WineBrewDBFrame.setTitle("WineBrewDB " + WineBrewDBVersion + " - Current Database: " + DatabaseLocationFromIni);
+		      }
+		      if (rVal == JFileChooser.CANCEL_OPTION) {
+					//TODO: Disable cancel		    	  
+		      }
+			
+		}
+		
 	}
 
 
