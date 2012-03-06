@@ -6,13 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JToggleButton;
-import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -35,46 +32,28 @@ import net.miginfocom.swing.MigLayout;
 
 public class InitializeMenu extends MainWindow {
 	
-	public static JTextField txtDatabase;
-	public static JTextField txtCalculators;
-	public static JTextField txtInformation;
-	public static JLayeredPane ContentPane;
-	public static JButton btnBrew;
-	public static JButton btnRecipe;
-	public static JToggleButton btnAlcohol;
-	public static JToggleButton btnDilution;
-	public static JToggleButton btnMeasures;
-	public static JToggleButton btnSugarToSG;
-	public static JToggleButton btnTemperatureAdjustedSG;
-	public static JToggleButton btnDosages;
-	public static JToggleButton btnFruitAcids;
-	public static JToggleButton btnYeastStrains;
-	public static String WineBrewDBVersion;
-	private static JMenu mnLAF;
 	private static JRadioButtonMenuItem radioSystemLAF;
 	private static JRadioButtonMenuItem radioJavaLAF;
-	private static JToolBar MenuPanel;
-	private static JMenuBar menuBar;
 	private static JMenu mnFile;
 	private static JMenu mnDatabase;
 	private static JMenu mnCalculators;
 	private static JMenu mnInformation;
 	private static JMenu mnHelp;
-	public static JButton btnCalculators;
-	public static JButton btnInformation;
+	private static JButton btnBrew;
+	private static JButton btnRecipe;
+	private static JButton btnCalculators;
+	private static JButton btnInformation;
 	
 	public static void InitializeTopMenuMethod(){
 		
-		WineBrewDBVersion = "v0.8.2";
-		
 		//Top Menu Bar
-		menuBar = new JMenuBar();
+		JMenuBar menuBar = new JMenuBar();
 		MainWindow.WineBrewDBFrame.setJMenuBar(menuBar);
 		
 		//TODO: Finish menu bar (load and save)
 		//TODO: First run database save location popup (use .ini file)
 		//TODO: Figure out Launch4j maybe
-		//TODO: Don't statically declare label fields everywhere (possibly look at all private ones)
+		//TODO: Figure out how to release memory?
 		//File Menu
 		mnFile = new JMenu("File");
 		menuBar.add(mnFile);
@@ -113,7 +92,7 @@ public class InitializeMenu extends MainWindow {
 		
 		mnFile.addSeparator();
 		
-		mnLAF = new JMenu("Look and Feel");
+		JMenu mnLAF = new JMenu("Look and Feel");
 		mnFile.add(mnLAF);
 		
 		radioSystemLAF = new JRadioButtonMenuItem("System");
@@ -352,7 +331,7 @@ public class InitializeMenu extends MainWindow {
 		MainWindow.WineBrewDBFrame.getContentPane().setLayout(new MigLayout("", "[grow]", "[grow]"));
 		
 		//Menu Panel
-		MenuPanel = new JToolBar();
+		JToolBar MenuPanel = new JToolBar();
 		MenuPanel.setFloatable(false);
 		MenuPanel.setOrientation(SwingConstants.VERTICAL);
 		MainWindow.WineBrewDBFrame.getContentPane().add(MenuPanel, "flowx,cell 0 0,alignx left,growy");
@@ -429,11 +408,6 @@ public class InitializeMenu extends MainWindow {
 		DosagesPanel.DeInitializePanel();
 		FruitAcidsPanel.DeInitializePanel();
 		YeastStrainsPanel.DeInitializePanel();
-		
-		btnBrew.setSelected(false);
-		btnRecipe.setSelected(false);
-		btnCalculators.setSelected(false);
-		btnInformation.setSelected(false);
 	};
 	
 	public static void DisableAllMenuButtons(){

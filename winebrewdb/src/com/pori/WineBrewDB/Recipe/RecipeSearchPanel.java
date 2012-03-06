@@ -27,24 +27,15 @@ public class RecipeSearchPanel extends JPanel {
 
 	private static final long serialVersionUID = 1271194251562646054L;
 	static JPanel tabbedRecipeSearchPanel;
-	private static JPanel RecipeFilterPanel;
 	static JScrollPane RecipeScrollPane;
 	static JTable RecipeTable;
-	private static JButton btnSearch;
 	static int RecipeSearchSelectedRow;
 	private static String RecipeTableFields;
-	private static JCheckBox chckbxAllFields;
-	private static JLabel lblRecipeName;
 	public static JTextField textRecipeName;
-	private static JLabel lblInspiration;
 	public static JTextField textInspiration;
-	private static JLabel lblIngredients;
 	public static JTextField textIngredients;
-	private static JLabel lblSuggestedYeast;
 	public static JTextField textSuggestedYeast;
-	private static JLabel lblMethod;
 	public static JTextField textMethod;
-	private static JLabel lblNotes;
 	public static JTextField textNotes;
 
 	
@@ -58,50 +49,50 @@ public class RecipeSearchPanel extends JPanel {
 		tabbedRecipeSearchPanel.setLayout(new MigLayout("", "[grow]", "[150px:n:150px][grow]"));
 		
 		//Filter Panel
-		RecipeFilterPanel = new JPanel();
+		JPanel RecipeFilterPanel = new JPanel();
 		RecipeFilterPanel.setBackground(UIManager.getColor("Panel.background"));
 		RecipeFilterPanel.setLayout(new MigLayout("", "[90px:90px:90px][70px:70px, grow][120px:120px:120px][70px:70px, grow]", "[][][][45px:45px:45px]"));
 			
-		lblRecipeName = new JLabel("Recipe Name:");
+		JLabel lblRecipeName = new JLabel("Recipe Name:");
 		RecipeFilterPanel.add(lblRecipeName, "flowx,cell 0 0,alignx right");
 			
 		textRecipeName = new JTextField();
 		RecipeFilterPanel.add(textRecipeName, "cell 1 0,growx");
 			
-		lblInspiration = new JLabel("Inspiration:");
+		JLabel lblInspiration = new JLabel("Inspiration:");
 		RecipeFilterPanel.add(lblInspiration, "flowx,cell 2 0,alignx right");
 			
 		textInspiration = new JTextField();
 		RecipeFilterPanel.add(textInspiration, "cell 3 0,growx");
 			
-		lblIngredients = new JLabel("Ingredients:");
+		JLabel lblIngredients = new JLabel("Ingredients:");
 		RecipeFilterPanel.add(lblIngredients, "flowx,cell 0 1,alignx right");
 			
 		textIngredients = new JTextField();
 		RecipeFilterPanel.add(textIngredients, "cell 1 1,growx");
 			
-		lblSuggestedYeast = new JLabel("Yeast:");
+		JLabel lblSuggestedYeast = new JLabel("Yeast:");
 		RecipeFilterPanel.add(lblSuggestedYeast, "flowx,cell 2 1,alignx right");
 			
 		textSuggestedYeast = new JTextField();
 		RecipeFilterPanel.add(textSuggestedYeast, "cell 3 1,growx");
 			
-		lblMethod = new JLabel("Method:");
+		JLabel lblMethod = new JLabel("Method:");
 		RecipeFilterPanel.add(lblMethod, "flowx,cell 0 2,alignx right");
 			
 		textMethod = new JTextField();
 		RecipeFilterPanel.add(textMethod, "cell 1 2,growx");
 			
-		lblNotes = new JLabel("Notes:");
+		JLabel lblNotes = new JLabel("Notes:");
 		RecipeFilterPanel.add(lblNotes, "flowx,cell 2 2,alignx right");
 		
 		textNotes = new JTextField();
 		RecipeFilterPanel.add(textNotes, "cell 3 2,growx");
 			
-		chckbxAllFields = new JCheckBox("Show All Fields?");
+		JCheckBox chckbxAllFields = new JCheckBox("Show All Fields?");
 		RecipeFilterPanel.add(chckbxAllFields, "cell 2 3,alignx right");
 		
-		btnSearch = new JButton("Search");
+		JButton btnSearch = new JButton("Search");
 		RecipeFilterPanel.add(btnSearch, "cell 3 3,growx");
 
 		tabbedRecipeSearchPanel.add(RecipeFilterPanel, "cell 0 0,grow");

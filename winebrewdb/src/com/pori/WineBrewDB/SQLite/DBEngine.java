@@ -26,44 +26,10 @@ import com.pori.WineBrewDB.Recipe.RecipeSearchPanel;
 
 public class DBEngine {
 	
-	public static String Colour;
-	public static String ThumbsUp;
-	public static String InPlanning;
-	public static String InFermenting;
-	public static String InFining;
-	public static String InMaturing;
-	public static String InBottles;
-	public static String Drunk;
-	private static String InPlanningB;
-	private static String InFermentingB;
-	private static String InFiningB;
-	private static String InMaturingB;
-	private static String InBottlesB;
-	private static String DrunkB;
-	private static String InPlanningAdd;
-	private static String InFermentingAdd;
-	private static String InFiningAdd;
-	private static String InMaturingAdd;
-	private static String InBottlesAdd;
-	private static String DrunkAdd;
-	private static int NextBrewNoteRef;
-	private static int MaxBrewNoteRef;
-	private static String BrewDatePlannedAddB;
-	private static String BrewDateStartedAddB;
-	private static String BrewDateBottledAddB;
-	private static String BrewDatePlannedUpdateB;
-	private static String BrewDateStartedUpdateB;
-	private static String BrewDateBottledUpdateB;
-	private static String BrewNoteDateAddB;
-	private static String BrewNoteDateUpdateB;
+	
 	private static ImageIcon imageIconBrewPicture;
-	private static Image imageBrewPicture;
-	private static Image imageScaledBrewPicture;
-	public static ImageIcon imageIconScaledBrewPicture;
-	private static int MaxBrewPictureRef;
-	private static int NextMaxBrewPictureRef;
-	
-	
+
+
 	//Create the connection
 	public static Connection dbConnection() throws Exception {
 		Class.forName("org.sqlite.JDBC");
@@ -74,6 +40,14 @@ public class DBEngine {
 	//Get everything from Brews table
 	public static Vector<Vector<String>> getBrews() throws Exception {
 	    Connection conn = dbConnection();
+	    String Colour = null;
+	    String ThumbsUp = null;
+	    String InPlanning = null;
+	    String InFermenting = null;
+	    String InFining = null;
+	    String InMaturing = null;
+	    String InBottles = null;
+	    String Drunk = null;
 	      
 	    if(BrewSearchPanel.comboColour.getSelectedItem().equals("Any")){
 	    	Colour ="White','Red','Rosé','',' ','Other";
@@ -198,6 +172,15 @@ public class DBEngine {
 	//Update Brew
 	public static void updateBrew() throws Exception {
 	    Connection conn = dbConnection();
+	    String InPlanningB = null;
+	    String InFermentingB = null;
+	    String InFiningB = null;
+	    String InMaturingB = null;
+	    String InBottlesB = null;
+	    String DrunkB = null;
+	    String BrewDatePlannedUpdateB = null;
+	    String BrewDateStartedUpdateB = null;
+	    String BrewDateBottledUpdateB = null;
 	    
 	    if(BrewDataPanel.chckbxBrewInPlanningB.isSelected()){
 	    	InPlanningB = "1";
@@ -318,6 +301,15 @@ public class DBEngine {
 	//Add Brew
 	public static void addBrew() throws Exception {
 	    Connection conn = dbConnection();
+	    String InPlanningAdd = null;
+	    String InFermentingAdd = null;
+	    String InFiningAdd = null;
+	    String InMaturingAdd = null;
+	    String InBottlesAdd = null;
+	    String DrunkAdd = null;
+	    String BrewDatePlannedAddB = null;
+	    String BrewDateStartedAddB = null;
+	    String BrewDateBottledAddB = null;
 	    
 	    if(BrewAddPanel.chckbxBrewInPlanningAdd.isSelected()){
 	    	InPlanningAdd = "1";
@@ -488,6 +480,7 @@ public class DBEngine {
 	//Add Brew Note
 	public static void addBrewNote() throws Exception {
 		Connection conn = dbConnection();
+	    String BrewNoteDateAddB = null;
 		
 		//Cover empty dates
 	    if(BrewNotesPanel.chooserBrewNoteDate.getDate() == null){
@@ -531,7 +524,9 @@ public class DBEngine {
 			"' order by BrewNoteRef desc limit 1"
 		);
 
-		MaxBrewNoteRef = 0;
+		int MaxBrewNoteRef = 0;
+		int NextBrewNoteRef = 0;
+		
 		ResultSet rs = pre.executeQuery();
 		
 		while(rs.next()){
@@ -553,6 +548,7 @@ public class DBEngine {
 	//Update Brew Note
 	public static void updateBrewNote() throws Exception {
 		Connection conn = dbConnection();
+		String BrewNoteDateUpdateB = null;
 		
 		//Cover empty dates
 	    if(BrewNotesPanel.chooserBrewNoteDate.getDate() == null){
@@ -639,6 +635,9 @@ public class DBEngine {
 			BrewDataPanel.textBrewRefB.getText() +
 			"' order by BrewPicRef desc limit 1"
 		);
+		
+		int MaxBrewPictureRef = 0;
+		int NextBrewPictureRef = 0;
 
 		MaxBrewPictureRef = 0;
 		ResultSet rs = pre.executeQuery();
@@ -648,13 +647,13 @@ public class DBEngine {
 			MaxBrewPictureRef = rs.getInt(1);			
 		}
 		
-		NextMaxBrewPictureRef = MaxBrewPictureRef + 1;
+		NextBrewPictureRef = MaxBrewPictureRef + 1;
 	    
 		/*Close the connection after use (MUST)*/
 	    if(conn!=null)
 	    conn.close();
 	    
-	    return Integer.toString(NextMaxBrewPictureRef);
+	    return Integer.toString(NextBrewPictureRef);
 				    
 	}
 	
@@ -805,7 +804,7 @@ public class DBEngine {
 		}		
 		
 		//Get sizes
-		imageBrewPicture = imageIconBrewPicture.getImage();
+		Image imageBrewPicture = imageIconBrewPicture.getImage();
 		BigDecimal DecimalIconWidth = new BigDecimal(imageIconBrewPicture.getIconWidth());
 		BigDecimal DecimalPanelWidth = new BigDecimal(panelwidth);
 		BigDecimal DecimalIconHeight = new BigDecimal(imageIconBrewPicture.getIconHeight());
@@ -852,8 +851,8 @@ public class DBEngine {
 		}
 		
 		//Resize and return
-		imageScaledBrewPicture = imageBrewPicture.getScaledInstance(NewNewWidth, NewNewHeight, Image.SCALE_SMOOTH); 
-        imageIconScaledBrewPicture = new ImageIcon(imageScaledBrewPicture);
+		Image imageScaledBrewPicture = imageBrewPicture.getScaledInstance(NewNewWidth, NewNewHeight, Image.SCALE_SMOOTH); 
+        ImageIcon imageIconScaledBrewPicture = new ImageIcon(imageScaledBrewPicture);
 		return imageIconScaledBrewPicture;
 		
 	}

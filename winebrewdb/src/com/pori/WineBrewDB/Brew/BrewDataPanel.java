@@ -34,48 +34,27 @@ public class BrewDataPanel extends JPanel {
 
 	private static final long serialVersionUID = -844109213529915549L;
 	static JPanel tabbedBrewDataPanel;
-	private static JLabel lblBrewRefB;
 	public static JTextField textBrewRefB;
-	private static JLabel lblBrewNameB;
 	public static JTextField textBrewNameB;
-	private static JLabel lblBrewColourB;
 	public static JComboBox<String> comboBrewColourB;
-	private static JLabel lblBrewRecipeB;
 	public static JTextField textBrewRecipeB;
-	private static JLabel lblBrewThumbsB;
 	public static JComboBox<String> comboBrewThumbsB;
-	private static JLabel lblBrewDatePlannedB;
 	public static JDateChooser chooserBrewDatePlannedB;
-	private static JLabel lblBrewDateStartedB;
 	public static JDateChooser chooserBrewDateStartedB;
-	private static JLabel lblBrewDateBottledB;
 	public static JDateChooser chooserBrewDateBottledB;
-	private static JLabel lblBrewYeastB;
 	public static JTextField textBrewYeastB;
-	private static JLabel lblBrewStartSGB;
 	public static JFormattedTextField textBrewStartSGB;
-	private static JLabel lblBrewStartAdjustedSGB;
 	public static JFormattedTextField textBrewStartAdjustedSGB;
-	private static JLabel lblBrewEndSGB;
 	public static JFormattedTextField textBrewEndSGB;
-	private static JLabel lblBrewAimedABVB;
 	public static JFormattedTextField textBrewAimedABVB;
-	private static JLabel lblBrewFinalABVB;
 	public static JFormattedTextField textBrewFinalABVB;
-	private static JLabel lblBrewFinalAdjustedABVB;
 	public static JFormattedTextField textBrewFinalAdjustedABVB;
-	private static JLabel lblBrewVolumeMadeB;
 	public static JTextField textBrewVolumeMadeB;
-	private static JLabel lblBrewNumberBottlesB;
 	public static JTextField textBrewNumberBottlesB;
-	private static JLabel lblBrewVolumeMade2B;
-	private static JLabel lblBrewTastingNotesB;
 	public static JTextField textBrewTastingNotesB;
-	private static JLabel lblBrewGeneralNotesB;
 	public static JTextArea textBrewGeneralNotesB;
 	static JButton btnBrewDataEdit;
 	private static JButton btnBrewDataSave;
-	private static JScrollPane BrewDataNotesScrollPane;
 	public static JCheckBox chckbxBrewInPlanningB;
 	public static JCheckBox chckbxBrewInFermentingB;
 	public static JCheckBox chckbxBrewInFiningB;
@@ -84,12 +63,6 @@ public class BrewDataPanel extends JPanel {
 	public static JCheckBox chckbxBrewDrunkB;
 	static JButton btnBrewDataDelete;
 	private static JButton btnBrewDataCancel;
-	private static String unformattedtextBrewStartSGB;
-	private static String unformattedtextBrewStartAdjustedSGB;
-	private static String unformattedtextBrewEndSGB;
-	private static String unformattedtextBrewAimedABVB;
-	private static String unformattedtextBrewFinalABVB;
-	private static String unformattedtextBrewFinalAdjustedABVB;
 	
 	
 	public static void InitializePanel(){
@@ -98,105 +71,105 @@ public class BrewDataPanel extends JPanel {
 		tabbedBrewDataPanel.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.setLayout(new MigLayout("", "[105px:105px:105px][30px:30px, grow][grow][105px:105px:105px][30px:30px, grow][grow][120px:120px:120px][30px:30px, grow][grow]", "[][][][10px:10px][][][][10px:10px][][][][10px:10px][][10px:10px][][55px:55,grow][15px:15px][]"));
 		
-		lblBrewRefB = new JLabel("Brew Ref:");
+		JLabel lblBrewRefB = new JLabel("Brew Ref:");
 		tabbedBrewDataPanel.add(lblBrewRefB, "flowx,cell 0 0,alignx right");
 			
 		textBrewRefB = new JTextField();
 		textBrewRefB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewRefB, "cell 1 0,growx");
 		
-		lblBrewNameB = new JLabel("Brew Name:");
+		JLabel lblBrewNameB = new JLabel("Brew Name:");
 		tabbedBrewDataPanel.add(lblBrewNameB, "flowx,cell 2 0,alignx right");
 			
 		textBrewNameB = new JTextField();
 		textBrewNameB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewNameB, "cell 3 0 6,growx");
 		
-		lblBrewRecipeB = new JLabel("Recipe From:");
+		JLabel lblBrewRecipeB = new JLabel("Recipe From:");
 		tabbedBrewDataPanel.add(lblBrewRecipeB, "flowx,cell 0 1,alignx right");
 			
 		textBrewRecipeB = new JTextField();
 		textBrewRecipeB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewRecipeB, "cell 1 1 8,growx");
 		
-		lblBrewDatePlannedB = new JLabel("Date Planned:");
+		JLabel lblBrewDatePlannedB = new JLabel("Date Planned:");
 		tabbedBrewDataPanel.add(lblBrewDatePlannedB, "flowx,cell 0 2,alignx right");
 			
 		chooserBrewDatePlannedB = new JDateChooser();
 		chooserBrewDatePlannedB.setDisabled();
 		tabbedBrewDataPanel.add(chooserBrewDatePlannedB, "cell 1 2 2,growx");
 		
-		lblBrewDateStartedB = new JLabel("Date Started:");
+		JLabel lblBrewDateStartedB = new JLabel("Date Started:");
 		tabbedBrewDataPanel.add(lblBrewDateStartedB, "flowx,cell 3 2,alignx right");
 			
 		chooserBrewDateStartedB = new JDateChooser();
 		chooserBrewDateStartedB.setDisabled();
 		tabbedBrewDataPanel.add(chooserBrewDateStartedB, "cell 4 2 2,growx");
 		
-		lblBrewDateBottledB = new JLabel("Date Bottled:");
+		JLabel lblBrewDateBottledB = new JLabel("Date Bottled:");
 		tabbedBrewDataPanel.add(lblBrewDateBottledB, "flowx,cell 6 2,alignx right");
 			
 		chooserBrewDateBottledB = new JDateChooser();
 		chooserBrewDateBottledB.setDisabled();
 		tabbedBrewDataPanel.add(chooserBrewDateBottledB, "cell 7 2 2,growx");
 			
-		lblBrewStartSGB = new JLabel("Start SG:");
+		JLabel lblBrewStartSGB = new JLabel("Start SG:");
 		tabbedBrewDataPanel.add(lblBrewStartSGB, "flowx,cell 0 4,alignx right");
 		
 		textBrewStartSGB = new JFormattedTextField(new DecimalFormat("0.000"));
 		textBrewStartSGB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewStartSGB, "cell 1 4 2,growx");
 		
-		lblBrewStartAdjustedSGB = new JLabel("Start Adjusted SG:");
+		JLabel lblBrewStartAdjustedSGB = new JLabel("Start Adjusted SG:");
 		tabbedBrewDataPanel.add(lblBrewStartAdjustedSGB, "flowx,cell 3 4,alignx right");
 			
 		textBrewStartAdjustedSGB = new JFormattedTextField(new DecimalFormat("0.000"));
 		textBrewStartAdjustedSGB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewStartAdjustedSGB, "cell 4 4 2,growx");
 		
-		lblBrewEndSGB = new JLabel("End SG:");
+		JLabel lblBrewEndSGB = new JLabel("End SG:");
 		tabbedBrewDataPanel.add(lblBrewEndSGB, "flowx,cell 6 4,alignx right");
 			
 		textBrewEndSGB = new JFormattedTextField(new DecimalFormat("0.000"));
 		textBrewEndSGB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewEndSGB, "cell 7 4 2,growx");
 		
-		lblBrewAimedABVB = new JLabel("Aimed ABV%:");
+		JLabel lblBrewAimedABVB = new JLabel("Aimed ABV%:");
 		tabbedBrewDataPanel.add(lblBrewAimedABVB, "flowx,cell 0 5,alignx right");
 			
 		textBrewAimedABVB = new JFormattedTextField(new DecimalFormat("##0.00"));
 		textBrewAimedABVB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewAimedABVB, "cell 1 5 2,growx");
 		
-		lblBrewFinalABVB = new JLabel("Final ABV%:");
+		JLabel lblBrewFinalABVB = new JLabel("Final ABV%:");
 		tabbedBrewDataPanel.add(lblBrewFinalABVB, "flowx,cell 3 5,alignx right");
 			
 		textBrewFinalABVB = new JFormattedTextField(new DecimalFormat("##0.00"));
 		textBrewFinalABVB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewFinalABVB, "cell 4 5 2,growx");
 		
-		lblBrewFinalAdjustedABVB = new JLabel("Final Adjusted ABV%:");
+		JLabel lblBrewFinalAdjustedABVB = new JLabel("Final Adjusted ABV%:");
 		tabbedBrewDataPanel.add(lblBrewFinalAdjustedABVB, "flowx,cell 6 5,alignx right");
 			
 		textBrewFinalAdjustedABVB = new JFormattedTextField(new DecimalFormat("##0.00"));
 		textBrewFinalAdjustedABVB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewFinalAdjustedABVB, "cell 7 5 2,growx");
 		
-		lblBrewYeastB = new JLabel("Yeast:");
+		JLabel lblBrewYeastB = new JLabel("Yeast:");
 		tabbedBrewDataPanel.add(lblBrewYeastB, "flowx,cell 0 6,alignx right");
 			
 		textBrewYeastB = new JTextField();
 		textBrewYeastB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewYeastB, "cell 1 6 8,growx");
 		
-		lblBrewVolumeMadeB = new JLabel("Volume Made:");
+		JLabel lblBrewVolumeMadeB = new JLabel("Volume Made:");
 		tabbedBrewDataPanel.add(lblBrewVolumeMadeB, "flowx,cell 0 8,alignx right");
 			
 		textBrewVolumeMadeB = new JTextField();
 		textBrewVolumeMadeB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewVolumeMadeB, "cell 1 8,growx");
 		
-		lblBrewVolumeMade2B = new JLabel("(gallons)");
+		JLabel lblBrewVolumeMade2B = new JLabel("(gallons)");
 		tabbedBrewDataPanel.add(lblBrewVolumeMade2B, "flowx,cell 2 8,alignx left");
 		
 		chckbxBrewInPlanningB = new JCheckBox("In Planning");
@@ -211,7 +184,7 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewInFermentingB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewInFermentingB, "cell 4 8,growx");
 		
-		lblBrewColourB = new JLabel("Colour:");
+		JLabel lblBrewColourB = new JLabel("Colour:");
 		tabbedBrewDataPanel.add(lblBrewColourB, "flowx,cell 6 8,alignx right");
 			
 		comboBrewColourB = new JComboBox<String>();
@@ -248,7 +221,7 @@ public class BrewDataPanel extends JPanel {
 		comboBrewColourB.setEnabled(false);
 		tabbedBrewDataPanel.add(comboBrewColourB, "cell 7 8 2,growx");
 		
-		lblBrewNumberBottlesB = new JLabel("Number of Bottles:");
+		JLabel lblBrewNumberBottlesB = new JLabel("Number of Bottles:");
 		tabbedBrewDataPanel.add(lblBrewNumberBottlesB, "flowx,cell 0 9,alignx right");
 			
 		textBrewNumberBottlesB = new JTextField();
@@ -267,7 +240,7 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewInMaturingB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewInMaturingB, "cell 4 9,growx");
 		
-		lblBrewThumbsB = new JLabel("Thumbs Up?");
+		JLabel lblBrewThumbsB = new JLabel("Thumbs Up?");
 		tabbedBrewDataPanel.add(lblBrewThumbsB, "flowx,cell 6 9,alignx right");
 			
 		comboBrewThumbsB = new JComboBox<String>();
@@ -312,14 +285,14 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewDrunkB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewDrunkB, "cell 4 10,growx");
 		
-		lblBrewTastingNotesB = new JLabel("Tasting Notes:");
+		JLabel lblBrewTastingNotesB = new JLabel("Tasting Notes:");
 		tabbedBrewDataPanel.add(lblBrewTastingNotesB, "flowx,cell 0 12,alignx right");
 			
 		textBrewTastingNotesB = new JTextField();
 		textBrewTastingNotesB.setEditable(false);
 		tabbedBrewDataPanel.add(textBrewTastingNotesB, "cell 1 12 8,growx");
 		
-		lblBrewGeneralNotesB = new JLabel("General Notes:");
+		JLabel lblBrewGeneralNotesB = new JLabel("General Notes:");
 		tabbedBrewDataPanel.add(lblBrewGeneralNotesB, "flowx,cell 0 14,alignx right");
 		
 		textBrewGeneralNotesB = new JTextArea();
@@ -328,7 +301,7 @@ public class BrewDataPanel extends JPanel {
 		textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
 		
 		//ScrollPane for textBrewGeneralNotesB
-	    BrewDataNotesScrollPane = new JScrollPane();
+	    JScrollPane BrewDataNotesScrollPane = new JScrollPane();
 	    BrewDataNotesScrollPane.setViewportView(textBrewGeneralNotesB);
 	    tabbedBrewDataPanel.add(BrewDataNotesScrollPane, "cell 1 14 8 2,grow");
 		
@@ -622,7 +595,7 @@ public class BrewDataPanel extends JPanel {
 		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,7).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,7).equals("")){
 			textBrewStartSGB.setText("");
 		}else {
-			unformattedtextBrewStartSGB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,7);
+			String unformattedtextBrewStartSGB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,7);
 			Float unformattedfloatBrewStartSGB = Float.valueOf(unformattedtextBrewStartSGB);
 			DecimalFormat SG = new DecimalFormat("0.000");
 			textBrewStartSGB.setText(SG.format(unformattedfloatBrewStartSGB));
@@ -631,7 +604,7 @@ public class BrewDataPanel extends JPanel {
 		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,8).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,8).equals("")){
 			textBrewStartAdjustedSGB.setText("");
 		}else {
-			unformattedtextBrewStartAdjustedSGB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,8);
+			String unformattedtextBrewStartAdjustedSGB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,8);
 			Float unformattedfloatBrewStartAdjustedSGB = Float.valueOf(unformattedtextBrewStartAdjustedSGB);
 			DecimalFormat SG = new DecimalFormat("0.000");
 			textBrewStartAdjustedSGB.setText(SG.format(unformattedfloatBrewStartAdjustedSGB));
@@ -640,7 +613,7 @@ public class BrewDataPanel extends JPanel {
 		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,9).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,9).equals("")){
 			textBrewEndSGB.setText("");
 		}else {
-			unformattedtextBrewEndSGB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,9);
+			String unformattedtextBrewEndSGB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,9);
 			Float unformattedfloatBrewEndSGB = Float.valueOf(unformattedtextBrewEndSGB);
 			DecimalFormat SG = new DecimalFormat("0.000");
 			textBrewEndSGB.setText(SG.format(unformattedfloatBrewEndSGB));
@@ -649,7 +622,7 @@ public class BrewDataPanel extends JPanel {
 		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,10).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,10).equals("")){
 			textBrewAimedABVB.setText("");
 		}else {
-			unformattedtextBrewAimedABVB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,10);
+			String unformattedtextBrewAimedABVB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,10);
 			Float unformattedfloatBrewAimedABVB = Float.valueOf(unformattedtextBrewAimedABVB);
 			DecimalFormat ABV = new DecimalFormat("##0.00");
 			textBrewAimedABVB.setText(ABV.format(unformattedfloatBrewAimedABVB));
@@ -658,7 +631,7 @@ public class BrewDataPanel extends JPanel {
 		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,11).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,11).equals("")){
 			textBrewFinalABVB.setText("");
 		}else {
-			unformattedtextBrewFinalABVB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,11);
+			String unformattedtextBrewFinalABVB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,11);
 			Float unformattedfloatBrewFinalABVB = Float.valueOf(unformattedtextBrewFinalABVB);
 			DecimalFormat ABV = new DecimalFormat("##0.00");
 			textBrewFinalABVB.setText(ABV.format(unformattedfloatBrewFinalABVB));
@@ -667,7 +640,7 @@ public class BrewDataPanel extends JPanel {
 		if(BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,12).equals(null) || BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,12).equals("")){
 			textBrewFinalAdjustedABVB.setText("");
 		}else {
-			unformattedtextBrewFinalAdjustedABVB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,12);
+			String unformattedtextBrewFinalAdjustedABVB = (String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,12);
 			Float unformattedfloatBrewFinalAdjustedABVB = Float.valueOf(unformattedtextBrewFinalAdjustedABVB);
 			DecimalFormat ABV = new DecimalFormat("##0.00");
 			textBrewFinalAdjustedABVB.setText(ABV.format(unformattedfloatBrewFinalAdjustedABVB));

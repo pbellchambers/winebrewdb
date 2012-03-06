@@ -31,12 +31,10 @@ public class BrewPicturesPanel extends JPanel {
 	private static final long serialVersionUID = -476275486314448039L;
 	static JPanel tabbedBrewPicturesPanel;
 	static JScrollPane BrewPicturesTableScrollPane;
-	private static JScrollPane BrewPictureScrollPane;
 	static JTable BrewPicturesTable;
 	private static boolean mouseListenerIsActive;
 	private static int BrewPicturesSelectedRow;
 	public static JTextField textBrewPictureRef;
-	private static JLabel lblBrewPictureDescription;
 	public static JTextField textBrewPictureDescription;
 	private static JButton btnBrewPictureAdd;
 	static JButton btnBrewPictureEdit;
@@ -45,10 +43,11 @@ public class BrewPicturesPanel extends JPanel {
 	private static JButton btnBrewPictureSave;
 	private static String isNewPicture;
 	public static JTextField textBrewPictureFilename;
-	private static JLabel labelBrewPicture;
 	private static JButton btnBrewPictureLoad;
 	private static boolean resizeListenerIsActive;
 	private static JButton btnBrewPictureSavePic;
+	private static JScrollPane BrewPictureScrollPane;
+	private static JLabel labelBrewPicture;
 
 	
 	public static void InitializePanel(){
@@ -82,7 +81,7 @@ public class BrewPicturesPanel extends JPanel {
 		textBrewPictureFilename.setEditable(false);
 		textBrewPictureFilename.setText("C:\\test.jpg");
 		
-		lblBrewPictureDescription = new JLabel("Description:");
+		JLabel lblBrewPictureDescription = new JLabel("Description:");
 		tabbedBrewPicturesPanel.add(lblBrewPictureDescription, "cell 1 2,alignx trailing");
 		
 		textBrewPictureDescription = new JTextField();

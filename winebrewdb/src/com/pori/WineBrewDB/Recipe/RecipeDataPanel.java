@@ -21,30 +21,19 @@ public class RecipeDataPanel extends JPanel {
 
 	private static final long serialVersionUID = -744103763529915749L;
 	static JPanel tabbedRecipeDataPanel;
-	private static JLabel lblRecipeNameB;
 	public static JTextField textRecipeNameB;
-	private static JLabel lblInspirationB;
 	public static JTextField textInspirationB;
-	private static JLabel lblIngredientsB;
 	public static JTextArea textIngredientsB;
-	private static JLabel lblSuggestedYeastB;
 	public static JTextField textSuggestedYeastB;
-	private static JLabel lblMethodB;
 	public static JTextArea textMethodB;
-	private static JLabel lblNotesB;
 	public static JTextArea textNotesB;
-	private static JLabel lblReferencesB;
 	public static JTextField textReferencesB;
-	private static JLabel lblVolumeB;
 	public static JTextField textVolumeB;
 	public static JTextField textRecipeRefB;
-	private static JScrollPane RecipeDataIngredientsScrollPane;
-	private static JScrollPane RecipeDataMethodScrollPane;
-	private static JScrollPane RecipeDataNotesScrollPane;
 	static JButton btnRecipeDataEdit;
 	static JButton btnRecipeDataDelete;
-	private static JButton btnRecipeDataCancel;
 	private static JButton btnRecipeDataSave;
+	private static JButton btnRecipeDataCancel;
 	
 	
 	public static void InitializePanel(){
@@ -56,21 +45,21 @@ public class RecipeDataPanel extends JPanel {
 		textRecipeRefB = new JTextField();
 		textRecipeRefB.setEditable(false);
 		
-		lblRecipeNameB = new JLabel("Recipe Name:");
+		JLabel lblRecipeNameB = new JLabel("Recipe Name:");
 		tabbedRecipeDataPanel.add(lblRecipeNameB, "flowx,cell 0 0,alignx right");
 			
 		textRecipeNameB = new JTextField();
 		textRecipeNameB.setEditable(false);
 		tabbedRecipeDataPanel.add(textRecipeNameB, "cell 1 0 4,growx");
 		
-		lblInspirationB = new JLabel("Inspiration:");
+		JLabel lblInspirationB = new JLabel("Inspiration:");
 		tabbedRecipeDataPanel.add(lblInspirationB, "flowx,cell 0 1,alignx right");
 			
 		textInspirationB = new JTextField();
 		textInspirationB.setEditable(false);
 		tabbedRecipeDataPanel.add(textInspirationB, "cell 1 1 4,growx");
 		
-		lblIngredientsB = new JLabel("Ingredients:");
+		JLabel lblIngredientsB = new JLabel("Ingredients:");
 		tabbedRecipeDataPanel.add(lblIngredientsB, "flowx,cell 0 2,alignx right");
 		
 		textIngredientsB = new JTextArea();
@@ -79,25 +68,26 @@ public class RecipeDataPanel extends JPanel {
 		textIngredientsB.setBackground(UIManager.getColor("Panel.background"));
 		
 		//ScrollPane for textIngredientsB
-	    RecipeDataIngredientsScrollPane = new JScrollPane();
+	    JScrollPane RecipeDataIngredientsScrollPane = new JScrollPane();
 	    RecipeDataIngredientsScrollPane.setViewportView(textIngredientsB);
 	    tabbedRecipeDataPanel.add(RecipeDataIngredientsScrollPane, "cell 1 2 4,grow");
 		
-		lblSuggestedYeastB = new JLabel("Suggested Yeast:");
+		JLabel lblSuggestedYeastB = new JLabel("Suggested Yeast:");
 		tabbedRecipeDataPanel.add(lblSuggestedYeastB, "flowx,cell 0 3,alignx right");
 		
 		textSuggestedYeastB = new JTextField();
 		textSuggestedYeastB.setEditable(false);
 		tabbedRecipeDataPanel.add(textSuggestedYeastB, "cell 1 3 2,growx");
 		
-		lblVolumeB = new JLabel("Volume:");
+		//TODO: Make sure volume here and on add panel says gallons afterwards
+		JLabel lblVolumeB = new JLabel("Volume:");
 		tabbedRecipeDataPanel.add(lblVolumeB, "flowx,cell 3 3,alignx right");
 			
 		textVolumeB = new JTextField();
 		textVolumeB.setEditable(false);
 		tabbedRecipeDataPanel.add(textVolumeB, "cell 4 3,growx");
 		
-		lblMethodB = new JLabel("Method:");
+		JLabel lblMethodB = new JLabel("Method:");
 		tabbedRecipeDataPanel.add(lblMethodB, "flowx,cell 0 4,alignx right");
 		
 		textMethodB = new JTextArea();
@@ -106,11 +96,11 @@ public class RecipeDataPanel extends JPanel {
 		textMethodB.setBackground(UIManager.getColor("Panel.background"));
 		
 		//ScrollPane for textMethodB
-	    RecipeDataMethodScrollPane = new JScrollPane();
+	    JScrollPane RecipeDataMethodScrollPane = new JScrollPane();
 	    RecipeDataMethodScrollPane.setViewportView(textMethodB);
 	    tabbedRecipeDataPanel.add(RecipeDataMethodScrollPane, "cell 1 4 4,grow");
 		
-		lblNotesB = new JLabel("Notes:");
+		JLabel lblNotesB = new JLabel("Notes:");
 		tabbedRecipeDataPanel.add(lblNotesB, "flowx,cell 0 5,alignx right");
 		
 		textNotesB = new JTextArea();
@@ -119,11 +109,11 @@ public class RecipeDataPanel extends JPanel {
 		textNotesB.setBackground(UIManager.getColor("Panel.background"));
 		
 		//ScrollPane for textNotesB
-	    RecipeDataNotesScrollPane = new JScrollPane();
+	    JScrollPane RecipeDataNotesScrollPane = new JScrollPane();
 	    RecipeDataNotesScrollPane.setViewportView(textNotesB);
 	    tabbedRecipeDataPanel.add(RecipeDataNotesScrollPane, "cell 1 5 4,grow");
 		
-		lblReferencesB = new JLabel("References:");
+		JLabel lblReferencesB = new JLabel("References:");
 		tabbedRecipeDataPanel.add(lblReferencesB, "flowx,cell 0 6,alignx right");
 			
 		textReferencesB = new JTextField();

@@ -14,7 +14,6 @@ public class YeastStrainsPanel extends JPanel {
 
 	private static final long serialVersionUID = 2117258858258100582L;
 	static JScrollPane YeastStrainsScrollPane;
-	private static JEditorPane YeastStrainsText;
 	private static String YeastStrainsPanelStatus = "DeInitialized";
 
 	//public YeastStrainsPanel() {
@@ -22,7 +21,7 @@ public class YeastStrainsPanel extends JPanel {
 		
 	
 		//Text area that gets text from external html
-		YeastStrainsText = new JEditorPane();
+		JEditorPane YeastStrainsText = new JEditorPane();
 		YeastStrainsText.setEditable(false);
 		java.net.URL helpURL = YeastStrainsPanel.class.getResource("/com/pori/WineBrewDB/HTMLContent/YeastStrains.html");
 		if (helpURL != null) {

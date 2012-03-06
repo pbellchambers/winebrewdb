@@ -21,27 +21,14 @@ public class DilutionPanel extends JPanel {
 
 	private static final long serialVersionUID = -5260637755405545904L;
 	static JPanel DilutionSubPanel;
-	private static JTextPane txtDilutionInfo;
-	private static JLabel lblDilutionMethodABV;
-	private static JLabel lblStartingVolumeABV;
 	private static JFormattedTextField fieldStartingVolumeABV;
-	private static JLabel lblVolumeAddedABV;
 	private static JFormattedTextField fieldVolumeAddedABV;
-	private static JLabel lblCurrentABV;
 	private static JFormattedTextField fieldCurrentABV;
-	private static JLabel lblResultABV;
 	private static JFormattedTextField fieldResultABV;
-	private static JButton btnCalculateDilutionABV;
-	private static JLabel lblDilutionMethodSG;
-	private static JLabel lblStartingVolumeSG;
 	private static JFormattedTextField fieldStartingVolumeSG;
-	private static JLabel lblVolumeAddedSG;
 	private static JFormattedTextField fieldVolumeAddedSG;
-	private static JLabel lblCurrentSG;
 	private static JFormattedTextField fieldCurrentSG;
-	private static JLabel lblResultSG;
 	private static JFormattedTextField fieldResultSG;
-	private static JButton btnCalculateDilutionSG;
 	private static String DilutionPanelStatus = "DeInitialized";
 
 	//public DilutionPanel() {
@@ -55,39 +42,39 @@ public class DilutionPanel extends JPanel {
 			
 				
 		//Add Calculators to subpanel		
-		txtDilutionInfo = new JTextPane();
+		JTextPane txtDilutionInfo = new JTextPane();
 		txtDilutionInfo.setText("The following calculators are to be used when you are diluting your brew. The first is for when you are topping up with water after fermentation is complete and you know the ABV %, the second is for calculating the adjusted starting SG when you are topping up with water during fermentation. \n\nNote: If you are topping up during fermentation with sugar containing liquid that is the same as the Starting SG then you do not need to calculate any adjustments. If you are topping up with sugar containing liquid that is different to the starting SG then that is currently out of the scope of this calculator.");
 		txtDilutionInfo.setEditable(false);
 		DilutionSubPanel.add(txtDilutionInfo, "cell 0 0 6 1,grow");
 		
-		lblDilutionMethodABV = new JLabel("Diluted ABV %");
+		JLabel lblDilutionMethodABV = new JLabel("Diluted ABV %");
 		DilutionSubPanel.add(lblDilutionMethodABV, "cell 0 1");
 				
-		lblStartingVolumeABV = new JLabel("Starting Volume (litres)");
+		JLabel lblStartingVolumeABV = new JLabel("Starting Volume (litres)");
 		DilutionSubPanel.add(lblStartingVolumeABV, "cell 0 2,alignx trailing");
 				
 		fieldStartingVolumeABV = new JFormattedTextField(new DecimalFormat("#0.###"));
 		fieldStartingVolumeABV.setText("0.000");
 		DilutionSubPanel.add(fieldStartingVolumeABV, "cell 1 2,growx");
 		
-		lblCurrentABV = new JLabel("Current ABV %");
+		JLabel lblCurrentABV = new JLabel("Current ABV %");
 		DilutionSubPanel.add(lblCurrentABV, "cell 0 3,alignx trailing");
 				
 		fieldCurrentABV = new JFormattedTextField(new DecimalFormat("#0.00"));
 		fieldCurrentABV.setText("0.00");
 		DilutionSubPanel.add(fieldCurrentABV, "cell 1 3,growx");
 				
-		lblVolumeAddedABV = new JLabel("Volume Added (litres)");
+		JLabel lblVolumeAddedABV = new JLabel("Volume Added (litres)");
 		DilutionSubPanel.add(lblVolumeAddedABV, "cell 0 4,alignx trailing");
 				
 		fieldVolumeAddedABV = new JFormattedTextField(new DecimalFormat("#0.###"));
 		fieldVolumeAddedABV.setText("0.000");
 		DilutionSubPanel.add(fieldVolumeAddedABV, "cell 1 4,growx");
 				
-		btnCalculateDilutionABV = new JButton("Submit");
+		JButton btnCalculateDilutionABV = new JButton("Submit");
 		DilutionSubPanel.add(btnCalculateDilutionABV, "cell 1 5");
 				
-		lblResultABV = new JLabel("Diluted ABV %");
+		JLabel lblResultABV = new JLabel("Diluted ABV %");
 		DilutionSubPanel.add(lblResultABV, "cell 0 6,alignx trailing");
 				
 		fieldResultABV = new JFormattedTextField(new DecimalFormat("#0.00"));
@@ -95,34 +82,34 @@ public class DilutionPanel extends JPanel {
 		fieldResultABV.setEditable(false);
 		DilutionSubPanel.add(fieldResultABV, "cell 1 6,growx");
 				
-		lblDilutionMethodSG = new JLabel("Diluted SG");
+		JLabel lblDilutionMethodSG = new JLabel("Diluted SG");
 		DilutionSubPanel.add(lblDilutionMethodSG, "cell 3 1");
 				
-		lblStartingVolumeSG = new JLabel("Starting Volume (litres)");
+		JLabel lblStartingVolumeSG = new JLabel("Starting Volume (litres)");
 		DilutionSubPanel.add(lblStartingVolumeSG, "cell 3 2,alignx trailing");
 				
 		fieldStartingVolumeSG = new JFormattedTextField(new DecimalFormat("#0.###"));
 		fieldStartingVolumeSG.setText("0.000");
 		DilutionSubPanel.add(fieldStartingVolumeSG, "cell 4 2,growx");
 		
-		lblCurrentSG = new JLabel("Starting SG (e.g. 1.085)");
+		JLabel lblCurrentSG = new JLabel("Starting SG (e.g. 1.085)");
 		DilutionSubPanel.add(lblCurrentSG, "cell 3 3,alignx trailing");
 				
 		fieldCurrentSG = new JFormattedTextField(new DecimalFormat("0.000"));
 		fieldCurrentSG.setText("0.000");
 		DilutionSubPanel.add(fieldCurrentSG, "cell 4 3,growx");
 				
-		lblVolumeAddedSG = new JLabel("Volume Added (litres)");
+		JLabel lblVolumeAddedSG = new JLabel("Volume Added (litres)");
 		DilutionSubPanel.add(lblVolumeAddedSG, "cell 3 4,alignx trailing");
 				
 		fieldVolumeAddedSG = new JFormattedTextField(new DecimalFormat("#0.###"));
 		fieldVolumeAddedSG.setText("0.000");
 		DilutionSubPanel.add(fieldVolumeAddedSG, "cell 4 4,growx");	
 		
-		btnCalculateDilutionSG = new JButton("Submit");
+		JButton btnCalculateDilutionSG = new JButton("Submit");
 		DilutionSubPanel.add(btnCalculateDilutionSG, "cell 4 5");
 				
-		lblResultSG = new JLabel("Diluted Starting SG");
+		JLabel lblResultSG = new JLabel("Diluted Starting SG");
 		DilutionSubPanel.add(lblResultSG, "cell 3 6,alignx trailing");
 				
 		fieldResultSG = new JFormattedTextField(new DecimalFormat("0.000"));
