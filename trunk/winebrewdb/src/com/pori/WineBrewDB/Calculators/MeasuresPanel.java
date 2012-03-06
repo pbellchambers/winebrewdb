@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -43,7 +44,7 @@ public class MeasuresPanel extends JPanel {
 		//Subpanel
 		MeasuresSubPanel = new JPanel();
 		MeasuresSubPanel.setBackground(Color.WHITE);
-		MeasuresSubPanel.setLayout(new MigLayout("", "[20px:n:20px,left][15px:n:15px][20px:n:20px,left][60px:n:60px][40px:n:40px][40px:n:40px][60px:n:60px,left][60px:n:60px][60px:n:60px][60px:n:60px,left][60px:n:60px][40px:n:40px][40px:n:40px][60px:n:60px,left][60px:n:60px][grow]", "[5px:n,5px][15px:n:15px][20px:n:20px][40px:n:40px][40px:n:40px][20px:n:20px][40px:n:40px][40px:n:40px][20px:n:20px][40px:n:40px]"));
+		MeasuresSubPanel.setLayout(new MigLayout("", "[20px:n:20px,left][15px:n:15px][20px:n:20px,left][60px:n:60px][50px:n:50px][50px:n:50px][60px:n:60px,left][60px:n:60px][60px:n:60px][60px:n:60px,left][60px:n:60px][50px:n:50px][50px:n:50px][60px:n:60px,left][60px:n:60px][grow]", "[5px:n,5px][15px:n:15px][20px:n:20px][40px:n:40px][40px:n:40px][20px:n:20px][40px:n:40px][40px:n:40px][20px:n:20px][40px:n:40px]"));
 				
 				
 		//Add Calculators to subpanel		
@@ -69,10 +70,12 @@ public class MeasuresPanel extends JPanel {
 		fieldoz.setText("8.00");
 		MeasuresSubPanel.add(fieldoz, "cell 3 3,growx");
 				
-		JButton btnWeightToGrams = new JButton(">");
+		JButton btnWeightToGrams = new JButton();
+		btnWeightToGrams.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/right.png")));
 		MeasuresSubPanel.add(btnWeightToGrams, "cell 4 3");
 		
-		JButton btnWeightToOz = new JButton("<");
+		JButton btnWeightToOz = new JButton();
+		btnWeightToOz.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/left.png")));
 		MeasuresSubPanel.add(btnWeightToOz, "cell 5 3");
 				
 		JLabel lblgrams = new JLabel("Grams");
@@ -92,10 +95,12 @@ public class MeasuresPanel extends JPanel {
 		fieldtsp.setText("3.00");
 		MeasuresSubPanel.add(fieldtsp, "cell 10 3,growx");
 				
-		JButton btnTspToTbsp = new JButton(">");
+		JButton btnTspToTbsp = new JButton();
+		btnTspToTbsp.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/right.png")));
 		MeasuresSubPanel.add(btnTspToTbsp, "cell 11 3");
 
-		JButton btnTbspToTsp = new JButton("<");
+		JButton btnTbspToTsp = new JButton();
+		btnTbspToTsp.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/left.png")));
 		MeasuresSubPanel.add(btnTbspToTsp, "cell 12 3");
 				
 		JLabel lbltbsp = new JLabel("Tbsp");
@@ -115,10 +120,12 @@ public class MeasuresPanel extends JPanel {
 		fieldUKGallons.setText("1.000");
 		MeasuresSubPanel.add(fieldUKGallons, "cell 3 6,growx");
 				
-		JButton btnUKToUSGallons = new JButton(">");
+		JButton btnUKToUSGallons = new JButton();
+		btnUKToUSGallons.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/right.png")));
 		MeasuresSubPanel.add(btnUKToUSGallons, "cell 4 6");
 
-		JButton btnUSToUKGallons = new JButton("<");
+		JButton btnUSToUKGallons = new JButton();
+		btnUSToUKGallons.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/left.png")));
 		MeasuresSubPanel.add(btnUSToUKGallons, "cell 5 6");
 				
 		JLabel lblUSGallons = new JLabel("US Gallons");
@@ -138,10 +145,12 @@ public class MeasuresPanel extends JPanel {
 		fieldUKGallonsB.setText("1.000");
 		MeasuresSubPanel.add(fieldUKGallonsB, "cell 10 6,growx");
 				
-		JButton btnUKGallonsToLitres = new JButton(">");
+		JButton btnUKGallonsToLitres = new JButton();
+		btnUKGallonsToLitres.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/right.png")));
 		MeasuresSubPanel.add(btnUKGallonsToLitres, "cell 11 6");
 
-		JButton btnLitresToUKGallons = new JButton("<");
+		JButton btnLitresToUKGallons = new JButton();
+		btnLitresToUKGallons.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/left.png")));
 		MeasuresSubPanel.add(btnLitresToUKGallons, "cell 12 6");
 				
 		JLabel lblLitres = new JLabel("Litres");
@@ -161,10 +170,12 @@ public class MeasuresPanel extends JPanel {
 		fieldC.setText("0.0");
 		MeasuresSubPanel.add(fieldC, "cell 3 9,growx");
 				
-		JButton btnCToF = new JButton(">");
+		JButton btnCToF = new JButton();
+		btnCToF.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/right.png")));
 		MeasuresSubPanel.add(btnCToF, "cell 4 9");
 
-		JButton btnFToC = new JButton("<");
+		JButton btnFToC = new JButton();
+		btnFToC.setIcon(new ImageIcon(MeasuresPanel.class.getResource("/com/pori/WineBrewDB/Images/left.png")));
 		MeasuresSubPanel.add(btnFToC, "cell 5 9");
 				
 		JLabel lblF = new JLabel("°F");

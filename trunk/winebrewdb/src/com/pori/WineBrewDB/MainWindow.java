@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -20,10 +19,10 @@ import org.ini4j.Wini;
 public class MainWindow {
 
 	public static JFrame WineBrewDBFrame;
-	public static String WineBrewDBVersion = "v0.8.3";
+	public static String WineBrewDBVersion = "v0.9.0";
 	public static String DatabaseLocationFromIni;
 	public static String LookAndFeel;
-	private static Wini brewIni;
+	static Wini brewIni;
 	
 	/**
 	 * Launch the application.
@@ -40,10 +39,16 @@ public class MainWindow {
 					DatabaseLocationFromIni = brewIni.get("WineBrewDB", "DatabaseLocation");
 					LookAndFeel = brewIni.get("WineBrewDB", "LookAndFeel");						
 					} catch (InvalidFileFormatException e1) {
-					// TODO Invalid .ini file error
+						JOptionPane.showMessageDialog(null,
+								"WineBrewDBConfig.ini file format is invalid.",
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					// TODO .ini IO error
+					JOptionPane.showMessageDialog(null,
+							"Error accessing WineBrewDBConfig.ini, please check the file exists and you have permission.",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 				
@@ -157,36 +162,9 @@ public class MainWindow {
 		WineBrewDBFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		InitializeMenu.InitializeTopMenuMethod();
-		InitializeMenu.InitializeMenuMethod();	
-		CheckAndSetCurrentDB();
+		InitializeMenu.InitializeMenuMethod();
 
 
-	}
-
-	private void CheckAndSetCurrentDB() {
-		if(DatabaseLocationFromIni.equals("") || DatabaseLocationFromIni == null){
-			JFileChooser c = new JFileChooser();
-		      int rVal = c.showSaveDialog(WineBrewDBFrame);
-		      if (rVal == JFileChooser.APPROVE_OPTION) {
-		    	  DatabaseLocationFromIni = c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite";
-		    	  System.out.println(DatabaseLocationFromIni);
-		    	  brewIni.put("WineBrewDB", "DatabaseLocation", DatabaseLocationFromIni);
-		    	  try {
-					brewIni.store();
-				} catch (IOException e) {
-					//TODO: Failed saving ini
-					e.printStackTrace();
-				}
-		    	  System.out.println(brewIni.get("WineBrewDB", "DatabaseLocation"));
-		    	  JOptionPane.showMessageDialog(null,"Database location set successfully.","Complete",JOptionPane.INFORMATION_MESSAGE);
-		    	  WineBrewDBFrame.setTitle("WineBrewDB " + WineBrewDBVersion + " - Current Database: " + DatabaseLocationFromIni);
-		      }
-		      if (rVal == JFileChooser.CANCEL_OPTION) {
-					//TODO: Disable cancel		    	  
-		      }
-			
-		}
-		
 	}
 
 

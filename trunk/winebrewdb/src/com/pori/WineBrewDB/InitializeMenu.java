@@ -51,9 +51,7 @@ public class InitializeMenu extends MainWindow {
 		MainWindow.WineBrewDBFrame.setJMenuBar(menuBar);
 		
 		//TODO: Finish menu bar (load and save)
-		//TODO: First run database save location popup (use .ini file)
 		//TODO: Figure out Launch4j maybe
-		//TODO: Figure out how to release memory?
 		//TODO: ini4j and set look and feel to ini file
 		
 		//File Menu
@@ -71,7 +69,7 @@ public class InitializeMenu extends MainWindow {
 		mnFile.add(mntmNew);
 		
 		final JMenuItem mntmLoad = new JMenuItem("Load Database");
-		mntmLoad.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/load.png")));
+		mntmLoad.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/load.png")));
 		mntmLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -82,7 +80,7 @@ public class InitializeMenu extends MainWindow {
 		mnFile.add(mntmLoad);
 		
 		final JMenuItem mntmSaveAs = new JMenuItem("Save Database As");
-		mntmSaveAs.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/save.png")));
+		mntmSaveAs.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/save2.png")));
 		mntmSaveAs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -326,8 +324,6 @@ public class InitializeMenu extends MainWindow {
 	
 	public static void InitializeMenuMethod(){
 		
-		//TODO: Welcome pane
-		
 		//Main Content Pane
 		MainWindow.WineBrewDBFrame.getContentPane().setLayout(new MigLayout("", "[grow]", "[grow]"));
 		
@@ -338,28 +334,31 @@ public class InitializeMenu extends MainWindow {
 		MainWindow.WineBrewDBFrame.getContentPane().add(MenuPanel, "flowx,cell 0 0,alignx left,growy");
 		
 		btnBrew = new JButton();
-		btnBrew.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/brew.png")));
+		btnBrew.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/brew.png")));
 		btnBrew.setToolTipText("Add/Edit Brews");
 		MenuPanel.add(btnBrew);
 		
 		btnRecipe = new JButton();
-		btnRecipe.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/recipe.png")));
+		btnRecipe.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/recipe.png")));
 		btnRecipe.setToolTipText("Add/Edit Recipes");
 		MenuPanel.add(btnRecipe);
 		
 		MenuPanel.addSeparator();
 		
 		btnCalculators = new JButton();
-		btnCalculators.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/calculator.png")));
+		btnCalculators.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/calculator.png")));
 		btnCalculators.setToolTipText("Various Calculators");
 		MenuPanel.add(btnCalculators);
 		
 		MenuPanel.addSeparator();
 
 		btnInformation = new JButton();
-		btnInformation.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/com/pori/WineBrewDB/Images/information.png")));
+		btnInformation.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/information.png")));
 		btnInformation.setToolTipText("Useful Information");
 		MenuPanel.add(btnInformation);
+		
+		//Initialise welcome panel
+		WelcomePanel.InitializePanel();
 		
 
 		//Menu Button Actions
@@ -397,6 +396,7 @@ public class InitializeMenu extends MainWindow {
 	}
 	
 	public static void DeinitializeAllPanels(){
+		WelcomePanel.DeInitializePanel();
 		BrewPanel.DeInitializePanel();
 		RecipePanel.DeInitializePanel();
 		CalculatorsPanel.DeInitializePanel();
