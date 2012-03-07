@@ -35,7 +35,7 @@ public class DBEngine {
 
 
 	//Create the connection
-	//TODO: Handle database not containing correct data
+	//TODO: Handle database not containing correct data (catch sqlexception on all select/insert/update/delete)
 	public static Connection dbConnection() throws Exception {
 		File file = new File (MainWindow.DatabaseLocationFromIni);
 		 if(!file.exists()){

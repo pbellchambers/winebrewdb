@@ -19,11 +19,12 @@ import org.ini4j.Wini;
 public class MainWindow {
 
 	public static JFrame WineBrewDBFrame;
-	public static String WineBrewDBVersion = "v0.9.0";
+	public static String WineBrewDBVersion = "v0.9.1";
 	public static String DatabaseLocationFromIni;
 	public static String LookAndFeel;
 	static Wini brewIni;
 	
+	//TODO: Figure out Launch4j maybe
 	/**
 	 * Launch the application.
 	 */	

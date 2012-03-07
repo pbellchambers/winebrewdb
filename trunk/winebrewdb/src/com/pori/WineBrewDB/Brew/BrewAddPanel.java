@@ -65,7 +65,7 @@ public class BrewAddPanel extends JPanel {
 		
 		tabbedBrewAddPanel = new JPanel();
 		tabbedBrewAddPanel.setBackground(Color.WHITE);
-		tabbedBrewAddPanel.setLayout(new MigLayout("", "[105px:105px:105px][30px:30px, grow][grow][105px:105px:105px][30px:30px, grow][grow][120px:120px:120px][30px:30px, grow][grow]", "[][][][10px:10px][][][][10px:10px][][][][10px:10px][][10px:10px][][55px:55,grow][15px:15px][]"));
+		tabbedBrewAddPanel.setLayout(new MigLayout("", "[105px:105px:105px][30px:30px, grow][grow][105px:105px:105px][30px:30px, grow][grow][120px:120px:120px][30px:30px, grow][grow]", "[][][30px:30px][10px:10px][][][][10px:10px][][][][10px:10px][][10px:10px][][55px:55,grow][15px:15px][]"));
 		
 		JLabel lblBrewRefAdd = new JLabel("Brew Ref:");
 		tabbedBrewAddPanel.add(lblBrewRefAdd, "flowx,cell 0 0,alignx right");
