@@ -64,7 +64,7 @@ public class InitializeMenu extends MainWindow {
 		
 		//TODO: New icon 16x16
 		final JMenuItem mntmNew = new JMenuItem("New Database");
-		mntmNew.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/load.png")));
+		//mntmNew.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/new.png")));
 		mntmNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser c = new JFileChooser();
