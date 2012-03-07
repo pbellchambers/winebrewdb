@@ -22,6 +22,7 @@ import agiletrack.swing.JDateChooser;
 
 import com.pori.WineBrewDB.Dates;
 import com.pori.WineBrewDB.InitializeMenu;
+import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.SQLite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;
@@ -182,6 +183,10 @@ public class BrewNotesPanel extends JPanel {
 					  	try {
 							DBEngine.deleteBrewNote();
 						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null,
+									"An error occurred deleting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+									"Error",
+									JOptionPane.ERROR_MESSAGE);
 							e1.printStackTrace();
 						}
 						mouseListenerIsActive = true;
@@ -288,6 +293,10 @@ public class BrewNotesPanel extends JPanel {
 							}
 							DBEngine.addBrewNote();
 						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null,
+									"An error occurred inserting data into the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+									"Error",
+									JOptionPane.ERROR_MESSAGE);
 							e1.printStackTrace();
 						}
 						mouseListenerIsActive = true;
@@ -326,6 +335,10 @@ public class BrewNotesPanel extends JPanel {
 						try {
 							DBEngine.updateBrewNote();
 						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null,
+									"An error occurred updating data in the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+									"Error",
+									JOptionPane.ERROR_MESSAGE);
 							e1.printStackTrace();
 						}
 						mouseListenerIsActive = true;
@@ -367,6 +380,10 @@ public class BrewNotesPanel extends JPanel {
 	    try {
 			data = DBEngine.getBrewNotes();
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"An error occurred getting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	    

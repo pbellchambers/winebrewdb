@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import com.pori.WineBrewDB.InitializeMenu;
+import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.SQLite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;
@@ -200,6 +201,10 @@ public class RecipeDataPanel extends JPanel {
 					try {
 						DBEngine.updateRecipe();
 					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null,
+								"An error occurred updating data in the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					}
 					btnRecipeDataEdit.setEnabled(true);
@@ -241,6 +246,10 @@ public class RecipeDataPanel extends JPanel {
 					  	try {
 							DBEngine.deleteRecipe();
 						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null,
+									"An error occurred deleting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+									"Error",
+									JOptionPane.ERROR_MESSAGE);
 							e1.printStackTrace();
 						}
 						btnRecipeDataEdit.setEnabled(false);
