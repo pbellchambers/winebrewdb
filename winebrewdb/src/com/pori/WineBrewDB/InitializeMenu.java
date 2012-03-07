@@ -2,9 +2,14 @@ package com.pori.WineBrewDB;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -49,18 +54,62 @@ public class InitializeMenu extends MainWindow {
 		//Top Menu Bar
 		JMenuBar menuBar = new JMenuBar();
 		MainWindow.WineBrewDBFrame.setJMenuBar(menuBar);
-		
-		//TODO: Finish menu bar (load and save)
-		//TODO: Figure out Launch4j maybe
+	
 		
 		//File Menu
 		mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 		
+		//TODO: New icon 16x16
 		final JMenuItem mntmNew = new JMenuItem("New Database");
+		mntmNew.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/load.png")));
 		mntmNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				JFileChooser c = new JFileChooser();
+			      int rVal = c.showSaveDialog(MainWindow.WineBrewDBFrame);
+			      if (rVal == JFileChooser.APPROVE_OPTION) {
+			    	  
+			    	InputStream content = MainWindow.class.getResourceAsStream("/com/pori/WineBrewDB/SQLite/BlankWineBrewDBData.sqlite");		    	  
+					File filename = new File(c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite");
+			  		FileOutputStream fop;	
+			  		
+					try {
+						fop = new FileOutputStream(filename);
+						filename.createNewFile();
+							
+						byte buf[]=new byte[1024];
+						int len;
+						while((len=content.read(buf))>0)
+						fop.write(buf,0,len);
+						fop.close();
+						content.close();
+			 
+					} catch (IOException exx) {
+						JOptionPane.showMessageDialog(null,
+								"An error occurred saving the new database, check you have permission to this location.",
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
+						exx.printStackTrace();
+					} 			    	  
+			    	  
+			    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite";
+			    	  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
+			    	  try {
+			    		  MainWindow.brewIni.store();
+				    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
+				    	  DeinitializeAllPanels();
+				    	  WelcomePanel.InitializePanel();
+					} catch (IOException ex) {
+						JOptionPane.showMessageDialog(null,
+								"Failed to save WineBrewDBConfig.ini, please check you have permission.",
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
+						ex.printStackTrace();
+					}
+			      }
+			      if (rVal == JFileChooser.CANCEL_OPTION) {
+			    	  
+			      }
 				}
 			}
 			
@@ -71,21 +120,42 @@ public class InitializeMenu extends MainWindow {
 		mntmLoad.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/load.png")));
 		mntmLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+					JFileChooser c = new JFileChooser();
+					  int rVal = c.showOpenDialog(MainWindow.WineBrewDBFrame);
+					  if (rVal == JFileChooser.APPROVE_OPTION) {
+						  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName();
+						  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
+						  try {
+							  MainWindow.brewIni.store();
+					    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
+					    	  DeinitializeAllPanels();
+					    	  WelcomePanel.InitializePanel();
+					    	  
+						} catch (IOException ex) {
+							JOptionPane.showMessageDialog(null,
+									"Failed to save WineBrewDBConfig.ini, please check you have permission.",
+									"Error",
+									JOptionPane.ERROR_MESSAGE);
+							ex.printStackTrace();
+						}
+					  }
+					  if (rVal == JFileChooser.CANCEL_OPTION) {
+						  
+					  }
 				}
 			}
 			
 		);
 		mnFile.add(mntmLoad);
 		
+		//TODO: Finish menu bar (save db as)
 		final JMenuItem mntmSaveAs = new JMenuItem("Save Database As");
 		mntmSaveAs.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/save2.png")));
 		mntmSaveAs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				}
-			}
-			
+			}			
 		);
 		mnFile.add(mntmSaveAs);
 		
