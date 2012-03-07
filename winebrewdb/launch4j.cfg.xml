@@ -1,0 +1,37 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\workspace\BuildFolder\WineBrewDB\WineBrewDB.jar</jar>
+  <outfile>C:\workspace\BuildFolder\WineBrewDB\WineBrewDB.exe</outfile>
+  <errTitle>WineBrewDB: Error</errTitle>
+  <cmdLine></cmdLine>
+  <chdir>-</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl>http://code.google.com/p/winebrewdb/</supportUrl>
+  <customProcName>true</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>C:\workspace\WineBrewDB\src\com\pori\WineBrewDB\Images\WineBrewDB.ico</icon>
+  <jre>
+    <path></path>
+    <minVersion>1.6.0_00</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <initialHeapSize>30</initialHeapSize>
+    <maxHeapSize>40</maxHeapSize>
+    <opt>-XX:MaxPermSize=40m</opt>
+  </jre>
+  <versionInfo>
+    <fileVersion>0.9.2.0</fileVersion>
+    <txtFileVersion>v0.9.2</txtFileVersion>
+    <fileDescription>WineBrewDB</fileDescription>
+    <copyright>(c) 2012 Paul Bellchambers</copyright>
+    <productVersion>0.9.2.0</productVersion>
+    <txtProductVersion>v0.9.2</txtProductVersion>
+    <productName>WineBrewDB</productName>
+    <companyName></companyName>
+    <internalName>WineBrewDB</internalName>
+    <originalFilename>WineBrewDB.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>
