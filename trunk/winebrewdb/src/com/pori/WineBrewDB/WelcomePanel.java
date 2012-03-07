@@ -67,7 +67,7 @@ public class WelcomePanel extends JPanel {
 			WelcomePanel.add(WelcomeText2, "cell 0 1 2,grow");
 			
 			WelcomeText3 = new JLabel();
-			WelcomeText3.setText("                    Please create a new database below to begin.");
+			WelcomeText3.setText("Please create a new database below to begin.");
 			WelcomeText3.setFont(new Font("Arial", Font.PLAIN, 14));
 			WelcomeText3.setHorizontalAlignment(SwingConstants.CENTER);
 			WelcomePanel.add(WelcomeText3, "cell 0 2 2,grow");

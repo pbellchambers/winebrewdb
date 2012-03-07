@@ -4,7 +4,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -30,11 +32,38 @@ public class MainWindow {
 	 */	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
-			
+	   		
 
 			public void run() {
-				Font defaultFont = new Font("Arial",Font.PLAIN,12);
+		
+				//Check config exists and create it if not
+				File filename = new File("WineBrewDBConfig.ini");
 				
+				if(!filename.exists()){
+			    	InputStream content = MainWindow.class.getResourceAsStream("/com/pori/WineBrewDB/WineBrewDBConfig.ini");
+			  		FileOutputStream fop;	
+			  		
+					try {
+						fop = new FileOutputStream(filename);
+						filename.createNewFile();
+							
+						byte buf[]=new byte[1024];
+						int len;
+						while((len=content.read(buf))>0)
+						fop.write(buf,0,len);
+						fop.close();
+						content.close();
+			 
+					} catch (IOException exx) {
+						JOptionPane.showMessageDialog(null,
+								"An error occurred saving the new database, check you have permission to this location.",
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
+						exx.printStackTrace();
+					} 
+				}	
+				
+				//Get config settings
 				try {
 					brewIni = new Wini(new File("WineBrewDBConfig.ini"));
 					DatabaseLocationFromIni = brewIni.get("WineBrewDB", "DatabaseLocation");
@@ -65,7 +94,7 @@ public class MainWindow {
 					 e.printStackTrace();
 					}
 				
-				
+				Font defaultFont = new Font("Arial",Font.PLAIN,12);
 				UIManager.put("Button.font", defaultFont);				
 				UIManager.put("ToggleButton.font", defaultFont);
 				UIManager.put("RadioButton.font", defaultFont);
