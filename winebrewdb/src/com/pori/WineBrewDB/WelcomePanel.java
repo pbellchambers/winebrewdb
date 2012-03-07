@@ -35,10 +35,10 @@ public class WelcomePanel extends JPanel {
 		InitializeMenu.DisableAllMenuButtons();
 		
 		WelcomePanel = new JPanel();
-		WelcomePanel.setLayout(new MigLayout("", "[grow 90][50px:50px][150px,grow][50px:50px][125px,grow]", "[30px:n:30px][30px:n:30px][30px:n:30px][50px:n:50px][100px:n:100px][grow]"));
+		WelcomePanel.setLayout(new MigLayout("", "[100px:n:100px][50px:50px][300px:n:300px][50px:50px][150px:n:150px][50px,grow]", "[30px:n:30px][30px:n:30px][30px:n:30px][50px:n:50px][100px:n:100px][grow]"));
 		
 		JLabel WelcomeText1 = new JLabel();
-		WelcomeText1.setText("Welcome to WineBrewDB!");
+		WelcomeText1.setText("                    Welcome to WineBrewDB!");
 		WelcomeText1.setFont(new Font("Arial", Font.BOLD, 18));
 		WelcomeText1.setHorizontalAlignment(SwingConstants.CENTER);
 		WelcomePanel.add(WelcomeText1, "cell 0 0 5,grow");
@@ -60,14 +60,14 @@ public class WelcomePanel extends JPanel {
 		
 		if(MainWindow.DatabaseLocationFromIni.equals("") || MainWindow.DatabaseLocationFromIni == null){			
 			WelcomeText2 = new JLabel();
-			WelcomeText2.setText("Your current database is not set!");
+			WelcomeText2.setText("                    Your current database is not set!");
 			WelcomeText2.setFont(new Font("Arial", Font.BOLD, 14));
 			WelcomeText2.setForeground(Color.RED);
 			WelcomeText2.setHorizontalAlignment(SwingConstants.CENTER);
 			WelcomePanel.add(WelcomeText2, "cell 0 1 5,grow");
 			
 			WelcomeText3 = new JLabel();
-			WelcomeText3.setText("Please create a new database below to begin.");
+			WelcomeText3.setText("                    Please create a new database below to begin.");
 			WelcomeText3.setFont(new Font("Arial", Font.PLAIN, 14));
 			WelcomeText3.setHorizontalAlignment(SwingConstants.CENTER);
 			WelcomePanel.add(WelcomeText3, "cell 0 2 5,grow");
@@ -76,13 +76,13 @@ public class WelcomePanel extends JPanel {
 			InitializeMenu.EnableAllMenuButtons();
 			
 			WelcomeText2 = new JLabel();
-			WelcomeText2.setText("Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
+			WelcomeText2.setText("                    Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
 			WelcomeText2.setFont(new Font("Arial", Font.PLAIN, 14));
 			WelcomeText2.setHorizontalAlignment(SwingConstants.CENTER);
 			WelcomePanel.add(WelcomeText2, "cell 0 1 5,grow");
 			
 			WelcomeText3 = new JLabel();
-			WelcomeText3.setText("Select an option from the left to begin, and remember to ensure your database is backed up.");
+			WelcomeText3.setText("                    Select an option from the left to begin, and remember to ensure your database is backed up.");
 			WelcomeText3.setFont(new Font("Arial", Font.PLAIN, 14));
 			WelcomeText3.setHorizontalAlignment(SwingConstants.CENTER);
 			WelcomePanel.add(WelcomeText3, "cell 0 2 5,grow");
@@ -127,10 +127,10 @@ public class WelcomePanel extends JPanel {
 			    	  try {
 			    		  MainWindow.brewIni.store();
 			    		  InitializeMenu.EnableAllMenuButtons();
-				    	  WelcomeText2.setText("Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
+				    	  WelcomeText2.setText("                    Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
 				    	  WelcomeText2.setFont(new Font("Arial", Font.PLAIN, 14));
 				    	  WelcomeText2.setForeground(Color.BLACK);
-				    	  WelcomeText3.setText("Select an option from the left to begin, and remember to ensure your database is backed up.");
+				    	  WelcomeText3.setText("                    Select an option from the left to begin, and remember to ensure your database is backed up.");
 				    	  WelcomeText3.setFont(new Font("Arial", Font.PLAIN, 14));
 				    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
 					} catch (IOException ex) {
@@ -158,10 +158,10 @@ public class WelcomePanel extends JPanel {
 			    	  try {
 			    		  MainWindow.brewIni.store();
 			    		  InitializeMenu.EnableAllMenuButtons();
-				    	  WelcomeText2.setText("Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
+				    	  WelcomeText2.setText("                    Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
 				    	  WelcomeText2.setFont(new Font("Arial", Font.PLAIN, 14));
 				    	  WelcomeText2.setForeground(Color.BLACK);
-				    	  WelcomeText3.setText("Select an option from the left to begin, and remember to ensure your database is backed up.");
+				    	  WelcomeText3.setText("                    Select an option from the left to begin, and remember to ensure your database is backed up.");
 				    	  WelcomeText3.setFont(new Font("Arial", Font.PLAIN, 14));
 				    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
 					} catch (IOException ex) {
