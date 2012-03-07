@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 import com.pori.WineBrewDB.InitializeMenu;
+import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.SQLite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;
@@ -264,6 +265,10 @@ public class BrewPicturesPanel extends JPanel {
 					  	try {
 							DBEngine.deleteBrewPicture();
 						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null,
+									"An error occurred deleting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+									"Error",
+									JOptionPane.ERROR_MESSAGE);
 							e1.printStackTrace();
 						}
 				    	resizeListenerIsActive = false;
@@ -365,6 +370,10 @@ public class BrewPicturesPanel extends JPanel {
 							textBrewPictureRef.setText(DBEngine.getNextBrewPictureRef());
 							DBEngine.insertBrewPicture();
 						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null,
+									"An error occurred inserting data into the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+									"Error",
+									JOptionPane.ERROR_MESSAGE);
 							e1.printStackTrace();
 						}
 						mouseListenerIsActive = true;
@@ -396,6 +405,10 @@ public class BrewPicturesPanel extends JPanel {
 					try {
 						DBEngine.updateBrewPicture();
 					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null,
+								"An error occurred updating data in the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					}
 					mouseListenerIsActive = true;
@@ -438,6 +451,10 @@ public class BrewPicturesPanel extends JPanel {
 	    try {
 			data = DBEngine.getBrewPictureTable();
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"An error occurred getting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 

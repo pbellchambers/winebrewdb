@@ -15,7 +15,6 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 import com.pori.WineBrewDB.Dates;
 import com.pori.WineBrewDB.MainWindow;
@@ -35,16 +34,7 @@ public class DBEngine {
 
 
 	//Create the connection
-	//TODO: Handle database not containing correct data (catch sqlexception on all select/insert/update/delete)
 	public static Connection dbConnection() throws Exception {
-		File file = new File (MainWindow.DatabaseLocationFromIni);
-		 if(!file.exists()){
-			 JOptionPane.showMessageDialog(null,
-					 	MainWindow.DatabaseLocationFromIni + "\n\nThe database file does not exist.",
-						"Error",
-						JOptionPane.ERROR_MESSAGE);
-			 return null;
-		 }
 		Class.forName("org.sqlite.JDBC");
 		return DriverManager.getConnection("jdbc:sqlite:" + MainWindow.DatabaseLocationFromIni);	
 		

@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import com.pori.WineBrewDB.InitializeMenu;
+import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.SQLite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;
@@ -193,6 +194,10 @@ public class RecipeAddPanel extends JPanel {
 					try {
 						DBEngine.addRecipe();
 					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null,
+								"An error occurred inserting data into the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					}
 					btnRecipeAddEdit.setEnabled(true);

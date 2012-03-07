@@ -10,6 +10,7 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
+import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.SQLite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;
@@ -161,6 +163,10 @@ public class RecipeSearchPanel extends JPanel {
 	    try {
 			data = DBEngine.getRecipes();
 		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"An error occurred getting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	    
