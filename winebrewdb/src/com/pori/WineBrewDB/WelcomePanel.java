@@ -88,6 +88,7 @@ public class WelcomePanel extends JPanel {
 			WelcomePanel.add(WelcomeText3, "cell 0 2 2,grow");
 		}
 	
+		//TODO: Add DB stats.
 		
 		//Add it all to the main window
 		MainWindow.WineBrewDBFrame.getContentPane().add(WelcomePanel, "cell 0 0,grow");
