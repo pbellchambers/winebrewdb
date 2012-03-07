@@ -15,10 +15,6 @@ You require Java v1.6+ to run this. (http://java.com/download)
 
 
 
-Backups
----------------------------------------------------------------
-All your data is stored in the "WineBrewDBData.sqlite" file,
-you may want to back this file up.
 
 
 
