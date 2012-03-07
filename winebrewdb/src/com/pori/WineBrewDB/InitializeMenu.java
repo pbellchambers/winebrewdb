@@ -103,7 +103,7 @@ public class InitializeMenu extends MainWindow {
 				    	  WelcomePanel.InitializePanel();
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(null,
-								"Failed to save:\n" + MainWindow.WineBrewDBConfigLocation + "\n\nPlease check you have permission.",
+								"Failed to save:\n" + MainWindow.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
 						ex.printStackTrace();
@@ -135,7 +135,7 @@ public class InitializeMenu extends MainWindow {
 					    	  
 						} catch (IOException ex) {
 							JOptionPane.showMessageDialog(null,
-									"Failed to save:\n" + MainWindow.WineBrewDBConfigLocation + "\n\nPlease check you have permission.",
+									"Failed to save:\n" + MainWindow.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
 									"Error",
 									JOptionPane.ERROR_MESSAGE);
 							ex.printStackTrace();
@@ -194,7 +194,7 @@ public class InitializeMenu extends MainWindow {
 					    	  WelcomePanel.InitializePanel();
 						} catch (IOException ex) {
 							JOptionPane.showMessageDialog(null,
-									"Failed to save:\n" + MainWindow.WineBrewDBConfigLocation + "\n\nPlease check you have permission.",
+									"Failed to save:\n" + MainWindow.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
 									"Error",
 									JOptionPane.ERROR_MESSAGE);
 							ex.printStackTrace();

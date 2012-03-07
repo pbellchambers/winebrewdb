@@ -24,7 +24,8 @@ public class MainWindow {
 	public static String WineBrewDBVersion = "v0.9.2";
 	public static String DatabaseLocationFromIni;
 	public static String LookAndFeel;
-	public static File WineBrewDBConfigLocation = new File(System.getProperty("user.home") + "\\WineBrewDBConfig.ini");
+	private static File WineBrewDBConfigDirectory;
+	public static File WineBrewDBConfigFile;
 	static Wini brewIni;
 	
 	//TODO: Figure out Launch4j maybe
@@ -43,15 +44,37 @@ public class MainWindow {
 					catch(Exception e){
 					 e.printStackTrace();
 					}
-		
+				
+				//Get app data location for every OS
+			    String OS = System.getProperty("os.name").toUpperCase();
+			    if (OS.contains("WIN")){
+			    	WineBrewDBConfigDirectory = new File(System.getenv("APPDATA") + "\\WineBrewDB");
+			    	WineBrewDBConfigFile = new File(WineBrewDBConfigDirectory, "\\WineBrewDBConfig.ini");
+			    }
+			    else if (OS.contains("MAC")){
+			    	WineBrewDBConfigDirectory = new File(System.getProperty("user.home") + "/Library/Application/WineBrewDB");
+			    	WineBrewDBConfigFile = new File(WineBrewDBConfigDirectory, "/WineBrewDBConfig.ini");
+			    }
+			    else if (OS.contains("NUX")){
+			    	WineBrewDBConfigDirectory = new File(System.getProperty("user.home") + "/.WineBrewDB");
+			    	WineBrewDBConfigFile = new File(WineBrewDBConfigDirectory, "/WineBrewDBConfig.ini");
+			    }
+			    else {
+			    	WineBrewDBConfigDirectory = new File(System.getProperty("user.home"));
+			    	WineBrewDBConfigFile = new File(WineBrewDBConfigDirectory, "/WineBrewDBConfig.ini");
+			    }
+
 				//Check config exists and create it if not	
-				if(!WineBrewDBConfigLocation.exists()){
+				if(!WineBrewDBConfigFile.exists()){
 			    	InputStream content = MainWindow.class.getResourceAsStream("/com/pori/WineBrewDB/WineBrewDBConfig.ini");
 			  		FileOutputStream fop;	
 			  		
+		  			WineBrewDBConfigDirectory.mkdirs();
+			  		
 					try {
-						fop = new FileOutputStream(WineBrewDBConfigLocation);
-						WineBrewDBConfigLocation.createNewFile();
+						fop = new FileOutputStream(WineBrewDBConfigFile);
+
+						WineBrewDBConfigFile.createNewFile();
 							
 						byte buf[]=new byte[1024];
 						int len;
@@ -62,7 +85,7 @@ public class MainWindow {
 			 
 					} catch (IOException exx) {
 						JOptionPane.showMessageDialog(null,
-								"An error occurred creating:\n" + WineBrewDBConfigLocation + "\n\nCheck you have permission to save to this location.",
+								"An error occurred creating:\n" + WineBrewDBConfigFile + "\n\nCheck you have permission to save to this location.",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
 						exx.printStackTrace();
@@ -71,18 +94,18 @@ public class MainWindow {
 				
 				//Get config settings
 				try {
-					brewIni = new Wini(WineBrewDBConfigLocation);
+					brewIni = new Wini(WineBrewDBConfigFile);
 					DatabaseLocationFromIni = brewIni.get("WineBrewDB", "DatabaseLocation");
 					LookAndFeel = brewIni.get("WineBrewDB", "LookAndFeel");						
 					} catch (InvalidFileFormatException e1) {
 						JOptionPane.showMessageDialog(null,
-								WineBrewDBConfigLocation + "file format is invalid.",
+								WineBrewDBConfigFile + "file format is invalid.",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null,
-							"Error accessing:\n" + WineBrewDBConfigLocation + "\n\nPlease check the file exists and you have permission.",
+							"Error accessing:\n" + WineBrewDBConfigFile + "\n\nPlease check the file exists and you have permission.",
 							"Error",
 							JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
