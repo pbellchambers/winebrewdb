@@ -36,7 +36,6 @@ public class MainWindow {
 	   		
 
 			public void run() {
-				System.out.println(WineBrewDBConfigLocation);
 				//Set look and feel to system temporarily
 				try{ 
 					   UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
