@@ -28,7 +28,7 @@ public class MainWindow {
 	public static File WineBrewDBConfigFile;
 	static Wini brewIni;
 	
-	//TODO: Figure out Launch4j maybe
+	//TODO: Windows/Mac launchers
 	/**
 	 * Launch the application.
 	 */	

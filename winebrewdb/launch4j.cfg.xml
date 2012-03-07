@@ -5,10 +5,10 @@
   <outfile>C:\workspace\BuildFolder\WineBrewDB\WineBrewDB.exe</outfile>
   <errTitle>WineBrewDB: Error</errTitle>
   <cmdLine></cmdLine>
-  <chdir>-</chdir>
+  <chdir></chdir>
   <priority>normal</priority>
   <downloadUrl>http://java.com/download</downloadUrl>
-  <supportUrl>http://code.google.com/p/winebrewdb/</supportUrl>
+  <supportUrl></supportUrl>
   <customProcName>true</customProcName>
   <stayAlive>false</stayAlive>
   <manifest></manifest>
@@ -34,4 +34,11 @@
     <internalName>WineBrewDB</internalName>
     <originalFilename>WineBrewDB.exe</originalFilename>
   </versionInfo>
+  <messages>
+    <startupErr>An error occurred while starting the application.</startupErr>
+    <bundledJreErr>This application was configured to use a bundled Java Runtime Environment but the runtime is missing or corrupted.</bundledJreErr>
+    <jreVersionErr>This application requires a Java Runtime Environment.\n\nYou will now be directed to the java website.\n</jreVersionErr>
+    <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.\n\nPlease un-install and re-install java.</launcherErr>
+    <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
+  </messages>
 </launch4jConfig>
