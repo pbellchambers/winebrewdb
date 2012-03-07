@@ -136,7 +136,7 @@ public class WelcomePanel extends JPanel {
 				    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(null,
-								"Failed to save:\n" + MainWindow.WineBrewDBConfigLocation + "\n\nPlease check you have permission.",
+								"Failed to save:\n" + MainWindow.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
 						ex.printStackTrace();
@@ -167,7 +167,7 @@ public class WelcomePanel extends JPanel {
 				    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(null,
-								"Failed to save:\n" + MainWindow.WineBrewDBConfigLocation + "\n\nPlease check you have permission.",
+								"Failed to save:\n" + MainWindow.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
 						ex.printStackTrace();
