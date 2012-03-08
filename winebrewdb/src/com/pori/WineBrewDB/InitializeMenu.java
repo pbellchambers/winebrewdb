@@ -71,7 +71,7 @@ public class InitializeMenu extends MainWindow {
 			      if (rVal == JFileChooser.APPROVE_OPTION) {
 			    	  
 			    	InputStream content = MainWindow.class.getResourceAsStream("/com/pori/WineBrewDB/SQLite/BlankWineBrewDBData.sqlite");		    	  
-					File filename = new File(c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite");
+					File filename = new File(c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".sqlite");
 			  		FileOutputStream fop;	
 			  		
 					try {
@@ -93,7 +93,7 @@ public class InitializeMenu extends MainWindow {
 						exx.printStackTrace();
 					} 			    	  
 			    	  
-			    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite";
+			    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".sqlite";
 			    	  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
 			    	  try {
 			    		  MainWindow.brewIni.store();
@@ -124,7 +124,7 @@ public class InitializeMenu extends MainWindow {
 					JFileChooser c = new JFileChooser();
 					  int rVal = c.showOpenDialog(MainWindow.WineBrewDBFrame);
 					  if (rVal == JFileChooser.APPROVE_OPTION) {
-						  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName();
+						  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName();
 						  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
 						  try {
 							  MainWindow.brewIni.store();
@@ -162,7 +162,7 @@ public class InitializeMenu extends MainWindow {
 			    	FileInputStream content;
 					try {
 						content = new FileInputStream(currentdb);
-						File filename = new File(c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite");
+						File filename = new File(c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".sqlite");
 				  		FileOutputStream fop;	
 				  		
 						try {
@@ -184,7 +184,7 @@ public class InitializeMenu extends MainWindow {
 							exx.printStackTrace();
 						} 			    	  
 				    	  
-				    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite";
+				    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".sqlite";
 				    	  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
 				    	  try {
 				    		  MainWindow.brewIni.store();

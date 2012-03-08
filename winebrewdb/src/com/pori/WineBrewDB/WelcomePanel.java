@@ -100,7 +100,7 @@ public class WelcomePanel extends JPanel {
 			      if (rVal == JFileChooser.APPROVE_OPTION) {
 			    	  
 			    	InputStream content = MainWindow.class.getResourceAsStream("/com/pori/WineBrewDB/SQLite/BlankWineBrewDBData.sqlite");		    	  
-					File filename = new File(c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite");
+					File filename = new File(c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".sqlite");
 			  		FileOutputStream fop;	
 			  		
 					try {
@@ -122,7 +122,7 @@ public class WelcomePanel extends JPanel {
 						exx.printStackTrace();
 					} 			    	  
 			    	  
-			    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName() + ".sqlite";
+			    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".sqlite";
 			    	  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
 			    	  try {
 			    		  MainWindow.brewIni.store();
@@ -153,7 +153,7 @@ public class WelcomePanel extends JPanel {
 				JFileChooser c = new JFileChooser();
 			      int rVal = c.showOpenDialog(MainWindow.WineBrewDBFrame);
 			      if (rVal == JFileChooser.APPROVE_OPTION) {
-			    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + "\\" + c.getSelectedFile().getName();
+			    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName();
 			    	  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
 			    	  try {
 			    		  MainWindow.brewIni.store();

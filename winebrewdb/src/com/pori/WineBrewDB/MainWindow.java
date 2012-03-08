@@ -21,11 +21,12 @@ import org.ini4j.Wini;
 public class MainWindow {
 
 	public static JFrame WineBrewDBFrame;
-	public static String WineBrewDBVersion = "v1.0.0";
+	public static String WineBrewDBVersion = "v1.0.1";
 	public static String DatabaseLocationFromIni;
 	public static String LookAndFeel;
 	private static File WineBrewDBConfigDirectory;
 	public static File WineBrewDBConfigFile;
+	public static String OSSlash;
 	static Wini brewIni;
 	
 	//TODO: Mac launcher somehow.
@@ -53,18 +54,22 @@ public class MainWindow {
 			    if (OS.contains("WIN")){
 			    	WineBrewDBConfigDirectory = new File(System.getenv("APPDATA") + "\\WineBrewDB");
 			    	WineBrewDBConfigFile = new File(WineBrewDBConfigDirectory, "\\WineBrewDBConfig.ini");
+			    	OSSlash = "\\";
 			    }
 			    else if (OS.contains("MAC")){
 			    	WineBrewDBConfigDirectory = new File(System.getProperty("user.home") + "/Library/Application/WineBrewDB");
 			    	WineBrewDBConfigFile = new File(WineBrewDBConfigDirectory, "/WineBrewDBConfig.ini");
+			    	OSSlash = "/";
 			    }
 			    else if (OS.contains("NUX")){
 			    	WineBrewDBConfigDirectory = new File(System.getProperty("user.home") + "/.WineBrewDB");
 			    	WineBrewDBConfigFile = new File(WineBrewDBConfigDirectory, "/WineBrewDBConfig.ini");
+			    	OSSlash = "/";
 			    }
 			    else {
 			    	WineBrewDBConfigDirectory = new File(System.getProperty("user.home"));
 			    	WineBrewDBConfigFile = new File(WineBrewDBConfigDirectory, "/WineBrewDBConfig.ini");
+			    	OSSlash = "/";
 			    }
 
 				//Check config exists and create it if not	
