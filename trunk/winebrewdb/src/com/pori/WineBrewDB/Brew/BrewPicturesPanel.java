@@ -176,7 +176,7 @@ public class BrewPicturesPanel extends JPanel {
 				JFileChooser c = new JFileChooser();
 			      int rVal = c.showOpenDialog(BrewPictureScrollPane);
 			      if (rVal == JFileChooser.APPROVE_OPTION) {
-			    	  String filename = "\\" + c.getSelectedFile().getName();
+			    	  String filename = MainWindow.OSSlash + c.getSelectedFile().getName();
 			    	  String dir = c.getCurrentDirectory().toString();			    	  
 			    	  textBrewPictureFilename.setText(dir + filename);			    	  			    	  
 			    	  tabbedBrewPicturesPanel.remove(labelBrewPicture);
