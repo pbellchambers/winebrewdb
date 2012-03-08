@@ -21,14 +21,17 @@ import org.ini4j.Wini;
 public class MainWindow {
 
 	public static JFrame WineBrewDBFrame;
-	public static String WineBrewDBVersion = "v0.9.3";
+	public static String WineBrewDBVersion = "v1.0.0";
 	public static String DatabaseLocationFromIni;
 	public static String LookAndFeel;
 	private static File WineBrewDBConfigDirectory;
 	public static File WineBrewDBConfigFile;
 	static Wini brewIni;
 	
-	//TODO: Windows/Mac launchers
+	//TODO: Mac launcher somehow.
+	//Use "Jar Bundler" on a mac
+	//Also see: http://java.sun.com/developer/technicalArticles/JavaLP/JavaToMac/
+	
 	/**
 	 * Launch the application.
 	 */	
