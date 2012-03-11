@@ -440,7 +440,7 @@ public class InitializeMenu extends MainWindow {
 		mntmAck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,
-						"The following were used in the making of this program:\n\n- Wine icon modified from \"Wine\" symbol by thenounproject.com, CC BY.\n- MiGLayout from MiG InfoCom AB, licensed under the BSD License.\n- SQLite from sqlite.org, public domain.\n- SQLiteJDBC from David Crawshaw / zentus.com, licensed under the BSD License.\n- JDateChooser from Adam Lee / gimlisys.com, licensed under the Academic Free License.\n- Joda Time from Joda.org, licensed under the Apache License.\n- ini4j from Ivan SZKIBA, licensed under the Apache License.\n- Yeast Strains data compiled from information posted by \"goldseal\" and other members\n   of the winesathome.co.uk / homewinemaking.co.uk communities.",
+						"The following were used in the making of this program:\n\n- Wine icon modified from \"Wine\" symbol by thenounproject.com, CC BY.\n- MiGLayout from MiG InfoCom AB, licensed under the BSD License.\n- SQLite from sqlite.org, public domain.\n- SQLiteJDBC from David Crawshaw / zentus.com, licensed under the BSD License.\n- JDateChooser from Adam Lee / gimlisys.com, licensed under the Academic Free License.\n- Joda Time from Joda.org, licensed under the Apache License.\n- ini4j from Ivan SZKIBA, licensed under the Apache License.\n- Yeast Strains data compiled from information posted by \"goldseal\" and other members\n   of the winesathome.co.uk community.",
 						"Credits",
 						JOptionPane.PLAIN_MESSAGE);
 				}
