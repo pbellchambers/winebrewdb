@@ -1,7 +1,7 @@
 #summary WineBrewDB Change Log
 
 === v1.0.3: ===
-  * Added Total Cost Field
+  * Added Total Cost field to brews
   * Minor text changes in about/dosages
 
 
@@ -47,22 +47,30 @@
 
 ----
 === vAlpha0.5.1: ===
-  *
-
+  * Brew delete/cancel buttons added
+  * Now complies with third party license requirements
+  * Fixed bug with added brew data not in any status not being displayed
+  * Minor bugfixes
 
 ----
 === vAlpha0.5.0: ===
-  *
-
+  * Add brew now works
+  * Brew data panel now populates and is editable
+  * Code refactoring
+  * Minor bugfixes
 
 ----
 === vAlpha0.3.0: ===
-  *
-
+  * Brew search/filter now working
+  * Tabs added to brew pane
+  * Code refactoring
+  * Icon updated
+  * Pineapple added to fruit acids
+  * Minor bugfixes
 
 ----
 === vAlpha0.2.0: ===
-  * Data can be retrieved from the database
+  * Data can now be retrieved from the database
 
 ----
 === vAlpha0.1.1: ===
