@@ -2,6 +2,8 @@ package com.pori.WineBrewDB.Recipe;
 
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -18,12 +20,13 @@ public class RecipePanel extends JPanel {
 	private static JLabel RecipeSubtitle;
 	static JTabbedPane tabbedRecipePane;
 	private static String RecipePanelStatus = "DeInitialized";
+	public static JButton btnPrintRecipe;
 
 	//public RecipePanel() {
 	public static void InitializePanel(){
 		
 		RecipePanel = new JPanel();
-		RecipePanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
+		RecipePanel.setLayout(new MigLayout("", "[grow][65px:n:65px]", "[20px:n:20px][25px:n:25px][grow]"));
 		
 		
 		//Header
@@ -38,11 +41,16 @@ public class RecipePanel extends JPanel {
 		RecipePanel.add(RecipeSubtitle, "cell 0 1,growx,aligny top");
 		
 		//TODO: Print recipe button
-		
+		//TODO: Update button icon
+		btnPrintRecipe = new JButton();
+		btnPrintRecipe.setIcon(new ImageIcon(RecipePanel.class.getResource("/com/pori/WineBrewDB/Images/recipe.png")));
+		btnPrintRecipe.setToolTipText("Print Recipe Data");
+		btnPrintRecipe.setVisible(false);
+		RecipePanel.add(btnPrintRecipe, "cell 1 0");
 		
 		//Tabbed Pane
 		tabbedRecipePane = new JTabbedPane(JTabbedPane.TOP);
-		RecipePanel.add(tabbedRecipePane, "cell 0 2,grow");
+		RecipePanel.add(tabbedRecipePane, "cell 0 2 2,grow");
 				
 		
 		//Recipe Search Tab
@@ -79,6 +87,7 @@ public class RecipePanel extends JPanel {
 			RecipePanel.remove(RecipeHeader);
 			RecipePanel.remove(RecipeSubtitle);
 			RecipePanel.remove(tabbedRecipePane);
+			RecipePanel.remove(btnPrintRecipe);
 			tabbedRecipePane.remove(RecipeSearchPanel.tabbedRecipeSearchPanel);
 			tabbedRecipePane.remove(RecipeDataPanel.tabbedRecipeDataPanel);
 			tabbedRecipePane.remove(RecipeAddPanel.tabbedRecipeAddPanel);

@@ -2,6 +2,8 @@ package com.pori.WineBrewDB.Brew;
 
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -18,12 +20,13 @@ public class BrewPanel extends JPanel {
 	private static JLabel BrewSubtitle;
 	static JTabbedPane tabbedBrewPane;
 	private static String BrewPanelStatus = "DeInitialized";
+	public static JButton btnPrintBrew;
 
 	//public BrewPanel() {
 	public static void InitializePanel(){
 		
 		BrewPanel = new JPanel();
-		BrewPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
+		BrewPanel.setLayout(new MigLayout("", "[grow][65px:n:65px]", "[20px:n:20px][25px:n:25px][grow]"));
 		
 		
 		//Header
@@ -38,11 +41,16 @@ public class BrewPanel extends JPanel {
 		BrewPanel.add(BrewSubtitle, "cell 0 1,growx,aligny top");
 		
 		//TODO: Print brew button
-		
+		//TODO: Update button icon
+		btnPrintBrew = new JButton();
+		btnPrintBrew.setIcon(new ImageIcon(BrewPanel.class.getResource("/com/pori/WineBrewDB/Images/brew.png")));
+		btnPrintBrew.setToolTipText("Print Brew Data");
+		btnPrintBrew.setVisible(false);
+		BrewPanel.add(btnPrintBrew, "cell 1 0");
 		
 		//Tabbed Pane
 		tabbedBrewPane = new JTabbedPane(JTabbedPane.TOP);
-		BrewPanel.add(tabbedBrewPane, "cell 0 2,grow");
+		BrewPanel.add(tabbedBrewPane, "cell 0 2 2,grow");
 				
 		
 		//Brew Search Tab
@@ -91,6 +99,7 @@ public class BrewPanel extends JPanel {
 			BrewPanel.remove(BrewHeader);
 			BrewPanel.remove(BrewSubtitle);
 			BrewPanel.remove(tabbedBrewPane);
+			BrewPanel.remove(btnPrintBrew);
 			tabbedBrewPane.remove(BrewSearchPanel.tabbedBrewSearchPanel);
 			tabbedBrewPane.remove(BrewDataPanel.tabbedBrewDataPanel);
 			tabbedBrewPane.remove(BrewNotesPanel.tabbedBrewNotesPanel);
