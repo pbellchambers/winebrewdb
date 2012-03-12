@@ -4,27 +4,37 @@
   * Added Total Cost field to brews
   * Minor text changes in about/dosages
 
-
 ----
 === v1.0.2: ===
   * Fixed new database recipe table issue
-
 
 ----
 === v1.0.1: ===
   * Fixed filepath issue on Mac/Linux
 
+----
+=== v1.0.0: ===
+  * FIRST PROPER FULLY FUNCTIONAL WORKING RELEASE!!
+  * Font sizes updated on information panels
+  * Minor text changes
+  * Credits updated
 
 ----
 === v0.9.3: ===
-  *
-
+  * Windows exe version available
+  * New database icon updated
 
 ----
 === v0.9.2: ===
-  *
+  * Added .ini config with options for saving/editing db location and look and feel
   * Fixed search/refresh issue after adding/editing
-  * 
+  * Error handling for SQL Exceptions
+  * Refactored code
+  * Save picture button works
+  * Updated icons for measures calculator arrows
+  * Launch4j config added to source
+  * Alignment bugfixes
+  * Minor bugfixes
 
 ----
 === v0.8.1: ===
