@@ -54,7 +54,7 @@ public class DBEngine {
 	    String Drunk = null;
 	      
 	    if(BrewSearchPanel.comboColour.getSelectedItem().equals("Any")){
-	    	Colour ="White','Red','Rosï¿½','',' ','Other";
+	    	Colour ="White','Red','Rosé','',' ','Other";
 	    } else {
 	    	Colour = (String) BrewSearchPanel.comboColour.getSelectedItem();
 	    }
@@ -161,6 +161,7 @@ public class DBEngine {
 		    brew.add(rs.getString(23)); //VolumeMade
 		    brew.add(rs.getString(24)); //NumberBottles
 		    brew.add(rs.getString(25)); //Colour
+		    brew.add(rs.getString(26)); //TotalCost
 		    Brews.add(brew);
 	    }
 
@@ -288,6 +289,8 @@ public class DBEngine {
 	   		BrewDataPanel.textBrewTastingNotesB.getText().replaceAll("'", "''") +
 	    	"',Notes='" +
 	   		BrewDataPanel.textBrewGeneralNotesB.getText().replaceAll("'", "''") +
+	    	"',TotalCost='" +
+	   		BrewDataPanel.textBrewTotalCostB.getText().replaceAll("'", "''") +
 	    	"' where BrewRef='" +
 	    	BrewDataPanel.textBrewRefB.getText() +
 	    	"'"
@@ -370,7 +373,7 @@ public class DBEngine {
 	    
 	     
 	    PreparedStatement pre = conn.prepareStatement(
-    		"insert into Brews(BrewName,Colour,RecipeFrom,ThumbsUp,DatePlanned,DateStarted,DateBottled,StartSG,StartAdjustedSG,EndSG,AimedABV,FinalABV,FinalAdjustedABV,Yeast,VolumeMade,InPlanning,InFermenting,InFining,NumberBottles,InMaturing,InBottles,Drunk,TastingNotes,Notes) values('" +
+    		"insert into Brews(BrewName,Colour,RecipeFrom,ThumbsUp,DatePlanned,DateStarted,DateBottled,StartSG,StartAdjustedSG,EndSG,AimedABV,FinalABV,FinalAdjustedABV,Yeast,VolumeMade,InPlanning,InFermenting,InFining,NumberBottles,InMaturing,InBottles,Drunk,TastingNotes,Notes,TotalCost) values('" +
     		BrewAddPanel.textBrewNameAdd.getText().replaceAll("'", "''") +
     		"','" +
     		BrewAddPanel.comboBrewColourAdd.getSelectedItem() +
@@ -418,6 +421,8 @@ public class DBEngine {
 	   		BrewAddPanel.textBrewTastingNotesAdd.getText().replaceAll("'", "''") +
 	   		"','" +
 	   		BrewAddPanel.textBrewGeneralNotesAdd.getText().replaceAll("'", "''") +
+	   		"','" +
+	   		BrewAddPanel.textBrewTotalCostAdd.getText().replaceAll("'", "''") +
 	    	"')"
 	    );
 	    

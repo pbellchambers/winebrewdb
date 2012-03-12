@@ -37,6 +37,8 @@ public class BrewPanel extends JPanel {
 		BrewSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		BrewPanel.add(BrewSubtitle, "cell 0 1,growx,aligny top");
 		
+		//TODO: Print brew button
+		
 		
 		//Tabbed Pane
 		tabbedBrewPane = new JTabbedPane(JTabbedPane.TOP);

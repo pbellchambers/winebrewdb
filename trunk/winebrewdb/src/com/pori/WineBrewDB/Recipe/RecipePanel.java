@@ -37,6 +37,8 @@ public class RecipePanel extends JPanel {
 		RecipeSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		RecipePanel.add(RecipeSubtitle, "cell 0 1,growx,aligny top");
 		
+		//TODO: Print recipe button
+		
 		
 		//Tabbed Pane
 		tabbedRecipePane = new JTabbedPane(JTabbedPane.TOP);
