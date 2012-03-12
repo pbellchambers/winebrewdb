@@ -23,27 +23,39 @@
 ----
 === v0.9.2: ===
   *
-
+  * Fixed search/refresh issue after adding/editing
+  * 
 
 ----
 === v0.8.1: ===
-  *
-
+  * Look and feel changed and give choice between system/java
+  * Replaced buttons on left menu with icons
+  * Icons added/updated
+  * Updated fruit acids
+  * Top menu fully added and working
+  * Recipe search/add/edit done and working
+  * Updated readme
 
 ----
 === v0.7.1: ===
-  *
-
+  * Set java compatibility to 1.6+
+  * Fixed non-Windows font issue
+  * Fixed issue with some brew pictures not displaying
 
 ----
 === vAlpha0.7.0: ===
-  *
-
+  * Brew pictures panel added and working
+  * Formatting on number/date fields fixed
+  * Show all button added
+  * Minor bugs fixed
 
 ----
 === vAlpha0.6.2: ===
-  *
-
+  * Brew notes panel added and working
+  * Added more to credits
+  * Disable all buttons when editing/adding
+  * Updated date fields to use date chooser
+  * Tidied up source files
 
 ----
 === vAlpha0.5.1: ===
@@ -87,4 +99,4 @@
 
 ----
 === vAlpha0.0.1: ===
-  * First release only basic layout present
+  * First release, only basic layout present
