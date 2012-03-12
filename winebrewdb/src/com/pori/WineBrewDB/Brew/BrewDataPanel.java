@@ -64,13 +64,14 @@ public class BrewDataPanel extends JPanel {
 	public static JCheckBox chckbxBrewDrunkB;
 	static JButton btnBrewDataDelete;
 	private static JButton btnBrewDataCancel;
+	public static JTextField textBrewTotalCostB;
 	
 	
 	public static void InitializePanel(){
 		
 		tabbedBrewDataPanel = new JPanel();
 		tabbedBrewDataPanel.setBackground(Color.WHITE);
-		tabbedBrewDataPanel.setLayout(new MigLayout("", "[105px:105px:105px][30px:30px, grow][grow][105px:105px:105px][30px:30px, grow][grow][120px:120px:120px][30px:30px, grow][grow]", "[][][30px:30px][10px:10px][][][][10px:10px][][][][10px:10px][][10px:10px][][55px:55,grow][15px:15px][]"));
+		tabbedBrewDataPanel.setLayout(new MigLayout("", "[105px:105px:105px][70px:70px, grow][grow][105px:105px:105px][30px:30px, grow][grow][120px:120px:120px][30px:30px, grow][grow]", "[][][30px:30px][10px:10px][][][][10px:10px][][][][10px:10px][][10px:10px][][55px:55,grow][15px:15px][]"));
 		
 		JLabel lblBrewRefB = new JLabel("Brew Ref:");
 		tabbedBrewDataPanel.add(lblBrewRefB, "flowx,cell 0 0,alignx right");
@@ -286,6 +287,13 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewDrunkB.setBackground(Color.WHITE);
 		tabbedBrewDataPanel.add(chckbxBrewDrunkB, "cell 4 10,growx");
 		
+		JLabel lblBrewTotalCostB = new JLabel("Total Cost:");
+		tabbedBrewDataPanel.add(lblBrewTotalCostB, "flowx,cell 0 10,alignx right");
+			
+		textBrewTotalCostB = new JTextField();
+		textBrewTotalCostB.setEditable(false);
+		tabbedBrewDataPanel.add(textBrewTotalCostB, "cell 1 10,growx");
+		
 		JLabel lblBrewTastingNotesB = new JLabel("Tasting Notes:");
 		tabbedBrewDataPanel.add(lblBrewTastingNotesB, "flowx,cell 0 12,alignx right");
 			
@@ -402,6 +410,7 @@ public class BrewDataPanel extends JPanel {
 				chckbxBrewDrunkB.setEnabled(true);
 				textBrewTastingNotesB.setEditable(true);
 				textBrewGeneralNotesB.setEditable(true);
+				textBrewTotalCostB.setEditable(true);
 				textBrewGeneralNotesB.setBackground(Color.WHITE);
 			}
 		});
@@ -443,6 +452,7 @@ public class BrewDataPanel extends JPanel {
 				chckbxBrewDrunkB.setEnabled(false);
 				textBrewTastingNotesB.setEditable(false);
 				textBrewGeneralNotesB.setEditable(false);
+				textBrewTotalCostB.setEditable(false);
 				textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
 			}
 		});
@@ -500,6 +510,7 @@ public class BrewDataPanel extends JPanel {
 					chckbxBrewDrunkB.setEnabled(false);
 					textBrewTastingNotesB.setEditable(false);
 					textBrewGeneralNotesB.setEditable(false);
+					textBrewTotalCostB.setEditable(false);
 					textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
 					BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
 					BrewSearchPanel.BrewScrollPane.setViewportView(null);
@@ -561,6 +572,7 @@ public class BrewDataPanel extends JPanel {
 						chckbxBrewDrunkB.setEnabled(false);
 						textBrewTastingNotesB.setEditable(false);
 						textBrewGeneralNotesB.setEditable(false);
+						textBrewTotalCostB.setEditable(false);
 						textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
 						BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
 						BrewSearchPanel.BrewScrollPane.setViewportView(null);
@@ -667,6 +679,7 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewInMaturingB.setSelected((Boolean) stringToBool((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,19)));
 		chckbxBrewInBottlesB.setSelected((Boolean) stringToBool((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,20)));
 		chckbxBrewDrunkB.setSelected((Boolean) stringToBool((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,21)));
+		textBrewTotalCostB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,25));
 	}
 	
 	public static void clearBrewData(){
@@ -695,6 +708,7 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewInMaturingB.setSelected(false);
 		chckbxBrewInBottlesB.setSelected(false);
 		chckbxBrewDrunkB.setSelected(false);
+		textBrewTotalCostB.setText("");
 	}
 	
 	public static boolean stringToBool(String s) {
