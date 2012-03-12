@@ -62,17 +62,20 @@
 
 ----
 === vAlpha0.2.0: ===
-  *
-
+  * Data can be retrieved from the database
 
 ----
 === vAlpha0.1.1: ===
-  *
-
+  * All calculator panels complete
+  * Added acknowledgements popup
+  * Text changes
+  * Icon added
+  * Window open position set
 
 ----
 === vAlpha0.0.2: ===
-  *
+  * Alcohol & Dilution calculators done
+  * Information panels half done
 
 ----
 === vAlpha0.0.1: ===
