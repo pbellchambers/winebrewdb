@@ -2,7 +2,7 @@
 
 === v1.0.4: ===
   * Added new tables to database for future ledger functionality
-  * Added button to print brews/recipes (it currently does nothing and the icon is wrong too!)
+  * Added button to print brews/recipes (it currently does nothing and the icon is wrong too, best to ignore it for now)
 
 ----
 === v1.0.3: ===
