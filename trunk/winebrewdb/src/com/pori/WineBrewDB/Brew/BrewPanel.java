@@ -1,9 +1,12 @@
 package com.pori.WineBrewDB.Brew;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -44,8 +47,9 @@ public class BrewPanel extends JPanel {
 		//TODO: Update button icon
 		btnPrintBrew = new JButton();
 		btnPrintBrew.setIcon(new ImageIcon(BrewPanel.class.getResource("/com/pori/WineBrewDB/Images/brew.png")));
-		btnPrintBrew.setToolTipText("Print Brew Data");
-		btnPrintBrew.setVisible(false);
+		btnPrintBrew.setToolTipText("Save currently selected brew data to printable .pdf");
+		BrewPanel.setVisible(true);
+		btnPrintBrew.setEnabled(false);
 		BrewPanel.add(btnPrintBrew, "cell 1 0");
 		
 		//Tabbed Pane
@@ -90,6 +94,24 @@ public class BrewPanel extends JPanel {
 
 		
 		BrewPanelStatus = "Initialized";
+		
+		
+		//Add print button listener
+		btnPrintBrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser c = new JFileChooser();
+			      int rVal = c.showSaveDialog(MainWindow.WineBrewDBFrame);
+			      if (rVal == JFileChooser.APPROVE_OPTION) {			    	     	  
+					String pdflocation = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".pdf";
+					BrewPDF.createPDF(pdflocation);	    	  
+			    	  
+			      }
+			      if (rVal == JFileChooser.CANCEL_OPTION) {
+			    	  
+			      }				
+				
+			}
+		});
 	}
 
 	
@@ -98,8 +120,8 @@ public class BrewPanel extends JPanel {
 			BrewPanel.setVisible(false);
 			BrewPanel.remove(BrewHeader);
 			BrewPanel.remove(BrewSubtitle);
-			BrewPanel.remove(tabbedBrewPane);
 			BrewPanel.remove(btnPrintBrew);
+			BrewPanel.remove(tabbedBrewPane);
 			tabbedBrewPane.remove(BrewSearchPanel.tabbedBrewSearchPanel);
 			tabbedBrewPane.remove(BrewDataPanel.tabbedBrewDataPanel);
 			tabbedBrewPane.remove(BrewNotesPanel.tabbedBrewNotesPanel);

@@ -185,7 +185,8 @@ public class WelcomePanel extends JPanel {
 	
 	public static void DeInitializePanel(){
 		if(WelcomePanelStatus.equals("Initialized")) {
-			WelcomePanel.setVisible(false);
+			WelcomePanel.remove(WelcomeText2);
+			WelcomePanel.remove(WelcomeText3);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(WelcomePanel);
 			WelcomePanelStatus = "DeInitialized";
 		}

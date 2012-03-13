@@ -593,7 +593,7 @@ public class BrewDataPanel extends JPanel {
 	}
 	
 	public static void setBrewData(){
-		BrewPanel.btnPrintBrew.setVisible(true);
+		BrewPanel.btnPrintBrew.setEnabled(true);
 		textBrewRefB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,0));
 		textBrewNameB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,1));
 		textBrewRecipeB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,5));
@@ -683,9 +683,9 @@ public class BrewDataPanel extends JPanel {
 		textBrewTotalCostB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,25));
 	}
 	
-	//TODO: Hide print brew button on search/add pages.
+	//TODO: Hide print brew/recipe/ledger button on search/add pages.
 	public static void clearBrewData(){
-		BrewPanel.btnPrintBrew.setVisible(false);
+		BrewPanel.btnPrintBrew.setEnabled(false);
 		textBrewRefB.setText("");
 		textBrewNameB.setText("");
 		textBrewRecipeB.setText("");
