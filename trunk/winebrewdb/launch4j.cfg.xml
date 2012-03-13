@@ -23,12 +23,12 @@
     <opt>-XX:MaxPermSize=40m</opt>
   </jre>
   <versionInfo>
-    <fileVersion>1.0.3.0</fileVersion>
-    <txtFileVersion>v1.0.3</txtFileVersion>
+    <fileVersion>1.0.4.0</fileVersion>
+    <txtFileVersion>v1.0.4</txtFileVersion>
     <fileDescription>WineBrewDB</fileDescription>
     <copyright>(c) 2012 Paul Bellchambers</copyright>
-    <productVersion>1.0.3.0</productVersion>
-    <txtProductVersion>v1.0.3</txtProductVersion>
+    <productVersion>1.0.4.0</productVersion>
+    <txtProductVersion>v1.0.4</txtProductVersion>
     <productName>WineBrewDB</productName>
     <companyName></companyName>
     <internalName>WineBrewDB</internalName>
