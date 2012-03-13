@@ -41,9 +41,8 @@ public class RecipePanel extends JPanel {
 		RecipePanel.add(RecipeSubtitle, "cell 0 1,growx,aligny top");
 		
 		//TODO: Print recipe button
-		//TODO: Update button icon
 		btnPrintRecipe = new JButton();
-		btnPrintRecipe.setIcon(new ImageIcon(RecipePanel.class.getResource("/com/pori/WineBrewDB/Images/recipe.png")));
+		btnPrintRecipe.setIcon(new ImageIcon(RecipePanel.class.getResource("/com/pori/WineBrewDB/Images/print.png")));
 		btnPrintRecipe.setToolTipText("Save currently selected recipe data to printable .pdf");
 		btnPrintRecipe.setEnabled(false);
 		RecipePanel.add(btnPrintRecipe, "cell 1 0");
