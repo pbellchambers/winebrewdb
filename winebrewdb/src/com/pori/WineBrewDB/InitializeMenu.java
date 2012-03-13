@@ -62,6 +62,7 @@ public class InitializeMenu extends MainWindow {
 		mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 		
+
 		final JMenuItem mntmNew = new JMenuItem("New Database");
 		mntmNew.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/new.png")));
 		mntmNew.addActionListener(new ActionListener() {

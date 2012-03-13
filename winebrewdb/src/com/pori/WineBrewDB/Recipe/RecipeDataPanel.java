@@ -290,6 +290,7 @@ public class RecipeDataPanel extends JPanel {
 	}
 	
 	public static void setRecipeData(){
+		RecipePanel.btnPrintRecipe.setEnabled(true);
 		textRecipeRefB.setText((String) RecipeSearchPanel.RecipeTable.getValueAt(RecipeSearchPanel.RecipeSearchSelectedRow,0));
 		textRecipeNameB.setText((String) RecipeSearchPanel.RecipeTable.getValueAt(RecipeSearchPanel.RecipeSearchSelectedRow,1));
 		textInspirationB.setText((String) RecipeSearchPanel.RecipeTable.getValueAt(RecipeSearchPanel.RecipeSearchSelectedRow,2));
@@ -302,6 +303,7 @@ public class RecipeDataPanel extends JPanel {
 	}
 	
 	public static void clearRecipeData(){
+		RecipePanel.btnPrintRecipe.setEnabled(false);
 		textRecipeRefB.setText("");
 		textRecipeNameB.setText("");
 		textInspirationB.setText("");
