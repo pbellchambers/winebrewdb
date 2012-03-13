@@ -43,9 +43,8 @@ public class BrewPanel extends JPanel {
 		BrewSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		BrewPanel.add(BrewSubtitle, "cell 0 1,growx,aligny top");
 		
-		//TODO: Update button icon
 		btnPrintBrew = new JButton();
-		btnPrintBrew.setIcon(new ImageIcon(BrewPanel.class.getResource("/com/pori/WineBrewDB/Images/brew.png")));
+		btnPrintBrew.setIcon(new ImageIcon(BrewPanel.class.getResource("/com/pori/WineBrewDB/Images/print.png")));
 		btnPrintBrew.setToolTipText("Save currently selected brew data to printable .pdf");
 		BrewPanel.setVisible(true);
 		btnPrintBrew.setEnabled(false);
