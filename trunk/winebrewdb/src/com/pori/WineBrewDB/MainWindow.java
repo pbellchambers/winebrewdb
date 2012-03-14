@@ -21,7 +21,7 @@ import org.ini4j.Wini;
 public class MainWindow {
 
 	public static JFrame WineBrewDBFrame;
-	public static String WineBrewDBVersion = "v1.1.0";
+	public static String WineBrewDBVersion = "v1.1.1";
 	public static String DatabaseLocationFromIni;
 	public static String LookAndFeel;
 	private static File WineBrewDBConfigDirectory;
