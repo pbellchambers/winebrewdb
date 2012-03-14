@@ -268,6 +268,7 @@ public class BrewSearchPanel extends JPanel {
 	    header.add("Number Bottles");
 	    header.add("Colour");
 	    header.add("Total Cost");
+	    header.add("Cost Per Bottle");
 	    
 		//Table
 	    TableModel model = new DefaultTableModel(data, header) {
@@ -441,6 +442,10 @@ public class BrewSearchPanel extends JPanel {
 		BrewTable.getColumnModel().getColumn(25).setMinWidth(5);
 		BrewTable.getColumnModel().getColumn(25).setMaxWidth(9001);
 		BrewTable.getColumnModel().getColumn(25).setCellRenderer(NumberRenderer.getCurrencyRenderer());
+		BrewTable.getColumnModel().getColumn(26).setPreferredWidth(80);
+		BrewTable.getColumnModel().getColumn(26).setMinWidth(5);
+		BrewTable.getColumnModel().getColumn(26).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(26).setCellRenderer(NumberRenderer.getCurrencyRenderer());
 	}
 	
 	public static void showDefaultRows(){
@@ -521,6 +526,10 @@ public class BrewSearchPanel extends JPanel {
 		BrewTable.getColumnModel().getColumn(25).setMinWidth(0);
 		BrewTable.getColumnModel().getColumn(25).setMaxWidth(0);
 		BrewTable.getColumnModel().getColumn(25).setCellRenderer(NumberRenderer.getCurrencyRenderer());
+		BrewTable.getColumnModel().getColumn(26).setPreferredWidth(0);
+		BrewTable.getColumnModel().getColumn(26).setMinWidth(0);
+		BrewTable.getColumnModel().getColumn(26).setMaxWidth(0);
+		BrewTable.getColumnModel().getColumn(26).setCellRenderer(NumberRenderer.getCurrencyRenderer());
 	}
 	
 }

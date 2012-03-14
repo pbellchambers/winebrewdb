@@ -47,6 +47,7 @@ public class BrewCostPanel extends JPanel {
 	private static boolean mouseListenerIsActive;
 	private static JButton btnBrewCostAdd;
 	public static JFormattedTextField textBrewCostTotalCost;
+	public static JFormattedTextField textBrewCostCostPerBottle;
 
 	
 	public static void InitializePanel(){
@@ -96,6 +97,13 @@ public class BrewCostPanel extends JPanel {
 		textBrewCostTotalCost = new JFormattedTextField();
 		textBrewCostTotalCost.setEditable(false);
 		tabbedBrewCostPanel.add(textBrewCostTotalCost, "cell 1 3 2,growx");
+		
+		JLabel lblBrewCostCostPerBottle = new JLabel("Cost Per Bottle:");
+		tabbedBrewCostPanel.add(lblBrewCostCostPerBottle, "cell 3 3,alignx trailing");
+		
+		textBrewCostCostPerBottle = new JFormattedTextField();
+		textBrewCostCostPerBottle.setEditable(false);
+		tabbedBrewCostPanel.add(textBrewCostCostPerBottle, "cell 4 3 2,growx");
 				
 		btnBrewCostAdd = new JButton("Add");
 		tabbedBrewCostPanel.add(btnBrewCostAdd, "cell 0 5,growx");
@@ -172,7 +180,7 @@ public class BrewCostPanel extends JPanel {
 		btnBrewCostDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int response = JOptionPane.showConfirmDialog(null, "This will irreversibly delete the entire note.\n\nAre you sure you want to delete?", "Confirm",
+				int response = JOptionPane.showConfirmDialog(null, "This will irreversibly delete the selected line item.\n\nAre you sure you want to delete?", "Confirm",
 				        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				    if (response == JOptionPane.NO_OPTION) {
 				      //Nothing Happens
@@ -287,7 +295,7 @@ public class BrewCostPanel extends JPanel {
 						try {
 							textBrewCostRef.setText(DBEngine.getNextBrewCostRef(BrewDataPanel.textBrewRefB.getText()));
 							DBEngine.addBrewCost(BrewDataPanel.textBrewRefB.getText());
-							DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText());
+							DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText(), BrewDataPanel.textBrewNumberBottlesB.getText());
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
 									"An error occurred inserting data into the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
@@ -335,7 +343,7 @@ public class BrewCostPanel extends JPanel {
 					} else {
 						try {
 							DBEngine.updateBrewCost(BrewDataPanel.textBrewRefB.getText());
-							DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText());
+							DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText(), BrewDataPanel.textBrewNumberBottlesB.getText());
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
 									"An error occurred updating data in the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
@@ -483,6 +491,7 @@ public class BrewCostPanel extends JPanel {
 	public static void setBrewTotalCostData(){
 		try {
 			textBrewCostTotalCost.setText(DBEngine.getTotalBrewCost(BrewDataPanel.textBrewRefB.getText()));
+			textBrewCostCostPerBottle.setText(DBEngine.getBrewCostPerBottle(BrewDataPanel.textBrewRefB.getText()));
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
 					"An error occurred getting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",

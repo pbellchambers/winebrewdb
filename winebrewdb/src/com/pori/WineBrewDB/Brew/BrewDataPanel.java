@@ -461,6 +461,8 @@ public class BrewDataPanel extends JPanel {
 				} else {
 					try {
 						DBEngine.updateBrew();
+						DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText(), BrewDataPanel.textBrewNumberBottlesB.getText());
+						BrewCostPanel.setBrewTotalCostData();
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null,
 								"An error occurred updating data in the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
