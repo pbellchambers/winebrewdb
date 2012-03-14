@@ -165,6 +165,7 @@ public class BrewPicturesPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
 				InitializeMenu.DisableAllMenuButtons();
 				textBrewPictureDescription.setEditable(true);
 		        
@@ -248,6 +249,7 @@ public class BrewPicturesPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
 				InitializeMenu.DisableAllMenuButtons();
 				textBrewPictureDescription.setEditable(true);
 			}
@@ -287,6 +289,7 @@ public class BrewPicturesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 						InitializeMenu.EnableAllMenuButtons();
 						textBrewPictureDescription.setEditable(false);
 						BrewPicturesTableScrollPane.remove(BrewPicturesTable);
@@ -328,6 +331,7 @@ public class BrewPicturesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 					InitializeMenu.EnableAllMenuButtons();
 					textBrewPictureDescription.setEditable(false);
 				}else {
@@ -349,6 +353,7 @@ public class BrewPicturesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 					InitializeMenu.EnableAllMenuButtons();
 					textBrewPictureDescription.setEditable(false);
 				}
@@ -392,6 +397,7 @@ public class BrewPicturesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 						InitializeMenu.EnableAllMenuButtons();
 						textBrewPictureDescription.setEditable(false);
 						BrewPicturesTableScrollPane.remove(BrewPicturesTable);
@@ -427,6 +433,7 @@ public class BrewPicturesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 					InitializeMenu.EnableAllMenuButtons();
 					textBrewPictureDescription.setEditable(false);
 					BrewPicturesTableScrollPane.remove(BrewPicturesTable);

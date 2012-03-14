@@ -75,6 +75,11 @@ public class BrewPanel extends JPanel {
 		tabbedBrewPane.addTab("Brew Pictures", null, BrewPicturesPanel.tabbedBrewPicturesPanel, null);
 		
 		
+		//Brew Pictures Tab
+		BrewCostPanel.InitializePanel();
+		tabbedBrewPane.addTab("Brew Costs", null, BrewCostPanel.tabbedBrewCostPanel, null);
+				
+		
 		//Add New Brew Tab
 		BrewAddPanel.InitializePanel();
 		tabbedBrewPane.addTab("Add New Brew", null, BrewAddPanel.tabbedBrewAddPanel, null);
@@ -84,6 +89,7 @@ public class BrewPanel extends JPanel {
 		tabbedBrewPane.setEnabledAt(1, false);
 		tabbedBrewPane.setEnabledAt(2, false);
 		tabbedBrewPane.setEnabledAt(3, false);
+		tabbedBrewPane.setEnabledAt(4, false);
 		
 	   	
 		//Add it all to the main window

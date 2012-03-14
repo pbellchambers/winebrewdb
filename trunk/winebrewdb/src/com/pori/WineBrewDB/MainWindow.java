@@ -33,22 +33,6 @@ public class MainWindow {
 //Use "Jar Bundler" on a mac
 //Also see: http://java.sun.com/developer/technicalArticles/JavaLP/JavaToMac/
 	
-//TODO: Ledger
-//Ledger:
-//	- Equipment & Non-brew specific costs
-//		- Line item, price, supplier
-//		- Total cost, total cost divided by all bottles
-//	- Brew costs search
-//		- Brew name, date, total cost, cost per bottle
-//	- Selected brew costs (same as brew costs tab in brew panel)
-//Brews:
-//	- Brew costs tab
-//		- Line item, price, supplier
-//		- Total cost, total cost divided by all bottles
-//
-//Tables:
-//BrewCosts: BrewRef,LineItem,Cost,Supplier
-//EquipmentCosts: EquipmentCostRef,Date,LineItem,Cost,Supplier
 	
 	/**
 	 * Launch the application.

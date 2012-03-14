@@ -1,14 +1,18 @@
 package com.pori.WineBrewDB.Recipe;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.pori.WineBrewDB.MainWindow;
+import com.pori.WineBrewDB.Brew.BrewPDF;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -77,6 +81,25 @@ public class RecipePanel extends JPanel {
 
 		
 		RecipePanelStatus = "Initialized";
+		
+		
+		//Add print button listener
+		btnPrintRecipe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser c = new JFileChooser();
+			      int rVal = c.showSaveDialog(MainWindow.WineBrewDBFrame);
+			      if (rVal == JFileChooser.APPROVE_OPTION) {			    	     	  
+					String pdflocation = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".pdf";
+					BrewPDF.createPDF(pdflocation);	    	  
+			    	  
+			      }
+			      if (rVal == JFileChooser.CANCEL_OPTION) {
+			    	  
+			      }				
+				
+			}
+		});
+		
 	}
 
 	

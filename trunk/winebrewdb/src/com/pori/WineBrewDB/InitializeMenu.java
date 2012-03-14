@@ -33,6 +33,7 @@ import com.pori.WineBrewDB.Information.DosagesPanel;
 import com.pori.WineBrewDB.Information.FruitAcidsPanel;
 import com.pori.WineBrewDB.Information.InformationPanel;
 import com.pori.WineBrewDB.Information.YeastStrainsPanel;
+import com.pori.WineBrewDB.Ledger.LedgerPanel;
 import com.pori.WineBrewDB.Recipe.RecipePanel;
 
 import net.miginfocom.swing.MigLayout;
@@ -50,6 +51,7 @@ public class InitializeMenu extends MainWindow {
 	private static JButton btnRecipe;
 	private static JButton btnCalculators;
 	private static JButton btnInformation;
+	private static JButton btnLedger;
 	
 	public static void InitializeTopMenuMethod(){
 		
@@ -292,6 +294,18 @@ public class InitializeMenu extends MainWindow {
 		);
 		mnDatabase.add(mntmBrew);
 		
+		final JMenuItem mntmLedger = new JMenuItem("Ledger");
+		mntmLedger.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DeinitializeAllPanels();
+				LedgerPanel.InitializePanel();
+				LedgerPanel.LedgerPanel.setVisible(true);				
+				}
+			}
+			
+		);
+		mnDatabase.add(mntmLedger);
+		
 		final JMenuItem mntmRecipe = new JMenuItem("Recipe");
 		mntmRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -493,6 +507,11 @@ public class InitializeMenu extends MainWindow {
 		btnBrew.setToolTipText("Add/Edit Brews");
 		MenuPanel.add(btnBrew);
 		
+		btnLedger = new JButton();
+		btnLedger.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/ledger.png")));
+		btnLedger.setToolTipText("Add To/Edit Ledger");
+		MenuPanel.add(btnLedger);
+		
 		btnRecipe = new JButton();
 		btnRecipe.setIcon(new ImageIcon(InitializeMenu.class.getResource("/com/pori/WineBrewDB/Images/recipe.png")));
 		btnRecipe.setToolTipText("Add/Edit Recipes");
@@ -524,6 +543,13 @@ public class InitializeMenu extends MainWindow {
 				BrewPanel.BrewPanel.setVisible(true);
 			}
 		});
+		btnLedger.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DeinitializeAllPanels();
+				LedgerPanel.InitializePanel();
+				LedgerPanel.LedgerPanel.setVisible(true);
+			}
+		});
 		btnRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
@@ -553,6 +579,7 @@ public class InitializeMenu extends MainWindow {
 	public static void DeinitializeAllPanels(){
 		WelcomePanel.DeInitializePanel();
 		BrewPanel.DeInitializePanel();
+		LedgerPanel.DeInitializePanel();
 		RecipePanel.DeInitializePanel();
 		CalculatorsPanel.DeInitializePanel();
 		InformationPanel.DeInitializePanel();
@@ -568,6 +595,7 @@ public class InitializeMenu extends MainWindow {
 	
 	public static void DisableAllMenuButtons(){
 		btnBrew.setEnabled(false);
+		btnLedger.setEnabled(false);
 		btnRecipe.setEnabled(false);
 		btnCalculators.setEnabled(false);
 		btnInformation.setEnabled(false);
@@ -580,6 +608,7 @@ public class InitializeMenu extends MainWindow {
 	
 	public static void EnableAllMenuButtons(){
 		btnBrew.setEnabled(true);
+		btnLedger.setEnabled(true);
 		btnRecipe.setEnabled(true);
 		btnCalculators.setEnabled(true);
 		btnInformation.setEnabled(true);
