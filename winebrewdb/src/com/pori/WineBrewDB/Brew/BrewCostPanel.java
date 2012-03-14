@@ -46,13 +46,14 @@ public class BrewCostPanel extends JPanel {
 	private static String isNewCost;
 	private static boolean mouseListenerIsActive;
 	private static JButton btnBrewCostAdd;
+	public static JFormattedTextField textBrewCostTotalCost;
 
 	
 	public static void InitializePanel(){
 		
 		tabbedBrewCostPanel = new JPanel();
 		tabbedBrewCostPanel.setBackground(Color.WHITE);
-		tabbedBrewCostPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][90px:90px:90px][grow][130px:130px:130px][grow]", "[grow][][][10px:10px:10px][]"));
+		tabbedBrewCostPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][90px:90px:90px][grow][130px:130px:130px][grow]", "[grow][][][][10px:10px:10px][]"));
 		
 		
 		//Initialize Table
@@ -74,6 +75,7 @@ public class BrewCostPanel extends JPanel {
 		textBrewCostLineItem = new JTextField();
 		textBrewCostLineItem.setEditable(false);
 		tabbedBrewCostPanel.add(textBrewCostLineItem, "cell 1 1 5,growx");
+		
 		JLabel lblBrewCostCost = new JLabel("Cost:");
 		tabbedBrewCostPanel.add(lblBrewCostCost, "cell 0 2,alignx trailing");
 		
@@ -87,31 +89,39 @@ public class BrewCostPanel extends JPanel {
 		textBrewCostSupplier = new JTextField();
 		textBrewCostSupplier.setEditable(false);
 		tabbedBrewCostPanel.add(textBrewCostSupplier, "cell 4 2 2,growx");
+		
+		JLabel lblBrewCostTotalCost = new JLabel("Total Cost:");
+		tabbedBrewCostPanel.add(lblBrewCostTotalCost, "cell 0 3,alignx trailing");
+		
+		textBrewCostTotalCost = new JFormattedTextField();
+		textBrewCostTotalCost.setEditable(false);
+		tabbedBrewCostPanel.add(textBrewCostTotalCost, "cell 1 3 2,growx");
 				
 		btnBrewCostAdd = new JButton("Add");
-		tabbedBrewCostPanel.add(btnBrewCostAdd, "cell 0 4,growx");
+		tabbedBrewCostPanel.add(btnBrewCostAdd, "cell 0 5,growx");
 		
 		btnBrewCostEdit = new JButton("Edit");
 		btnBrewCostEdit.setEnabled(false);
-		tabbedBrewCostPanel.add(btnBrewCostEdit, "cell 1 4,growx");
+		tabbedBrewCostPanel.add(btnBrewCostEdit, "cell 1 5,growx");
 		
 		btnBrewCostDelete = new JButton("Delete Line Item");
 		btnBrewCostDelete.setEnabled(false);
-		tabbedBrewCostPanel.add(btnBrewCostDelete, "cell 2 4,growx");
+		tabbedBrewCostPanel.add(btnBrewCostDelete, "cell 2 5,growx");
 		
 		btnBrewCostCancel = new JButton("Cancel");
 		btnBrewCostCancel.setEnabled(false);
-		tabbedBrewCostPanel.add(btnBrewCostCancel, "cell 4 4,growx");
+		tabbedBrewCostPanel.add(btnBrewCostCancel, "cell 4 5,growx");
 		
 		btnBrewCostSave = new JButton("Save / Insert");
 		btnBrewCostSave.setEnabled(false);
-		tabbedBrewCostPanel.add(btnBrewCostSave, "cell 5 4,growx");
+		tabbedBrewCostPanel.add(btnBrewCostSave, "cell 5 5,growx");
 		
 		//Add button listeners
 		btnBrewCostAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mouseListenerIsActive = false;
 				clearBrewCostData();
+				setBrewTotalCostData();
 				isNewCost = "true";
 				BrewCostTable.setEnabled(false);
 				BrewCostTable.setRowSelectionAllowed(false);
@@ -200,6 +210,7 @@ public class BrewCostPanel extends JPanel {
 						initializeTable();
 						BrewCostScrollPane.setViewportView(BrewCostTable);
 						clearBrewCostData();
+						setBrewTotalCostData();
 				      				      
 				    } else if (response == JOptionPane.CLOSED_OPTION) {
 				    	//Nothing Happens
@@ -219,6 +230,7 @@ public class BrewCostPanel extends JPanel {
 					initializeTable();
 					BrewCostScrollPane.setViewportView(BrewCostTable);
 					clearBrewCostData();
+					setBrewTotalCostData();
 					BrewCostTable.setEnabled(true);
 					BrewCostTable.setRowSelectionAllowed(true);
 					btnBrewCostAdd.setEnabled(true);
@@ -275,6 +287,7 @@ public class BrewCostPanel extends JPanel {
 						try {
 							textBrewCostRef.setText(DBEngine.getNextBrewCostRef(BrewDataPanel.textBrewRefB.getText()));
 							DBEngine.addBrewCost(BrewDataPanel.textBrewRefB.getText());
+							DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText());
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
 									"An error occurred inserting data into the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
@@ -305,6 +318,11 @@ public class BrewCostPanel extends JPanel {
 						initializeTable();
 						BrewCostScrollPane.setViewportView(BrewCostTable);
 						clearBrewCostData();
+						setBrewTotalCostData();
+						BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
+						BrewSearchPanel.BrewScrollPane.setViewportView(null);
+						BrewSearchPanel.initializeTable();
+						BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
 					}
 					
 				} else {
@@ -317,6 +335,7 @@ public class BrewCostPanel extends JPanel {
 					} else {
 						try {
 							DBEngine.updateBrewCost(BrewDataPanel.textBrewRefB.getText());
+							DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText());
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
 									"An error occurred updating data in the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
@@ -347,6 +366,11 @@ public class BrewCostPanel extends JPanel {
 						initializeTable();
 						BrewCostScrollPane.setViewportView(BrewCostTable);
 						clearBrewCostData();
+						setBrewTotalCostData();
+						BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
+						BrewSearchPanel.BrewScrollPane.setViewportView(null);
+						BrewSearchPanel.initializeTable();
+						BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
 					}
 				}
 			}
@@ -380,7 +404,8 @@ public class BrewCostPanel extends JPanel {
 	    
 		//Table	    
 	    TableModel model = new DefaultTableModel(data, header) {
-			private static final long serialVersionUID = 1L;
+
+			private static final long serialVersionUID = -8427294766395472858L;
 
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int column) {
@@ -455,11 +480,26 @@ public class BrewCostPanel extends JPanel {
 		}
 	}
 	
+	public static void setBrewTotalCostData(){
+		try {
+			textBrewCostTotalCost.setText(DBEngine.getTotalBrewCost(BrewDataPanel.textBrewRefB.getText()));
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"An error occurred getting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+	}
+
+
+	
 	public static void clearBrewCostData(){
 		textBrewCostRef.setText("");
 		textBrewCostLineItem.setText("");
 		textBrewCostCost.setText("");
 		textBrewCostSupplier.setText("");
+		textBrewCostTotalCost.setText("");
 	}
 
 	
