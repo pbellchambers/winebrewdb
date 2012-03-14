@@ -452,8 +452,8 @@ public class BrewPicturesPanel extends JPanel {
 	
 	public static void initializeTable() {
 		//Get data for table
-	    Vector<Vector<String>> data = null; //used for data from database
-	    Vector<String> header; //used to store data header
+	    Vector<Vector<Object>> data = null; //used for data from database
+	    Vector<Object> header; //used to store data header
 
 	    try {
 			data = DBEngine.getBrewPictureTable();
@@ -466,7 +466,7 @@ public class BrewPicturesPanel extends JPanel {
 		}
 
 	    //Create header for the table
-	    header = new Vector<String>();
+	    header = new Vector<Object>();
 	    header.add("Brew Pic Ref");
 	    header.add("Description");
 	    

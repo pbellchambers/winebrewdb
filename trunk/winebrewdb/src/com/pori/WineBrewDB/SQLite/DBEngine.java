@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.NumberFormat;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -43,7 +44,7 @@ public class DBEngine {
 	
 	
 	//Get everything from Brews table
-	public static Vector<Vector<String>> getBrews() throws Exception {
+	public static Vector<Vector<Object>> getBrews() throws Exception {
 	    Connection conn = dbConnection();
 	    String Colour = null;
 	    String ThumbsUp = null;
@@ -102,7 +103,7 @@ public class DBEngine {
 	    	Drunk = "3";
 	    }
 	     
-	    Vector<Vector<String>> Brews = new Vector<Vector<String>>();
+	    Vector<Vector<Object>> Brews = new Vector<Vector<Object>>();
 	    PreparedStatement pre = conn.prepareStatement(
 	    	"select * from Brews where BrewName like '%" + 
 	    	BrewSearchPanel.textBrewName.getText() + 
@@ -136,7 +137,7 @@ public class DBEngine {
 	    ResultSet rs = pre.executeQuery();
 
 	    while(rs.next()){
-	    Vector<String> brew = new Vector<String>();
+	    Vector<Object> brew = new Vector<Object>();
 		    brew.add(rs.getString(1)); //BrewRef
 		    brew.add(rs.getString(2)); //BrewName
 		    brew.add(rs.getString(3)); //DatePlanned
@@ -162,7 +163,7 @@ public class DBEngine {
 		    brew.add(rs.getString(23)); //VolumeMade
 		    brew.add(rs.getString(24)); //NumberBottles
 		    brew.add(rs.getString(25)); //Colour
-		    brew.add(rs.getString(26)); //TotalCost
+		    brew.add(rs.getFloat(26)); //TotalCost
 		    Brews.add(brew);
 	    }
 
@@ -290,8 +291,6 @@ public class DBEngine {
 	   		BrewDataPanel.textBrewTastingNotesB.getText().replaceAll("'", "''") +
 	    	"',Notes='" +
 	   		BrewDataPanel.textBrewGeneralNotesB.getText().replaceAll("'", "''") +
-	    	"',TotalCost='" +
-	   		BrewDataPanel.textBrewTotalCostB.getText().replaceAll("'", "''") +
 	    	"' where BrewRef='" +
 	    	BrewDataPanel.textBrewRefB.getText() +
 	    	"'"
@@ -456,10 +455,10 @@ public class DBEngine {
 	
 
 	//Get Notes from Brew Notes table
-	public static Vector<Vector<String>> getBrewNotes() throws Exception {
+	public static Vector<Vector<Object>> getBrewNotes() throws Exception {
 	    Connection conn = dbConnection();
 	     
-	    Vector<Vector<String>> BrewNotes = new Vector<Vector<String>>();
+	    Vector<Vector<Object>> BrewNotes = new Vector<Vector<Object>>();
 	    PreparedStatement pre = conn.prepareStatement(
 	    	"select BrewNoteRef,Date,DaysSinceStart,Incident,Notes from BrewNotes where BrewRef='" + 
 	    	BrewDataPanel.textBrewRefB.getText() +
@@ -469,7 +468,7 @@ public class DBEngine {
 	    ResultSet rs = pre.executeQuery();
 
 	    while(rs.next()){
-	    Vector<String> brewnote = new Vector<String>();
+	    Vector<Object> brewnote = new Vector<Object>();
 	    	brewnote.add(rs.getString(1)); //BrewNoteRef
 	    	brewnote.add(rs.getString(2)); //Date
 	    	brewnote.add(rs.getString(3)); //DaysSinceStart
@@ -608,10 +607,10 @@ public class DBEngine {
 		
 		
 	//Get Brew Picture Table Data
-	public static Vector<Vector<String>> getBrewPictureTable() throws Exception {
+	public static Vector<Vector<Object>> getBrewPictureTable() throws Exception {
 	    Connection conn = dbConnection();
 	     
-	    Vector<Vector<String>> BrewPictureTable = new Vector<Vector<String>>();
+	    Vector<Vector<Object>> BrewPictureTable = new Vector<Vector<Object>>();
 	    PreparedStatement pre = conn.prepareStatement(
 	    	"select BrewPicRef,Description from BrewPictures where BrewRef='" + 
 	    	BrewDataPanel.textBrewRefB.getText() +
@@ -621,7 +620,7 @@ public class DBEngine {
 	    ResultSet rs = pre.executeQuery();
 
 	    while(rs.next()){
-	    Vector<String> brewpicture = new Vector<String>();
+	    Vector<Object> brewpicture = new Vector<Object>();
 	    	brewpicture.add(rs.getString(1)); //BrewPicRef
 	    	brewpicture.add(rs.getString(2)); //Description
 	    	BrewPictureTable.add(brewpicture);
@@ -911,10 +910,10 @@ public class DBEngine {
 	
 	
 	//Get everything from Recipes table
-	public static Vector<Vector<String>> getRecipes() throws Exception {
+	public static Vector<Vector<Object>> getRecipes() throws Exception {
 	    Connection conn = dbConnection();
 	          
-	    Vector<Vector<String>> Recipes = new Vector<Vector<String>>();
+	    Vector<Vector<Object>> Recipes = new Vector<Vector<Object>>();
 	    PreparedStatement pre = conn.prepareStatement(
 	    	"select * from Recipes where RecipeName like '%" + 
 	    	RecipeSearchPanel.textRecipeName.getText() + 
@@ -934,7 +933,7 @@ public class DBEngine {
 	    ResultSet rs = pre.executeQuery();
 
 	    while(rs.next()){
-	    Vector<String> Recipe = new Vector<String>();
+	    Vector<Object> Recipe = new Vector<Object>();
 		    Recipe.add(rs.getString(1)); //RecipeRef
 		    Recipe.add(rs.getString(2)); //RecipeName
 		    Recipe.add(rs.getString(3)); //Inspiration
@@ -1168,6 +1167,78 @@ public class DBEngine {
 	   if(conn!=null)
 	  conn.close();  
 		    
+	}
+	
+	
+	//Set total brew cost
+	public static void setTotalBrewCost(String brewref) throws Exception {
+		Connection conn = dbConnection();
+				
+		PreparedStatement pre = conn.prepareStatement(
+			"SELECT Sum(Cost) from BrewCosts where BrewRef='" +
+			brewref +
+			"'"
+		);
+
+		
+		ResultSet rs = pre.executeQuery();
+		Float TotalBrewCost = null;
+		
+		while(rs.next()){
+			//Add one to the current highest
+			TotalBrewCost = rs.getFloat(1);			
+		}
+		
+	    
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+
+	    Connection conn2 = dbConnection();
+		PreparedStatement pre2 = conn2.prepareStatement(
+			"update Brews set TotalCost='" + 
+			TotalBrewCost +
+			"' where BrewRef='" +
+			brewref +
+			"'"
+		);
+
+		pre2.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn2!=null)
+	    conn2.close();  
+			    
+	}
+	
+	
+	public static String getTotalBrewCost(String brewref) throws Exception {
+		Connection conn = dbConnection();
+				
+		PreparedStatement pre = conn.prepareStatement(
+			"SELECT Sum(Cost) from BrewCosts where BrewRef='" +
+			brewref +
+			"'"
+		);
+
+		
+		ResultSet rs = pre.executeQuery();
+		Float TotalBrewCost = null;
+		
+		while(rs.next()){
+			//Add one to the current highest
+			TotalBrewCost = rs.getFloat(1);			
+		}
+		
+	    
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	    NumberFormat nf = NumberFormat.getCurrencyInstance();
+	    	    
+		return nf.format(TotalBrewCost).toString();  
+			    
 	}
 	
 	

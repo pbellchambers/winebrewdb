@@ -282,13 +282,11 @@ public class BrewAddPanel extends JPanel {
 		chckbxBrewDrunkAdd.setEnabled(false);
 		chckbxBrewDrunkAdd.setBackground(Color.WHITE);
 		tabbedBrewAddPanel.add(chckbxBrewDrunkAdd, "cell 4 10,growx");
-		
-		JLabel lblBrewTotalCostAdd = new JLabel("Total Cost:");
-		tabbedBrewAddPanel.add(lblBrewTotalCostAdd, "flowx,cell 0 10,alignx right");
 			
 		textBrewTotalCostAdd = new JTextField();
 		textBrewTotalCostAdd.setEditable(false);
-		tabbedBrewAddPanel.add(textBrewTotalCostAdd, "cell 1 10,growx");	
+		textBrewTotalCostAdd.setText("0");
+		//tabbedBrewAddPanel.add(textBrewTotalCostAdd, "cell 1 10,growx");	
 		
 		JLabel lblBrewTastingNotesAdd = new JLabel("Tasting Notes:");
 		tabbedBrewAddPanel.add(lblBrewTastingNotesAdd, "flowx,cell 0 12,alignx right");
@@ -497,7 +495,7 @@ public class BrewAddPanel extends JPanel {
 		chckbxBrewInMaturingAdd.setSelected(false);
 		chckbxBrewInBottlesAdd.setSelected(false);
 		chckbxBrewDrunkAdd.setSelected(false);
-		textBrewTotalCostAdd.setText("");
+		textBrewTotalCostAdd.setText("0");
 	}
 	
 	public static boolean stringToBool(String s) {

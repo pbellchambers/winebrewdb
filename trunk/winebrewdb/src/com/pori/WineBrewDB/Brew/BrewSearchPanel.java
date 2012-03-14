@@ -21,8 +21,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import com.pori.WineBrewDB.MainWindow;
+import com.pori.WineBrewDB.NumberRenderer;
 import com.pori.WineBrewDB.SQLite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;
@@ -224,8 +226,8 @@ public class BrewSearchPanel extends JPanel {
 	
 	public static void initializeTable() {
 		//Get data for table
-	    Vector<Vector<String>> data = null; //used for data from database
-	    Vector<String> header; //used to store data header
+	    Vector<Vector<Object>> data = null; //used for data from database
+	    Vector<Object> header; //used to store data header
 
 	    try {
 			data = DBEngine.getBrews();
@@ -239,7 +241,7 @@ public class BrewSearchPanel extends JPanel {
 	    
 
 	    //Create header for the table
-	    header = new Vector<String>();
+	    header = new Vector<Object>();
 	    header.add("Brew Ref");
 	    header.add("Brew Name");
 	    header.add("Date Planned");
@@ -268,14 +270,28 @@ public class BrewSearchPanel extends JPanel {
 	    header.add("Total Cost");
 	    
 		//Table
-		BrewTable = new JTable();
-		BrewTable.setModel(new DefaultTableModel(data,header){
-			private static final long serialVersionUID = 6716082729584843250L;
-			public boolean isCellEditable(int row, int column) {
-			    	return false;
-			    }}
+	    TableModel model = new DefaultTableModel(data, header) {
 
-			);
+			private static final long serialVersionUID = 1043300365143102151L;
+
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			public Class getColumnClass(int column) {
+	          Class returnValue;
+	          if ((column >= 0) && (column < getColumnCount())) {
+	            returnValue = getValueAt(0, column).getClass();
+	          } else {
+	            returnValue = Object.class;
+	          }
+	          return returnValue;
+	        }
+			
+			public boolean isCellEditable(int row, int column) {
+		    	return false;
+		    }
+	      };
+	      
+		BrewTable = new JTable(model);
+
 		
 		if (BrewTableFields.equals("Summary")){
 			showDefaultRows();
@@ -306,6 +322,7 @@ public class BrewSearchPanel extends JPanel {
 					BrewPicturesPanel.BrewPicturesTableScrollPane.setViewportView(BrewPicturesPanel.BrewPicturesTable);
 					BrewCostPanel.initializeTable();
 					BrewCostPanel.clearBrewCostData();
+					BrewCostPanel.setBrewTotalCostData();
 					BrewCostPanel.btnBrewCostEdit.setEnabled(false);
 					BrewCostPanel.BrewCostScrollPane.setViewportView(BrewCostPanel.BrewCostTable);
 					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
@@ -330,6 +347,7 @@ public class BrewSearchPanel extends JPanel {
 					BrewPicturesPanel.BrewPicturesTableScrollPane.setViewportView(BrewPicturesPanel.BrewPicturesTable);
 					BrewCostPanel.initializeTable();
 					BrewCostPanel.clearBrewCostData();
+					BrewCostPanel.setBrewTotalCostData();
 					BrewCostPanel.btnBrewCostEdit.setEnabled(false);
 					BrewCostPanel.BrewCostScrollPane.setViewportView(BrewCostPanel.BrewCostTable);
 					BrewPanel.tabbedBrewPane.setEnabledAt(1, true);
@@ -422,6 +440,7 @@ public class BrewSearchPanel extends JPanel {
 		BrewTable.getColumnModel().getColumn(25).setPreferredWidth(80);
 		BrewTable.getColumnModel().getColumn(25).setMinWidth(5);
 		BrewTable.getColumnModel().getColumn(25).setMaxWidth(9001);
+		BrewTable.getColumnModel().getColumn(25).setCellRenderer(NumberRenderer.getCurrencyRenderer());
 	}
 	
 	public static void showDefaultRows(){
@@ -501,6 +520,7 @@ public class BrewSearchPanel extends JPanel {
 		BrewTable.getColumnModel().getColumn(25).setPreferredWidth(0);
 		BrewTable.getColumnModel().getColumn(25).setMinWidth(0);
 		BrewTable.getColumnModel().getColumn(25).setMaxWidth(0);
+		BrewTable.getColumnModel().getColumn(25).setCellRenderer(NumberRenderer.getCurrencyRenderer());
 	}
 	
 }
