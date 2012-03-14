@@ -137,6 +137,7 @@ public class BrewNotesPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
 				InitializeMenu.DisableAllMenuButtons();
 				chooserBrewNoteDate.setEnabled();
 				textBrewNoteIncident.setEditable(true);
@@ -163,6 +164,7 @@ public class BrewNotesPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
+				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
 				InitializeMenu.DisableAllMenuButtons();
 				chooserBrewNoteDate.setEnabled();
 				textBrewNoteIncident.setEditable(true);
@@ -202,6 +204,7 @@ public class BrewNotesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 						InitializeMenu.EnableAllMenuButtons();
 						chooserBrewNoteDate.setDisabled();
 						textBrewNoteIncident.setEditable(false);
@@ -243,6 +246,7 @@ public class BrewNotesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 					InitializeMenu.EnableAllMenuButtons();
 					chooserBrewNoteDate.setDisabled();
 					textBrewNoteIncident.setEditable(false);
@@ -264,6 +268,7 @@ public class BrewNotesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 					InitializeMenu.EnableAllMenuButtons();
 					chooserBrewNoteDate.setDisabled();
 					textBrewNoteIncident.setEditable(false);
@@ -312,6 +317,7 @@ public class BrewNotesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 						InitializeMenu.EnableAllMenuButtons();
 						chooserBrewNoteDate.setDisabled();
 						textBrewNoteIncident.setEditable(false);
@@ -354,6 +360,7 @@ public class BrewNotesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(2, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
+						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
 						InitializeMenu.EnableAllMenuButtons();
 						chooserBrewNoteDate.setDisabled();
 						textBrewNoteIncident.setEditable(false);

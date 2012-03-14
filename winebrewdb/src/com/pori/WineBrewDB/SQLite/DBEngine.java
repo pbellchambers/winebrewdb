@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import com.pori.WineBrewDB.Dates;
 import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.Brew.BrewAddPanel;
+import com.pori.WineBrewDB.Brew.BrewCostPanel;
 import com.pori.WineBrewDB.Brew.BrewDataPanel;
 import com.pori.WineBrewDB.Brew.BrewNotesPanel;
 import com.pori.WineBrewDB.Brew.BrewPicturesPanel;
@@ -1035,6 +1036,138 @@ public class DBEngine {
 	    if(conn!=null)
 	    conn.close();  
 	    
+	}
+	
+	
+	
+	//Get Costs from Brew Costs table
+	public static Vector<Vector<Object>> getBrewCosts(String brewref) throws Exception {
+	    Connection conn = dbConnection();
+	     
+	    Vector<Vector<Object>> BrewCosts = new Vector<Vector<Object>>();
+	    PreparedStatement pre = conn.prepareStatement(
+	    	"select BrewCostRef,LineItem,Cost,Supplier from BrewCosts where BrewRef='" + 
+	    	brewref +
+	    	"' order by BrewCostRef asc"
+			);
+
+	    ResultSet rs = pre.executeQuery();
+
+	    while(rs.next()){
+	    Vector<Object> brewcost = new Vector<Object>();
+	    	brewcost.add(rs.getString(1)); //BrewCostRef
+	    	brewcost.add(rs.getString(2)); //LineItem
+	    	brewcost.add(rs.getFloat(3)); //Cost
+	    	brewcost.add(rs.getString(4)); //Supplier
+	    	BrewCosts.add(brewcost);
+	    }
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	    return BrewCosts;	    
+	    
+	}
+
+
+	//Add Brew Cost
+	public static void addBrewCost(String brewref) throws Exception {
+		Connection conn = dbConnection();
+		
+		PreparedStatement pre = conn.prepareStatement(
+			"insert into BrewCosts(BrewRef,BrewCostRef,LineItem,Cost,Supplier) values('" + 
+			brewref + 
+			"','" +
+			BrewCostPanel.textBrewCostRef.getText() +
+			"','" +
+			BrewCostPanel.textBrewCostLineItem.getText().replaceAll("'", "''") +
+			"','" +
+			BrewCostPanel.textBrewCostCost.getText().replaceAll("[^0-9\\.]", "") +
+			"','" +
+			BrewCostPanel.textBrewCostSupplier.getText().replaceAll("'", "''") +
+			"')"
+		);
+
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
+	    
+	}
+
+
+	//Get next brew cost ref
+	public static String getNextBrewCostRef(String brewref) throws Exception {
+		Connection conn = dbConnection();
+				
+		PreparedStatement pre = conn.prepareStatement(
+			"SELECT BrewCostRef from BrewCosts where BrewRef='" +
+			brewref +
+			"' order by BrewCostRef desc limit 1"
+		);
+
+		int MaxBrewCostRef = 0;
+		int NextBrewCostRef = 0;
+		
+		ResultSet rs = pre.executeQuery();
+		
+		while(rs.next()){
+			//Add one to the current highest
+			MaxBrewCostRef = rs.getInt(1);			
+		}
+		
+		NextBrewCostRef = MaxBrewCostRef + 1;
+	    
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	    return Integer.toString(NextBrewCostRef);
+			    
+	}
+
+
+	//Update Brew Cost
+	public static void updateBrewCost(String brewref) throws Exception {
+		Connection conn = dbConnection();
+		
+		PreparedStatement pre = conn.prepareStatement(
+			"update BrewCosts set LineItem='" + 
+			BrewCostPanel.textBrewCostLineItem.getText().replaceAll("'", "''") + 
+			"',Cost='" +
+			BrewCostPanel.textBrewCostCost.getText().replaceAll("[^0-9\\.]", "") +
+			"',Supplier='" +
+			BrewCostPanel.textBrewCostSupplier.getText().replaceAll("'", "''") +
+			"' where BrewRef='" +
+			brewref +
+			"' and BrewCostRef='" +
+			BrewCostPanel.textBrewCostRef.getText() +
+			"'"
+		);
+
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
+		    
+	}
+
+
+	//Delete Brew Cost
+	public static void deleteBrewCost(String brewref) throws Exception {
+		Connection conn = dbConnection();
+		
+		PreparedStatement pre = conn.prepareStatement("delete from BrewCosts where BrewRef='" + brewref + "' and BrewCostRef='" + BrewCostPanel.textBrewCostRef.getText() + "'");
+
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	   if(conn!=null)
+	  conn.close();  
+		    
 	}
 	
 	
