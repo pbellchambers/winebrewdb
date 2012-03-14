@@ -164,6 +164,7 @@ public class DBEngine {
 		    brew.add(rs.getString(24)); //NumberBottles
 		    brew.add(rs.getString(25)); //Colour
 		    brew.add(rs.getFloat(26)); //TotalCost
+		    brew.add(rs.getFloat(27)); //CostPerBottle
 		    Brews.add(brew);
 	    }
 
@@ -373,7 +374,7 @@ public class DBEngine {
 	    
 	     
 	    PreparedStatement pre = conn.prepareStatement(
-    		"insert into Brews(BrewName,Colour,RecipeFrom,ThumbsUp,DatePlanned,DateStarted,DateBottled,StartSG,StartAdjustedSG,EndSG,AimedABV,FinalABV,FinalAdjustedABV,Yeast,VolumeMade,InPlanning,InFermenting,InFining,NumberBottles,InMaturing,InBottles,Drunk,TastingNotes,Notes,TotalCost) values('" +
+    		"insert into Brews(BrewName,Colour,RecipeFrom,ThumbsUp,DatePlanned,DateStarted,DateBottled,StartSG,StartAdjustedSG,EndSG,AimedABV,FinalABV,FinalAdjustedABV,Yeast,VolumeMade,InPlanning,InFermenting,InFining,NumberBottles,InMaturing,InBottles,Drunk,TastingNotes,Notes,TotalCost,CostPerBottle) values('" +
     		BrewAddPanel.textBrewNameAdd.getText().replaceAll("'", "''") +
     		"','" +
     		BrewAddPanel.comboBrewColourAdd.getSelectedItem() +
@@ -423,6 +424,8 @@ public class DBEngine {
 	   		BrewAddPanel.textBrewGeneralNotesAdd.getText().replaceAll("'", "''") +
 	   		"','" +
 	   		BrewAddPanel.textBrewTotalCostAdd.getText().replaceAll("'", "''") +
+	   		"','" +
+	   		BrewAddPanel.textBrewCostPerBottleAdd.getText().replaceAll("'", "''") +
 	    	"')"
 	    );
 	    
@@ -1171,7 +1174,7 @@ public class DBEngine {
 	
 	
 	//Set total brew cost
-	public static void setTotalBrewCost(String brewref) throws Exception {
+	public static void setTotalBrewCost(String brewref, String numberbottles) throws Exception {
 		Connection conn = dbConnection();
 				
 		PreparedStatement pre = conn.prepareStatement(
@@ -1207,7 +1210,41 @@ public class DBEngine {
 		
 		/*Close the connection after use (MUST)*/
 	    if(conn2!=null)
-	    conn2.close();  
+	    conn2.close();
+	    
+	    if(numberbottles.equals("") || numberbottles.equals("0") || numberbottles == null){
+		    Connection conn3 = dbConnection();
+			PreparedStatement pre3 = conn3.prepareStatement(
+				"update Brews set CostPerBottle='0' where BrewRef='" +
+				brewref +
+				"'"
+			);
+
+			pre3.executeUpdate();
+			
+			/*Close the connection after use (MUST)*/
+		    if(conn3!=null)
+		    conn3.close();
+	    }else{
+	    	BigDecimal BigDecimalTotalBrewCost = new BigDecimal(TotalBrewCost);
+	    	BigDecimal BigDecimalNumberBottles = new BigDecimal(numberbottles);
+	    	BigDecimal CostPerBottle = BigDecimalTotalBrewCost.divide(BigDecimalNumberBottles, 2, BigDecimal.ROUND_HALF_UP);
+	    	
+		    Connection conn3 = dbConnection();
+			PreparedStatement pre3 = conn3.prepareStatement(
+				"update Brews set CostPerBottle='" + 
+				CostPerBottle.toString() + 
+				"' where BrewRef='" +
+				brewref +
+				"'"
+			);
+
+			pre3.executeUpdate();
+			
+			/*Close the connection after use (MUST)*/
+		    if(conn3!=null)
+		    conn3.close();
+	    }
 			    
 	}
 	
@@ -1238,6 +1275,35 @@ public class DBEngine {
 	    NumberFormat nf = NumberFormat.getCurrencyInstance();
 	    	    
 		return nf.format(TotalBrewCost).toString();  
+			    
+	}
+	
+	public static String getBrewCostPerBottle(String brewref) throws Exception {
+		Connection conn = dbConnection();
+				
+		PreparedStatement pre = conn.prepareStatement(
+			"SELECT CostPerBottle from Brews where BrewRef='" +
+			brewref +
+			"'"
+		);
+
+		
+		ResultSet rs = pre.executeQuery();
+		Float CostPerBottle = null;
+		
+		while(rs.next()){
+			//Add one to the current highest
+			CostPerBottle = rs.getFloat(1);			
+		}
+		
+	    
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	    NumberFormat nf = NumberFormat.getCurrencyInstance();
+	    	    
+		return nf.format(CostPerBottle).toString();  
 			    
 	}
 	

@@ -84,21 +84,21 @@ public class RecipePanel extends JPanel {
 		
 		
 		//Add print button listener
-		btnPrintRecipe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser c = new JFileChooser();
-			      int rVal = c.showSaveDialog(MainWindow.WineBrewDBFrame);
-			      if (rVal == JFileChooser.APPROVE_OPTION) {			    	     	  
-					String pdflocation = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".pdf";
-					BrewPDF.createPDF(pdflocation);	    	  
-			    	  
-			      }
-			      if (rVal == JFileChooser.CANCEL_OPTION) {
-			    	  
-			      }				
-				
-			}
-		});
+//		btnPrintRecipe.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				JFileChooser c = new JFileChooser();
+//			      int rVal = c.showSaveDialog(MainWindow.WineBrewDBFrame);
+//			      if (rVal == JFileChooser.APPROVE_OPTION) {			    	     	  
+//					String pdflocation = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".pdf";
+//					BrewPDF.createPDF(pdflocation);	    	  
+//			    	  
+//			      }
+//			      if (rVal == JFileChooser.CANCEL_OPTION) {
+//			    	  
+//			      }				
+//				
+//			}
+//		});
 		
 	}
 
