@@ -192,7 +192,8 @@ public class BrewCostPanel extends JPanel {
 				    	
 				    } else if (response == JOptionPane.YES_OPTION) {  
 					  	try {
-							DBEngine.deleteBrewCost(BrewDataPanel.textBrewRefB.getText());
+							DBEngine.deleteBrewCost(BrewDataPanel.textBrewRefB.getText(), textBrewCostRef.getText());
+							DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText(), BrewDataPanel.textBrewNumberBottlesB.getText());
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
 									"An error occurred deleting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
@@ -299,7 +300,7 @@ public class BrewCostPanel extends JPanel {
 					} else {
 						try {
 							textBrewCostRef.setText(DBEngine.getNextBrewCostRef(BrewDataPanel.textBrewRefB.getText()));
-							DBEngine.addBrewCost(BrewDataPanel.textBrewRefB.getText());
+							DBEngine.addBrewCost(BrewDataPanel.textBrewRefB.getText(), textBrewCostLineItem.getText().replaceAll("'", "''"), textBrewCostCost.getText().replaceAll("[^0-9\\.]", ""), textBrewCostSupplier.getText().replaceAll("'", "''"));
 							DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText(), BrewDataPanel.textBrewNumberBottlesB.getText());
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
@@ -347,7 +348,7 @@ public class BrewCostPanel extends JPanel {
 						);
 					} else {
 						try {
-							DBEngine.updateBrewCost(BrewDataPanel.textBrewRefB.getText());
+							DBEngine.updateBrewCost(BrewDataPanel.textBrewRefB.getText(), textBrewCostLineItem.getText().replaceAll("'", "''"), textBrewCostCost.getText().replaceAll("[^0-9\\.]", ""), textBrewCostSupplier.getText().replaceAll("'", "''"), textBrewCostRef.getText());
 							DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText(), BrewDataPanel.textBrewNumberBottlesB.getText());
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,

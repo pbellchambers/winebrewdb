@@ -20,11 +20,11 @@ import javax.swing.ImageIcon;
 import com.pori.WineBrewDB.Dates;
 import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.Brew.BrewAddPanel;
-import com.pori.WineBrewDB.Brew.BrewCostPanel;
 import com.pori.WineBrewDB.Brew.BrewDataPanel;
 import com.pori.WineBrewDB.Brew.BrewNotesPanel;
 import com.pori.WineBrewDB.Brew.BrewPicturesPanel;
 import com.pori.WineBrewDB.Brew.BrewSearchPanel;
+import com.pori.WineBrewDB.Ledger.LedgerBrewCostSearchPanel;
 import com.pori.WineBrewDB.Ledger.LedgerEquipmentPanel;
 import com.pori.WineBrewDB.Recipe.RecipeAddPanel;
 import com.pori.WineBrewDB.Recipe.RecipeDataPanel;
@@ -446,10 +446,12 @@ public class DBEngine {
 		PreparedStatement pre = conn.prepareStatement("delete from Brews where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "'");
 		PreparedStatement pre2 = conn.prepareStatement("delete from BrewNotes where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "'");
 		PreparedStatement pre3 = conn.prepareStatement("delete from BrewPictures where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "'");
+		PreparedStatement pre4 = conn.prepareStatement("delete from BrewCosts where BrewRef='" + BrewDataPanel.textBrewRefB.getText() + "'");
 
 		pre.executeUpdate();
 		pre2.executeUpdate();
 		pre3.executeUpdate();
+		pre4.executeUpdate();
 		
 		/*Close the connection after use (MUST)*/
 	    if(conn!=null)
@@ -1075,20 +1077,20 @@ public class DBEngine {
 
 
 	//Add Brew Cost
-	public static void addBrewCost(String brewref) throws Exception {
+	public static void addBrewCost(String brewref, String brewcostlineitem, String brewcostcost, String brewcostsupplier) throws Exception {
 		Connection conn = dbConnection();
 		
 		PreparedStatement pre = conn.prepareStatement(
 			"insert into BrewCosts(BrewRef,BrewCostRef,LineItem,Cost,Supplier) values('" + 
 			brewref + 
 			"','" +
-			BrewCostPanel.textBrewCostRef.getText() +
+			getNextBrewCostRef(brewref) +
 			"','" +
-			BrewCostPanel.textBrewCostLineItem.getText().replaceAll("'", "''") +
+			brewcostlineitem +
 			"','" +
-			BrewCostPanel.textBrewCostCost.getText().replaceAll("[^0-9\\.]", "") +
+			brewcostcost +
 			"','" +
-			BrewCostPanel.textBrewCostSupplier.getText().replaceAll("'", "''") +
+			brewcostsupplier +
 			"')"
 		);
 
@@ -1133,20 +1135,20 @@ public class DBEngine {
 
 
 	//Update Brew Cost
-	public static void updateBrewCost(String brewref) throws Exception {
+	public static void updateBrewCost(String brewref, String brewcostlineitem, String brewcostcost, String brewcostsupplier, String brewcostref) throws Exception {
 		Connection conn = dbConnection();
 		
 		PreparedStatement pre = conn.prepareStatement(
 			"update BrewCosts set LineItem='" + 
-			BrewCostPanel.textBrewCostLineItem.getText().replaceAll("'", "''") + 
+			brewcostlineitem + 
 			"',Cost='" +
-			BrewCostPanel.textBrewCostCost.getText().replaceAll("[^0-9\\.]", "") +
+			brewcostcost +
 			"',Supplier='" +
-			BrewCostPanel.textBrewCostSupplier.getText().replaceAll("'", "''") +
+			brewcostsupplier +
 			"' where BrewRef='" +
 			brewref +
 			"' and BrewCostRef='" +
-			BrewCostPanel.textBrewCostRef.getText() +
+			brewcostref +
 			"'"
 		);
 
@@ -1160,10 +1162,10 @@ public class DBEngine {
 
 
 	//Delete Brew Cost
-	public static void deleteBrewCost(String brewref) throws Exception {
+	public static void deleteBrewCost(String brewref, String brewcostref) throws Exception {
 		Connection conn = dbConnection();
 		
-		PreparedStatement pre = conn.prepareStatement("delete from BrewCosts where BrewRef='" + brewref + "' and BrewCostRef='" + BrewCostPanel.textBrewCostRef.getText() + "'");
+		PreparedStatement pre = conn.prepareStatement("delete from BrewCosts where BrewRef='" + brewref + "' and BrewCostRef='" + brewcostref + "'");
 
 		pre.executeUpdate();
 		
@@ -1514,6 +1516,109 @@ public class DBEngine {
 	    	    
 		return DecimalNumberBottles;  
 			    
+	}
+	
+	//TODO: Fix it so it also returns brews with zero bottles
+	//Get ledger brews
+	public static Vector<Vector<Object>> getLedgerBrews() throws Exception {
+	    Connection conn = dbConnection();
+	    String BrewCostDatesFilterA = null;
+	    String BrewCostDatesFilterB = null;
+	    String BrewCostTotalCostFilterA = null;
+	    String BrewCostTotalCostFilterB = null;
+	    String BrewCostCostPerBottleFilterA = null;
+	    String BrewCostCostPerBottleFilterB = null;
+	    String BrewCostNumberBottlesFilterA = null;
+	    String BrewCostNumberBottlesFilterB = null;
+		
+	    //Cover empty dates & costs
+	    if(LedgerBrewCostSearchPanel.chooserLedgerBrewDatesFilterA.getDate() == null){
+	    	BrewCostDatesFilterA = "1500/01/01";
+	    } else{
+	    	BrewCostDatesFilterA = Dates.dateToString(LedgerBrewCostSearchPanel.chooserLedgerBrewDatesFilterA.getDate());
+	    }
+	    if(LedgerBrewCostSearchPanel.chooserLedgerBrewDatesFilterB.getDate() == null){
+	    	BrewCostDatesFilterB = "2500/01/01";
+	    } else{
+	    	BrewCostDatesFilterB = Dates.dateToString(LedgerBrewCostSearchPanel.chooserLedgerBrewDatesFilterB.getDate());
+	    }
+	    if(LedgerBrewCostSearchPanel.textLedgerBrewTotalCostA.getText() == null || LedgerBrewCostSearchPanel.textLedgerBrewTotalCostA.getText().equals("")){
+	    	BrewCostTotalCostFilterA = "-9999999.0";
+	    } else{
+	    	BrewCostTotalCostFilterA = LedgerBrewCostSearchPanel.textLedgerBrewTotalCostA.getText().replaceAll("[^0-9\\.]", "");
+	    }
+	    if(LedgerBrewCostSearchPanel.textLedgerBrewTotalCostB.getText() == null || LedgerBrewCostSearchPanel.textLedgerBrewTotalCostB.getText().equals("")){
+	    	BrewCostTotalCostFilterB = "9999999.0";
+	    } else{
+	    	BrewCostTotalCostFilterB = LedgerBrewCostSearchPanel.textLedgerBrewTotalCostB.getText().replaceAll("[^0-9\\.]", "");
+	    }
+	    if(LedgerBrewCostSearchPanel.textLedgerBrewCostPerBottleA.getText() == null || LedgerBrewCostSearchPanel.textLedgerBrewCostPerBottleA.getText().equals("")){
+	    	BrewCostCostPerBottleFilterA = "-9999999.0";
+	    } else{
+	    	BrewCostCostPerBottleFilterA = LedgerBrewCostSearchPanel.textLedgerBrewCostPerBottleA.getText().replaceAll("[^0-9\\.]", "");
+	    }
+	    if(LedgerBrewCostSearchPanel.textLedgerBrewCostPerBottleB.getText() == null || LedgerBrewCostSearchPanel.textLedgerBrewCostPerBottleB.getText().equals("")){
+	    	BrewCostCostPerBottleFilterB = "9999999.0";
+	    } else{
+	    	BrewCostCostPerBottleFilterB = LedgerBrewCostSearchPanel.textLedgerBrewCostPerBottleB.getText().replaceAll("[^0-9\\.]", "");
+	    }
+	    if(LedgerBrewCostSearchPanel.textLedgerBrewNumberBottlesA.getText() == null || LedgerBrewCostSearchPanel.textLedgerBrewNumberBottlesA.getText().equals("")){
+	    	BrewCostNumberBottlesFilterA = "0";
+	    } else{
+	    	BrewCostNumberBottlesFilterA = LedgerBrewCostSearchPanel.textLedgerBrewNumberBottlesA.getText().replaceAll("[^0-9\\.]", "");
+	    }
+	    if(LedgerBrewCostSearchPanel.textLedgerBrewNumberBottlesB.getText() == null || LedgerBrewCostSearchPanel.textLedgerBrewNumberBottlesB.getText().equals("")){
+	    	BrewCostNumberBottlesFilterB = "9999999";
+	    } else{
+	    	BrewCostNumberBottlesFilterB = LedgerBrewCostSearchPanel.textLedgerBrewNumberBottlesB.getText().replaceAll("[^0-9\\.]", "");
+	    }
+	    
+	    String datefilter;
+	    if(LedgerBrewCostSearchPanel.chooserLedgerBrewDatesFilterA.getDate() == null && LedgerBrewCostSearchPanel.chooserLedgerBrewDatesFilterB.getDate() == null){
+    			datefilter = "%";	    		
+	    	} else {
+	    		datefilter = "%' and DateStarted >= '" + BrewCostDatesFilterA + "' and DateStarted <= '" + BrewCostDatesFilterB;
+	    	}
+	     
+	    Vector<Vector<Object>> Brews = new Vector<Vector<Object>>();
+	    PreparedStatement pre = conn.prepareStatement(
+	    	"select BrewRef,BrewName,DateStarted,TotalCost,NumberBottles,CostPerBottle from Brews where BrewName like '%" +
+	    	LedgerBrewCostSearchPanel.textLedgerBrewName.getText() +
+	    	datefilter +	    	
+	    	"' and TotalCost >= '" +
+	    	BrewCostTotalCostFilterA +
+	    	"' and TotalCost <= '" +
+	    	BrewCostTotalCostFilterB +
+	    	"' and CostPerBottle >= '" +
+	    	BrewCostCostPerBottleFilterA +
+	    	"' and CostPerBottle <= '" +
+	    	BrewCostCostPerBottleFilterB +
+	    	"' and NumberBottles >= '" +
+	    	BrewCostNumberBottlesFilterA +
+	    	"' and NumberBottles <= '" +
+	    	BrewCostNumberBottlesFilterB +
+	    	"'"
+			);
+
+	    ResultSet rs = pre.executeQuery();
+
+	    while(rs.next()){
+	    Vector<Object> brew = new Vector<Object>();
+		    brew.add(rs.getString(1)); //BrewRef
+		    brew.add(rs.getString(2)); //BrewName
+		    brew.add(rs.getString(3)); //DateStarted
+		    brew.add(rs.getFloat(4)); //TotalCost
+		    brew.add(rs.getString(5)); //NumberBottles
+		    brew.add(rs.getFloat(6)); //CostPerBottle
+		    Brews.add(brew);
+	    }
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+
+	    return Brews;	    
+	    
 	}
 	
 	

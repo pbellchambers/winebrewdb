@@ -423,6 +423,8 @@ public class BrewAddPanel extends JPanel {
 					);
 				} else {
 					try {
+						if(textBrewNumberBottlesAdd.getText().equals("") || textBrewNumberBottlesAdd == null){textBrewNumberBottlesAdd.setText("0");}
+						textBrewNumberBottlesAdd.setText(textBrewNumberBottlesAdd.getText().replaceAll("[^0-9\\.]", ""));
 						DBEngine.addBrew();
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null,
