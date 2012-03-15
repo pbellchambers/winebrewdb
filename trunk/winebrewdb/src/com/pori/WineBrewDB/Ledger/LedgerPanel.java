@@ -87,7 +87,7 @@ public class LedgerPanel extends JPanel {
 		
 		//Add New Ledger Tab
 		LedgerBrewCostDataPanel.InitializePanel();
-		tabbedLedgerPane.addTab("Brew Cost Data", null, LedgerBrewCostDataPanel.tabbedLedgerBrewCostDataPanel, null);
+		tabbedLedgerPane.addTab("Brew Cost Data", null, LedgerBrewCostDataPanel.tabbedLedgerBrewCostPanel, null);
 		
 		
 		//Set some tabs disabled initially
@@ -131,7 +131,7 @@ public class LedgerPanel extends JPanel {
 			LedgerPanel.remove(btnPrintLedger);
 			tabbedLedgerPane.remove(LedgerEquipmentPanel.tabbedLedgerEquipmentCostPanel);
 			tabbedLedgerPane.remove(LedgerBrewCostSearchPanel.tabbedLedgerBrewCostSearchPanel);
-			tabbedLedgerPane.remove(LedgerBrewCostDataPanel.tabbedLedgerBrewCostDataPanel);
+			tabbedLedgerPane.remove(LedgerBrewCostDataPanel.tabbedLedgerBrewCostPanel);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(LedgerPanel);
 			LedgerPanelStatus = "DeInitialized";
 		}
