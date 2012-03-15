@@ -460,6 +460,8 @@ public class BrewDataPanel extends JPanel {
 					);
 				} else {
 					try {
+						if(textBrewNumberBottlesB.getText().equals("") || textBrewNumberBottlesB == null){textBrewNumberBottlesB.setText("0");}
+						textBrewNumberBottlesB.setText(textBrewNumberBottlesB.getText().replaceAll("[^0-9\\.]", ""));
 						DBEngine.updateBrew();
 						DBEngine.setTotalBrewCost(BrewDataPanel.textBrewRefB.getText(), BrewDataPanel.textBrewNumberBottlesB.getText());
 						BrewCostPanel.setBrewTotalCostData();

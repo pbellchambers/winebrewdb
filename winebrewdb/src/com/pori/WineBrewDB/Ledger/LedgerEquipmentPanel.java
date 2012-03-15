@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowSorter;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -70,7 +71,7 @@ public class LedgerEquipmentPanel extends JPanel {
 		//TODO: Make formatting/positioning nicer
 		//Filter Panel
 		JPanel LedgerEquipmentFilterPanel = new JPanel();
-		LedgerEquipmentFilterPanel.setBackground(Color.WHITE);
+		LedgerEquipmentFilterPanel.setBackground(UIManager.getColor("Panel.background"));
 		LedgerEquipmentFilterPanel.setLayout(new MigLayout("", "[105px:105px:105px][grow][grow][105px:105px:105px][grow][grow]", "[][][5px:5px:5px][]"));
 			
 		JLabel lblLedgerEquipmentLineItemFilter = new JLabel("Line Item:");
@@ -89,12 +90,10 @@ public class LedgerEquipmentPanel extends JPanel {
 		LedgerEquipmentFilterPanel.add(lblLedgerEquipmentDatesFilter, "flowx,cell 0 1,alignx right");
 			
 		chooserLedgerEquipmentDatesFilterA = new JDateChooser();
-		chooserLedgerEquipmentDatesFilterA.setMinimumSize(new Dimension(181, 23));
-		LedgerEquipmentFilterPanel.add(chooserLedgerEquipmentDatesFilterA, "cell 1 1");
+		LedgerEquipmentFilterPanel.add(chooserLedgerEquipmentDatesFilterA, "cell 1 1,growx");
 		
 		chooserLedgerEquipmentDatesFilterB = new JDateChooser();
-		chooserLedgerEquipmentDatesFilterB.setMinimumSize(new Dimension(181, 23));
-		LedgerEquipmentFilterPanel.add(chooserLedgerEquipmentDatesFilterB, "cell 2 1");
+		LedgerEquipmentFilterPanel.add(chooserLedgerEquipmentDatesFilterB, "cell 2 1,growx");
 			
 		JLabel lblLedgerEquipmentCostsFilter = new JLabel("Costs Betweeen:");
 		LedgerEquipmentFilterPanel.add(lblLedgerEquipmentCostsFilter, "flowx,cell 3 1,alignx right");

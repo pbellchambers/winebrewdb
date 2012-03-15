@@ -46,7 +46,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 	private static JButton btnLedgerBrewCostSave;
 	private static String isNewCost;
 	private static boolean mouseListenerIsActive;
-	private static JButton btnLedgerBrewCostAdd;
+	static JButton btnLedgerBrewCostAdd;
 	public static JFormattedTextField textLedgerBrewCostTotalCost;
 	public static JFormattedTextField textLedgerBrewCostCostPerBottle;
 	public static JTextField textLedgerBrewRef;
@@ -58,10 +58,6 @@ public class LedgerBrewCostDataPanel extends JPanel {
 		tabbedLedgerBrewCostPanel = new JPanel();
 		tabbedLedgerBrewCostPanel.setBackground(Color.WHITE);
 		tabbedLedgerBrewCostPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][grow][grow][130px:130px:130px][grow]", "[grow][][10px:10px:10px][][][10px:10px:10px][]"));
-		
-		
-		//Initialize Table
-		initializeTable();
 		
 		
 		//ScrollPane
@@ -196,7 +192,8 @@ public class LedgerBrewCostDataPanel extends JPanel {
 				    	
 				    } else if (response == JOptionPane.YES_OPTION) {  
 					  	try {
-							DBEngine.deleteBrewCost(textLedgerBrewRef.getText());
+							DBEngine.deleteBrewCost(textLedgerBrewRef.getText(), textLedgerBrewCostRef.getText());
+							DBEngine.setTotalBrewCost(textLedgerBrewRef.getText(), textLedgerBrewNumberBottles.getText());							
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
 									"An error occurred deleting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
@@ -225,6 +222,10 @@ public class LedgerBrewCostDataPanel extends JPanel {
 						LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostTable);
 						clearLedgerBrewCostData();
 						setBrewTotalCostData();
+						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.remove(LedgerBrewCostSearchPanel.LedgerBrewCostTable);
+						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.setViewportView(null);
+						LedgerBrewCostSearchPanel.initializeTable();
+						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostSearchPanel.LedgerBrewCostTable);
 				      				      
 				    } else if (response == JOptionPane.CLOSED_OPTION) {
 				    	//Nothing Happens
@@ -294,7 +295,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 					} else {
 						try {
 							textLedgerBrewCostRef.setText(DBEngine.getNextBrewCostRef(textLedgerBrewRef.getText()));
-							DBEngine.addBrewCost(textLedgerBrewRef.getText());
+							DBEngine.addBrewCost(textLedgerBrewRef.getText(), textLedgerBrewCostLineItem.getText().replaceAll("'", "''"), textLedgerBrewCostCost.getText().replaceAll("[^0-9\\.]", ""), textLedgerBrewCostSupplier.getText().replaceAll("'", "''"));
 							DBEngine.setTotalBrewCost(textLedgerBrewRef.getText(), textLedgerBrewNumberBottles.getText());
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
@@ -339,7 +340,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 						);
 					} else {
 						try {
-							DBEngine.updateBrewCost(textLedgerBrewRef.getText());
+							DBEngine.updateBrewCost(textLedgerBrewRef.getText(), textLedgerBrewCostLineItem.getText().replaceAll("'", "''"), textLedgerBrewCostCost.getText().replaceAll("[^0-9\\.]", ""), textLedgerBrewCostSupplier.getText().replaceAll("'", "''"), textLedgerBrewCostRef.getText());
 							DBEngine.setTotalBrewCost(textLedgerBrewRef.getText(), textLedgerBrewNumberBottles.getText());
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
@@ -502,7 +503,6 @@ public class LedgerBrewCostDataPanel extends JPanel {
 		textLedgerBrewCostLineItem.setText("");
 		textLedgerBrewCostCost.setText("");
 		textLedgerBrewCostSupplier.setText("");
-		textLedgerBrewCostTotalCost.setText("");
 	}
 
 	
