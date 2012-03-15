@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.Dimension;
 
 public class SandboxTestPane extends JPanel {
 
@@ -18,11 +19,12 @@ public class SandboxTestPane extends JPanel {
 		setLayout(new MigLayout("", "[400px:n,growprio 50,grow 50]", "[][][]"));
 		
 		JLabel lblTest = new JLabel("test");
-		lblTest.setForeground(Color.RED);
+		lblTest.setForeground(new Color(240, 255, 240));
 		lblTest.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblTest, "cell 0 0");
 		
 		JButton btnGfgg = new JButton("gfgg");
+		btnGfgg.setMinimumSize(new Dimension(80, 23));
 		add(btnGfgg, "cell 0 2,alignx center");;
 		
 

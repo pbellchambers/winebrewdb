@@ -25,6 +25,7 @@ import com.pori.WineBrewDB.Brew.BrewDataPanel;
 import com.pori.WineBrewDB.Brew.BrewNotesPanel;
 import com.pori.WineBrewDB.Brew.BrewPicturesPanel;
 import com.pori.WineBrewDB.Brew.BrewSearchPanel;
+import com.pori.WineBrewDB.Ledger.LedgerEquipmentPanel;
 import com.pori.WineBrewDB.Recipe.RecipeAddPanel;
 import com.pori.WineBrewDB.Recipe.RecipeDataPanel;
 import com.pori.WineBrewDB.Recipe.RecipeSearchPanel;
@@ -1306,6 +1307,215 @@ public class DBEngine {
 		return nf.format(CostPerBottle).toString();  
 			    
 	}
+
+	
+	//Get Costs from Equipment Costs table
+	public static Vector<Vector<Object>> getEquipmentCosts() throws Exception {
+	    Connection conn = dbConnection();
+	    String LedgerEquipmentDatesFilterA = null;
+	    String LedgerEquipmentDatesFilterB = null;
+	    String LedgerEquipmentCostsFilterA = null;
+	    String LedgerEquipmentCostsFilterB = null;
+		
+	    //Cover empty dates & costs
+	    if(LedgerEquipmentPanel.chooserLedgerEquipmentDatesFilterA.getDate() == null){
+	    	LedgerEquipmentDatesFilterA = "1500/01/01";
+	    } else{
+	    	LedgerEquipmentDatesFilterA = Dates.dateToString(LedgerEquipmentPanel.chooserLedgerEquipmentDatesFilterA.getDate());
+	    }
+	    if(LedgerEquipmentPanel.chooserLedgerEquipmentDatesFilterB.getDate() == null){
+	    	LedgerEquipmentDatesFilterB = "2500/01/01";
+	    } else{
+	    	LedgerEquipmentDatesFilterB = Dates.dateToString(LedgerEquipmentPanel.chooserLedgerEquipmentDatesFilterB.getDate());
+	    }
+	    if(LedgerEquipmentPanel.textLedgerEquipmentCostsFilterA.getText() == null || LedgerEquipmentPanel.textLedgerEquipmentCostsFilterA.getText().equals("")){
+	    	LedgerEquipmentCostsFilterA = "-9999999.0";
+	    } else{
+	    	LedgerEquipmentCostsFilterA = LedgerEquipmentPanel.textLedgerEquipmentCostsFilterA.getText().replaceAll("[^0-9\\.]", "");
+	    }
+	    if(LedgerEquipmentPanel.textLedgerEquipmentCostsFilterB.getText() == null || LedgerEquipmentPanel.textLedgerEquipmentCostsFilterB.getText().equals("")){
+	    	LedgerEquipmentCostsFilterB = "9999999.0";
+	    } else{
+	    	LedgerEquipmentCostsFilterB = LedgerEquipmentPanel.textLedgerEquipmentCostsFilterB.getText().replaceAll("[^0-9\\.]", "");
+	    }
+	     
+	    Vector<Vector<Object>> EquipmentCosts = new Vector<Vector<Object>>();
+	    PreparedStatement pre = conn.prepareStatement(
+	    	"select EquipmentCostRef,Date,LineItem,Cost,Supplier from EquipmentCosts where Date >= '" +
+	    	LedgerEquipmentDatesFilterA +		
+	    	"' and Date <= '" +
+	    	LedgerEquipmentDatesFilterB +
+	    	"' and LineItem like '%" +
+	    	LedgerEquipmentPanel.textLedgerEquipmentLineItemFilter.getText() +
+	    	"%' and Cost >= '" +
+	    	LedgerEquipmentCostsFilterA +
+	    	"' and Cost <= '" +
+	    	LedgerEquipmentCostsFilterB +
+	    	"' and Supplier like '%" +
+	    	LedgerEquipmentPanel.textLedgerEquipmentSupplierFilter.getText() +
+	    	"%' order by EquipmentCostRef asc"
+			);
+
+	    ResultSet rs = pre.executeQuery();
+
+	    while(rs.next()){
+	    Vector<Object> equipmentcost = new Vector<Object>();
+	    	equipmentcost.add(rs.getString(1)); //EquipmentCostRef
+	    	equipmentcost.add(rs.getString(2)); //Date
+	    	equipmentcost.add(rs.getString(3)); //LineItem
+	    	equipmentcost.add(rs.getFloat(4)); //Cost
+	    	equipmentcost.add(rs.getString(5)); //Supplier
+	    	EquipmentCosts.add(equipmentcost);
+	    }
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	    return EquipmentCosts;	    
+	    
+	}
+
+
+	//Add Equipment Cost
+	public static void addEquipmentCost() throws Exception {
+		Connection conn = dbConnection();
+	    String LedgerEquipmentCostDate = null;
+		
+	    //Cover empty dates
+	    if(LedgerEquipmentPanel.chooserLedgerEquipmentCostDate.getDate() == null){
+	    	LedgerEquipmentCostDate = "";
+	    } else{
+	    	LedgerEquipmentCostDate = Dates.dateToString(LedgerEquipmentPanel.chooserLedgerEquipmentCostDate.getDate());
+	    }
+		
+		PreparedStatement pre = conn.prepareStatement(
+			"insert into EquipmentCosts(Date,LineItem,Cost,Supplier) values('" + 
+			LedgerEquipmentCostDate +
+			"','" +
+			LedgerEquipmentPanel.textLedgerEquipmentCostLineItem.getText().replaceAll("'", "''") +
+			"','" +
+			LedgerEquipmentPanel.textLedgerEquipmentCostCost.getText().replaceAll("[^0-9\\.]", "") +
+			"','" +
+			LedgerEquipmentPanel.textLedgerEquipmentCostSupplier.getText().replaceAll("'", "''") +
+			"')"
+		);
+
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
+	    
+	}
+
+
+	//Update Equipment Cost
+	public static void updateEquipmentCost() throws Exception {
+		Connection conn = dbConnection();
+	    String LedgerEquipmentCostDate = null;
+		
+	    //Cover empty dates
+	    if(LedgerEquipmentPanel.chooserLedgerEquipmentCostDate.getDate() == null){
+	    	LedgerEquipmentCostDate = "";
+	    } else{
+	    	LedgerEquipmentCostDate = Dates.dateToString(LedgerEquipmentPanel.chooserLedgerEquipmentCostDate.getDate());
+	    }
+		
+		PreparedStatement pre = conn.prepareStatement(
+			"update EquipmentCosts set Date='" + 
+			LedgerEquipmentCostDate + 
+			"',LineItem='" +		
+			LedgerEquipmentPanel.textLedgerEquipmentCostLineItem.getText().replaceAll("'", "''") + 
+			"',Cost='" +
+			LedgerEquipmentPanel.textLedgerEquipmentCostCost.getText().replaceAll("[^0-9\\.]", "") +
+			"',Supplier='" +
+			LedgerEquipmentPanel.textLedgerEquipmentCostSupplier.getText().replaceAll("'", "''") +
+			"' where EquipmentCostRef='" +
+			LedgerEquipmentPanel.textLedgerEquipmentCostRef.getText() +
+			"'"
+		);
+
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();  
+		    
+	}
+
+
+	//Delete Equipment Cost
+	public static void deleteEquipmentCost() throws Exception {
+		Connection conn = dbConnection();
+		
+		PreparedStatement pre = conn.prepareStatement("delete from EquipmentCosts where EquipmentCostRef='" + LedgerEquipmentPanel.textLedgerEquipmentCostRef.getText() + "'");
+
+		pre.executeUpdate();
+		
+		/*Close the connection after use (MUST)*/
+	   if(conn!=null)
+	  conn.close();  
+		    
+	}
+	
+	//Get Total Brews
+	public static BigDecimal getTotalNumberBrews() throws Exception {
+		Connection conn = dbConnection();
+				
+		PreparedStatement pre = conn.prepareStatement(
+			"SELECT Count(*) from Brews where InPlanning = '0'"
+		);
+
+		
+		ResultSet rs = pre.executeQuery();
+		int NumberBrews = 0;
+		
+		while(rs.next()){
+			//Add one to the current highest
+			NumberBrews = rs.getInt(1);			
+		}
+		
+		BigDecimal DecimalNumberBrews = new BigDecimal(NumberBrews);
+		
+	    
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    	    
+		return DecimalNumberBrews;  
+			    
+	}
+	
+	
+	//Get Total Bottles
+	public static BigDecimal getTotalNumberBottles() throws Exception {
+		Connection conn = dbConnection();
+				
+		PreparedStatement pre = conn.prepareStatement(
+			"SELECT Sum(NumberBottles) from Brews where InPlanning = '0'"
+		);
+
+		
+		ResultSet rs = pre.executeQuery();
+		int NumberBottles = 0;
+		
+		while(rs.next()){
+			//Add one to the current highest
+			NumberBottles = rs.getInt(1);			
+		}
+		
+		BigDecimal DecimalNumberBottles = new BigDecimal(NumberBottles);
+		
+	    
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    	    
+		return DecimalNumberBottles;  
+			    
+	}
+	
 	
 	
 }

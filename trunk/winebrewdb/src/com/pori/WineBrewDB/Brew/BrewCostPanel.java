@@ -439,9 +439,9 @@ public class BrewCostPanel extends JPanel {
 		BrewCostTable.getColumnModel().getColumn(1).setPreferredWidth(150);
 		BrewCostTable.getColumnModel().getColumn(1).setMinWidth(5);
 		BrewCostTable.getColumnModel().getColumn(1).setMaxWidth(9001);
-		BrewCostTable.getColumnModel().getColumn(2).setPreferredWidth(80);
+		BrewCostTable.getColumnModel().getColumn(2).setPreferredWidth(90);
 		BrewCostTable.getColumnModel().getColumn(2).setMinWidth(5);
-		BrewCostTable.getColumnModel().getColumn(2).setMaxWidth(9001);
+		BrewCostTable.getColumnModel().getColumn(2).setMaxWidth(90);
 		BrewCostTable.getColumnModel().getColumn(2).setCellRenderer(NumberRenderer.getCurrencyRenderer());
 		BrewCostTable.getColumnModel().getColumn(3).setPreferredWidth(200);
 		BrewCostTable.getColumnModel().getColumn(3).setMinWidth(5);
