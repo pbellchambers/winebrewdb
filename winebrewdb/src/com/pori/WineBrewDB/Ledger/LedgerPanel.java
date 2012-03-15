@@ -18,25 +18,6 @@ import net.miginfocom.swing.MigLayout;
 
 public class LedgerPanel extends JPanel {
 	
-	
-//TODO: Ledger
-//Ledger:
-//		- Equipment & Non-brew specific costs
-//			- Filter: Dates between, line item, price between, supplier
-//			- Date,Line item, price, supplier
-//			- Total cost, Cost / all brews, Cost / all bottles
-//		- Brew costs search
-//			- Brew name, date, total cost, cost per bottle
-//		- Selected brew costs (same as brew costs tab in brew panel)
-	//Brews:
-//		- Brew costs tab
-//			- Line item, price, supplier
-//			- Total cost, total cost divided by all bottles
-//
-//Tables:
-//BrewCosts: BrewRef,BrewCostRef,LineItem,Cost,Supplier
-//EquipmentCosts: EquipmentCostRef,Date,LineItem,Cost,Supplier
-
 	private static final long serialVersionUID = 4792318776984759664L;
 	public static JPanel LedgerPanel;
 	private static JLabel LedgerHeader;

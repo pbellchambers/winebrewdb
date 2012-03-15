@@ -1518,7 +1518,7 @@ public class DBEngine {
 			    
 	}
 	
-	//TODO: Fix it so it also returns brews with zero bottles
+
 	//Get ledger brews
 	public static Vector<Vector<Object>> getLedgerBrews() throws Exception {
 	    Connection conn = dbConnection();
