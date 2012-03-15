@@ -1,6 +1,7 @@
 package com.pori.WineBrewDB.Brew;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -54,7 +55,7 @@ public class BrewCostPanel extends JPanel {
 		
 		tabbedBrewCostPanel = new JPanel();
 		tabbedBrewCostPanel.setBackground(Color.WHITE);
-		tabbedBrewCostPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][90px:90px:90px][grow][130px:130px:130px][grow]", "[grow][][][][10px:10px:10px][]"));
+		tabbedBrewCostPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][grow][grow][130px:130px:130px][grow]", "[grow][][10px:10px:10px][][][10px:10px:10px][]"));
 		
 		
 		//Initialize Table
@@ -65,64 +66,68 @@ public class BrewCostPanel extends JPanel {
 	    BrewCostScrollPane = new JScrollPane();
 	    BrewCostScrollPane.setViewportView(BrewCostTable);
 	    tabbedBrewCostPanel.add(BrewCostScrollPane, "cell 0 0 6 1,grow");
+		
+		JLabel lblBrewCostTotalCost = new JLabel("Total Cost:");
+		tabbedBrewCostPanel.add(lblBrewCostTotalCost, "cell 0 1,alignx trailing");
+		
+		textBrewCostTotalCost = new JFormattedTextField();
+		textBrewCostTotalCost.setEditable(false);
+		textBrewCostTotalCost.setBackground(new Color(240, 255, 240));
+		textBrewCostTotalCost.setMinimumSize(new Dimension(80, 23));
+		tabbedBrewCostPanel.add(textBrewCostTotalCost, "cell 1 1 2");
+		
+		JLabel lblBrewCostCostPerBottle = new JLabel("Cost Per Bottle:");
+		tabbedBrewCostPanel.add(lblBrewCostCostPerBottle, "cell 3 1,alignx trailing");
+		
+		textBrewCostCostPerBottle = new JFormattedTextField();
+		textBrewCostCostPerBottle.setEditable(false);
+		textBrewCostCostPerBottle.setBackground(new Color(240, 255, 240));
+		textBrewCostCostPerBottle.setMinimumSize(new Dimension(80, 23));
+		tabbedBrewCostPanel.add(textBrewCostCostPerBottle, "cell 4 1 2");
 
 		textBrewCostRef = new JTextField();
 		textBrewCostRef.setEditable(false);
 		//tabbedBrewCostPanel.add(textBrewCostRef, "cell 1 1,growx");
 		
 		JLabel lblBrewCostLineItem = new JLabel("Line Item:");
-		tabbedBrewCostPanel.add(lblBrewCostLineItem, "cell 0 1,alignx trailing");
+		tabbedBrewCostPanel.add(lblBrewCostLineItem, "cell 0 3,alignx trailing");
 		
 		textBrewCostLineItem = new JTextField();
 		textBrewCostLineItem.setEditable(false);
-		tabbedBrewCostPanel.add(textBrewCostLineItem, "cell 1 1 5,growx");
+		tabbedBrewCostPanel.add(textBrewCostLineItem, "cell 1 3 5,growx");
 		
 		JLabel lblBrewCostCost = new JLabel("Cost:");
-		tabbedBrewCostPanel.add(lblBrewCostCost, "cell 0 2,alignx trailing");
+		tabbedBrewCostPanel.add(lblBrewCostCost, "cell 0 4,alignx trailing");
 		
 		textBrewCostCost = new JFormattedTextField();
 		textBrewCostCost.setEditable(false);
-		tabbedBrewCostPanel.add(textBrewCostCost, "cell 1 2 2,growx");
+		tabbedBrewCostPanel.add(textBrewCostCost, "cell 1 4 2,growx");
 		
 		JLabel lblBrewCostSupplier = new JLabel("Supplier:");
-		tabbedBrewCostPanel.add(lblBrewCostSupplier, "cell 3 2,alignx trailing");
+		tabbedBrewCostPanel.add(lblBrewCostSupplier, "cell 3 4,alignx trailing");
 		
 		textBrewCostSupplier = new JTextField();
 		textBrewCostSupplier.setEditable(false);
-		tabbedBrewCostPanel.add(textBrewCostSupplier, "cell 4 2 2,growx");
-		
-		JLabel lblBrewCostTotalCost = new JLabel("Total Cost:");
-		tabbedBrewCostPanel.add(lblBrewCostTotalCost, "cell 0 3,alignx trailing");
-		
-		textBrewCostTotalCost = new JFormattedTextField();
-		textBrewCostTotalCost.setEditable(false);
-		tabbedBrewCostPanel.add(textBrewCostTotalCost, "cell 1 3 2,growx");
-		
-		JLabel lblBrewCostCostPerBottle = new JLabel("Cost Per Bottle:");
-		tabbedBrewCostPanel.add(lblBrewCostCostPerBottle, "cell 3 3,alignx trailing");
-		
-		textBrewCostCostPerBottle = new JFormattedTextField();
-		textBrewCostCostPerBottle.setEditable(false);
-		tabbedBrewCostPanel.add(textBrewCostCostPerBottle, "cell 4 3 2,growx");
+		tabbedBrewCostPanel.add(textBrewCostSupplier, "cell 4 4 2,growx");
 				
 		btnBrewCostAdd = new JButton("Add");
-		tabbedBrewCostPanel.add(btnBrewCostAdd, "cell 0 5,growx");
+		tabbedBrewCostPanel.add(btnBrewCostAdd, "cell 0 6,growx");
 		
 		btnBrewCostEdit = new JButton("Edit");
 		btnBrewCostEdit.setEnabled(false);
-		tabbedBrewCostPanel.add(btnBrewCostEdit, "cell 1 5,growx");
+		tabbedBrewCostPanel.add(btnBrewCostEdit, "cell 1 6,growx");
 		
 		btnBrewCostDelete = new JButton("Delete Line Item");
 		btnBrewCostDelete.setEnabled(false);
-		tabbedBrewCostPanel.add(btnBrewCostDelete, "cell 2 5,growx");
+		tabbedBrewCostPanel.add(btnBrewCostDelete, "cell 2 6,growx");
 		
 		btnBrewCostCancel = new JButton("Cancel");
 		btnBrewCostCancel.setEnabled(false);
-		tabbedBrewCostPanel.add(btnBrewCostCancel, "cell 4 5,growx");
+		tabbedBrewCostPanel.add(btnBrewCostCancel, "cell 4 6,growx");
 		
 		btnBrewCostSave = new JButton("Save / Insert");
 		btnBrewCostSave.setEnabled(false);
-		tabbedBrewCostPanel.add(btnBrewCostSave, "cell 5 5,growx");
+		tabbedBrewCostPanel.add(btnBrewCostSave, "cell 5 6,growx");
 		
 		//Add button listeners
 		btnBrewCostAdd.addActionListener(new ActionListener() {
