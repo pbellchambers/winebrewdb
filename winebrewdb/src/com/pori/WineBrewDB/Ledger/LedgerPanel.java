@@ -22,8 +22,9 @@ public class LedgerPanel extends JPanel {
 //TODO: Ledger
 //Ledger:
 //		- Equipment & Non-brew specific costs
-//			- Line item, price, supplier
-//			- Total cost, total cost divided by all bottles
+//			- Filter: Dates between, line item, price between, supplier
+//			- Date,Line item, price, supplier
+//			- Total cost, Cost / all brews, Cost / all bottles
 //		- Brew costs search
 //			- Brew name, date, total cost, cost per bottle
 //		- Selected brew costs (same as brew costs tab in brew panel)
@@ -76,17 +77,17 @@ public class LedgerPanel extends JPanel {
 		
 		//Ledger Search Tab
 		LedgerEquipmentPanel.InitializePanel();		
-//		tabbedLedgerPane.addTab("Equipment & Non-brew-specific Costs", null, LedgerEquipmentPanel.tabbedLedgerEquipmentPanel, null);
+		tabbedLedgerPane.addTab("Equipment & Non-brew-specific Costs", null, LedgerEquipmentPanel.tabbedLedgerEquipmentCostPanel, null);
 		
 		
 		//Ledger Data Tab
 		LedgerBrewCostSearchPanel.InitializePanel();		
-//		tabbedLedgerPane.addTab("Brew Cost Search", null, LedgerBrewCostSearchPanel.tabbedLedgerBrewCostSearchPanel, null);
+		tabbedLedgerPane.addTab("Brew Cost Search", null, LedgerBrewCostSearchPanel.tabbedLedgerBrewCostSearchPanel, null);
 		
 		
 		//Add New Ledger Tab
 		LedgerBrewCostDataPanel.InitializePanel();
-//		tabbedLedgerPane.addTab("Brew Cost Data", null, LedgerBrewCostDataPanel.tabbedLedgerBrewCostDataPanel, null);
+		tabbedLedgerPane.addTab("Brew Cost Data", null, LedgerBrewCostDataPanel.tabbedLedgerBrewCostDataPanel, null);
 		
 		
 		//Set some tabs disabled initially
@@ -102,21 +103,21 @@ public class LedgerPanel extends JPanel {
 		
 		
 		//Add print button listener
-//		btnPrintLedger.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				JFileChooser c = new JFileChooser();
-//			      int rVal = c.showSaveDialog(MainWindow.WineBrewDBFrame);
-//			      if (rVal == JFileChooser.APPROVE_OPTION) {			    	     	  
-//					String pdflocation = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".pdf";
-//					BrewPDF.createPDF(pdflocation);	    	  
-//			    	  
-//			      }
-//			      if (rVal == JFileChooser.CANCEL_OPTION) {
-//			    	  
-//			      }				
-//				
-//			}
-//		});
+		btnPrintLedger.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser c = new JFileChooser();
+			      int rVal = c.showSaveDialog(MainWindow.WineBrewDBFrame);
+			      if (rVal == JFileChooser.APPROVE_OPTION) {			    	     	  
+					String pdflocation = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".pdf";
+					BrewPDF.createPDF(pdflocation);	    	  
+			    	  
+			      }
+			      if (rVal == JFileChooser.CANCEL_OPTION) {
+			    	  
+			      }				
+				
+			}
+		});
 		
 	}
 
@@ -128,9 +129,9 @@ public class LedgerPanel extends JPanel {
 			LedgerPanel.remove(LedgerSubtitle);
 			LedgerPanel.remove(tabbedLedgerPane);
 			LedgerPanel.remove(btnPrintLedger);
-//			tabbedLedgerPane.remove(LedgerEquipmentPanel.tabbedLedgerEquipmentPanel);
-//			tabbedLedgerPane.remove(LedgerBrewCostSearchPanel.tabbedLedgerBrewCostSearchPanel);
-//			tabbedLedgerPane.remove(LedgerBrewCostDataPanel.tabbedLedgerBrewCostDataPanel);
+			tabbedLedgerPane.remove(LedgerEquipmentPanel.tabbedLedgerEquipmentCostPanel);
+			tabbedLedgerPane.remove(LedgerBrewCostSearchPanel.tabbedLedgerBrewCostSearchPanel);
+			tabbedLedgerPane.remove(LedgerBrewCostDataPanel.tabbedLedgerBrewCostDataPanel);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(LedgerPanel);
 			LedgerPanelStatus = "DeInitialized";
 		}
