@@ -1,5 +1,10 @@
 #summary WineBrewDB Change Log
 
+=== v1.1.1: ===
+  * Ledger functionality complete
+  * Print buttons still do nothing, sorry!
+
+----
 === v1.1.0: ===
   * First bit of ledger functionality
   * Print buttons and ledger button still do nothing
