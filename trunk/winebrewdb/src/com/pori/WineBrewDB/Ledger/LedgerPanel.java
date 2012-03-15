@@ -33,7 +33,7 @@ public class LedgerPanel extends JPanel {
 //			- Total cost, total cost divided by all bottles
 //
 //Tables:
-//BrewCosts: BrewRef,LineItem,Cost,Supplier
+//BrewCosts: BrewRef,BrewCostRef,LineItem,Cost,Supplier
 //EquipmentCosts: EquipmentCostRef,Date,LineItem,Cost,Supplier
 
 	private static final long serialVersionUID = 4792318776984759664L;
