@@ -132,7 +132,7 @@ public class DBEngine {
 	    	InBottles +
 			"' or Drunk='" +
 			Drunk +
-	    	"')"
+	    	"') order by DateStarted desc"
 			);
 
 	    ResultSet rs = pre.executeQuery();
@@ -1355,7 +1355,7 @@ public class DBEngine {
 	    	LedgerEquipmentCostsFilterB +
 	    	"' and Supplier like '%" +
 	    	LedgerEquipmentPanel.textLedgerEquipmentSupplierFilter.getText() +
-	    	"%' order by EquipmentCostRef asc"
+	    	"%' order by Date desc"
 			);
 
 	    ResultSet rs = pre.executeQuery();
@@ -1597,7 +1597,7 @@ public class DBEngine {
 	    	BrewCostNumberBottlesFilterA +
 	    	"' and NumberBottles <= '" +
 	    	BrewCostNumberBottlesFilterB +
-	    	"'"
+	    	"' and InPlanning = '0' order by DateStarted desc"
 			);
 
 	    ResultSet rs = pre.executeQuery();
