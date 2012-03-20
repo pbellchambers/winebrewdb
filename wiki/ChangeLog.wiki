@@ -1,5 +1,10 @@
 #summary WineBrewDB Change Log
 
+=== v1.1.2: ===
+  * Updated default sort ordering on various tables
+  * Removed "In Planning" brews from brew costs table
+
+----
 === v1.1.1: ===
   * Ledger functionality complete
   * Print buttons still do nothing, sorry!
