@@ -10,6 +10,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.Brew.BrewPDF;
@@ -44,10 +46,11 @@ public class RecipePanel extends JPanel {
 		RecipeSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		RecipePanel.add(RecipeSubtitle, "cell 0 1,growx,aligny top");
 		
-		//TODO: Print recipe button
+		//Print recipe button
 		btnPrintRecipe = new JButton();
 		btnPrintRecipe.setIcon(new ImageIcon(RecipePanel.class.getResource("/com/pori/WineBrewDB/Images/print.png")));
 		btnPrintRecipe.setToolTipText("Save currently selected recipe data to printable .pdf");
+    	btnPrintRecipe.setVisible(false);
 		btnPrintRecipe.setEnabled(false);
 		RecipePanel.add(btnPrintRecipe, "cell 1 0");
 		
@@ -98,6 +101,24 @@ public class RecipePanel extends JPanel {
 			      }				
 				
 			}
+		});
+		
+		
+		tabbedRecipePane.addChangeListener(new ChangeListener() {
+		    // This method is called whenever the selected tab changes
+		    public void stateChanged(ChangeEvent evt) {
+		        JTabbedPane pane = (JTabbedPane)evt.getSource();
+
+		        // Get current tab
+		        int sel = pane.getSelectedIndex();
+		        if(sel == 0 || sel == 2){
+		        	btnPrintRecipe.setVisible(false);
+		        	btnPrintRecipe.setEnabled(false);
+		        }else{
+		        	btnPrintRecipe.setVisible(true);
+		        	btnPrintRecipe.setEnabled(true);
+		        }
+		    }
 		});
 		
 	}

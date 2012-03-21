@@ -678,7 +678,7 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewDrunkB.setSelected((Boolean) stringToBool((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,21)));
 	}
 	
-	//TODO: Hide print brew/recipe/ledger button on search/add pages.
+	
 	public static void clearBrewData(){
 		BrewPanel.btnPrintBrew.setEnabled(false);
 		textBrewRefB.setText("");

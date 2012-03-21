@@ -10,6 +10,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.pori.WineBrewDB.MainWindow;
 
@@ -47,6 +49,7 @@ public class BrewPanel extends JPanel {
 		btnPrintBrew.setIcon(new ImageIcon(BrewPanel.class.getResource("/com/pori/WineBrewDB/Images/print.png")));
 		btnPrintBrew.setToolTipText("Save currently selected brew data to printable .pdf");
 		BrewPanel.setVisible(true);
+    	btnPrintBrew.setVisible(false);
 		btnPrintBrew.setEnabled(false);
 		BrewPanel.add(btnPrintBrew, "cell 1 0");
 		
@@ -115,6 +118,23 @@ public class BrewPanel extends JPanel {
 			      }				
 				
 			}
+		});
+		
+		tabbedBrewPane.addChangeListener(new ChangeListener() {
+		    // This method is called whenever the selected tab changes
+		    public void stateChanged(ChangeEvent evt) {
+		        JTabbedPane pane = (JTabbedPane)evt.getSource();
+
+		        // Get current tab
+		        int sel = pane.getSelectedIndex();
+		        if(sel == 0 || sel == 5){
+		        	btnPrintBrew.setVisible(false);
+		    		btnPrintBrew.setEnabled(false);
+		        }else{
+		        	btnPrintBrew.setVisible(true);
+		    		btnPrintBrew.setEnabled(true);
+		        }
+		    }
 		});
 	}
 

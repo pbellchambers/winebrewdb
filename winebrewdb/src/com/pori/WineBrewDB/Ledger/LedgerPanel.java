@@ -10,6 +10,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.pori.WineBrewDB.MainWindow;
 import com.pori.WineBrewDB.Brew.BrewPDF;
@@ -48,7 +50,7 @@ public class LedgerPanel extends JPanel {
 		btnPrintLedger = new JButton();
 		btnPrintLedger.setIcon(new ImageIcon(LedgerPanel.class.getResource("/com/pori/WineBrewDB/Images/print.png")));
 		btnPrintLedger.setToolTipText("Save ledger data to printable .pdf");
-		btnPrintLedger.setEnabled(false);
+		btnPrintLedger.setEnabled(true);
 		LedgerPanel.add(btnPrintLedger, "cell 1 0");
 		
 		//Tabbed Pane
@@ -98,6 +100,23 @@ public class LedgerPanel extends JPanel {
 			      }				
 				
 			}
+		});
+		
+		tabbedLedgerPane.addChangeListener(new ChangeListener() {
+		    // This method is called whenever the selected tab changes
+		    public void stateChanged(ChangeEvent evt) {
+		        JTabbedPane pane = (JTabbedPane)evt.getSource();
+
+		        // Get current tab
+		        int sel = pane.getSelectedIndex();
+		        if(sel == 2){
+		        	btnPrintLedger.setVisible(false);
+		        	btnPrintLedger.setEnabled(false);
+		        }else{
+		        	btnPrintLedger.setVisible(true);
+		        	btnPrintLedger.setEnabled(true);
+		        }
+		    }
 		});
 		
 	}
