@@ -10,9 +10,13 @@ import org.joda.time.Days;
 public class Dates {
 
 	public static String dateToString(Date date) {
-		SimpleDateFormat dateYYYYMMDD = new SimpleDateFormat("yyyy/MM/dd");
-        String stringYYYYMMDD = dateYYYYMMDD.format(date);
-        return(stringYYYYMMDD);
+		if(date == null){
+			return("");
+		}else {
+			SimpleDateFormat dateYYYYMMDD = new SimpleDateFormat("yyyy/MM/dd");
+	        String stringYYYYMMDD = dateYYYYMMDD.format(date);
+	        return(stringYYYYMMDD);
+		}
 	}
 
 	public static Date stringToDate(String stringtochange){ 

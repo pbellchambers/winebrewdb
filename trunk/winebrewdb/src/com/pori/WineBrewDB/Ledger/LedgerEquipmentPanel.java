@@ -68,7 +68,6 @@ public class LedgerEquipmentPanel extends JPanel {
 		tabbedLedgerEquipmentCostPanel.setBackground(Color.WHITE);
 		tabbedLedgerEquipmentCostPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][90px:90px:90px][grow][130px:130px:130px][grow]", "[95px:95px:95px][grow][][10px:10px:10px][][][10px:10px:10px][]"));
 		
-		//TODO: Make formatting/positioning nicer
 		//Filter Panel
 		JPanel LedgerEquipmentFilterPanel = new JPanel();
 		LedgerEquipmentFilterPanel.setBackground(UIManager.getColor("Panel.background"));
