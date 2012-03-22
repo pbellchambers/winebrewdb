@@ -1472,14 +1472,19 @@ public class DBEngine {
 		
 		ResultSet rs = pre.executeQuery();
 		int NumberBrews = 0;
+		BigDecimal DecimalNumberBrews = new BigDecimal("0");
 		
 		while(rs.next()){
 			//Add one to the current highest
 			NumberBrews = rs.getInt(1);			
 		}
 		
-		BigDecimal DecimalNumberBrews = new BigDecimal(NumberBrews);
 		
+		if(NumberBrews == 0){
+			DecimalNumberBrews = new BigDecimal("0.00000001");
+		}else{
+			DecimalNumberBrews = new BigDecimal(NumberBrews);
+		}		
 	    
 		/*Close the connection after use (MUST)*/
 	    if(conn!=null)
@@ -1501,14 +1506,19 @@ public class DBEngine {
 		
 		ResultSet rs = pre.executeQuery();
 		int NumberBottles = 0;
+		BigDecimal DecimalNumberBottles = new BigDecimal("0");
 		
 		while(rs.next()){
 			//Add one to the current highest
 			NumberBottles = rs.getInt(1);			
 		}
 		
-		BigDecimal DecimalNumberBottles = new BigDecimal(NumberBottles);
 		
+		if(NumberBottles == 0){
+			DecimalNumberBottles = new BigDecimal("0.00000001");
+		}else{
+			DecimalNumberBottles = new BigDecimal(NumberBottles);
+		}		
 	    
 		/*Close the connection after use (MUST)*/
 	    if(conn!=null)
