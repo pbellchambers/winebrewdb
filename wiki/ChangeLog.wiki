@@ -2,7 +2,7 @@
 
 === v1.2.0: ===
   * Printing Brews/Recipes/Ledger to .pdf now works
-  * Divide by zero error on ledger when no brews/bottles in db fixed
+  * Fixed divide by zero error on ledger when no brews/bottles in db
   * Print button only displays when appropriate now
   * Removed unneeded jars from project
 
