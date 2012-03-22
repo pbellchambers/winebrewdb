@@ -572,7 +572,7 @@ public class LedgerEquipmentPanel extends JPanel {
 		}
 	}
 	
-	//TODO: Fix divide by zero error
+
 	public static void setBrewTotalCostData(){
 	    BigDecimal total = new BigDecimal("0");
 	    for (int i = 0; i < (LedgerEquipmentCostTable.getRowCount()); i++ ) {
