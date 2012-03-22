@@ -34,7 +34,6 @@ public class BrewPDF {
 	private static Font text3 = new Font(Font.FontFamily.HELVETICA, 12,Font.BOLD);
 	private static Font smallBold = new Font(Font.FontFamily.HELVETICA, 9,Font.BOLD);
 	private static Font smallNormal = new Font(Font.FontFamily.HELVETICA, 9,Font.NORMAL);
-	//private static Font smallItalic = new Font(Font.FontFamily.HELVETICA, 9,Font.ITALIC);
 	private static Font headerFoot = new Font(Font.FontFamily.HELVETICA, 7,Font.ITALIC,BaseColor.GRAY);
 	
 
@@ -67,7 +66,7 @@ public class BrewPDF {
  
 	}
 	
-	
+	//TODO: Make pictures print too
 	public static void createPDF(String location) {
 
 		try {
@@ -83,7 +82,7 @@ public class BrewPDF {
 				addBrewData(document);
 				addBrewNotes(document);
 				addBrewCosts(document);
-				addBrewPictures(document);
+				//addBrewPictures(document);
 				document.close();
 				openPDF(location);
 			} catch (Exception e) {
@@ -246,6 +245,8 @@ public class BrewPDF {
 	
 	private static void addBrewCosts(Document document) throws DocumentException {
 		Paragraph genericParagraph = new Paragraph();
+		Chunk tab2 = new Chunk(new VerticalPositionMark(), 170, true);
+		
 		//Empty Line
 		addEmptyLine(genericParagraph, 1);
 		//Header
@@ -253,6 +254,13 @@ public class BrewPDF {
 		addEmptyLine(genericParagraph, 1);
 		// Add a table
 		createCostsTable(genericParagraph);
+		addEmptyLine(genericParagraph, 1);
+		
+		genericParagraph.add(new Phrase("Total Cost:  ",smallBold));
+		genericParagraph.add(new Phrase(BrewCostPanel.textBrewCostTotalCost.getText(),smallNormal));
+		genericParagraph.add(new Chunk(tab2));
+		genericParagraph.add(new Phrase("Cost Per Bottle:  ",smallBold));
+		genericParagraph.add(new Phrase(BrewCostPanel.textBrewCostCostPerBottle.getText(),smallNormal));
 	
 		// Now add all this to the document
 		document.add(genericParagraph);
@@ -263,24 +271,24 @@ public class BrewPDF {
 	}
 	
 	
-	private static void addBrewPictures(Document document) throws DocumentException {
-		Paragraph genericParagraph = new Paragraph();
-		//Empty Line
-		addEmptyLine(genericParagraph, 1);
-		//Header
-		genericParagraph.add(new Paragraph("Brew Pictures", text3));
-		addEmptyLine(genericParagraph, 1);
-		// Add a table
-		createPicturesTable(genericParagraph);
-	
-		// Now add all this to the document
-		document.add(genericParagraph);
-		
-		// Start a new page
-		document.newPage();
-	
-	}
-	
+//	private static void addBrewPictures(Document document) throws DocumentException {
+//		Paragraph genericParagraph = new Paragraph();
+//		//Empty Line
+//		addEmptyLine(genericParagraph, 1);
+//		//Header
+//		genericParagraph.add(new Paragraph("Brew Pictures", text3));
+//		addEmptyLine(genericParagraph, 1);
+//		// Add a table
+//		createPicturesTable(genericParagraph);
+//	
+//		// Now add all this to the document
+//		document.add(genericParagraph);
+//		
+//		// Start a new page
+//		document.newPage();
+//	
+//	}
+//	
 	
 	private static void createNotesTable(Paragraph preface)
 			throws BadElementException {
@@ -373,52 +381,52 @@ public class BrewPDF {
 	}
 	
 	
-	private static void createPicturesTable(Paragraph preface)
-			throws BadElementException {
-		PdfPTable table = new PdfPTable(4);
-        try {
-			table.setTotalWidth(new float[]{ 67, 80, 180, 210 });
-		} catch (DocumentException e) {
-			e.printStackTrace();
-		}
-        table.setLockedWidth(true);
-		
-		table.getDefaultCell().setPadding(10);
-		
-		// table.setBorderWidth(1);
-	
-		PdfPCell c1 = new PdfPCell(new Phrase("Date",smallBold));
-		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		table.addCell(c1);
-	
-		c1 = new PdfPCell(new Phrase("Days Since Start",smallBold));
-		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		table.addCell(c1);
-	
-		c1 = new PdfPCell(new Phrase("Incident",smallBold));
-		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		table.addCell(c1);
-		
-		c1 = new PdfPCell(new Phrase("Notes",smallBold));
-		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		table.addCell(c1);
-		table.setHeaderRows(1);
-		
-		int totalRows = BrewNotesPanel.BrewNotesTable.getRowCount();
-		int row = 0;
-		
-		while(row < totalRows) {
-			table.addCell(new Phrase(BrewNotesPanel.BrewNotesTable.getValueAt(row,1).toString(),smallNormal));
-			table.addCell(new Phrase(BrewNotesPanel.BrewNotesTable.getValueAt(row,2).toString(),smallNormal));
-			table.addCell(new Phrase(BrewNotesPanel.BrewNotesTable.getValueAt(row,3).toString(),smallNormal));
-			table.addCell(new Phrase(BrewNotesPanel.BrewNotesTable.getValueAt(row,4).toString(),smallNormal));
-			
-			row = row + 1;
-		}
-	
-		preface.add(table);
-	
-	}
+//	private static void createPicturesTable(Paragraph preface)
+//			throws BadElementException {
+//		PdfPTable table = new PdfPTable(4);
+//        try {
+//			table.setTotalWidth(new float[]{ 67, 80, 180, 210 });
+//		} catch (DocumentException e) {
+//			e.printStackTrace();
+//		}
+//        table.setLockedWidth(true);
+//		
+//		table.getDefaultCell().setPadding(10);
+//		
+//		// table.setBorderWidth(1);
+//	
+//		PdfPCell c1 = new PdfPCell(new Phrase("Date",smallBold));
+//		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+//		table.addCell(c1);
+//	
+//		c1 = new PdfPCell(new Phrase("Days Since Start",smallBold));
+//		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+//		table.addCell(c1);
+//	
+//		c1 = new PdfPCell(new Phrase("Incident",smallBold));
+//		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+//		table.addCell(c1);
+//		
+//		c1 = new PdfPCell(new Phrase("Notes",smallBold));
+//		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+//		table.addCell(c1);
+//		table.setHeaderRows(1);
+//		
+//		int totalRows = BrewNotesPanel.BrewNotesTable.getRowCount();
+//		int row = 0;
+//		
+//		while(row < totalRows) {
+//			table.addCell(new Phrase(BrewNotesPanel.BrewNotesTable.getValueAt(row,1).toString(),smallNormal));
+//			table.addCell(new Phrase(BrewNotesPanel.BrewNotesTable.getValueAt(row,2).toString(),smallNormal));
+//			table.addCell(new Phrase(BrewNotesPanel.BrewNotesTable.getValueAt(row,3).toString(),smallNormal));
+//			table.addCell(new Phrase(BrewNotesPanel.BrewNotesTable.getValueAt(row,4).toString(),smallNormal));
+//			
+//			row = row + 1;
+//		}
+//	
+//		preface.add(table);
+//	
+//	}
 	
 	
 	private static void addEmptyLine(Paragraph paragraph, int number) {

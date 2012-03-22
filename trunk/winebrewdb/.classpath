@@ -7,6 +7,5 @@
 	<classpathentry kind="lib" path="ThirdPartyJars/miglayout15-swing.jar"/>
 	<classpathentry kind="lib" path="ThirdPartyJars/sqlitejdbc-v056.jar"/>
 	<classpathentry kind="lib" path="ThirdPartyJars/itextpdf-5.2.0.jar"/>
-	<classpathentry kind="lib" path="ThirdPartyJars/itext-xtra-5.2.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

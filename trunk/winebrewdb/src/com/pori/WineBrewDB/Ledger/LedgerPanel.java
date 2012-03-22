@@ -14,7 +14,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.pori.WineBrewDB.MainWindow;
-import com.pori.WineBrewDB.Brew.BrewPDF;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -92,7 +91,7 @@ public class LedgerPanel extends JPanel {
 			      int rVal = c.showSaveDialog(MainWindow.WineBrewDBFrame);
 			      if (rVal == JFileChooser.APPROVE_OPTION) {			    	     	  
 					String pdflocation = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".pdf";
-					BrewPDF.createPDF(pdflocation);	    	  
+					LedgerPDF.createPDF(pdflocation);	    	  
 			    	  
 			      }
 			      if (rVal == JFileChooser.CANCEL_OPTION) {
