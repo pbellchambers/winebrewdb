@@ -489,6 +489,14 @@ public class InitializeMenu extends MainWindow {
 		);
 		mnHelp.add(mntmAck);
 		
+		//TODO: Report bug button
+		final JMenuItem mntmReportBug = new JMenuItem("Report a bug");
+		mnHelp.add(mntmReportBug);
+		
+		//TODO: Check for updates button
+		final JMenuItem mntmCheckUpdates = new JMenuItem("Check for updates");
+		mnHelp.add(mntmCheckUpdates);
+		
 	}
 	
 	public static void InitializeMenuMethod(){
