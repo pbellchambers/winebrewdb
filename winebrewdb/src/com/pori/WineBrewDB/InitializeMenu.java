@@ -1,13 +1,19 @@
 package com.pori.WineBrewDB;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -489,12 +495,84 @@ public class InitializeMenu extends MainWindow {
 		);
 		mnHelp.add(mntmAck);
 		
-		//TODO: Report bug button
 		final JMenuItem mntmReportBug = new JMenuItem("Report a bug");
+		mntmReportBug.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,"You will now be directed to the WineBrewDB Google Code page to report any bugs/feature requests.","",JOptionPane.PLAIN_MESSAGE);
+				if (Desktop.isDesktopSupported()) {
+					try {
+						java.net.URI uri = new java.net.URI("http://code.google.com/p/winebrewdb/issues/list");
+						java.awt.Desktop.getDesktop().browse(uri);
+					} catch (URISyntaxException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Automatic URL opening is not supported on this system.\n\nYou will need to open the following URL yourself:\n\n" + "http://code.google.com/p/winebrewdb/issues/list",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+					
+				}
+			}
+			
+		);
 		mnHelp.add(mntmReportBug);
 		
 		//TODO: Check for updates button
 		final JMenuItem mntmCheckUpdates = new JMenuItem("Check for updates");
+		mntmCheckUpdates.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    try {
+			        URL url = new URL("http://winebrewdb.googlecode.com/svn/trunk/winebrewdb/src/com/pori/WineBrewDB/version.txt");
+			        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+			        String str;
+			        while ((str = in.readLine()) != null) {
+			        	if(str.equals("") || str == null){
+				        	JOptionPane.showMessageDialog(null,
+									"There was a problem accessing the URL, please check the website manually:\n\n" + "http://code.google.com/p/winebrewdb/",
+									"Error",
+									JOptionPane.ERROR_MESSAGE);			        		
+			        	}
+			        	if(str.equals(MainWindow.WineBrewDBVersion)){
+			        		JOptionPane.showMessageDialog(null,"You have the latest version!","",JOptionPane.PLAIN_MESSAGE);
+			        	}else{
+			        		JOptionPane.showMessageDialog(null,"The latest version is:  " + str + "\n\nYou will now be directed to the WineBrewDB website where you can download the latest version.","Out of Date",JOptionPane.PLAIN_MESSAGE);
+							if (Desktop.isDesktopSupported()) {
+								try {
+									java.net.URI uri = new java.net.URI("http://code.google.com/p/winebrewdb/downloads/list");
+									java.awt.Desktop.getDesktop().browse(uri);
+								} catch (URISyntaxException e1) {
+									e1.printStackTrace();
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
+							} else {
+								JOptionPane.showMessageDialog(null,
+										"Automatic URL opening is not supported on this system.\n\nYou will need to open the following URL yourself:\n\n" + "http://code.google.com/p/winebrewdb/downloads/list",
+										"Error",
+										JOptionPane.ERROR_MESSAGE);
+							}
+			        	}
+			        }
+			        in.close();
+			        } catch (MalformedURLException e1) {
+			        	JOptionPane.showMessageDialog(null,
+								"There was a problem accessing the URL, please check the website manually:\n\n" + "http://code.google.com/p/winebrewdb/",
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+			        } catch (IOException e1) {
+			        	JOptionPane.showMessageDialog(null,
+			        			"There was a problem accessing the URL, please check the website manually:\n\n" + "http://code.google.com/p/winebrewdb/",
+								"Error",
+								JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+			        }
+			}
+		});		
 		mnHelp.add(mntmCheckUpdates);
 		
 	}
