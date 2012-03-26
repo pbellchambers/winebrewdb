@@ -521,7 +521,7 @@ public class InitializeMenu extends MainWindow {
 		);
 		mnHelp.add(mntmReportBug);
 		
-		//TODO: Check for updates button
+
 		final JMenuItem mntmCheckUpdates = new JMenuItem("Check for updates");
 		mntmCheckUpdates.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
