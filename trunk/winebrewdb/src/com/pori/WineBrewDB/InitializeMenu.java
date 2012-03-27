@@ -526,7 +526,7 @@ public class InitializeMenu extends MainWindow {
 		mntmCheckUpdates.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    try {
-			        URL url = new URL("http://winebrewdb.googlecode.com/svn/trunk/winebrewdb/src/com/pori/WineBrewDB/version.txt");
+			        URL url = new URL("http://winebrewdb.googlecode.com/svn/trunk/winebrewdb/VERSION.txt");
 			        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 			        String str;
 			        while ((str = in.readLine()) != null) {
