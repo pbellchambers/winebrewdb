@@ -1,8 +1,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>C:\workspace\BuildFolder\WineBrewDB\WineBrewDB.jar</jar>
-  <outfile>C:\workspace\BuildFolder\WineBrewDB\WineBrewDB.exe</outfile>
+  <jar>C:\workspace\BuildFolder\WineBrewDB\WineBrewDB\WineBrewDB.jar</jar>
+  <outfile>C:\workspace\BuildFolder\WineBrewDB\WineBrewDB\WineBrewDB.exe</outfile>
   <errTitle>WineBrewDB: Error</errTitle>
   <cmdLine></cmdLine>
   <chdir></chdir>
@@ -23,12 +23,8 @@
     <opt>-XX:MaxPermSize=40m</opt>
   </jre>
   <versionInfo>
-    <fileVersion>1.2.1.0</fileVersion>
-    <txtFileVersion>v1.2.1</txtFileVersion>
     <fileDescription>WineBrewDB</fileDescription>
     <copyright>(c) 2012 Paul Bellchambers</copyright>
-    <productVersion>1.2.1.0</productVersion>
-    <txtProductVersion>v1.2.1</txtProductVersion>
     <productName>WineBrewDB</productName>
     <companyName></companyName>
     <internalName>WineBrewDB</internalName>
