@@ -3,6 +3,7 @@
 === v1.2.1: ===
   * Added report a bug link under help menu
   * Added check for updates function under help menu
+  * Builds automated with ant now
 
 ----
 === v1.2.0: ===
