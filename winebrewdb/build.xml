@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="createJar" name="makejar">
+<property name="launch4j.dir" location="C:/workspace/WineBrewDB/launch4j" />
+<property name="build.dir" location="C:/workspace/BuildFolder/WineBrewDB/WineBrewDB" />
+<property name="project.dir" location="C:/workspace/WineBrewDB" />
+<property name="winebrewdb.version" value="1.2.1" />
+<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
+
+	<target name="createJar">
+    	<!--Delete previous files-->
+    	<delete>
+    		<fileset dir="C:/workspace/BuildFolder" includes="*.zip"/>
+    	</delete>
+    	<delete file="${build.dir}/WineBrewDB.exe"/>
+    	<delete>
+    		<fileset dir="${build.dir}" includes="*.txt"/>
+    	</delete>
+    	<delete includeEmptyDirs="true">
+    		<fileset dir="${build.dir}/Licenses"/>
+    	</delete>
+    	
+    	<!--Copy new files across (jar version)-->
+    	<copy todir="${build.dir}">
+    		<fileset dir="${project.dir}" includes="Credits.txt"/>
+    	</copy>
+    	<copy todir="${build.dir}">
+    		<fileset dir="${project.dir}" includes="README.txt"/>
+    	</copy>
+    	<copy todir="${build.dir}/Licenses">
+    	    <fileset dir="${project.dir}/Licenses"/>
+    	</copy>
+    	
+        <jar destfile="${build.dir}/WineBrewDB.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="com.pori.WineBrewDB.MainWindow"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${project.dir}/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="${project.dir}/ThirdPartyJars/ini4j-0.5.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${project.dir}/ThirdPartyJars/joda-time-2.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${project.dir}/ThirdPartyJars/miglayout15-swing.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${project.dir}/ThirdPartyJars/sqlitejdbc-v056.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${project.dir}/ThirdPartyJars/itextpdf-5.2.0.jar"/>
+        </jar>
+    </target>
+    
+	<target name="zipJarVersion">
+    	<!--Zip it all up (jar version)-->
+    	<zip destfile="C:/workspace/BuildFolder/WineBrewDB v${winebrewdb.version} (OS - All).zip" basedir="C:/workspace/BuildFolder/WineBrewDB" level="9"/>
+    </target>
+		
+	<target name="createExe">
+    	<!--Delete some files in preparation for exe version-->
+    	<delete file="${build.dir}/README.txt"/>
+    	
+    	<!--Copy new files across (exe version)-->
+    	<copy todir="${build.dir}">
+    	    <fileset dir="${project.dir}" includes="READMEexe.txt"/>
+    	</copy>
+    	<move file="${build.dir}/READMEexe.txt" tofile="${build.dir}/README.txt"/>
+		
+		<!--Create exe-->
+		<launch4j configFile="${project.dir}/launch4j.cfg.xml" fileVersion="${winebrewdb.version}.0" txtFileVersion="v${winebrewdb.version}" productVersion="${winebrewdb.version}.0" txtProductVersion="v${winebrewdb.version}"/>
+    	
+		<!--Delete jar-->
+		<delete file="${build.dir}/WineBrewDB.jar"/>
+		
+    </target>
+	
+	<target name="zipExeVersion">
+    	<!--Zip it all up (exe version)-->
+    	<zip destfile="C:/workspace/BuildFolder/WineBrewDB v${winebrewdb.version} (OS - Windows).zip" basedir="C:/workspace/BuildFolder/WineBrewDB" level="9"/>
+    </target>
+	
+</project>
