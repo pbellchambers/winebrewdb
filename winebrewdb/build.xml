@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="createJar" name="makejar">
+<project default="buildAllWineBrewDB" name="makejar">
 <property name="launch4j.dir" location="C:/workspace/WineBrewDB/launch4j" />
 <property name="build.dir" location="C:/workspace/BuildFolder/WineBrewDB/WineBrewDB" />
 <property name="project.dir" location="C:/workspace/WineBrewDB" />
 <property name="winebrewdb.version" value="1.2.1" />
 <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
-
+	
+	<target name="buildAllWineBrewDB" depends="setVersion,createJar,zipJarVersion,createExe,zipExeVersion"/>
+	
 	<target name="setVersion">
 		<delete file="${project.dir}/VERSION.txt"/>
 		<echo file="${project.dir}/VERSION.txt">v${winebrewdb.version}</echo> 
