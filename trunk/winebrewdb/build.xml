@@ -6,7 +6,17 @@
 <property name="winebrewdb.version" value="1.2.1" />
 <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
 
+	<target name="setVersion">
+		<delete file="${project.dir}/VERSION.txt"/>
+		<echo file="${project.dir}/VERSION.txt">v${winebrewdb.version}</echo> 
+	</target>	
+	
 	<target name="createJar">
+		<!--Set version number everywhere-->
+		<replace token="mysticalantversionnumberforwinebrewdb" value="v${winebrewdb.version}">
+			<fileset dir="${project.dir}" includes="*.txt *.java"/>
+		</replace>
+		
     	<!--Delete previous files-->
     	<delete>
     		<fileset dir="C:/workspace/BuildFolder" includes="*.zip"/>
@@ -34,6 +44,7 @@
             <manifest>
                 <attribute name="Main-Class" value="com.pori.WineBrewDB.MainWindow"/>
                 <attribute name="Class-Path" value="."/>
+            	<attribute name="Implementation-Version" value="v${winebrewdb.version}"/>
             </manifest>
             <fileset dir="${project.dir}/bin"/>
             <zipfileset excludes="META-INF/*.SF" src="${project.dir}/ThirdPartyJars/ini4j-0.5.2.jar"/>
