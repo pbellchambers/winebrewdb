@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="buildAllWineBrewDB" name="makejar">
 <property name="launch4j.dir" location="C:/workspace/WineBrewDB/launch4j" />
-<property name="build.dir" location="C:/workspace/BuildFolder/WineBrewDB/WineBrewDB" />
+<property name="topbuild.dir" location="C:/workspace/BuildFolder" />
+<property name="lowerbuild.dir" value="/WineBrewDB/WineBrewDB" />
 <property name="project.dir" location="C:/workspace/WineBrewDB" />
 <property name="winebrewdb.version" value="1.2.1" />
 <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
 <taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler"/>
 	
-	<target name="buildAllWineBrewDB" depends="setVersion,createJar,zipJarVersion,createMacApp,createExe,zipExeVersion"/>
+	<target name="buildAllWineBrewDB" depends="setVersion,createJar,zipJarVersion,createMacApp,zipMacVersion,createExe,zipExeVersion"/>
 	
 	<target name="setVersion">
 		<delete file="${project.dir}/VERSION.txt"/>
@@ -24,29 +25,29 @@
     	<delete>
     		<fileset dir="C:/workspace/BuildFolder" includes="*.zip"/>
     	</delete>
-    	<delete file="${build.dir}/WineBrewDB.exe"/>
+    	<delete file="${topbuild.dir}${lowerbuild.dir}/WineBrewDB.exe"/>
     	<delete>
-    		<fileset dir="${build.dir}" includes="*.txt"/>
+    		<fileset dir="${topbuild.dir}${lowerbuild.dir}" includes="*.txt"/>
     	</delete>
     	<delete includeEmptyDirs="true">
-    		<fileset dir="${build.dir}/Licenses"/>
+    		<fileset dir="${topbuild.dir}${lowerbuild.dir}/Licenses"/>
     	</delete>
     	<delete includeEmptyDirs="true">
-    		<fileset dir="C:/workspace/BuildFolder/WineBrewDB.app"/>
+    		<fileset dir="${topbuild.dir}/WineBrewDBMac/WineBrewDB.app"/>
     	</delete>
     	
     	<!--Copy new files across (jar version)-->
-    	<copy todir="${build.dir}">
+    	<copy todir="${topbuild.dir}${lowerbuild.dir}">
     		<fileset dir="${project.dir}" includes="Credits.txt"/>
     	</copy>
-    	<copy todir="${build.dir}">
+    	<copy todir="${topbuild.dir}${lowerbuild.dir}">
     		<fileset dir="${project.dir}" includes="README.txt"/>
     	</copy>
-    	<copy todir="${build.dir}/Licenses">
+    	<copy todir="${topbuild.dir}${lowerbuild.dir}/Licenses">
     	    <fileset dir="${project.dir}/Licenses"/>
     	</copy>
     	
-        <jar destfile="${build.dir}/WineBrewDB.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="${topbuild.dir}${lowerbuild.dir}/WineBrewDB.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="uk.co.pori.WineBrewDB.MainWindow"/>
                 <attribute name="Class-Path" value="."/>
@@ -63,18 +64,18 @@
     
 	<target name="zipJarVersion">
     	<!--Zip it all up (jar version)-->
-    	<zip destfile="C:/workspace/BuildFolder/WineBrewDB v${winebrewdb.version} (OS - All).zip" basedir="C:/workspace/BuildFolder/WineBrewDB" level="9"/>
+    	<zip destfile="${topbuild.dir}/WineBrewDB v${winebrewdb.version} (OS - All).zip" basedir="${topbuild.dir}/WineBrewDB" level="9"/>
     </target>
 	
-	<!--Fix icon location: icon="icons/Hello World.icns"-->
 	<target name="createMacApp">
-		<jarbundler dir="C:/workspace/BuildFolder"
+		<jarbundler dir="${topbuild.dir}/WineBrewDBMac"
 		              name="WineBrewDB"
 		              shortname="WineBrewDB"
 		              signature="WBDB"
 		              mainclass="uk.co.pori.WineBrewDB.MainWindow"
-		              jar="${build.dir}/WineBrewDB.jar"		       
+		              jar="${topbuild.dir}${lowerbuild.dir}/WineBrewDB.jar"		       
 		              jvmversion="1.6+"
+			          icon="${project.dir}/src/uk/co/pori/WineBrewDB/Images/winebrewdb.icns"
 		              version="${winebrewdb.version}"
 		              infostring="WineBrewDB, Copyright (c) 2012 Paul Bellchambers"
 		              bundleid="uk.co.pori.WineBrewDB.MainWindow"> 
@@ -85,32 +86,37 @@
 			<javaproperty name="apple.awt.showGrowBox" value="false"/>
 			
 			<!--Add all the .txt files-->
-			<resourcefileset dir="${build.dir}/Licenses" includes="*.txt"/>
-			<resourcefilelist dir="${build.dir}" files="Credits.txt"/>
+			<resourcefileset dir="${topbuild.dir}${lowerbuild.dir}/Licenses" includes="*.txt"/>
+			<resourcefilelist dir="${topbuild.dir}${lowerbuild.dir}" files="Credits.txt"/>
 		</jarbundler>
 	</target>
+	
+	<target name="zipMacVersion">
+    	<!--Zip it all up (mac version)-->
+    	<zip destfile="${topbuild.dir}/WineBrewDB v${winebrewdb.version} (OS - Mac).zip" basedir="${topbuild.dir}/WineBrewDBMac" level="9"/>
+    </target>
 		
 	<target name="createExe">
     	<!--Delete some files in preparation for exe version-->
-    	<delete file="${build.dir}/README.txt"/>
+    	<delete file="${topbuild.dir}${lowerbuild.dir}/README.txt"/>
     	
     	<!--Copy new files across (exe version)-->
-    	<copy todir="${build.dir}">
+    	<copy todir="${topbuild.dir}${lowerbuild.dir}">
     	    <fileset dir="${project.dir}" includes="READMEexe.txt"/>
     	</copy>
-    	<move file="${build.dir}/READMEexe.txt" tofile="${build.dir}/README.txt"/>
+    	<move file="${topbuild.dir}${lowerbuild.dir}/READMEexe.txt" tofile="${topbuild.dir}${lowerbuild.dir}/README.txt"/>
 		
 		<!--Create exe-->
 		<launch4j configFile="${project.dir}/launch4j.cfg.xml" fileVersion="${winebrewdb.version}.0" txtFileVersion="v${winebrewdb.version}" productVersion="${winebrewdb.version}.0" txtProductVersion="v${winebrewdb.version}"/>
     	
 		<!--Delete jar-->
-		<delete file="${build.dir}/WineBrewDB.jar"/>
+		<delete file="${topbuild.dir}${lowerbuild.dir}/WineBrewDB.jar"/>
 		
     </target>
 	
 	<target name="zipExeVersion">
     	<!--Zip it all up (exe version)-->
-    	<zip destfile="C:/workspace/BuildFolder/WineBrewDB v${winebrewdb.version} (OS - Windows).zip" basedir="C:/workspace/BuildFolder/WineBrewDB" level="9"/>
+    	<zip destfile="${topbuild.dir}/WineBrewDB v${winebrewdb.version} (OS - Windows).zip" basedir="${topbuild.dir}/WineBrewDB" level="9"/>
     </target>
 	
 </project>
