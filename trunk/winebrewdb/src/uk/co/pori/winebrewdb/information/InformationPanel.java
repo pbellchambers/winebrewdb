@@ -20,7 +20,7 @@ public class InformationPanel extends JPanel {
 	public static JTabbedPane tabbedInformationPane;
 	private static String InformationPanelStatus = "DeInitialized";
 
-	//public InformationPanel() {
+	//TODO: Make it possible for users to add/remove their own information tabs and enter/update data
 	public static void InitializePanel(){
 		
 		InformationPanel = new JPanel();
