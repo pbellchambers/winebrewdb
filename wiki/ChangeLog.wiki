@@ -2,6 +2,8 @@
 
 === v1.2.2: ===
   * Code refactoring (no functional changes)
+  * Slight re-wording on calculator descriptions
+  * Changed some launch parameters on the native Mac version
 
 ----
 === v1.2.1: ===
