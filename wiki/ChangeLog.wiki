@@ -3,7 +3,8 @@
 === v1.2.1: ===
   * Added report a bug link under help menu
   * Added check for updates function under help menu
-  * Builds automated with ant now
+  * Builds automated with Ant now
+  * Native Mac .app available (may/may not work, currently untested)
 
 ----
 === v1.2.0: ===
