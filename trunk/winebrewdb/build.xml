@@ -5,8 +5,9 @@
 <property name="project.dir" location="C:/workspace/WineBrewDB" />
 <property name="winebrewdb.version" value="1.2.1" />
 <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
+<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler"/>
 	
-	<target name="buildAllWineBrewDB" depends="setVersion,createJar,zipJarVersion,createExe,zipExeVersion"/>
+	<target name="buildAllWineBrewDB" depends="setVersion,createJar,zipJarVersion,createMacApp,createExe,zipExeVersion"/>
 	
 	<target name="setVersion">
 		<delete file="${project.dir}/VERSION.txt"/>
@@ -29,6 +30,9 @@
     	</delete>
     	<delete includeEmptyDirs="true">
     		<fileset dir="${build.dir}/Licenses"/>
+    	</delete>
+    	<delete includeEmptyDirs="true">
+    		<fileset dir="C:/workspace/BuildFolder/WineBrewDB.app"/>
     	</delete>
     	
     	<!--Copy new files across (jar version)-->
@@ -61,6 +65,30 @@
     	<!--Zip it all up (jar version)-->
     	<zip destfile="C:/workspace/BuildFolder/WineBrewDB v${winebrewdb.version} (OS - All).zip" basedir="C:/workspace/BuildFolder/WineBrewDB" level="9"/>
     </target>
+	
+	<!--Fix icon location: icon="icons/Hello World.icns"-->
+	<target name="createMacApp">
+		<jarbundler dir="C:/workspace/BuildFolder"
+		              name="WineBrewDB"
+		              shortname="WineBrewDB"
+		              signature="WBDB"
+		              mainclass="com.pori.WineBrewDB.MainWindow"
+		              jar="${build.dir}/WineBrewDB.jar"		       
+		              jvmversion="1.6+"
+		              version="${winebrewdb.version}"
+		              infostring="WineBrewDB, Copyright (c) 2012 Paul Bellchambers"
+		              bundleid="com.pori.WineBrewDB.MainWindow"> 
+		                
+		    <!-- Adjust the look, feel and behavior -->		    
+			<javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
+			<javaproperty name="apple.awt.brushMetalLook" value="true"/>
+			<javaproperty name="apple.awt.showGrowBox" value="false"/>
+			
+			<!--Add all the .txt files-->
+			<resourcefileset dir="${build.dir}/Licenses" includes="*.txt"/>
+			<resourcefilelist dir="${build.dir}" files="Credits.txt"/>
+		</jarbundler>
+	</target>
 		
 	<target name="createExe">
     	<!--Delete some files in preparation for exe version-->
