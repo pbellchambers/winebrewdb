@@ -78,7 +78,6 @@
 		                
 		    <!-- Adjust the look, feel and behavior -->		    
 			<javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
-			<javaproperty name="apple.awt.brushMetalLook" value="true"/>
 			<javaproperty name="apple.awt.showGrowBox" value="false"/>
 			
 			<!--Add all the .txt files-->
