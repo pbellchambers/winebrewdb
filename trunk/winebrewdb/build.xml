@@ -5,6 +5,7 @@
 <property name="lowerbuild.dir" value="/WineBrewDB/WineBrewDB" />
 <property name="project.dir" location="C:/workspace/WineBrewDB" />
 <property name="winebrewdb.version" value="1.2.1" />
+<property name="winebrewdb.mainclass" value="uk.co.pori.winebrewdb.mainwindow" />
 <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
 <taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler"/>
 	
@@ -15,12 +16,7 @@
 		<echo file="${project.dir}/VERSION.txt">v${winebrewdb.version}</echo> 
 	</target>	
 	
-	<target name="createJar">
-		<!--Set version number everywhere-->
-		<replace token="mysticalantversionnumberforwinebrewdb" value="v${winebrewdb.version}">
-			<fileset dir="${project.dir}" includes="*.txt *.java"/>
-		</replace>
-		
+	<target name="createJar">		
     	<!--Delete previous files-->
     	<delete>
     		<fileset dir="C:/workspace/BuildFolder" includes="*.zip"/>
@@ -49,7 +45,7 @@
     	
         <jar destfile="${topbuild.dir}${lowerbuild.dir}/WineBrewDB.jar" filesetmanifest="mergewithoutmain">
             <manifest>
-                <attribute name="Main-Class" value="uk.co.pori.WineBrewDB.MainWindow"/>
+                <attribute name="Main-Class" value="${winebrewdb.mainclass}"/>
                 <attribute name="Class-Path" value="."/>
             	<attribute name="Implementation-Version" value="v${winebrewdb.version}"/>
             </manifest>
@@ -72,13 +68,13 @@
 		              name="WineBrewDB"
 		              shortname="WineBrewDB"
 		              signature="WBDB"
-		              mainclass="uk.co.pori.WineBrewDB.MainWindow"
+		              mainclass="${winebrewdb.mainclass}"
 		              jar="${topbuild.dir}${lowerbuild.dir}/WineBrewDB.jar"		       
 		              jvmversion="1.6+"
-			          icon="${project.dir}/src/uk/co/pori/WineBrewDB/Images/winebrewdb.icns"
+			          icon="${project.dir}/src/uk/co/pori/winebrewdb/images/winebrewdb.icns"
 		              version="${winebrewdb.version}"
 		              infostring="WineBrewDB, Copyright (c) 2012 Paul Bellchambers"
-		              bundleid="uk.co.pori.WineBrewDB.MainWindow"> 
+		              bundleid="${winebrewdb.mainclass}"> 
 		                
 		    <!-- Adjust the look, feel and behavior -->		    
 			<javaproperty name="apple.laf.useScreenMenuBar" value="true"/>

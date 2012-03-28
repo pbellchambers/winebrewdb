@@ -12,7 +12,7 @@
   <customProcName>true</customProcName>
   <stayAlive>false</stayAlive>
   <manifest></manifest>
-  <icon>C:\workspace\WineBrewDB\src\uk\co\pori\WineBrewDB\Images\WineBrewDB.ico</icon>
+  <icon>C:\workspace\WineBrewDB\src\uk\co\pori\winebrewdb\images\WineBrewDB.ico</icon>
   <jre>
     <path></path>
     <minVersion>1.6.0_00</minVersion>
