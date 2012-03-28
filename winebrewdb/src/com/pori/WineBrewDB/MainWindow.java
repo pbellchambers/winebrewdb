@@ -30,6 +30,7 @@ public class MainWindow {
 	static Wini brewIni;
 	
 //TODO: Mac launcher somehow.
+//TODO: Mac .icns
 //Use "Jar Bundler" on a mac
 //Also see: http://java.sun.com/developer/technicalArticles/JavaLP/JavaToMac/
 	
