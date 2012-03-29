@@ -3,14 +3,14 @@
 === v1.2.2: ===
   * Code refactoring (no functional changes)
   * Slight re-wording on calculator descriptions
-  * Changed some launch parameters on the native Mac version
+  * ~~Changed some launch parameters on the native Mac version~~ (still broken)
 
 ----
 === v1.2.1: ===
   * Added report a bug link under help menu
   * Added check for updates function under help menu
   * Builds automated with Ant now
-  * Native Mac .app available (may/may not work, currently untested)
+  * ~~Native Mac .app available (may/may not work, currently untested)~~ (doesn't work)
 
 ----
 === v1.2.0: ===
