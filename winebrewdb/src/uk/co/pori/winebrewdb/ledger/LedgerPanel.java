@@ -125,13 +125,8 @@ public class LedgerPanel extends JPanel {
 	public static void DeInitializePanel(){
 		if(LedgerPanelStatus.equals("Initialized")) {
 			LedgerPanel.setVisible(false);
-			LedgerPanel.remove(LedgerHeader);
-			LedgerPanel.remove(LedgerSubtitle);
-			LedgerPanel.remove(tabbedLedgerPane);
-			LedgerPanel.remove(btnPrintLedger);
-			tabbedLedgerPane.remove(LedgerEquipmentPanel.tabbedLedgerEquipmentCostPanel);
-			tabbedLedgerPane.remove(LedgerBrewCostSearchPanel.tabbedLedgerBrewCostSearchPanel);
-			tabbedLedgerPane.remove(LedgerBrewCostDataPanel.tabbedLedgerBrewCostPanel);
+			tabbedLedgerPane.removeAll();
+			LedgerPanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(LedgerPanel);
 			LedgerPanelStatus = "DeInitialized";
 		}

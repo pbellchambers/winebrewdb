@@ -25,7 +25,7 @@ public class SandboxTestPane extends JPanel {
 		
 		JButton btnGfgg = new JButton("gfgg");
 		btnGfgg.setMinimumSize(new Dimension(80, 23));
-		add(btnGfgg, "cell 0 2,alignx center");;
+		add(btnGfgg, "cell 0 2,growx,alignx right");;
 		
 
 

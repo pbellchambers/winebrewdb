@@ -86,7 +86,7 @@ public class BrewPanel extends JPanel {
 		
 		//Add New Brew Tab
 		BrewAddPanel.InitializePanel();
-		tabbedBrewPane.addTab("Add New Brew", null, BrewAddPanel.tabbedBrewAddPanel, null);
+		tabbedBrewPane.addTab("Add New Brew", new ImageIcon(BrewPanel.class.getResource("/uk/co/pori/winebrewdb/images/new.png")), BrewAddPanel.tabbedBrewAddPanel, null);
 		
 		
 		//Set some tabs disabled initially
@@ -143,15 +143,8 @@ public class BrewPanel extends JPanel {
 	public static void DeInitializePanel(){
 		if(BrewPanelStatus.equals("Initialized")) {
 			BrewPanel.setVisible(false);
-			BrewPanel.remove(BrewHeader);
-			BrewPanel.remove(BrewSubtitle);
-			BrewPanel.remove(btnPrintBrew);
-			BrewPanel.remove(tabbedBrewPane);
-			tabbedBrewPane.remove(BrewSearchPanel.tabbedBrewSearchPanel);
-			tabbedBrewPane.remove(BrewDataPanel.tabbedBrewDataPanel);
-			tabbedBrewPane.remove(BrewNotesPanel.tabbedBrewNotesPanel);
-			tabbedBrewPane.remove(BrewPicturesPanel.tabbedBrewPicturesPanel);
-			tabbedBrewPane.remove(BrewAddPanel.tabbedBrewAddPanel);
+			tabbedBrewPane.removeAll();
+			BrewPanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(BrewPanel);
 			BrewPanelStatus = "DeInitialized";
 		}

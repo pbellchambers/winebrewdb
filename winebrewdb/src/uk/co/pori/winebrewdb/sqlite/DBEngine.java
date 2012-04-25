@@ -24,6 +24,7 @@ import uk.co.pori.winebrewdb.brew.BrewDataPanel;
 import uk.co.pori.winebrewdb.brew.BrewNotesPanel;
 import uk.co.pori.winebrewdb.brew.BrewPicturesPanel;
 import uk.co.pori.winebrewdb.brew.BrewSearchPanel;
+import uk.co.pori.winebrewdb.information.InformationEditTab;
 import uk.co.pori.winebrewdb.ledger.LedgerBrewCostSearchPanel;
 import uk.co.pori.winebrewdb.ledger.LedgerEquipmentPanel;
 import uk.co.pori.winebrewdb.recipe.RecipeAddPanel;
@@ -1632,6 +1633,119 @@ public class DBEngine {
 	    
 	}
 	
+		
+	//Get information tab data
+	public static Vector<Vector<Object>> getInformationTabData() throws Exception {
+	    Connection conn = dbConnection();
+	     
+	    Vector<Vector<Object>> InformationTabs = new Vector<Vector<Object>>();
+	    PreparedStatement pre = conn.prepareStatement(
+	    		"select ID,TabName,TabContent,HTML from InformationTabs"
+	    		);
+
+	    ResultSet rs = pre.executeQuery();
+
+	    while(rs.next()){
+	    Vector<Object> tab = new Vector<Object>();
+	    	tab.add(rs.getString(1)); //ID
+	    	tab.add(rs.getString(2)); //TabName
+	    	tab.add(rs.getString(3)); //TabContent
+	    	tab.add(rs.getString(4)); //HTML
+	    	InformationTabs.add(tab);
+	    }
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+
+	    return InformationTabs;	    
+	    
+	}
+	
+	
+	//Delete information tab data
+	public static void deleteInformationTabData() throws Exception {
+	    Connection conn = dbConnection();
+	     
+	    PreparedStatement pre = conn.prepareStatement(
+	    		"delete from InformationTabs where ID='" +
+	    		InformationEditTab.textInformationOrigTabID +
+	    		"'"
+	    		);
+
+	    pre.executeUpdate();
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	}
+	
+	
+	//Update information tab data
+	public static void updateInformationTabData() throws Exception {
+	    Connection conn = dbConnection();
+	    
+	    int HTML;	    
+	    if(InformationEditTab.checkboxInformationTabHTML.isSelected()){
+	    	HTML = 1;
+	    } else {
+	    	HTML = 0;
+	    }
+	     
+	    PreparedStatement pre = conn.prepareStatement(
+	    		"update InformationTabs set ID='" +
+	    		InformationEditTab.textInformationTabID.getText().replaceAll("[^0-9]", "") +
+	    		"', TabName='" +
+	    		InformationEditTab.textInformationTabName.getText().replaceAll("'", "''") +
+	    		"', TabContent='" +
+	    		InformationEditTab.textInformationTabContent.getText().replaceAll("'", "''") + 
+	    		"', HTML='" +
+	    		HTML +
+	    		"' where ID='" +
+	    		InformationEditTab.textInformationOrigTabID +
+	    		"'"
+	    		);
+
+	    pre.executeUpdate();
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	}
+	
+	
+	//Add information tab data
+	public static void addInformationTabData() throws Exception {
+	    Connection conn = dbConnection();
+	     
+	    int HTML;	    
+	    if(InformationEditTab.checkboxInformationTabHTML.isSelected()){
+	    	HTML = 1;
+	    } else {
+	    	HTML = 0;
+	    }
+	     
+	    PreparedStatement pre = conn.prepareStatement(
+	    		"insert into InformationTabs(ID,TabName,TabContent,HTML) values('" +
+	    		InformationEditTab.textInformationTabID.getText().replaceAll("[^0-9]", "") +
+	    		"','" +
+	    		InformationEditTab.textInformationTabName.getText().replaceAll("'", "''") +
+	    		"','" +
+	    		InformationEditTab.textInformationTabContent.getText().replaceAll("'", "''") + 
+	    		"','" +
+	    		HTML +
+	    		"')"
+	    		);
+
+	    pre.executeUpdate();
+
+	    /*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	    
+	}
 	
 	
 }
