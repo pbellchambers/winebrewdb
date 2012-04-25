@@ -1,5 +1,10 @@
 #summary WineBrewDB Change Log
+=== v1.3.0: ===
+  * Made information tabs dynamic. You can add/edit your own tabs of data now (supports plain text or html).
+  * Added icon to add tabs
+  * Code refactoring on panel initialisation
 
+----
 === v1.2.2: ===
   * Code refactoring (no functional changes)
   * Slight re-wording on calculator descriptions
