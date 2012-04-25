@@ -35,10 +35,7 @@ import uk.co.pori.winebrewdb.calculators.DilutionPanel;
 import uk.co.pori.winebrewdb.calculators.MeasuresPanel;
 import uk.co.pori.winebrewdb.calculators.SugarToSGPanel;
 import uk.co.pori.winebrewdb.calculators.TemperatureAdjustedSGPanel;
-import uk.co.pori.winebrewdb.information.DosagesPanel;
-import uk.co.pori.winebrewdb.information.FruitAcidsPanel;
 import uk.co.pori.winebrewdb.information.InformationPanel;
-import uk.co.pori.winebrewdb.information.YeastStrainsPanel;
 import uk.co.pori.winebrewdb.ledger.LedgerPanel;
 import uk.co.pori.winebrewdb.recipe.RecipePanel;
 
@@ -400,44 +397,19 @@ public class InitializeMenu extends MainWindow {
 		mnInformation = new JMenu("Information");
 		menuBar.add(mnInformation);
 		
-		final JMenuItem mntmDosages = new JMenuItem("Dosages");
-		mntmDosages.addActionListener(new ActionListener() {
+		final JMenuItem mntmInformationAddEdit = new JMenuItem("Add/Edit");
+		mntmInformationAddEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DeinitializeAllPanels();
 				InformationPanel.InitializePanel();
-				InformationPanel.tabbedInformationPane.setSelectedIndex(0);
+				int finaltab = InformationPanel.tabbedInformationPane.getTabCount() - 1;
+				InformationPanel.tabbedInformationPane.setSelectedIndex(finaltab);
 				InformationPanel.InformationPanel.setVisible(true);					
 				}
 			}
 			
 		);
-		mnInformation.add(mntmDosages);
-		
-		final JMenuItem mntmFruitAcids = new JMenuItem("Fruit Acids");
-		mntmFruitAcids.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				InformationPanel.InitializePanel();
-				InformationPanel.tabbedInformationPane.setSelectedIndex(1);
-				InformationPanel.InformationPanel.setVisible(true);				
-				}
-			}
-			
-		);
-		mnInformation.add(mntmFruitAcids);
-		
-		final JMenuItem mntmYeastStrains = new JMenuItem("Yeast Strains");
-		mntmYeastStrains.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				InformationPanel.InitializePanel();
-				InformationPanel.tabbedInformationPane.setSelectedIndex(2);
-				InformationPanel.InformationPanel.setVisible(true);				
-				}
-			}
-			
-		);
-		mnInformation.add(mntmYeastStrains);
+		mnInformation.add(mntmInformationAddEdit);
 		
 		
 		//Help Menu
@@ -615,7 +587,7 @@ public class InitializeMenu extends MainWindow {
 
 		btnInformation = new JButton();
 		btnInformation.setIcon(new ImageIcon(InitializeMenu.class.getResource("/uk/co/pori/winebrewdb/images/information.png")));
-		btnInformation.setToolTipText("Useful Information");
+		btnInformation.setToolTipText("Add your own notes and information to be displayed in tabs here");
 		MenuPanel.add(btnInformation);
 		
 		//Initialise welcome panel
@@ -675,9 +647,6 @@ public class InitializeMenu extends MainWindow {
 		MeasuresPanel.DeInitializePanel();
 		SugarToSGPanel.DeInitializePanel();
 		TemperatureAdjustedSGPanel.DeInitializePanel();
-		DosagesPanel.DeInitializePanel();
-		FruitAcidsPanel.DeInitializePanel();
-		YeastStrainsPanel.DeInitializePanel();
 	};
 	
 	public static void DisableAllMenuButtons(){

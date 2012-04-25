@@ -81,14 +81,8 @@ public class CalculatorsPanel extends JPanel {
 	public static void DeInitializePanel(){
 		if(CalculatorsPanelStatus.equals("Initialized")) {
 			CalculatorsPanel.setVisible(false);
-			CalculatorsPanel.remove(CalculatorsHeader);
-			CalculatorsPanel.remove(CalculatorsSubtitle);
-			CalculatorsPanel.remove(tabbedCalculatorsPane);
-			tabbedCalculatorsPane.remove(AlcoholPanel.AlcoholSubPanel);
-			tabbedCalculatorsPane.remove(DilutionPanel.DilutionSubPanel);
-			tabbedCalculatorsPane.remove(MeasuresPanel.MeasuresSubPanel);
-			tabbedCalculatorsPane.remove(SugarToSGPanel.SugarToSGSubPanel);
-			tabbedCalculatorsPane.remove(TemperatureAdjustedSGPanel.TemperatureAdjustedSGSubPanel);
+			tabbedCalculatorsPane.removeAll();
+			CalculatorsPanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(CalculatorsPanel);
 			CalculatorsPanelStatus = "DeInitialized";
 		}

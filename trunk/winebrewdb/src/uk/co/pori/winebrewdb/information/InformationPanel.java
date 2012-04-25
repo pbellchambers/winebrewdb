@@ -1,12 +1,20 @@
 package uk.co.pori.winebrewdb.information;
 
 import java.awt.Font;
+import java.util.Vector;
 
+import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.text.html.HTMLEditorKit;
 
 import uk.co.pori.winebrewdb.MainWindow;
+import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
 
 import net.miginfocom.swing.MigLayout;
@@ -18,9 +26,10 @@ public class InformationPanel extends JPanel {
 	private static JLabel InformationHeader;
 	private static JLabel InformationSubtitle;
 	public static JTabbedPane tabbedInformationPane;
+	private static Vector<Vector<Object>> InformationTabData;
 	private static String InformationPanelStatus = "DeInitialized";
 
-	//TODO: Make it possible for users to add/remove their own information tabs and enter/update data
+
 	public static void InitializePanel(){
 		
 		InformationPanel = new JPanel();
@@ -34,7 +43,7 @@ public class InformationPanel extends JPanel {
 		
 		
 		//Subtitle
-		InformationSubtitle = new JLabel("Various useful information.");
+		InformationSubtitle = new JLabel("Add your own notes and information to be displayed in tabs here.");
 		InformationSubtitle.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		InformationPanel.add(InformationSubtitle, "cell 0 1,growx,aligny top");
 		
@@ -42,21 +51,9 @@ public class InformationPanel extends JPanel {
 		//Tabbed Pane
 		tabbedInformationPane = new JTabbedPane(JTabbedPane.TOP);
 		InformationPanel.add(tabbedInformationPane, "cell 0 2,grow");
-				
-		
-		//Dosages Tab
-		DosagesPanel.InitializePanel();		
-		tabbedInformationPane.addTab("Dosages", null, DosagesPanel.DosagesScrollPane, null);
 		
 		
-		//Fruit Acids Tab
-		FruitAcidsPanel.InitializePanel();		
-		tabbedInformationPane.addTab("Fruit Acids", null, FruitAcidsPanel.FruitAcidsScrollPane, null);
-		
-		
-		//Yeast Strains Tab
-		YeastStrainsPanel.InitializePanel();
-		tabbedInformationPane.addTab("Yeast Strains", null, YeastStrainsPanel.YeastStrainsScrollPane, null);
+		dynamicallyAddTabs();
 		
 		
 		//Add it all to the main window
@@ -67,19 +64,57 @@ public class InformationPanel extends JPanel {
 		InformationPanelStatus = "Initialized";
 	}
 
-	
 	public static void DeInitializePanel(){
 		if(InformationPanelStatus.equals("Initialized")) {
 			InformationPanel.setVisible(false);
-			InformationPanel.remove(InformationHeader);
-			InformationPanel.remove(InformationSubtitle);
-			InformationPanel.remove(tabbedInformationPane);
-			tabbedInformationPane.remove(DosagesPanel.DosagesScrollPane);
-			tabbedInformationPane.remove(FruitAcidsPanel.FruitAcidsScrollPane);
-			tabbedInformationPane.remove(YeastStrainsPanel.YeastStrainsScrollPane);
+			tabbedInformationPane.removeAll();
+			InformationPanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(InformationPanel);
 			InformationPanelStatus = "DeInitialized";
 		}
+	}
+	
+	public static void dynamicallyAddTabs(){
+		//Dynamically add tabs based on DB content
+		try {
+			InformationTabData = DBEngine.getInformationTabData();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"An error occurred getting data from the database.\n" + MainWindow.DatabaseLocationFromIni + "\n\nEither:\n- The database doesn't exist.\n- You don't have permission to write to this location.\n- The database is invalid or corrupt.",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}		
+		
+		int InformationTabCount = InformationTabData.size();
+		int InformationTabCurrentRow = 0;
+		
+		while(InformationTabCurrentRow < InformationTabCount){
+			Vector<Object> InformationTabCurrentData = InformationTabData.get(InformationTabCurrentRow);
+			
+			JEditorPane TempEditor = new JEditorPane();
+			TempEditor.setEditable(false);
+			if(Integer.parseInt((String) InformationTabCurrentData.get(3)) == 1){
+				HTMLEditorKit htmlkit = new HTMLEditorKit();
+				TempEditor.setEditorKit(htmlkit);
+			}
+			TempEditor.setText((String) InformationTabCurrentData.get(2));			
+
+			JScrollPane TempScrollPane = new JScrollPane(TempEditor);
+			TempScrollPane.setBorder(null);
+			TempScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			TempEditor.setCaretPosition(0);
+			
+			
+			String TabName = (String) InformationTabCurrentData.get(1);
+			tabbedInformationPane.addTab(TabName, null, TempScrollPane, null);
+			
+			InformationTabCurrentRow = InformationTabCurrentRow + 1;
+		}
+		
+		//Add/Edit tab gets added at end
+		InformationEditTab.InitializePanel();
+		tabbedInformationPane.addTab("Add/Edit Tabs", new ImageIcon(InformationPanel.class.getResource("/uk/co/pori/winebrewdb/images/new.png")), InformationEditTab.tabbedInformationEditTab, null);
 	}
 	
 

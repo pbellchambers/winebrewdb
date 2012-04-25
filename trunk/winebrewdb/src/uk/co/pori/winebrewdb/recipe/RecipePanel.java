@@ -71,7 +71,7 @@ public class RecipePanel extends JPanel {
 		
 		//Add New Recipe Tab
 		RecipeAddPanel.InitializePanel();
-		tabbedRecipePane.addTab("Add New Recipe", null, RecipeAddPanel.tabbedRecipeAddPanel, null);
+		tabbedRecipePane.addTab("Add New Recipe", new ImageIcon(RecipePanel.class.getResource("/uk/co/pori/winebrewdb/images/new.png")), RecipeAddPanel.tabbedRecipeAddPanel, null);
 		
 		
 		//Set some tabs disabled initially
@@ -127,13 +127,8 @@ public class RecipePanel extends JPanel {
 	public static void DeInitializePanel(){
 		if(RecipePanelStatus.equals("Initialized")) {
 			RecipePanel.setVisible(false);
-			RecipePanel.remove(RecipeHeader);
-			RecipePanel.remove(RecipeSubtitle);
-			RecipePanel.remove(tabbedRecipePane);
-			RecipePanel.remove(btnPrintRecipe);
-			tabbedRecipePane.remove(RecipeSearchPanel.tabbedRecipeSearchPanel);
-			tabbedRecipePane.remove(RecipeDataPanel.tabbedRecipeDataPanel);
-			tabbedRecipePane.remove(RecipeAddPanel.tabbedRecipeAddPanel);
+			tabbedRecipePane.removeAll();
+			RecipePanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(RecipePanel);
 			RecipePanelStatus = "DeInitialized";
 		}
