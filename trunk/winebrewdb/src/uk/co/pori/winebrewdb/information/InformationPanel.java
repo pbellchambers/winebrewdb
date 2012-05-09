@@ -16,9 +16,14 @@ import javax.swing.text.html.HTMLEditorKit;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the main information panel that contains all of the sub panels in a tab layout.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class InformationPanel extends JPanel {
 
 	private static final long serialVersionUID = 3331794777984753664L;
@@ -29,7 +34,9 @@ public class InformationPanel extends JPanel {
 	private static Vector<Vector<Object>> InformationTabData;
 	private static String InformationPanelStatus = "DeInitialized";
 
-
+	/**
+	 * Initialises all the information panels (including dynamically adding tabs and getting all data) so that they are displayed on screen.
+	 */
 	public static void InitializePanel(){
 		
 		InformationPanel = new JPanel();
@@ -64,6 +71,9 @@ public class InformationPanel extends JPanel {
 		InformationPanelStatus = "Initialized";
 	}
 
+	/**
+	 * De-initialises all the information panels so that they are no longer displayed on screen.
+	 */
 	public static void DeInitializePanel(){
 		if(InformationPanelStatus.equals("Initialized")) {
 			InformationPanel.setVisible(false);
@@ -74,6 +84,9 @@ public class InformationPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Gets all of the information tab data from the database and dynamically creates and initialises a tab for each one.
+	 */
 	public static void dynamicallyAddTabs(){
 		//Dynamically add tabs based on DB content
 		try {

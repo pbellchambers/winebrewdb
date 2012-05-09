@@ -21,10 +21,14 @@ import javax.swing.table.DefaultTableModel;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
-
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * This is the recipe search panel to be displayed as a tab on the main recipe panel tab bar. It allows the user to search for recipes.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class RecipeSearchPanel extends JPanel {
 	
 
@@ -41,7 +45,9 @@ public class RecipeSearchPanel extends JPanel {
 	public static JTextField textMethod;
 	public static JTextField textNotes;
 
-	
+	/**
+	 * Initialises the recipe search panel so that it can be viewed.
+	 */
 	public static void InitializePanel(){
 		
 		RecipeTableFields = "Summary";
@@ -156,6 +162,9 @@ public class RecipeSearchPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Initialises the recipes table on the recipe search tab so that it can be viewed (including getting the data from the database).
+	 */
 	public static void initializeTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
@@ -195,9 +204,9 @@ public class RecipeSearchPanel extends JPanel {
 			);
 		
 		if (RecipeTableFields.equals("Summary")){
-			showDefaultRows();
+			showDefaultColumns();
 		}else {
-			showAllRows();
+			showAllColumns();
 		}
 		
 		RecipeTable.getTableHeader().setReorderingAllowed(false);
@@ -232,7 +241,10 @@ public class RecipeSearchPanel extends JPanel {
 		
 	}
 	
-	public static void showAllRows(){
+	/**
+	 * Makes all columns visible on the recipe search table.
+	 */
+	public static void showAllColumns(){
 		RecipeTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		RecipeTable.getColumnModel().getColumn(0).setPreferredWidth(80);
 		RecipeTable.getColumnModel().getColumn(0).setMinWidth(5);
@@ -263,7 +275,10 @@ public class RecipeSearchPanel extends JPanel {
 		RecipeTable.getColumnModel().getColumn(8).setMaxWidth(9001);
 	}
 	
-	public static void showDefaultRows(){
+	/**
+	 * Makes only the default columns visible on the recipe search table.
+	 */
+	public static void showDefaultColumns(){
 		RecipeTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		RecipeTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 		RecipeTable.getColumnModel().getColumn(0).setMinWidth(0);

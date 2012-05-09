@@ -16,9 +16,14 @@ import uk.co.pori.winebrewdb.InitializeMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the recipe data panel to be displayed as a tab on the main recipe panel tab bar. It shows the data for the currently selected recipe.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class RecipeDataPanel extends JPanel {
 
 	private static final long serialVersionUID = -744103763529915749L;
@@ -37,7 +42,9 @@ public class RecipeDataPanel extends JPanel {
 	private static JButton btnRecipeDataSave;
 	private static JButton btnRecipeDataCancel;
 	
-	
+	/**
+	 * Initialises the recipe data panel so that it can be viewed.
+	 */
 	public static void InitializePanel(){
 		
 		tabbedRecipeDataPanel = new JPanel();
@@ -290,6 +297,9 @@ public class RecipeDataPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Sets the fields on the recipe data panel to the data for the selected recipe.
+	 */
 	public static void setRecipeData(){
 		RecipePanel.btnPrintRecipe.setEnabled(true);
 		textRecipeRefB.setText((String) RecipeSearchPanel.RecipeTable.getValueAt(RecipeSearchPanel.RecipeSearchSelectedRow,0));
@@ -303,6 +313,9 @@ public class RecipeDataPanel extends JPanel {
 		textVolumeB.setText((String) RecipeSearchPanel.RecipeTable.getValueAt(RecipeSearchPanel.RecipeSearchSelectedRow,8));
 	}
 	
+	/**
+	 * Clears all data from all fields on the recipe data panel.
+	 */
 	public static void clearRecipeData(){
 		RecipePanel.btnPrintRecipe.setEnabled(false);
 		textRecipeRefB.setText("");
@@ -316,6 +329,12 @@ public class RecipeDataPanel extends JPanel {
 		textVolumeB.setText("");
 	}
 	
+	/**
+	 * Converts a string to a boolean.
+	 * 
+	 * @param s String value (either 1 or 0).
+	 * @return Returns the boolean value of the string.
+	 */
 	public static boolean stringToBool(String s) {
 		  if (s.equals("1"))
 		    return true;

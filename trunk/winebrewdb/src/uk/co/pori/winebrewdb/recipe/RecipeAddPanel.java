@@ -16,9 +16,14 @@ import uk.co.pori.winebrewdb.InitializeMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the add new recipe panel to be displayed as a tab on the main recipe panel tab bar.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class RecipeAddPanel extends JPanel {
 
 	private static final long serialVersionUID = -4501679200598952188L;
@@ -36,7 +41,9 @@ public class RecipeAddPanel extends JPanel {
 	private static JButton btnRecipeAddCancel;
 	private static JButton btnRecipeAddSave;
 	
-	
+	/**
+	 * Initialises the add recipe panel so that it can be viewed.
+	 */
 	public static void InitializePanel(){
 		
 		tabbedRecipeAddPanel = new JPanel();
@@ -230,6 +237,9 @@ public class RecipeAddPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Clears all data from all fields on the add recipe panel.
+	 */
 	public static void clearRecipeAddData(){
 		textRecipeRefAdd.setText("");
 		textRecipeNameAdd.setText("");
@@ -242,6 +252,12 @@ public class RecipeAddPanel extends JPanel {
 		textVolumeAdd.setText("");
 	}
 	
+	/**
+	 * Converts a string to a boolean.
+	 * 
+	 * @param s String value (either 1 or 0).
+	 * @return Returns the boolean value of the string.
+	 */
 	public static boolean stringToBool(String s) {
 		  if (s.equals("1"))
 		    return true;

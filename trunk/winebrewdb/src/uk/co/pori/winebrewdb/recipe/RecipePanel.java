@@ -18,6 +18,12 @@ import uk.co.pori.winebrewdb.MainWindow;
 
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the main recipe panel that contains all of the sub panels in a tab layout.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class RecipePanel extends JPanel {
 
 	private static final long serialVersionUID = 1332318777984759664L;
@@ -28,7 +34,9 @@ public class RecipePanel extends JPanel {
 	private static String RecipePanelStatus = "DeInitialized";
 	public static JButton btnPrintRecipe;
 
-	//public RecipePanel() {
+	/**
+	 * Initialises all the recipe panels (including getting all data) so that they are displayed on screen.
+	 */
 	public static void InitializePanel(){
 		
 		RecipePanel = new JPanel();
@@ -123,7 +131,9 @@ public class RecipePanel extends JPanel {
 		
 	}
 
-	
+	/**
+	 * De-initialises all the recipe panels so that they are no longer displayed on screen.
+	 */
 	public static void DeInitializePanel(){
 		if(RecipePanelStatus.equals("Initialized")) {
 			RecipePanel.setVisible(false);

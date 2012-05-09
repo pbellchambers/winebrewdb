@@ -42,6 +42,12 @@ import uk.co.pori.winebrewdb.recipe.RecipePanel;
 
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This handles all the menus (top and sidebar) for the application.
+ * 
+ * @author paul.bellchambers
+ *
+ */
 public class InitializeMenu extends MainWindow {
 	
 	private static JRadioButtonMenuItem radioSystemLAF;
@@ -57,6 +63,9 @@ public class InitializeMenu extends MainWindow {
 	private static JButton btnInformation;
 	private static JButton btnLedger;
 	
+	/**
+	 * Initialises the top menu so that it is visible on screen, and sets what all of the buttons do.
+	 */
 	public static void InitializeTopMenuMethod(){
 		
 		//Top Menu Bar
@@ -550,6 +559,9 @@ public class InitializeMenu extends MainWindow {
 		
 	}
 	
+	/**
+	 * Initialises the sidebar menu so that it is visible on screen, and sets what all the buttons do.
+	 */
 	public static void InitializeMenuMethod(){
 		
 		//Main Content Pane
@@ -635,6 +647,9 @@ public class InitializeMenu extends MainWindow {
 		
 	}
 	
+	/**
+	 * Calls the De-initialise panel method for all panels so that none are visible on screen.
+	 */
 	public static void DeinitializeAllPanels(){
 		WelcomePanel.DeInitializePanel();
 		BrewPanel.DeInitializePanel();
@@ -649,6 +664,9 @@ public class InitializeMenu extends MainWindow {
 		TemperatureAdjustedSGPanel.DeInitializePanel();
 	};
 	
+	/**
+	 * Disables all menu buttons (both top and sidebar).
+	 */
 	public static void DisableAllMenuButtons(){
 		btnBrew.setEnabled(false);
 		btnLedger.setEnabled(false);
@@ -662,6 +680,9 @@ public class InitializeMenu extends MainWindow {
 		mnHelp.setEnabled(false);
 	};
 	
+	/**
+	 * Enables all menu buttons (both top and sidebar).
+	 */
 	public static void EnableAllMenuButtons(){
 		btnBrew.setEnabled(true);
 		btnLedger.setEnabled(true);
