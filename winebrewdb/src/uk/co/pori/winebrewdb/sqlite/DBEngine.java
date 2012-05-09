@@ -31,14 +31,24 @@ import uk.co.pori.winebrewdb.recipe.RecipeAddPanel;
 import uk.co.pori.winebrewdb.recipe.RecipeDataPanel;
 import uk.co.pori.winebrewdb.recipe.RecipeSearchPanel;
 
-
+/**
+ * The DBEngine is used for all queries to the sqlite database.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class DBEngine {
 	
 	
 	private static ImageIcon imageIconBrewPicture;
 
 
-	//Create the connection
+	/**
+	 * Creates the JDBC connection to the sqlite database specified in the ini file.
+	 * 
+	 * @return Returns the connection.
+	 * @throws Exception
+	 */
 	public static Connection dbConnection() throws Exception {
 		Class.forName("org.sqlite.JDBC");
 		return DriverManager.getConnection("jdbc:sqlite:" + MainWindow.DatabaseLocationFromIni);	
@@ -46,7 +56,12 @@ public class DBEngine {
 	}
 	
 	
-	//Get everything from Brews table
+	/**
+	 * Gets everything from the Brews table according to the filters entered by the user.
+	 * 
+	 * @return Returns the brews table data.
+	 * @throws Exception
+	 */
 	public static Vector<Vector<Object>> getBrews() throws Exception {
 	    Connection conn = dbConnection();
 	    String Colour = null;
@@ -180,7 +195,11 @@ public class DBEngine {
 	}
 	
 	
-	//Update Brew
+	/**
+	 * Updates the brew data in the database with what has been entered on the edit brew tab.
+	 * 
+	 * @throws Exception
+	 */
 	public static void updateBrew() throws Exception {
 	    Connection conn = dbConnection();
 	    String InPlanningB = null;
@@ -309,7 +328,11 @@ public class DBEngine {
 	}
 	
 	
-	//Add Brew
+	/**
+	 * Adds a new brew to the database with what has been entered on the add brew tab.
+	 * 
+	 * @throws Exception
+	 */
 	public static void addBrew() throws Exception {
 	    Connection conn = dbConnection();
 	    String InPlanningAdd = null;
@@ -441,7 +464,11 @@ public class DBEngine {
 	}
 	
 	
-	//Delete Brew
+	/**
+	 * Deletes the selected brew and all related data from the database.
+	 * 
+	 * @throws Exception
+	 */
 	public static void deleteBrew() throws Exception {
 		Connection conn = dbConnection();
 		
@@ -462,7 +489,12 @@ public class DBEngine {
 	}
 	
 
-	//Get Notes from Brew Notes table
+	/**
+	 * Gets all brew notes data from the BrewNotes table for the selected brew.
+	 * 
+	 * @return Returns the brew notes data.
+	 * @throws Exception
+	 */
 	public static Vector<Vector<Object>> getBrewNotes() throws Exception {
 	    Connection conn = dbConnection();
 	     
@@ -494,7 +526,11 @@ public class DBEngine {
 	}
 	
 	
-	//Add Brew Note
+	/**
+	 * Adds a brew note to the BrewNotes table for the selected brew.
+	 * 
+	 * @throws Exception
+	 */
 	public static void addBrewNote() throws Exception {
 		Connection conn = dbConnection();
 	    String BrewNoteDateAddB = null;
@@ -531,7 +567,12 @@ public class DBEngine {
 	}
 	
 	
-	//Get next brew note ref
+	/**
+	 * Calculates the next brew note ref that should be set by getting the current highest value for the selected brew and adding 1 to it.
+	 * 
+	 * @return Returns the next brew note ref.
+	 * @throws Exception
+	 */
 	public static String getNextBrewNoteRef() throws Exception {
 		Connection conn = dbConnection();
 				
@@ -562,7 +603,11 @@ public class DBEngine {
 	}
 	
 	
-	//Update Brew Note
+	/**
+	 * Updates the selected brew note in the database with what has been entered on the brew notes tab.
+	 * 
+	 * @throws Exception
+	 */
 	public static void updateBrewNote() throws Exception {
 		Connection conn = dbConnection();
 		String BrewNoteDateUpdateB = null;
@@ -599,7 +644,11 @@ public class DBEngine {
 	}
 	
 	
-	//Delete Brew Note
+	/**
+	 * Deletes selected brew note from the database.
+	 * 
+	 * @throws Exception
+	 */
 	public static void deleteBrewNote() throws Exception {
 		Connection conn = dbConnection();
 		
@@ -614,7 +663,12 @@ public class DBEngine {
 	}
 		
 		
-	//Get Brew Picture Table Data
+	/**
+	 * Gets the list of brew pictures from the BrewPictures table for the currently selected brew.
+	 * 
+	 * @return Returns the list of brew pictures.
+	 * @throws Exception
+	 */
 	public static Vector<Vector<Object>> getBrewPictureTable() throws Exception {
 	    Connection conn = dbConnection();
 	     
@@ -643,7 +697,12 @@ public class DBEngine {
 	}
 	
 	
-	//Get next brew picture ref
+	/**
+	 * Calculates the next brew picture ref that should be set by getting the current highest value for the selected brew and adding 1 to it.
+	 * 
+	 * @return Returns the next brew picture ref.
+	 * @throws Exception
+	 */
 	public static String getNextBrewPictureRef() throws Exception {
 		Connection conn = dbConnection();
 					
@@ -675,7 +734,11 @@ public class DBEngine {
 	}
 	
 	
-	//Update Brew Picture
+	/**
+	 * Updates the selected brew picture in the database with the information entered on the brew pictures tab.
+	 * 
+	 * @throws Exception
+	 */
 	public static void updateBrewPicture() throws Exception {
 		Connection conn = dbConnection();
 	
@@ -698,7 +761,11 @@ public class DBEngine {
 	}
 	
 	
-	//Delete Brew Picture
+	/**
+	 * Deletes the selected brew picture from the database.
+	 * 
+	 * @throws Exception
+	 */
 	public static void deleteBrewPicture() throws Exception {
 		Connection conn = dbConnection();
 			
@@ -718,31 +785,39 @@ public class DBEngine {
 	}
 	
 	
-	//Get Brew Picture from DB
-		public static void getBrewPicture() throws Exception {
-			Connection conn = dbConnection();
+	/**
+	 * Gets the image for the selected brew picture from the database and sets it to imageIconBrewPicture
+	 * 
+	 * @throws Exception
+	 */
+	public static void getBrewPicture() throws Exception {
+		Connection conn = dbConnection();
 			
-			PreparedStatement pre = conn.prepareStatement(
-					"select Picture from BrewPictures where BrewRef='" +
-					BrewDataPanel.textBrewRefB.getText() +
-					"' and BrewPicRef='" +
-					BrewPicturesPanel.textBrewPictureRef.getText() + 
-					"'"
-				);
+		PreparedStatement pre = conn.prepareStatement(
+				"select Picture from BrewPictures where BrewRef='" +
+				BrewDataPanel.textBrewRefB.getText() +
+				"' and BrewPicRef='" +
+				BrewPicturesPanel.textBrewPictureRef.getText() + 
+				"'"
+			);
 
-			ResultSet rs = pre.executeQuery();
+		ResultSet rs = pre.executeQuery();
 	       
-			while(rs.next()){
-		        imageIconBrewPicture = new ImageIcon(rs.getBytes(1));
-			}
-			
-			/*Close the connection after use (MUST)*/
-		    if(conn!=null)
-		    conn.close();
+		while(rs.next()){
+	        imageIconBrewPicture = new ImageIcon(rs.getBytes(1));
 		}
+			
+		/*Close the connection after use (MUST)*/
+	    if(conn!=null)
+	    conn.close();
+	}
 	
 	
-	//Insert Brew Picture
+	/**
+	 * Adds the new brew picture on the brew pictures tab to the database.
+	 * 
+	 * @throws Exception
+	 */
 	public static void insertBrewPicture() throws Exception {
 		Connection conn = dbConnection();
 		
@@ -767,7 +842,13 @@ public class DBEngine {
 	}
 	
 	
-	//Get Bytes From File
+	/**
+	 * Gets the bytes from a file specified by the user (used to load into the brew pictures table into the database).
+	 * 
+	 * @param file User specified file.
+	 * @return Returns the bytes of that file.
+	 * @throws IOException
+	 */
 	public static byte[] getBytesFromFile(File file) throws IOException {
 		InputStream is = new FileInputStream(file);
 		
@@ -804,7 +885,12 @@ public class DBEngine {
 	}
 	
 		
-	//Write to file
+	/**
+	 * Gets the bytes from a brew picture stored in the database and writes it to a user specified file.
+	 * 
+	 * @param filename The user specified file.
+	 * @throws Exception
+	 */
 	public static void writeToFile(File filename) throws Exception {
 		byte[] imageBytes = null;
 		BufferedOutputStream bufferedOutput = null;
@@ -846,7 +932,14 @@ public class DBEngine {
 	}
 	
 
-	//Scaled Image Icon
+	/**
+	 * Scales the imageIconBrewPicture image to fit the width/height of the panel.
+	 * 
+	 * @param panelwidth New width of the panel.
+	 * @param panelheight New height of the panel.
+	 * @param location Will be "file" if the image is a file on disk and not yet stored in the database, anything else otherwise.
+	 * @return Returns the scaled image as imageIconScaledBrewPicture
+	 */
 	public static ImageIcon scaledImageIcon(int panelwidth, int panelheight, String location) {
 		if(location.equals("file")){
 			try {
@@ -917,7 +1010,12 @@ public class DBEngine {
 	}
 	
 	
-	//Get everything from Recipes table
+	/**
+	 * Gets everything from the recipes table in the database.
+	 * 
+	 * @return Returns all the data.
+	 * @throws Exception
+	 */
 	public static Vector<Vector<Object>> getRecipes() throws Exception {
 	    Connection conn = dbConnection();
 	          
@@ -963,7 +1061,11 @@ public class DBEngine {
 	}
 
 
-	//Update Recipe
+	/**
+	 * Updates the selected recipe in the database with the data on the recipe data tab.
+	 * 
+	 * @throws Exception
+	 */
 	public static void updateRecipe() throws Exception {
 	    Connection conn = dbConnection();
 	        
@@ -998,7 +1100,11 @@ public class DBEngine {
 	}
 
 
-	//Add Recipe
+	/**
+	 * Adds a new recipe to the recipes table with the data on the add recipe tab.
+	 * 
+	 * @throws Exception
+	 */
 	public static void addRecipe() throws Exception {
 	    Connection conn = dbConnection(); 
 	     
@@ -1031,7 +1137,11 @@ public class DBEngine {
 	}
 
 
-	//Delete Recipe
+	/**
+	 * Deletes the selected recipe from the recipes table in the database.
+	 * 
+	 * @throws Exception
+	 */
 	public static void deleteRecipe() throws Exception {
 		Connection conn = dbConnection();
 		
@@ -1047,7 +1157,13 @@ public class DBEngine {
 	
 	
 	
-	//Get Costs from Brew Costs table
+	/**
+	 * Gets the costs for the selected brew from the BrewCosts table in the database.
+	 * 
+	 * @param brewref The brewref for the selected brew.
+	 * @return Returns the brew costs data.
+	 * @throws Exception
+	 */
 	public static Vector<Vector<Object>> getBrewCosts(String brewref) throws Exception {
 	    Connection conn = dbConnection();
 	     
@@ -1078,7 +1194,15 @@ public class DBEngine {
 	}
 
 
-	//Add Brew Cost
+	/**
+	 * Adds a new cost for the selected brew to the BrewCosts table in the database.
+	 * 
+	 * @param brewref The brewref for the selected brew.
+	 * @param brewcostlineitem The user entered lineitem string for the selected brew.
+	 * @param brewcostcost The user entered cost for the selected brew.
+	 * @param brewcostsupplier The user entered supplier for the selected brew.
+	 * @throws Exception
+	 */
 	public static void addBrewCost(String brewref, String brewcostlineitem, String brewcostcost, String brewcostsupplier) throws Exception {
 		Connection conn = dbConnection();
 		
@@ -1105,7 +1229,13 @@ public class DBEngine {
 	}
 
 
-	//Get next brew cost ref
+	/**
+	 * Gets the next available brew cost ref for the selected brew, by selecting the current highest value for that brew and adding 1.
+	 * 
+	 * @param brewref The brewref for the selected brew.
+	 * @return Returns the next brewcostref.
+	 * @throws Exception
+	 */
 	public static String getNextBrewCostRef(String brewref) throws Exception {
 		Connection conn = dbConnection();
 				
@@ -1136,7 +1266,16 @@ public class DBEngine {
 	}
 
 
-	//Update Brew Cost
+	/**
+	 * Updates the selected brew cost with the data entered by the user.
+	 *  
+	 * @param brewref The brewref for the selected brew.
+	 * @param brewcostlineitem The user entered line item string for the brew cost.
+	 * @param brewcostcost The user entered cost for the brew cost.
+	 * @param brewcostsupplier The user entered supplier for the brew cost.
+	 * @param brewcostref The brewcostref of the selected brew cost.
+	 * @throws Exception
+	 */
 	public static void updateBrewCost(String brewref, String brewcostlineitem, String brewcostcost, String brewcostsupplier, String brewcostref) throws Exception {
 		Connection conn = dbConnection();
 		
@@ -1163,7 +1302,13 @@ public class DBEngine {
 	}
 
 
-	//Delete Brew Cost
+	/**
+	 * Deletes the selected brew cost from the database.
+	 * 
+	 * @param brewref The brewref of the selected brew cost.
+	 * @param brewcostref The brewcostref of the selected brew cost.
+	 * @throws Exception
+	 */
 	public static void deleteBrewCost(String brewref, String brewcostref) throws Exception {
 		Connection conn = dbConnection();
 		
@@ -1178,7 +1323,13 @@ public class DBEngine {
 	}
 	
 	
-	//Set total brew cost
+	/**
+	 * Sets the total brew cost in the database for the selected brew. It does this by totalling the sum of all costs for the selected brew in sql, and then setting that value against the brew in the Brews table.
+	 * 
+	 * @param brewref The brewref of the selected brew.
+	 * @param numberbottles The number of bottles on the brew data tab for the selected brew.
+	 * @throws Exception
+	 */
 	public static void setTotalBrewCost(String brewref, String numberbottles) throws Exception {
 		Connection conn = dbConnection();
 				
@@ -1253,7 +1404,13 @@ public class DBEngine {
 			    
 	}
 	
-	
+	/**
+	 * Gets the total brew cost for the selected brew. It does this by totalling the sum of all costs for the selected brew in sql.
+	 * 
+	 * @param brewref The brewref of the selected brew.
+	 * @return Returns the total brew cost of the selected brew.
+	 * @throws Exception
+	 */
 	public static String getTotalBrewCost(String brewref) throws Exception {
 		Connection conn = dbConnection();
 				
@@ -1283,6 +1440,13 @@ public class DBEngine {
 			    
 	}
 	
+	/**
+	 * Gets the brew cost per bottle for the selected brew.
+	 * 
+	 * @param brewref The brewref of the selected brew.
+	 * @return Returns the brew cost per bottle for the selected brew.
+	 * @throws Exception
+	 */
 	public static String getBrewCostPerBottle(String brewref) throws Exception {
 		Connection conn = dbConnection();
 				
@@ -1297,7 +1461,6 @@ public class DBEngine {
 		Float CostPerBottle = null;
 		
 		while(rs.next()){
-			//Add one to the current highest
 			CostPerBottle = rs.getFloat(1);			
 		}
 		
@@ -1313,7 +1476,12 @@ public class DBEngine {
 	}
 
 	
-	//Get Costs from Equipment Costs table
+	/**
+	 * Gets all costs from the EquipmentCosts table in the database based on the user entered filters.
+	 * 
+	 * @return Returns the costs.
+	 * @throws Exception
+	 */
 	public static Vector<Vector<Object>> getEquipmentCosts() throws Exception {
 	    Connection conn = dbConnection();
 	    String LedgerEquipmentDatesFilterA = null;
@@ -1381,7 +1549,11 @@ public class DBEngine {
 	}
 
 
-	//Add Equipment Cost
+	/**
+	 * Adds the entered equipment cost item to the EquipmentCosts table.
+	 * 
+	 * @throws Exception
+	 */
 	public static void addEquipmentCost() throws Exception {
 		Connection conn = dbConnection();
 	    String LedgerEquipmentCostDate = null;
@@ -1414,7 +1586,11 @@ public class DBEngine {
 	}
 
 
-	//Update Equipment Cost
+	/**
+	 * Updates the selected equipment cost in the database with the user entered data.
+	 * 
+	 * @throws Exception
+	 */
 	public static void updateEquipmentCost() throws Exception {
 		Connection conn = dbConnection();
 	    String LedgerEquipmentCostDate = null;
@@ -1449,7 +1625,11 @@ public class DBEngine {
 	}
 
 
-	//Delete Equipment Cost
+	/**
+	 * Deletes the currently selected equipment cost from the database.
+	 * 
+	 * @throws Exception
+	 */
 	public static void deleteEquipmentCost() throws Exception {
 		Connection conn = dbConnection();
 		
@@ -1463,7 +1643,12 @@ public class DBEngine {
 		    
 	}
 	
-	//Get Total Brews
+	/**
+	 * Gets the total number of brews from the Brews table in the database where the brew isn't in planning.
+	 * 
+	 * @return Returns the total number of brews.
+	 * @throws Exception
+	 */
 	public static BigDecimal getTotalNumberBrews() throws Exception {
 		Connection conn = dbConnection();
 				
@@ -1497,7 +1682,12 @@ public class DBEngine {
 	}
 	
 	
-	//Get Total Bottles
+	/**
+	 * Gets the total number of bottles for all brews in the database where the brew is not in planning.
+	 * 
+	 * @return Returns the total number of bottles.
+	 * @throws Exception
+	 */
 	public static BigDecimal getTotalNumberBottles() throws Exception {
 		Connection conn = dbConnection();
 				
@@ -1531,7 +1721,12 @@ public class DBEngine {
 	}
 	
 
-	//Get ledger brews
+	/**
+	 * Gets the brews from the database to be displayed on the ledger brews tab based on the user entered filters.
+	 * 
+	 * @return Returns the selected brews.
+	 * @throws Exception
+	 */
 	public static Vector<Vector<Object>> getLedgerBrews() throws Exception {
 	    Connection conn = dbConnection();
 	    String BrewCostDatesFilterA = null;
@@ -1634,7 +1829,12 @@ public class DBEngine {
 	}
 	
 		
-	//Get information tab data
+	/**
+	 * Gets all of the information tab data from the database.
+	 * 
+	 * @return Returns the information tab data.
+	 * @throws Exception
+	 */
 	public static Vector<Vector<Object>> getInformationTabData() throws Exception {
 	    Connection conn = dbConnection();
 	     
@@ -1663,7 +1863,11 @@ public class DBEngine {
 	}
 	
 	
-	//Delete information tab data
+	/**
+	 * Deletes the currently selected information tab data from the database.
+	 * 
+	 * @throws Exception
+	 */
 	public static void deleteInformationTabData() throws Exception {
 	    Connection conn = dbConnection();
 	     
@@ -1682,7 +1886,11 @@ public class DBEngine {
 	}
 	
 	
-	//Update information tab data
+	/**
+	 * Updates the currently selected information tab data in the database.
+	 * 
+	 * @throws Exception
+	 */
 	public static void updateInformationTabData() throws Exception {
 	    Connection conn = dbConnection();
 	    
@@ -1716,7 +1924,11 @@ public class DBEngine {
 	}
 	
 	
-	//Add information tab data
+	/**
+	 * Adds new information tab data in the database.
+	 * 
+	 * @throws Exception
+	 */
 	public static void addInformationTabData() throws Exception {
 	    Connection conn = dbConnection();
 	     

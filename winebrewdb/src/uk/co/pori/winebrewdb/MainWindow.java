@@ -18,6 +18,12 @@ import javax.swing.UIManager;
 import org.ini4j.InvalidFileFormatException;
 import org.ini4j.Wini;
 
+/**
+ * Contains everything to start the application, and sets up the main window.
+ * 
+ * @author paul.bellchambers
+ *
+ */
 public class MainWindow {
 
 	public static JFrame WineBrewDBFrame;
@@ -30,12 +36,13 @@ public class MainWindow {
 	static Wini brewIni;
 	
 	/**
-	 * Launch the application.
-	 */	
+	 * Starts the application. Including getting the users specified preferences or creating the default ones if they don't exist, and setting the application as appropriate. 
+	 * 
+	 * @param args ?? No idea what any args do here.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 	   		
-
 			public void run() {
 				//Set look and feel to system temporarily
 				try{ 
@@ -174,14 +181,14 @@ public class MainWindow {
 
 
 	/**
-	 * Create the application.
+	 * Creates the main window of the application.
 	 */
 	public MainWindow() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the main frame so that it is visible.
 	 */
 	public void initialize() {
 		WineBrewDBFrame = new JFrame();

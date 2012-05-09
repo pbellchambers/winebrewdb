@@ -26,7 +26,12 @@ import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * This is the information edit panel that allows you to add/edit information tabs.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class InformationEditTab extends JPanel {
 	
 	private static final long serialVersionUID = 417454069851487329L;
@@ -47,7 +52,9 @@ public class InformationEditTab extends JPanel {
 	private static JButton btnInformationTabAdd;
 	public static String textInformationOrigTabID;
 
-	
+	/**
+	 * Initialises the information edit panel (including getting the table of data) so that it can be viewed.
+	 */
 	public static void InitializePanel(){
 		
 		tabbedInformationEditTab = new JPanel();
@@ -380,6 +387,9 @@ public class InformationEditTab extends JPanel {
 		
 	}
 	
+	/**
+	 * Initialises the information tab data table so that it is visible (including getting the information from the database).
+	 */
 	public static void initializeTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
@@ -431,6 +441,9 @@ public class InformationEditTab extends JPanel {
 		
 	}
 	
+	/**
+	 * Adds the mouse listener to the information tab table that listens for mouse clicks.
+	 */
 	public static void addInformationEditMouseListener(){
 		mouseListenerIsActive = true;
 		
@@ -451,10 +464,16 @@ public class InformationEditTab extends JPanel {
 		});
 	}
 	
+	/**
+	 * Removes the mouse listener from the information tab table.
+	 */
 	public static void removeInformationEditMouseListener(){
 		mouseListenerIsActive = false;
 	}
 	
+	/**
+	 * Sets the fields on the information edit tab to contain the data for the selected information tab.
+	 */
 	public static void setInformationTabData(){
 		if(InformationEditSelectedRow != -1){
 			textInformationOrigTabID = (String) InformationEditTable.getValueAt(InformationEditSelectedRow,0);
@@ -466,6 +485,9 @@ public class InformationEditTab extends JPanel {
 		}
 	}
 	
+	/**
+	 * Clears all data from all fields on the information edit tab.
+	 */
 	public static void clearInformationTabData(){
 		textInformationOrigTabID = "";
 		textInformationTabID.setText("");
@@ -474,6 +496,12 @@ public class InformationEditTab extends JPanel {
 		checkboxInformationTabHTML.setSelected(false);
 	}
 	
+	/**
+	 * Converts a string to a boolean.
+	 * 
+	 * @param s String value (either 1 or 0).
+	 * @return Returns the boolean value of the string.
+	 */
 	public static boolean stringToBool(String s) {
 		  if (s.equals("1"))
 		    return true;
@@ -481,7 +509,10 @@ public class InformationEditTab extends JPanel {
 		    return false;
 		  throw new IllegalArgumentException(s+" is not a bool. Only 1 and 0 are.");
 		}
-
+	
+	/**
+	 * Refreshes all of the information tabs so that newly added/removed/edited tabs are instantly visible.
+	 */
 	public static void refreshInformationTabs(){
 		InformationPanel.tabbedInformationPane.removeAll();
 		InformationPanel.dynamicallyAddTabs();

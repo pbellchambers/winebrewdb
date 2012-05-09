@@ -22,6 +22,12 @@ import uk.co.pori.winebrewdb.MainWindow;
 
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the welcome panel that is shown on first opening the application.
+ * 
+ * @author paul.bellchambers
+ *
+ */
 public class WelcomePanel extends JPanel {
 
 	private static final long serialVersionUID = 3333498745984753687L;
@@ -30,6 +36,9 @@ public class WelcomePanel extends JPanel {
 	private static JLabel WelcomeText3;
 	private static String WelcomePanelStatus = "DeInitialized";
 
+	/**
+	 * Initialises the welcome panel so that it is displayed on screen.
+	 */
 	public static void InitializePanel(){		
 		
 		InitializeMenu.DisableAllMenuButtons();
@@ -183,7 +192,9 @@ public class WelcomePanel extends JPanel {
 		WelcomePanelStatus = "Initialized";
 	}
 
-	
+	/**
+	 * De-initialises the welcom panel so that it is no longer displayed on screen.
+	 */
 	public static void DeInitializePanel(){
 		if(WelcomePanelStatus.equals("Initialized")) {
 			WelcomePanel.remove(WelcomeText2);

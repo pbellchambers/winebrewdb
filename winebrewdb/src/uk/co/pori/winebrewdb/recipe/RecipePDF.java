@@ -21,7 +21,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
-
+/**
+ * This handles generating the pdf file for the selected recipe.
+ * 
+ * @author paul.bellchambers
+ *
+ */
 public class RecipePDF {
  
 	private static Font heading1Font = new Font(Font.FontFamily.HELVETICA, 18,Font.BOLD);
@@ -29,7 +34,11 @@ public class RecipePDF {
 	private static Font smallNormal = new Font(Font.FontFamily.HELVETICA, 9,Font.NORMAL);
 	private static Font headerFoot = new Font(Font.FontFamily.HELVETICA, 7,Font.ITALIC,BaseColor.GRAY);
 	
-
+	/**
+	 * Attempts to automatically open the file at the specified location.
+	 * 
+	 * @param location File location.
+	 */
 	private static void openPDF(String location) {
  
 	  try {
@@ -59,7 +68,11 @@ public class RecipePDF {
  
 	}
 	
-
+	/**
+	 * Creates the physical pdf file at the specified location.
+	 * 
+	 * @param location File location.
+	 */
 	public static void createPDF(String location) {
 
 		try {
@@ -85,8 +98,11 @@ public class RecipePDF {
 		}
 
 
-
-	//iText allows to add metadata to the PDF which can be viewed in your Adobe Reader under File -> Properties
+	/**
+	 * Adds metadata to the document (iText allows to add metadata to the PDF which can be viewed in your Adobe Reader under File -> Properties). 
+	 * 
+	 * @param document The specified document (will always be "document" for this). 
+	 */
 	private static void addMetaData(Document document) {
 		document.addTitle(RecipeDataPanel.textRecipeNameB.getText());
 		document.addSubject("Recipe Data for recipe: " + RecipeDataPanel.textRecipeNameB.getText());
@@ -96,6 +112,12 @@ public class RecipePDF {
 	}
 	
 	
+	/**
+	 * Gets and adds the brew data to the specified document.
+	 * 
+	 * @param document The specified document (will always be "document" for this).
+	 * @throws DocumentException
+	 */
 	private static void addBrewData(Document document)
 			throws DocumentException {
 		Paragraph genericParagraph = new Paragraph();
@@ -157,16 +179,29 @@ public class RecipePDF {
 		document.newPage();
 	}
 	
-	
+	/**
+	 * Adds a specified number of empty lines to a specified paragraph.
+	 * 
+	 * @param paragraph The specified paragraph (will always be "genericParagraph" for this).
+	 * @param number The number of empty lines.
+	 */
 	private static void addEmptyLine(Paragraph paragraph, int number) {
 		for (int i = 0; i < number; i++) {
 			paragraph.add(new Paragraph(" "));
 		}
 	}
 	
-
+	/**
+	 * Adds the header and footer to the document.
+	 * 
+	 * @author paul.bellchambers
+	 *
+	 */
 	static class HeaderFooter extends PdfPageEventHelper {
 
+		/**
+		 * Adds the header and footer to the document.
+		 */
         public void onEndPage (PdfWriter writer, Document document) {
             Rectangle rect = writer.getBoxSize("box");
             
