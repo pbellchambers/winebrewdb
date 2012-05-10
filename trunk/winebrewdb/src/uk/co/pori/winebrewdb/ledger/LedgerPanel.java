@@ -15,9 +15,14 @@ import javax.swing.event.ChangeListener;
 
 import uk.co.pori.winebrewdb.MainWindow;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the main ledger panel that contains all of the sub panels in a tab layout.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class LedgerPanel extends JPanel {
 	
 	private static final long serialVersionUID = 4792318776984759664L;
@@ -28,7 +33,9 @@ public class LedgerPanel extends JPanel {
 	private static String LedgerPanelStatus = "DeInitialized";
 	public static JButton btnPrintLedger;
 
-	//public LedgerPanel() {
+	/**
+	 * Initialises all the ledger panels (including getting all data) so that they are displayed on screen.
+	 */
 	public static void InitializePanel(){
 		
 		LedgerPanel = new JPanel();
@@ -121,7 +128,9 @@ public class LedgerPanel extends JPanel {
 		
 	}
 
-	
+	/**
+	 * De-initialises all the ledger panels so that they are no longer displayed on screen.
+	 */
 	public static void DeInitializePanel(){
 		if(LedgerPanelStatus.equals("Initialized")) {
 			LedgerPanel.setVisible(false);

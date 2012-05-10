@@ -23,10 +23,14 @@ import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
 import agiletrack.swing.JDateChooser;
 
-
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * This is the ledger brew cost search panel to be displayed as a tab on the main ledger panel tab bar. It shows the search filter and table for the ledger brew cost data.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class LedgerBrewCostSearchPanel extends JPanel {
 	
 	private static final long serialVersionUID = -3700951316471175013L;
@@ -45,7 +49,9 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 	public static JTextField textLedgerBrewNumberBottlesA;
 	public static JTextField textLedgerBrewNumberBottlesB;
 
-	
+	/**
+	 * Initialises the ledger brew cost search panel so that it can be viewed (including populating the table).
+	 */
 	public static void InitializePanel(){
 		
 		LedgerBrewCostTableFields = "Summary";
@@ -135,6 +141,9 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Initialises the ledger brew costs table on the ledger brew costs search tab so that it can be viewed (including getting the data from the database).
+	 */
 	public static void initializeTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
@@ -185,9 +194,9 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 
 		
 		if (LedgerBrewCostTableFields.equals("Summary")){
-			showDefaultRows();
+			showDefaultColumns();
 		}else {
-			showAllRows();
+			showAllColumns();
 		}
 		
 		LedgerBrewCostTable.getTableHeader().setReorderingAllowed(false);
@@ -240,7 +249,10 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 		
 	}
 	
-	public static void showAllRows(){
+	/**
+	 * Makes all columns visible on the brew costs search table.
+	 */
+	public static void showAllColumns(){
 		LedgerBrewCostTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		LedgerBrewCostTable.getColumnModel().getColumn(0).setPreferredWidth(80);
 		LedgerBrewCostTable.getColumnModel().getColumn(0).setMinWidth(5);
@@ -264,7 +276,10 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 		LedgerBrewCostTable.getColumnModel().getColumn(5).setCellRenderer(NumberRenderer.getCurrencyRenderer());
 	}
 	
-	public static void showDefaultRows(){
+	/**
+	 * Makes only the default columns visible on the brew costs search table (by setting column width to 0 on the unneeded ones).
+	 */
+	public static void showDefaultColumns(){
 		LedgerBrewCostTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		LedgerBrewCostTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 		LedgerBrewCostTable.getColumnModel().getColumn(0).setMinWidth(0);

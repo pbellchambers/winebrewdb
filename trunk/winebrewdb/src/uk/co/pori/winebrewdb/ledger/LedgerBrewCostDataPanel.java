@@ -26,10 +26,14 @@ import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.NumberRenderer;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
-
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * This is the ledger brew costs data panel to be displayed as a tab on the main ledger panel tab bar. It shows the brew costs data for the selected brew.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class LedgerBrewCostDataPanel extends JPanel {
 	
 	private static final long serialVersionUID = -1660532837353771865L;
@@ -53,7 +57,9 @@ public class LedgerBrewCostDataPanel extends JPanel {
 	public static JTextField textLedgerBrewRef;
 	public static JTextField textLedgerBrewNumberBottles;
 
-	
+	/**
+	 * Initialises the ledger brew costs data panel so that it can be viewed (including populating the table and defining what buttons do).
+	 */
 	public static void InitializePanel(){
 		
 		tabbedLedgerBrewCostPanel = new JPanel();
@@ -383,6 +389,9 @@ public class LedgerBrewCostDataPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Initialises the ledger brew costs data table on the ledger brew costs data tab so that it can be viewed (including getting the data from the database).
+	 */
 	public static void initializeTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
@@ -451,6 +460,9 @@ public class LedgerBrewCostDataPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Adds the mouse listener to the ledger brew costs data table that listens for mouse clicks.
+	 */
 	public static void addLedgerBrewCostMouseListener(){
 		mouseListenerIsActive = true;
 		
@@ -471,10 +483,16 @@ public class LedgerBrewCostDataPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Removes the mouse listener from the ledger brew costs data table.
+	 */
 	public static void removeLedgerBrewCostMouseListener(){
 		mouseListenerIsActive = false;
 	}
 	
+	/**
+	 * Gets the data from the database and sets the fields for the current brew cost.
+	 */
 	public static void setLedgerBrewCostData(){
 		if(LedgerBrewCostSelectedRow != -1){
 			textLedgerBrewCostRef.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSelectedRow,0));
@@ -484,6 +502,9 @@ public class LedgerBrewCostDataPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Calculates and sets the total brew cost and brew cost per bottle.
+	 */
 	public static void setBrewTotalCostData(){
 		try {
 			textLedgerBrewCostTotalCost.setText(DBEngine.getTotalBrewCost(textLedgerBrewRef.getText()));
@@ -497,8 +518,9 @@ public class LedgerBrewCostDataPanel extends JPanel {
 		}
 	}
 
-
-	
+	/**
+	 * Clears all data from all fields on the ledger brew costs data tab.
+	 */
 	public static void clearLedgerBrewCostData(){
 		textLedgerBrewCostRef.setText("");
 		textLedgerBrewCostLineItem.setText("");
