@@ -32,9 +32,14 @@ import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
 import agiletrack.swing.JDateChooser;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the ledger equipment panel to be displayed as a tab on the main ledger panel tab bar. It shows the ledger equipment costs data.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class LedgerEquipmentPanel extends JPanel {
 
 	private static final long serialVersionUID = -6282891098304905534L;
@@ -64,6 +69,9 @@ public class LedgerEquipmentPanel extends JPanel {
 	public static JDateChooser chooserLedgerEquipmentDatesFilterA;
 	public static JDateChooser chooserLedgerEquipmentDatesFilterB;
 	
+	/**
+	 * Initialises the ledger equipment panel so that it can be viewed (including populating the table).
+	 */
 	public static void InitializePanel(){
 		tabbedLedgerEquipmentCostPanel = new JPanel();
 		tabbedLedgerEquipmentCostPanel.setBackground(Color.WHITE);
@@ -463,6 +471,9 @@ public class LedgerEquipmentPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Initialises the ledger equipment costs table on the ledger equipment tab so that it can be viewed (including getting the data from the database).
+	 */
 	public static void initializeTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
@@ -535,6 +546,9 @@ public class LedgerEquipmentPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Adds the mouse listener to the ledger equipment costs table that listens for mouse clicks.
+	 */
 	public static void addLedgerEquipmentCostMouseListener(){
 		mouseListenerIsActive = true;
 		
@@ -555,10 +569,16 @@ public class LedgerEquipmentPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Removes the mouse listener from the ledger equipment costs table.
+	 */
 	public static void removeLedgerEquipmentCostMouseListener(){
 		mouseListenerIsActive = false;
 	}
 	
+	/**
+	 * Gets the data from the database and sets the fields for the current ledger equipment cost.
+	 */
 	public static void setLedgerEquipmentCostData(){
 		if(LedgerEquipmentCostSelectedRow != -1){
 			textLedgerEquipmentCostRef.setText((String) LedgerEquipmentCostTable.getValueAt(LedgerEquipmentCostSelectedRow,0));
@@ -573,7 +593,9 @@ public class LedgerEquipmentPanel extends JPanel {
 		}
 	}
 	
-
+	/**
+	 * Calculates and sets the total, total per brew, and total per bottle ledger equipment costs.
+	 */
 	public static void setBrewTotalCostData(){
 	    BigDecimal total = new BigDecimal("0");
 	    for (int i = 0; i < (LedgerEquipmentCostTable.getRowCount()); i++ ) {
@@ -591,7 +613,9 @@ public class LedgerEquipmentPanel extends JPanel {
 	}
 
 
-	
+	/**
+	 * Clears all data from all fields on the ledger equipment cost tab.
+	 */
 	public static void clearLedgerEquipmentCostData(){
 		textLedgerEquipmentCostRef.setText("");
 		chooserLedgerEquipmentCostDate.setDate(null);
