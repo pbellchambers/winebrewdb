@@ -377,7 +377,7 @@ public class BrewSearchPanel extends JPanel {
 	/**
 	 * Makes all columns visible on the brew search table.
 	 */
-	public static void showAllColumns(){
+	private static void showAllColumns(){
 		BrewTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		BrewTable.getColumnModel().getColumn(0).setPreferredWidth(80);
 		BrewTable.getColumnModel().getColumn(0).setMinWidth(5);
@@ -464,7 +464,7 @@ public class BrewSearchPanel extends JPanel {
 	/**
 	 * Makes only the default columns visible on the brew search table (by setting column width to 0 on the unneeded ones).
 	 */
-	public static void showDefaultColumns(){
+	private static void showDefaultColumns(){
 		BrewTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		BrewTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 		BrewTable.getColumnModel().getColumn(0).setMinWidth(0);

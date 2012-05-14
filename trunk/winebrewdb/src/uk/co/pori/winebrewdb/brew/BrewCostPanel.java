@@ -474,7 +474,7 @@ public class BrewCostPanel extends JPanel {
 	/**
 	 * Adds the mouse listener to the brew costs table that listens for mouse clicks.
 	 */
-	public static void addBrewCostMouseListener(){
+	private static void addBrewCostMouseListener(){
 		mouseListenerIsActive = true;
 		
 		BrewCostTable.addMouseListener(new MouseAdapter() {
@@ -495,16 +495,9 @@ public class BrewCostPanel extends JPanel {
 	}
 	
 	/**
-	 * Removes the mouse listener from the brew costs table.
-	 */
-	public static void removeBrewCostMouseListener(){
-		mouseListenerIsActive = false;
-	}
-	
-	/**
 	 * Sets the data in the fields on the Brew Costs tab to the currently selected brew cost.
 	 */
-	public static void setBrewCostData(){
+	private static void setBrewCostData(){
 		if(BrewCostSelectedRow != -1){
 			textBrewCostRef.setText((String) BrewCostTable.getValueAt(BrewCostSelectedRow,0));
 			textBrewCostLineItem.setText((String) BrewCostTable.getValueAt(BrewCostSelectedRow,1));

@@ -252,19 +252,4 @@ public class RecipeAddPanel extends JPanel {
 		textVolumeAdd.setText("");
 	}
 	
-	/**
-	 * Converts a string to a boolean.
-	 * 
-	 * @param s String value (either 1 or 0).
-	 * @return Returns the boolean value of the string.
-	 */
-	public static boolean stringToBool(String s) {
-		  if (s.equals("1"))
-		    return true;
-		  if (s.equals("0"))
-		    return false;
-		  throw new IllegalArgumentException(s+" is not a bool. Only 1 and 0 are.");
-		}
-
-
 }

@@ -143,7 +143,7 @@ public class AlcoholPanel extends JPanel {
 	/**
 	 * Calculates the alcoholic percentage based on the user entered values using the "HMRC" method.
 	 */
-	public static void calculateAlcoholHMRC(){
+	private static void calculateAlcoholHMRC(){
 		BigDecimal OG = new BigDecimal(fieldHStartingSG.getText()).multiply(new BigDecimal("1000"));
 		BigDecimal FG = new BigDecimal(fieldHFinishingSG.getText()).multiply(new BigDecimal("1000"));
 		BigDecimal Drop = OG.subtract(FG);
@@ -157,7 +157,7 @@ public class AlcoholPanel extends JPanel {
 	/**
 	 * Calculates the alcoholic percentage based on the user entered values using the "CJJ Berry" method.
 	 */
-	public static void calculateAlcoholCJJBerry(){
+	private static void calculateAlcoholCJJBerry(){
 		BigDecimal OG = new BigDecimal(fieldCStartingSG.getText()).multiply(new BigDecimal("1000"));
 		BigDecimal FG = new BigDecimal(fieldCFinishingSG.getText()).multiply(new BigDecimal("1000"));
 		BigDecimal Drop = OG.subtract(FG);

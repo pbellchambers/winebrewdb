@@ -244,7 +244,7 @@ public class RecipeSearchPanel extends JPanel {
 	/**
 	 * Makes all columns visible on the recipe search table.
 	 */
-	public static void showAllColumns(){
+	private static void showAllColumns(){
 		RecipeTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		RecipeTable.getColumnModel().getColumn(0).setPreferredWidth(80);
 		RecipeTable.getColumnModel().getColumn(0).setMinWidth(5);
@@ -278,7 +278,7 @@ public class RecipeSearchPanel extends JPanel {
 	/**
 	 * Makes only the default columns visible on the recipe search table (by setting column width to 0 on the unneeded ones).
 	 */
-	public static void showDefaultColumns(){
+	private static void showDefaultColumns(){
 		RecipeTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		RecipeTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 		RecipeTable.getColumnModel().getColumn(0).setMinWidth(0);

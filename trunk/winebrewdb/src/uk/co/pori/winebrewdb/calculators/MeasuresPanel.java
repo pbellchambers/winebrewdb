@@ -276,7 +276,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the weight in grams from the user entered values.
 	 */
-	public static void calculateWeightToGrams(){
+	private static void calculateWeightToGrams(){
 		BigDecimal lbs = new BigDecimal(fieldlbs.getText());
 		BigDecimal oz = new BigDecimal(fieldoz.getText());
 		BigDecimal totaloz = oz.add(lbs.multiply(new BigDecimal("16")));
@@ -288,7 +288,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the weight in Oz from the user entered values.
 	 */
-	public static void calculateWeightToOz(){
+	private static void calculateWeightToOz(){
 		BigDecimal grams = new BigDecimal(fieldgrams.getText());
 		BigDecimal totaloz = grams.divide(new BigDecimal("28.3495231"), 5, BigDecimal.ROUND_HALF_UP);
 		BigDecimal lbs = totaloz.divide(new BigDecimal("16"), 0, BigDecimal.ROUND_DOWN);
@@ -301,7 +301,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the number of Tbsp from the user entered Tsp value.
 	 */
-	public static void calculateTspToTbsp(){
+	private static void calculateTspToTbsp(){
 		BigDecimal tsp = new BigDecimal(fieldtsp.getText());
 		BigDecimal result = tsp.divide(new BigDecimal("3"), 3, BigDecimal.ROUND_HALF_UP);
 		
@@ -311,7 +311,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the number of Tsp from the user entered Tbsp value.
 	 */
-	public static void calculateTbspToTsp(){
+	private static void calculateTbspToTsp(){
 		BigDecimal tbsp = new BigDecimal(fieldtbsp.getText());
 		BigDecimal result = tbsp.multiply(new BigDecimal("3"));
 		
@@ -321,7 +321,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the US Gallon value from the user entered UK Gallon value.
 	 */
-	public static void calculateUKToUSGallons(){
+	private static void calculateUKToUSGallons(){
 		BigDecimal UKGallons = new BigDecimal(fieldUKGallons.getText());
 		BigDecimal result = UKGallons.multiply(new BigDecimal("1.20095042"));
 		
@@ -331,7 +331,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the UK Gallon value from the user entered US Gallon value.
 	 */
-	public static void calculateUSToUKGallons(){
+	private static void calculateUSToUKGallons(){
 		BigDecimal USGallons = new BigDecimal(fieldUSGallons.getText());
 		BigDecimal result = USGallons.divide(new BigDecimal("1.20095042"), 10, BigDecimal.ROUND_HALF_UP);
 		
@@ -341,7 +341,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the litres value from the user entered UK Gallon value.
 	 */
-	public static void calculateUKGallonsToLitres(){
+	private static void calculateUKGallonsToLitres(){
 		BigDecimal UKGallonsB = new BigDecimal(fieldUKGallonsB.getText());
 		BigDecimal result = UKGallonsB.multiply(new BigDecimal("4.54609188"));
 		
@@ -351,7 +351,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the UK Gallon value from the user entered litres value.
 	 */
-	public static void calculateLitresToUKGallons(){
+	private static void calculateLitresToUKGallons(){
 		BigDecimal Litres = new BigDecimal(fieldLitres.getText());
 		BigDecimal result = Litres.divide(new BigDecimal("4.54609188"), 10, BigDecimal.ROUND_HALF_UP);
 		
@@ -361,7 +361,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the temperature in °F from the user entered °C value.
 	 */
-	public static void calculateCToF(){
+	private static void calculateCToF(){
 		BigDecimal C = new BigDecimal(fieldC.getText());
 		BigDecimal result = new BigDecimal("32").add(C.multiply(new BigDecimal("1.8")));
 		
@@ -371,7 +371,7 @@ public class MeasuresPanel extends JPanel {
 	/**
 	 * Calculates the temperature in °C from the user entered °F value.
 	 */
-	public static void calculateFToC(){
+	private static void calculateFToC(){
 		BigDecimal F = new BigDecimal(fieldF.getText());
 		BigDecimal Finterim = F.subtract(new BigDecimal("32"));
 		BigDecimal result = Finterim.divide(new BigDecimal("1.8"), 3, BigDecimal.ROUND_HALF_UP);

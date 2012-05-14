@@ -727,7 +727,7 @@ public class BrewDataPanel extends JPanel {
 	 * @param s String value (either 1 or 0).
 	 * @return Returns the boolean value of the string.
 	 */
-	public static boolean stringToBool(String s) {
+	private static boolean stringToBool(String s) {
 		  if (s.equals("1"))
 		    return true;
 		  if (s.equals("0"))

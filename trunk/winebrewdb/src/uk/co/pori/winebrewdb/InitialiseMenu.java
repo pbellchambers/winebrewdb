@@ -650,7 +650,7 @@ public class InitialiseMenu extends MainWindow {
 	/**
 	 * Calls the De-initialise panel method for all panels so that none are visible on screen.
 	 */
-	public static void deinitialiseAllPanels(){
+	private static void deinitialiseAllPanels(){
 		WelcomePanel.deinitialisePanel();
 		BrewPanel.deinitialisePanel();
 		LedgerPanel.deinitialisePanel();
