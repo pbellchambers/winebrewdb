@@ -112,7 +112,7 @@ public class SugarToSGPanel extends JPanel {
 	/**
 	 * Calculates the approximate Sugar required to increase the SG by the user entered amount.
 	 */
-	public static void calculateSugarToSG(){
+	private static void calculateSugarToSG(){
 		  
 		BigDecimal StartingVolume = new BigDecimal(fieldVolumeSugarToSG.getText());
 		BigDecimal CurrentSG = new BigDecimal(fieldCurrentSG.getText()).multiply(new BigDecimal("1000"));

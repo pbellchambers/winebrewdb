@@ -15,7 +15,7 @@ public class SandboxTestPane extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SandboxTestPane() {
+	private SandboxTestPane() {
 		setLayout(new MigLayout("", "[400px:n,growprio 50,grow 50]", "[][][]"));
 		
 		JLabel lblTest = new JLabel("test");

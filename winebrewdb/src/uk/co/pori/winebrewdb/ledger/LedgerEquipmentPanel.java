@@ -474,7 +474,7 @@ public class LedgerEquipmentPanel extends JPanel {
 	/**
 	 * Initialises the ledger equipment costs table on the ledger equipment tab so that it can be viewed (including getting the data from the database).
 	 */
-	public static void initialiseTable() {
+	private static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<String> header; //used to store data header
@@ -549,7 +549,7 @@ public class LedgerEquipmentPanel extends JPanel {
 	/**
 	 * Adds the mouse listener to the ledger equipment costs table that listens for mouse clicks.
 	 */
-	public static void addLedgerEquipmentCostMouseListener(){
+	private static void addLedgerEquipmentCostMouseListener(){
 		mouseListenerIsActive = true;
 		
 		LedgerEquipmentCostTable.addMouseListener(new MouseAdapter() {
@@ -570,16 +570,9 @@ public class LedgerEquipmentPanel extends JPanel {
 	}
 	
 	/**
-	 * Removes the mouse listener from the ledger equipment costs table.
-	 */
-	public static void removeLedgerEquipmentCostMouseListener(){
-		mouseListenerIsActive = false;
-	}
-	
-	/**
 	 * Gets the data from the database and sets the fields for the current ledger equipment cost.
 	 */
-	public static void setLedgerEquipmentCostData(){
+	private static void setLedgerEquipmentCostData(){
 		if(LedgerEquipmentCostSelectedRow != -1){
 			textLedgerEquipmentCostRef.setText((String) LedgerEquipmentCostTable.getValueAt(LedgerEquipmentCostSelectedRow,0));
 			if(LedgerEquipmentCostTable.getValueAt(LedgerEquipmentCostSelectedRow,1).equals(null) || LedgerEquipmentCostTable.getValueAt(LedgerEquipmentCostSelectedRow,1).equals("")){
@@ -596,7 +589,7 @@ public class LedgerEquipmentPanel extends JPanel {
 	/**
 	 * Calculates and sets the total, total per brew, and total per bottle ledger equipment costs.
 	 */
-	public static void setBrewTotalCostData(){
+	private static void setBrewTotalCostData(){
 	    BigDecimal total = new BigDecimal("0");
 	    for (int i = 0; i < (LedgerEquipmentCostTable.getRowCount()); i++ ) {
 	    total = total.add(new BigDecimal((Float) LedgerEquipmentCostTable.getValueAt(i, 3)));
@@ -616,7 +609,7 @@ public class LedgerEquipmentPanel extends JPanel {
 	/**
 	 * Clears all data from all fields on the ledger equipment cost tab.
 	 */
-	public static void clearLedgerEquipmentCostData(){
+	private static void clearLedgerEquipmentCostData(){
 		textLedgerEquipmentCostRef.setText("");
 		chooserLedgerEquipmentCostDate.setDate(null);
 		textLedgerEquipmentCostLineItem.setText("");

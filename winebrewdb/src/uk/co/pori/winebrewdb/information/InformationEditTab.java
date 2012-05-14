@@ -390,7 +390,7 @@ public class InformationEditTab extends JPanel {
 	/**
 	 * Initialises the information tab data table so that it is visible (including getting the information from the database).
 	 */
-	public static void initialiseTable() {
+	private static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<Object> header; //used to store data header
@@ -444,7 +444,7 @@ public class InformationEditTab extends JPanel {
 	/**
 	 * Adds the mouse listener to the information tab table that listens for mouse clicks.
 	 */
-	public static void addInformationEditMouseListener(){
+	private static void addInformationEditMouseListener(){
 		mouseListenerIsActive = true;
 		
 		InformationEditTable.addMouseListener(new MouseAdapter() {
@@ -465,16 +465,9 @@ public class InformationEditTab extends JPanel {
 	}
 	
 	/**
-	 * Removes the mouse listener from the information tab table.
-	 */
-	public static void removeInformationEditMouseListener(){
-		mouseListenerIsActive = false;
-	}
-	
-	/**
 	 * Sets the fields on the information edit tab to contain the data for the selected information tab.
 	 */
-	public static void setInformationTabData(){
+	private static void setInformationTabData(){
 		if(InformationEditSelectedRow != -1){
 			textInformationOrigTabID = (String) InformationEditTable.getValueAt(InformationEditSelectedRow,0);
 			textInformationTabID.setText((String) InformationEditTable.getValueAt(InformationEditSelectedRow,0));
@@ -488,7 +481,7 @@ public class InformationEditTab extends JPanel {
 	/**
 	 * Clears all data from all fields on the information edit tab.
 	 */
-	public static void clearInformationTabData(){
+	private static void clearInformationTabData(){
 		textInformationOrigTabID = "";
 		textInformationTabID.setText("");
 		textInformationTabName.setText("");
@@ -502,7 +495,7 @@ public class InformationEditTab extends JPanel {
 	 * @param s String value (either 1 or 0).
 	 * @return Returns the boolean value of the string.
 	 */
-	public static boolean stringToBool(String s) {
+	private static boolean stringToBool(String s) {
 		  if (s.equals("1"))
 		    return true;
 		  if (s.equals("0"))
@@ -513,7 +506,7 @@ public class InformationEditTab extends JPanel {
 	/**
 	 * Refreshes all of the information tabs so that newly added/removed/edited tabs are instantly visible.
 	 */
-	public static void refreshInformationTabs(){
+	private static void refreshInformationTabs(){
 		InformationPanel.tabbedInformationPane.removeAll();
 		InformationPanel.dynamicallyAddTabs();
 		InformationPanel.InformationPanel.repaint();

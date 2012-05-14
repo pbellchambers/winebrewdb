@@ -190,7 +190,7 @@ public class MainWindow {
 	/**
 	 * Initialise the contents of the main frame so that it is visible.
 	 */
-	public void initialise() {
+	private void initialise() {
 		WineBrewDBFrame = new JFrame();
 		WineBrewDBFrame.setTitle("WineBrewDB " + WineBrewDBVersion + " - Current Database: " + DatabaseLocationFromIni);
 		URL img16 = MainWindow.class.getResource("/uk/co/pori/winebrewdb/images/winebrewdb16.png");

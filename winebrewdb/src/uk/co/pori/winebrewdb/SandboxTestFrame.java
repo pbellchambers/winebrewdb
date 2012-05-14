@@ -39,7 +39,7 @@ public class SandboxTestFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SandboxTestFrame() {
+	private SandboxTestFrame() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SandboxTestFrame.class.getResource("/uk/co/pori/winebrewdb/images/winebrewdb64.jpg")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

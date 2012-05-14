@@ -447,7 +447,7 @@ public class BrewNotesPanel extends JPanel {
 	/**
 	 * Adds the mouse listener to the brew notes table that listens for mouse clicks.
 	 */
-	public static void addBrewNotesMouseListener(){
+	private static void addBrewNotesMouseListener(){
 		mouseListenerIsActive = true;
 		
 		BrewNotesTable.addMouseListener(new MouseAdapter() {
@@ -468,16 +468,9 @@ public class BrewNotesPanel extends JPanel {
 	}
 	
 	/**
-	 * Removes the mouse listener from the brew notes table.
-	 */
-	public static void removeBrewNotesMouseListener(){
-		mouseListenerIsActive = false;
-	}
-	
-	/**
 	 * Sets the data in the fields on the Brew Notes tab to the currently selected brew note.
 	 */
-	public static void setBrewNoteData(){
+	private static void setBrewNoteData(){
 		if(BrewNotesSelectedRow != -1){
 			textBrewNoteRef.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,0));
 			chooserBrewNoteDate.setDate(Dates.stringToDate((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,1)));

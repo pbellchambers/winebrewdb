@@ -161,7 +161,7 @@ public class DilutionPanel extends JPanel {
 	/**
 	 * Calculates the diluted ABV amount based on the user entered values.
 	 */
-	public static void calculateDilutionABV(){
+	private static void calculateDilutionABV(){
 		BigDecimal StartingVolume = new BigDecimal(fieldStartingVolumeABV.getText());
 		BigDecimal VolumeAdded = new BigDecimal(fieldVolumeAddedABV.getText());
 		BigDecimal TotalNewVolume = StartingVolume.add(VolumeAdded);
@@ -184,7 +184,7 @@ public class DilutionPanel extends JPanel {
 	/**
 	 * Calculates the diluted SG amount based on the user entered values.
 	 */
-	public static void calculateDilutionSG(){
+	private static void calculateDilutionSG(){
 		BigDecimal StartingVolume = new BigDecimal(fieldStartingVolumeSG.getText());
 		BigDecimal VolumeAdded = new BigDecimal(fieldVolumeAddedSG.getText());
 		BigDecimal TotalNewVolume = StartingVolume.add(VolumeAdded);

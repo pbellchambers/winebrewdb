@@ -252,7 +252,7 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 	/**
 	 * Makes all columns visible on the brew costs search table.
 	 */
-	public static void showAllColumns(){
+	private static void showAllColumns(){
 		LedgerBrewCostTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		LedgerBrewCostTable.getColumnModel().getColumn(0).setPreferredWidth(80);
 		LedgerBrewCostTable.getColumnModel().getColumn(0).setMinWidth(5);
@@ -279,7 +279,7 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 	/**
 	 * Makes only the default columns visible on the brew costs search table (by setting column width to 0 on the unneeded ones).
 	 */
-	public static void showDefaultColumns(){
+	private static void showDefaultColumns(){
 		LedgerBrewCostTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		LedgerBrewCostTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 		LedgerBrewCostTable.getColumnModel().getColumn(0).setMinWidth(0);

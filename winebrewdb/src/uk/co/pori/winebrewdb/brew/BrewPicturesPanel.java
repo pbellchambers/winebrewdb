@@ -502,7 +502,7 @@ public class BrewPicturesPanel extends JPanel {
 	/**
 	 * Adds the mouse listener to the brew pictures table that listens for mouse clicks.
 	 */
-	public static void addBrewPicturesMouseListener(){
+	private static void addBrewPicturesMouseListener(){
 		mouseListenerIsActive = true;
 		
 		BrewPicturesTable.addMouseListener(new MouseAdapter() {
@@ -525,16 +525,9 @@ public class BrewPicturesPanel extends JPanel {
 	}
 	
 	/**
-	 * Removes the mouse listener from the brew pictures table.
-	 */
-	public static void removeBrewPicturesMouseListener(){
-		mouseListenerIsActive = false;
-	}
-	
-	/**
 	 * Sets the data in the fields on the Brew Pictures tab to the currently selected brew picture, including showing the picture on screen.
 	 */
-	public static void setBrewPictureData(){
+	private static void setBrewPictureData(){
 		if(BrewPicturesSelectedRow != -1){
 			textBrewPictureRef.setText((String) BrewPicturesTable.getValueAt(BrewPicturesSelectedRow,0));
 			textBrewPictureDescription.setText((String) BrewPicturesTable.getValueAt(BrewPicturesSelectedRow,1));

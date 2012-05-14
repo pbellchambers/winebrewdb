@@ -156,10 +156,10 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 	 * t = Current Temperature
 	 * c = Hydrometer Calibration Temperature
 	 * 
-	 * Note: Calculation uses °F, so temperature is converted first.
+	 * Note: Calculation uses °F, so temperature is converted first if needed.
 	 * 
 	 */
-	public static void calculateTemperatureAdjustedSG(){
+	private static void calculateTemperatureAdjustedSG(){
 		if(btnCelcius.isSelected()){
 			BigDecimal SpecificGravity = new BigDecimal(fieldSG.getText());
 			BigDecimal TemperatureCelcius = new BigDecimal(fieldTemperature.getText());

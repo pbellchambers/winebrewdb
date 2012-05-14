@@ -463,7 +463,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 	/**
 	 * Adds the mouse listener to the ledger brew costs data table that listens for mouse clicks.
 	 */
-	public static void addLedgerBrewCostMouseListener(){
+	private static void addLedgerBrewCostMouseListener(){
 		mouseListenerIsActive = true;
 		
 		LedgerBrewCostTable.addMouseListener(new MouseAdapter() {
@@ -484,16 +484,9 @@ public class LedgerBrewCostDataPanel extends JPanel {
 	}
 	
 	/**
-	 * Removes the mouse listener from the ledger brew costs data table.
-	 */
-	public static void removeLedgerBrewCostMouseListener(){
-		mouseListenerIsActive = false;
-	}
-	
-	/**
 	 * Gets the data from the database and sets the fields for the current brew cost.
 	 */
-	public static void setLedgerBrewCostData(){
+	private static void setLedgerBrewCostData(){
 		if(LedgerBrewCostSelectedRow != -1){
 			textLedgerBrewCostRef.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSelectedRow,0));
 			textLedgerBrewCostLineItem.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSelectedRow,1));
