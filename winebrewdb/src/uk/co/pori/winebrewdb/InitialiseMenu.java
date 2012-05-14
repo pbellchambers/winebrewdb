@@ -48,7 +48,7 @@ import net.miginfocom.swing.MigLayout;
  * @author paul.bellchambers
  *
  */
-public class InitializeMenu extends MainWindow {
+public class InitialiseMenu extends MainWindow {
 	
 	private static JRadioButtonMenuItem radioSystemLAF;
 	private static JRadioButtonMenuItem radioJavaLAF;
@@ -66,7 +66,7 @@ public class InitializeMenu extends MainWindow {
 	/**
 	 * Initialises the top menu so that it is visible on screen, and sets what all of the buttons do.
 	 */
-	public static void InitializeTopMenuMethod(){
+	public static void initialiseTopMenuMethod(){
 		
 		//Top Menu Bar
 		JMenuBar menuBar = new JMenuBar();
@@ -79,7 +79,7 @@ public class InitializeMenu extends MainWindow {
 		
 
 		final JMenuItem mntmNew = new JMenuItem("New Database");
-		mntmNew.setIcon(new ImageIcon(InitializeMenu.class.getResource("/uk/co/pori/winebrewdb/images/new.png")));
+		mntmNew.setIcon(new ImageIcon(InitialiseMenu.class.getResource("/uk/co/pori/winebrewdb/images/new.png")));
 		mntmNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser c = new JFileChooser();
@@ -114,8 +114,8 @@ public class InitializeMenu extends MainWindow {
 			    	  try {
 			    		  MainWindow.brewIni.store();
 				    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
-				    	  DeinitializeAllPanels();
-				    	  WelcomePanel.InitializePanel();
+				    	  deinitialiseAllPanels();
+				    	  WelcomePanel.initialisePanel();
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(null,
 								"Failed to save:\n" + MainWindow.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
@@ -134,7 +134,7 @@ public class InitializeMenu extends MainWindow {
 		mnFile.add(mntmNew);
 		
 		final JMenuItem mntmLoad = new JMenuItem("Load Database");
-		mntmLoad.setIcon(new ImageIcon(InitializeMenu.class.getResource("/uk/co/pori/winebrewdb/images/load.png")));
+		mntmLoad.setIcon(new ImageIcon(InitialiseMenu.class.getResource("/uk/co/pori/winebrewdb/images/load.png")));
 		mntmLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JFileChooser c = new JFileChooser();
@@ -145,8 +145,8 @@ public class InitializeMenu extends MainWindow {
 						  try {
 							  MainWindow.brewIni.store();
 					    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
-					    	  DeinitializeAllPanels();
-					    	  WelcomePanel.InitializePanel();
+					    	  deinitialiseAllPanels();
+					    	  WelcomePanel.initialisePanel();
 					    	  
 						} catch (IOException ex) {
 							JOptionPane.showMessageDialog(null,
@@ -167,7 +167,7 @@ public class InitializeMenu extends MainWindow {
 		
 
 		final JMenuItem mntmSaveAs = new JMenuItem("Save Database As");
-		mntmSaveAs.setIcon(new ImageIcon(InitializeMenu.class.getResource("/uk/co/pori/winebrewdb/images/save2.png")));
+		mntmSaveAs.setIcon(new ImageIcon(InitialiseMenu.class.getResource("/uk/co/pori/winebrewdb/images/save2.png")));
 		mntmSaveAs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser c = new JFileChooser();
@@ -205,8 +205,8 @@ public class InitializeMenu extends MainWindow {
 				    	  try {
 				    		  MainWindow.brewIni.store();
 					    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
-					    	  DeinitializeAllPanels();
-					    	  WelcomePanel.InitializePanel();
+					    	  deinitialiseAllPanels();
+					    	  WelcomePanel.initialisePanel();
 						} catch (IOException ex) {
 							JOptionPane.showMessageDialog(null,
 									"Failed to save:\n" + MainWindow.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
@@ -298,8 +298,8 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmBrew = new JMenuItem("Brew");
 		mntmBrew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				BrewPanel.InitializePanel();
+				deinitialiseAllPanels();
+				BrewPanel.initialisePanel();
 				BrewPanel.BrewPanel.setVisible(true);
 				}
 			}
@@ -310,8 +310,8 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmLedger = new JMenuItem("Ledger");
 		mntmLedger.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				LedgerPanel.InitializePanel();
+				deinitialiseAllPanels();
+				LedgerPanel.initialisePanel();
 				LedgerPanel.LedgerPanel.setVisible(true);				
 				}
 			}
@@ -322,8 +322,8 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmRecipe = new JMenuItem("Recipe");
 		mntmRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				RecipePanel.InitializePanel();
+				deinitialiseAllPanels();
+				RecipePanel.initialisePanel();
 				RecipePanel.RecipePanel.setVisible(true);				
 				}
 			}
@@ -339,8 +339,8 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmAlcohol = new JMenuItem("Alcohol %");
 		mntmAlcohol.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				CalculatorsPanel.InitializePanel();
+				deinitialiseAllPanels();
+				CalculatorsPanel.initialisePanel();
 				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(0);
 				CalculatorsPanel.CalculatorsPanel.setVisible(true);				
 				}
@@ -352,8 +352,8 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmDilution = new JMenuItem("Dilution");
 		mntmDilution.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				CalculatorsPanel.InitializePanel();
+				deinitialiseAllPanels();
+				CalculatorsPanel.initialisePanel();
 				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(1);
 				CalculatorsPanel.CalculatorsPanel.setVisible(true);			
 				}
@@ -365,8 +365,8 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmMeasures = new JMenuItem("Measures");
 		mntmMeasures.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				CalculatorsPanel.InitializePanel();
+				deinitialiseAllPanels();
+				CalculatorsPanel.initialisePanel();
 				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(2);
 				CalculatorsPanel.CalculatorsPanel.setVisible(true);				
 				}
@@ -378,8 +378,8 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmSugarToSG = new JMenuItem("Sugar to SG");
 		mntmSugarToSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				CalculatorsPanel.InitializePanel();
+				deinitialiseAllPanels();
+				CalculatorsPanel.initialisePanel();
 				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(3);
 				CalculatorsPanel.CalculatorsPanel.setVisible(true);			
 				}
@@ -391,8 +391,8 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmTemperatureAdjustedSG = new JMenuItem("Temperature Adjusted SG");
 		mntmTemperatureAdjustedSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				CalculatorsPanel.InitializePanel();
+				deinitialiseAllPanels();
+				CalculatorsPanel.initialisePanel();
 				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(4);
 				CalculatorsPanel.CalculatorsPanel.setVisible(true);				
 				}
@@ -409,8 +409,8 @@ public class InitializeMenu extends MainWindow {
 		final JMenuItem mntmInformationAddEdit = new JMenuItem("Add/Edit");
 		mntmInformationAddEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				InformationPanel.InitializePanel();
+				deinitialiseAllPanels();
+				InformationPanel.initialisePanel();
 				int finaltab = InformationPanel.tabbedInformationPane.getTabCount() - 1;
 				InformationPanel.tabbedInformationPane.setSelectedIndex(finaltab);
 				InformationPanel.InformationPanel.setVisible(true);					
@@ -562,7 +562,7 @@ public class InitializeMenu extends MainWindow {
 	/**
 	 * Initialises the sidebar menu so that it is visible on screen, and sets what all the buttons do.
 	 */
-	public static void InitializeMenuMethod(){
+	public static void initialiseMenuMethod(){
 		
 		//Main Content Pane
 		MainWindow.WineBrewDBFrame.getContentPane().setLayout(new MigLayout("", "[grow]", "[grow]"));
@@ -574,72 +574,72 @@ public class InitializeMenu extends MainWindow {
 		MainWindow.WineBrewDBFrame.getContentPane().add(MenuPanel, "flowx,cell 0 0,alignx left,growy");
 		
 		btnBrew = new JButton();
-		btnBrew.setIcon(new ImageIcon(InitializeMenu.class.getResource("/uk/co/pori/winebrewdb/images/brew.png")));
+		btnBrew.setIcon(new ImageIcon(InitialiseMenu.class.getResource("/uk/co/pori/winebrewdb/images/brew.png")));
 		btnBrew.setToolTipText("Add/Edit Brews");
 		MenuPanel.add(btnBrew);
 		
 		btnLedger = new JButton();
-		btnLedger.setIcon(new ImageIcon(InitializeMenu.class.getResource("/uk/co/pori/winebrewdb/images/ledger.png")));
+		btnLedger.setIcon(new ImageIcon(InitialiseMenu.class.getResource("/uk/co/pori/winebrewdb/images/ledger.png")));
 		btnLedger.setToolTipText("Add To/Edit Ledger");
 		MenuPanel.add(btnLedger);
 		
 		btnRecipe = new JButton();
-		btnRecipe.setIcon(new ImageIcon(InitializeMenu.class.getResource("/uk/co/pori/winebrewdb/images/recipe.png")));
+		btnRecipe.setIcon(new ImageIcon(InitialiseMenu.class.getResource("/uk/co/pori/winebrewdb/images/recipe.png")));
 		btnRecipe.setToolTipText("Add/Edit Recipes");
 		MenuPanel.add(btnRecipe);
 		
 		MenuPanel.addSeparator();
 		
 		btnCalculators = new JButton();
-		btnCalculators.setIcon(new ImageIcon(InitializeMenu.class.getResource("/uk/co/pori/winebrewdb/images/calculator.png")));
+		btnCalculators.setIcon(new ImageIcon(InitialiseMenu.class.getResource("/uk/co/pori/winebrewdb/images/calculator.png")));
 		btnCalculators.setToolTipText("Various Calculators");
 		MenuPanel.add(btnCalculators);
 		
 		MenuPanel.addSeparator();
 
 		btnInformation = new JButton();
-		btnInformation.setIcon(new ImageIcon(InitializeMenu.class.getResource("/uk/co/pori/winebrewdb/images/information.png")));
+		btnInformation.setIcon(new ImageIcon(InitialiseMenu.class.getResource("/uk/co/pori/winebrewdb/images/information.png")));
 		btnInformation.setToolTipText("Add your own notes and information to be displayed in tabs here");
 		MenuPanel.add(btnInformation);
 		
 		//Initialise welcome panel
-		WelcomePanel.InitializePanel();
+		WelcomePanel.initialisePanel();
 		
 
 		//Menu Button Actions
 		btnBrew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				BrewPanel.InitializePanel();
+				deinitialiseAllPanels();
+				BrewPanel.initialisePanel();
 				BrewPanel.BrewPanel.setVisible(true);
 			}
 		});
 		btnLedger.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				LedgerPanel.InitializePanel();
+				deinitialiseAllPanels();
+				LedgerPanel.initialisePanel();
 				LedgerPanel.LedgerPanel.setVisible(true);
 			}
 		});
 		btnRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				RecipePanel.InitializePanel();
+				deinitialiseAllPanels();
+				RecipePanel.initialisePanel();
 				RecipePanel.RecipePanel.setVisible(true);
 			}
 		});
 		btnCalculators.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				CalculatorsPanel.InitializePanel();
+				deinitialiseAllPanels();
+				CalculatorsPanel.initialisePanel();
 				CalculatorsPanel.tabbedCalculatorsPane.setSelectedIndex(0);
 				CalculatorsPanel.CalculatorsPanel.setVisible(true);			
 			}
 		});
 		btnInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeinitializeAllPanels();
-				InformationPanel.InitializePanel();
+				deinitialiseAllPanels();
+				InformationPanel.initialisePanel();
 				InformationPanel.tabbedInformationPane.setSelectedIndex(0);
 				InformationPanel.InformationPanel.setVisible(true);		
 			}
@@ -650,24 +650,24 @@ public class InitializeMenu extends MainWindow {
 	/**
 	 * Calls the De-initialise panel method for all panels so that none are visible on screen.
 	 */
-	public static void DeinitializeAllPanels(){
-		WelcomePanel.DeInitializePanel();
-		BrewPanel.DeInitializePanel();
-		LedgerPanel.DeInitializePanel();
-		RecipePanel.DeInitializePanel();
-		CalculatorsPanel.DeInitializePanel();
-		InformationPanel.DeInitializePanel();
-		AlcoholPanel.DeInitializePanel();
-		DilutionPanel.DeInitializePanel();
-		MeasuresPanel.DeInitializePanel();
-		SugarToSGPanel.DeInitializePanel();
-		TemperatureAdjustedSGPanel.DeInitializePanel();
+	public static void deinitialiseAllPanels(){
+		WelcomePanel.deinitialisePanel();
+		BrewPanel.deinitialisePanel();
+		LedgerPanel.deinitialisePanel();
+		RecipePanel.deinitialisePanel();
+		CalculatorsPanel.deinitialisePanel();
+		InformationPanel.deinitialisePanel();
+		AlcoholPanel.deinitialisePanel();
+		DilutionPanel.deinitialisePanel();
+		MeasuresPanel.deinitialisePanel();
+		SugarToSGPanel.deinitialisePanel();
+		TemperatureAdjustedSGPanel.deinitialisePanel();
 	};
 	
 	/**
 	 * Disables all menu buttons (both top and sidebar).
 	 */
-	public static void DisableAllMenuButtons(){
+	public static void disableAllMenuButtons(){
 		btnBrew.setEnabled(false);
 		btnLedger.setEnabled(false);
 		btnRecipe.setEnabled(false);
@@ -683,7 +683,7 @@ public class InitializeMenu extends MainWindow {
 	/**
 	 * Enables all menu buttons (both top and sidebar).
 	 */
-	public static void EnableAllMenuButtons(){
+	public static void enableAllMenuButtons(){
 		btnBrew.setEnabled(true);
 		btnLedger.setEnabled(true);
 		btnRecipe.setEnabled(true);

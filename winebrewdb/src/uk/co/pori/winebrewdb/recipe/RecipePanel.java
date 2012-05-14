@@ -31,13 +31,13 @@ public class RecipePanel extends JPanel {
 	private static JLabel RecipeHeader;
 	private static JLabel RecipeSubtitle;
 	static JTabbedPane tabbedRecipePane;
-	private static String RecipePanelStatus = "DeInitialized";
+	private static String RecipePanelStatus = "DeInitialised";
 	public static JButton btnPrintRecipe;
 
 	/**
 	 * Initialises all the recipe panels (including getting all data) so that they are displayed on screen.
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		
 		RecipePanel = new JPanel();
 		RecipePanel.setLayout(new MigLayout("", "[grow][65px:n:65px]", "[20px:n:20px][25px:n:25px][grow]"));
@@ -68,17 +68,17 @@ public class RecipePanel extends JPanel {
 				
 		
 		//Recipe Search Tab
-		RecipeSearchPanel.InitializePanel();		
+		RecipeSearchPanel.initialisePanel();		
 		tabbedRecipePane.addTab("Search", null, RecipeSearchPanel.tabbedRecipeSearchPanel, null);
 		
 		
 		//Recipe Data Tab
-		RecipeDataPanel.InitializePanel();		
+		RecipeDataPanel.initialisePanel();		
 		tabbedRecipePane.addTab("Recipe Data", null, RecipeDataPanel.tabbedRecipeDataPanel, null);
 		
 		
 		//Add New Recipe Tab
-		RecipeAddPanel.InitializePanel();
+		RecipeAddPanel.initialisePanel();
 		tabbedRecipePane.addTab("Add New Recipe", new ImageIcon(RecipePanel.class.getResource("/uk/co/pori/winebrewdb/images/new.png")), RecipeAddPanel.tabbedRecipeAddPanel, null);
 		
 		
@@ -91,7 +91,7 @@ public class RecipePanel extends JPanel {
 		RecipePanel.setVisible(false);
 
 		
-		RecipePanelStatus = "Initialized";
+		RecipePanelStatus = "Initialised";
 		
 		
 		//Add print button listener
@@ -134,13 +134,13 @@ public class RecipePanel extends JPanel {
 	/**
 	 * De-initialises all the recipe panels so that they are no longer displayed on screen.
 	 */
-	public static void DeInitializePanel(){
-		if(RecipePanelStatus.equals("Initialized")) {
+	public static void deinitialisePanel(){
+		if(RecipePanelStatus.equals("Initialised")) {
 			RecipePanel.setVisible(false);
 			tabbedRecipePane.removeAll();
 			RecipePanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(RecipePanel);
-			RecipePanelStatus = "DeInitialized";
+			RecipePanelStatus = "DeInitialised";
 		}
 	}
 	

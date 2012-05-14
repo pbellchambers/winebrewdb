@@ -48,7 +48,7 @@ public class RecipeSearchPanel extends JPanel {
 	/**
 	 * Initialises the recipe search panel so that it can be viewed.
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		
 		RecipeTableFields = "Summary";
 		
@@ -106,8 +106,8 @@ public class RecipeSearchPanel extends JPanel {
 
 		tabbedRecipeSearchPanel.add(RecipeFilterPanel, "cell 0 0,grow");
 
-		//Initialize Table
-		initializeTable();
+		//Initialise Table
+		initialiseTable();
 		
 		//ScrollPane
 	    RecipeScrollPane = new JScrollPane();
@@ -125,7 +125,7 @@ public class RecipeSearchPanel extends JPanel {
 				RecipeDataPanel.btnRecipeDataEdit.setEnabled(false);
 				RecipeDataPanel.btnRecipeDataDelete.setEnabled(false);
 				RecipePanel.tabbedRecipePane.setEnabledAt(1, false);
-				initializeTable();
+				initialiseTable();
 				RecipeScrollPane.setViewportView(RecipeTable);
 			}
 		});
@@ -141,7 +141,7 @@ public class RecipeSearchPanel extends JPanel {
 					RecipeDataPanel.btnRecipeDataEdit.setEnabled(false);
 					RecipeDataPanel.btnRecipeDataDelete.setEnabled(false);
 					RecipePanel.tabbedRecipePane.setEnabledAt(1, false);
-					initializeTable();
+					initialiseTable();
 					RecipeScrollPane.setViewportView(RecipeTable);
 				}
 				if (e.getStateChange() == ItemEvent.DESELECTED){
@@ -153,7 +153,7 @@ public class RecipeSearchPanel extends JPanel {
 					RecipeDataPanel.btnRecipeDataEdit.setEnabled(false);
 					RecipeDataPanel.btnRecipeDataDelete.setEnabled(false);
 					RecipePanel.tabbedRecipePane.setEnabledAt(1, false);
-					initializeTable();
+					initialiseTable();
 					RecipeScrollPane.setViewportView(RecipeTable);
 				}
 			}
@@ -165,7 +165,7 @@ public class RecipeSearchPanel extends JPanel {
 	/**
 	 * Initialises the recipes table on the recipe search tab so that it can be viewed (including getting the data from the database).
 	 */
-	public static void initializeTable() {
+	public static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<Object> header; //used to store data header

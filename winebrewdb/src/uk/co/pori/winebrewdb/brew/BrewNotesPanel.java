@@ -19,16 +19,20 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import uk.co.pori.winebrewdb.Dates;
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
 import agiletrack.swing.JDateChooser;
 
-
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * This is the brew notes panel to be displayed as a tab on the main brew panel tab bar. It shows the notes for the currently selected brew.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class BrewNotesPanel extends JPanel {
 	
 	private static final long serialVersionUID = -1974511040788382066L;
@@ -49,16 +53,18 @@ public class BrewNotesPanel extends JPanel {
 	private static boolean mouseListenerIsActive;
 	private static JButton btnBrewNoteAdd;
 
-	
-	public static void InitializePanel(){
+	/**
+	 * Initialises the brew notes panel so that it can be viewed, including initialising the table.
+	 */
+	public static void initialisePanel(){
 		
 		tabbedBrewNotesPanel = new JPanel();
 		tabbedBrewNotesPanel.setBackground(Color.WHITE);
 		tabbedBrewNotesPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][90px:90px:90px][grow][130px:130px:130px][grow]", "[200px:200px:200px][][][][][grow][][10px:10px:10px][]"));
 		
 		
-		//Initialize Table
-		initializeTable();
+		//Initialise Table
+		initialiseTable();
 		
 		
 		//ScrollPane
@@ -139,7 +145,7 @@ public class BrewNotesPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				chooserBrewNoteDate.setEnabled();
 				textBrewNoteIncident.setEditable(true);
 				textBrewNoteNote.setEditable(true);
@@ -166,7 +172,7 @@ public class BrewNotesPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				chooserBrewNoteDate.setEnabled();
 				textBrewNoteIncident.setEditable(true);
 				textBrewNoteNote.setEditable(true);
@@ -206,14 +212,14 @@ public class BrewNotesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						chooserBrewNoteDate.setDisabled();
 						textBrewNoteIncident.setEditable(false);
 						textBrewNoteNote.setEditable(false);
 						textBrewNoteNote.setBackground(UIManager.getColor("Panel.background"));
 						BrewNotesScrollPane.remove(BrewNotesTable);
 						BrewNotesScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						BrewNotesScrollPane.setViewportView(BrewNotesTable);
 						clearBrewNoteData();
 				      				      
@@ -232,7 +238,7 @@ public class BrewNotesPanel extends JPanel {
 					mouseListenerIsActive = true;
 					BrewNotesScrollPane.remove(BrewNotesTable);
 					BrewNotesScrollPane.setViewportView(null);
-					initializeTable();
+					initialiseTable();
 					BrewNotesScrollPane.setViewportView(BrewNotesTable);
 					clearBrewNoteData();
 					BrewNotesTable.setEnabled(true);
@@ -248,7 +254,7 @@ public class BrewNotesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					chooserBrewNoteDate.setDisabled();
 					textBrewNoteIncident.setEditable(false);
 					textBrewNoteNote.setEditable(false);
@@ -270,7 +276,7 @@ public class BrewNotesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					chooserBrewNoteDate.setDisabled();
 					textBrewNoteIncident.setEditable(false);
 					textBrewNoteNote.setEditable(false);
@@ -319,14 +325,14 @@ public class BrewNotesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						chooserBrewNoteDate.setDisabled();
 						textBrewNoteIncident.setEditable(false);
 						textBrewNoteNote.setEditable(false);
 						textBrewNoteNote.setBackground(UIManager.getColor("Panel.background"));
 						BrewNotesScrollPane.remove(BrewNotesTable);
 						BrewNotesScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						BrewNotesScrollPane.setViewportView(BrewNotesTable);
 						clearBrewNoteData();
 					}
@@ -362,14 +368,14 @@ public class BrewNotesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						chooserBrewNoteDate.setDisabled();
 						textBrewNoteIncident.setEditable(false);
 						textBrewNoteNote.setEditable(false);
 						textBrewNoteNote.setBackground(UIManager.getColor("Panel.background"));
 						BrewNotesScrollPane.remove(BrewNotesTable);
 						BrewNotesScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						BrewNotesScrollPane.setViewportView(BrewNotesTable);
 						clearBrewNoteData();
 					}
@@ -380,7 +386,10 @@ public class BrewNotesPanel extends JPanel {
 		
 	}
 	
-	public static void initializeTable() {
+	/**
+	 * Initialises the brew notes table on the brew notes tab so that it can be viewed (including getting the data from the database).
+	 */
+	public static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<Object> header; //used to store data header
@@ -435,6 +444,9 @@ public class BrewNotesPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Adds the mouse listener to the brew notes table that listens for mouse clicks.
+	 */
 	public static void addBrewNotesMouseListener(){
 		mouseListenerIsActive = true;
 		
@@ -455,10 +467,16 @@ public class BrewNotesPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Removes the mouse listener from the brew notes table.
+	 */
 	public static void removeBrewNotesMouseListener(){
 		mouseListenerIsActive = false;
 	}
 	
+	/**
+	 * Sets the data in the fields on the Brew Notes tab to the currently selected brew note.
+	 */
 	public static void setBrewNoteData(){
 		if(BrewNotesSelectedRow != -1){
 			textBrewNoteRef.setText((String) BrewNotesTable.getValueAt(BrewNotesSelectedRow,0));
@@ -470,6 +488,9 @@ public class BrewNotesPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Clears all data from all fields on the brew notes tab.
+	 */
 	public static void clearBrewNoteData(){
 		textBrewNoteRef.setText("");
 		chooserBrewNoteDate.setDate(null);

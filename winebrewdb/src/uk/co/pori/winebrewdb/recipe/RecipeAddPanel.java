@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
@@ -44,7 +44,7 @@ public class RecipeAddPanel extends JPanel {
 	/**
 	 * Initialises the add recipe panel so that it can be viewed.
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		
 		tabbedRecipeAddPanel = new JPanel();
 		tabbedRecipeAddPanel.setBackground(Color.WHITE);
@@ -151,7 +151,7 @@ public class RecipeAddPanel extends JPanel {
 				RecipePanel.tabbedRecipePane.setEnabledAt(0, false);
 				RecipePanel.tabbedRecipePane.setEnabledAt(1, false);
 				RecipePanel.tabbedRecipePane.setEnabledAt(2, true);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textRecipeNameAdd.setEditable(true);
 				textInspirationAdd.setEditable(true);
 				textIngredientsAdd.setEditable(true);
@@ -174,7 +174,7 @@ public class RecipeAddPanel extends JPanel {
 				RecipePanel.tabbedRecipePane.setEnabledAt(0, true);
 				RecipePanel.tabbedRecipePane.setEnabledAt(1, false);
 				RecipePanel.tabbedRecipePane.setEnabledAt(2, true);
-				InitializeMenu.EnableAllMenuButtons();
+				InitialiseMenu.enableAllMenuButtons();
 				textRecipeNameAdd.setEditable(false);
 				textInspirationAdd.setEditable(false);
 				textIngredientsAdd.setEditable(false);
@@ -214,7 +214,7 @@ public class RecipeAddPanel extends JPanel {
 					RecipePanel.tabbedRecipePane.setEnabledAt(0, true);
 					RecipePanel.tabbedRecipePane.setEnabledAt(1, false);
 					RecipePanel.tabbedRecipePane.setEnabledAt(2, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textRecipeNameAdd.setEditable(false);
 					textInspirationAdd.setEditable(false);
 					textIngredientsAdd.setEditable(false);
@@ -230,7 +230,7 @@ public class RecipeAddPanel extends JPanel {
 					RecipeSearchPanel.RecipeScrollPane.remove(RecipeSearchPanel.RecipeTable);
 					RecipeSearchPanel.RecipeScrollPane.setViewportView(null);
 					RecipeAddPanel.clearRecipeAddData();
-					RecipeSearchPanel.initializeTable();
+					RecipeSearchPanel.initialiseTable();
 					RecipeSearchPanel.RecipeScrollPane.setViewportView(RecipeSearchPanel.RecipeTable);
 				}
 			}

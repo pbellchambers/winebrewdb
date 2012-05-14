@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
@@ -45,7 +45,7 @@ public class RecipeDataPanel extends JPanel {
 	/**
 	 * Initialises the recipe data panel so that it can be viewed.
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		
 		tabbedRecipeDataPanel = new JPanel();
 		tabbedRecipeDataPanel.setBackground(Color.WHITE);
@@ -157,7 +157,7 @@ public class RecipeDataPanel extends JPanel {
 				RecipePanel.tabbedRecipePane.setEnabledAt(0, false);
 				RecipePanel.tabbedRecipePane.setEnabledAt(1, true);
 				RecipePanel.tabbedRecipePane.setEnabledAt(2, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textRecipeNameB.setEditable(true);
 				textInspirationB.setEditable(true);
 				textIngredientsB.setEditable(true);
@@ -182,7 +182,7 @@ public class RecipeDataPanel extends JPanel {
 				RecipePanel.tabbedRecipePane.setEnabledAt(0, true);
 				RecipePanel.tabbedRecipePane.setEnabledAt(1, true);
 				RecipePanel.tabbedRecipePane.setEnabledAt(2, true);
-				InitializeMenu.EnableAllMenuButtons();
+				InitialiseMenu.enableAllMenuButtons();
 				textRecipeNameB.setEditable(false);
 				textInspirationB.setEditable(false);
 				textIngredientsB.setEditable(false);
@@ -222,7 +222,7 @@ public class RecipeDataPanel extends JPanel {
 					RecipePanel.tabbedRecipePane.setEnabledAt(0, true);
 					RecipePanel.tabbedRecipePane.setEnabledAt(1, true);
 					RecipePanel.tabbedRecipePane.setEnabledAt(2, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textRecipeNameB.setEditable(false);
 					textInspirationB.setEditable(false);
 					textIngredientsB.setEditable(false);
@@ -236,7 +236,7 @@ public class RecipeDataPanel extends JPanel {
 					textNotesB.setBackground(UIManager.getColor("Panel.background"));
 					RecipeSearchPanel.RecipeScrollPane.remove(RecipeSearchPanel.RecipeTable);
 					RecipeSearchPanel.RecipeScrollPane.setViewportView(null);
-					RecipeSearchPanel.initializeTable();
+					RecipeSearchPanel.initialiseTable();
 					RecipeSearchPanel.RecipeScrollPane.setViewportView(RecipeSearchPanel.RecipeTable);
 				}
 			}
@@ -267,7 +267,7 @@ public class RecipeDataPanel extends JPanel {
 						RecipePanel.tabbedRecipePane.setEnabledAt(0, true);
 						RecipePanel.tabbedRecipePane.setEnabledAt(1, false);
 						RecipePanel.tabbedRecipePane.setEnabledAt(2, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textRecipeNameB.setEditable(false);
 						textInspirationB.setEditable(false);
 						textIngredientsB.setEditable(false);
@@ -282,7 +282,7 @@ public class RecipeDataPanel extends JPanel {
 						RecipeSearchPanel.RecipeScrollPane.remove(RecipeSearchPanel.RecipeTable);
 						RecipeSearchPanel.RecipeScrollPane.setViewportView(null);
 						RecipeAddPanel.clearRecipeAddData();
-						RecipeSearchPanel.initializeTable();
+						RecipeSearchPanel.initialiseTable();
 						RecipeSearchPanel.RecipeScrollPane.setViewportView(RecipeSearchPanel.RecipeTable);
 						clearRecipeData();
 						RecipePanel.tabbedRecipePane.setSelectedIndex(0);

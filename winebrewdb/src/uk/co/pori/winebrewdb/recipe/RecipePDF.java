@@ -85,7 +85,7 @@ public class RecipePDF {
 				
 				document.open();
 				addMetaData(document);
-				addBrewData(document);
+				addRecipeData(document);
 				document.close();
 				openPDF(location);
 			} catch (Exception e) {
@@ -113,12 +113,12 @@ public class RecipePDF {
 	
 	
 	/**
-	 * Gets and adds the brew data to the specified document.
+	 * Gets and adds the recipe data to the specified document.
 	 * 
 	 * @param document The specified document (will always be "document" for this).
 	 * @throws DocumentException
 	 */
-	private static void addBrewData(Document document)
+	private static void addRecipeData(Document document)
 			throws DocumentException {
 		Paragraph genericParagraph = new Paragraph();
 		LineSeparator ls = new LineSeparator();

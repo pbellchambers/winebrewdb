@@ -184,13 +184,13 @@ public class MainWindow {
 	 * Creates the main window of the application.
 	 */
 	public MainWindow() {
-		initialize();
+		initialise();
 	}
 
 	/**
 	 * Initialise the contents of the main frame so that it is visible.
 	 */
-	public void initialize() {
+	public void initialise() {
 		WineBrewDBFrame = new JFrame();
 		WineBrewDBFrame.setTitle("WineBrewDB " + WineBrewDBVersion + " - Current Database: " + DatabaseLocationFromIni);
 		URL img16 = MainWindow.class.getResource("/uk/co/pori/winebrewdb/images/winebrewdb16.png");
@@ -231,8 +231,8 @@ public class MainWindow {
 		WineBrewDBFrame.setLocation(50, 50);
 		WineBrewDBFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		InitializeMenu.InitializeTopMenuMethod();
-		InitializeMenu.InitializeMenuMethod();
+		InitialiseMenu.initialiseTopMenuMethod();
+		InitialiseMenu.initialiseMenuMethod();
 
 
 	}

@@ -14,9 +14,14 @@ import javax.swing.JTextPane;
 
 import uk.co.pori.winebrewdb.MainWindow;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the Sugar to SG calculator panel to be displayed as a tab on the main calculator panel tab bar.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class SugarToSGPanel extends JPanel {
 
 	private static final long serialVersionUID = -6105676849516060237L;
@@ -25,10 +30,12 @@ public class SugarToSGPanel extends JPanel {
 	private static JFormattedTextField fieldCurrentSG;
 	private static JFormattedTextField fieldDesiredSG;
 	private static JFormattedTextField fieldResult;	
-	private static String SugarToSGPanelStatus = "DeInitialized";
+	private static String SugarToSGPanelStatus = "DeInitialised";
 
-	//public SugarToSGPanel() {
-	public static void InitializePanel(){
+	/**
+	 * Initialises the Sugar to SG calculator panel so that it can be viewed.
+	 */
+	public static void initialisePanel(){
 		
 		
 		//Subpanel
@@ -79,7 +86,7 @@ public class SugarToSGPanel extends JPanel {
 		//Add button listeners
 		btnCalculateSugarToSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculateSugarToSG();
+				calculateSugarToSG();
 			}
 		});
 		
@@ -88,20 +95,24 @@ public class SugarToSGPanel extends JPanel {
 		MainWindow.WineBrewDBFrame.getContentPane().add(SugarToSGSubPanel, "cell 0 0,grow");
 		SugarToSGSubPanel.setVisible(false);
 
-		SugarToSGPanelStatus = "Initialized";
+		SugarToSGPanelStatus = "Initialised";
 	}
 
-	
-	public static void DeInitializePanel(){
-		if(SugarToSGPanelStatus.equals("Initialized")) {
+	/**
+	 * De-initialises the Sugar to SG calculator panel so that it is not visible on screen.
+	 */	
+	public static void deinitialisePanel(){
+		if(SugarToSGPanelStatus.equals("Initialised")) {
 			SugarToSGSubPanel.setVisible(false);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(SugarToSGSubPanel);
-			SugarToSGPanelStatus = "DeInitialized";
+			SugarToSGPanelStatus = "DeInitialised";
 		}
 	}
 	
-	
-	public static void CalculateSugarToSG(){
+	/**
+	 * Calculates the approximate Sugar required to increase the SG by the user entered amount.
+	 */
+	public static void calculateSugarToSG(){
 		  
 		BigDecimal StartingVolume = new BigDecimal(fieldVolumeSugarToSG.getText());
 		BigDecimal CurrentSG = new BigDecimal(fieldCurrentSG.getText()).multiply(new BigDecimal("1000"));

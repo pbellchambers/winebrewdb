@@ -13,9 +13,14 @@ import javax.swing.JTextPane;
 
 import uk.co.pori.winebrewdb.MainWindow;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the alcohol calculator panel to be displayed as a tab on the main calculator panel tab bar.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class AlcoholPanel extends JPanel {
 
 	private static final long serialVersionUID = -8187974481712023349L;
@@ -26,10 +31,12 @@ public class AlcoholPanel extends JPanel {
 	private static JFormattedTextField fieldCStartingSG;
 	private static JFormattedTextField fieldCFinishingSG;
 	private static JFormattedTextField fieldCABV;
-	private static String AlcoholPanelStatus = "DeInitialized";
+	private static String AlcoholPanelStatus = "DeInitialised";
 
-	//public AlcoholPanel() {
-	public static void InitializePanel(){
+	/**
+	 * Initialises the alcohol calculator panel so that it can be viewed.
+	 */
+	public static void initialisePanel(){
 		
 
 		//Subpanel
@@ -104,13 +111,13 @@ public class AlcoholPanel extends JPanel {
 		//Add button listeners
 		btnHCalculateABV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculateAlcoholHMRC();
+				calculateAlcoholHMRC();
 			}
 		});
 		
 		btnCCalculateABV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculateAlcoholCJJBerry();
+				calculateAlcoholCJJBerry();
 			}
 		});
 		
@@ -119,19 +126,24 @@ public class AlcoholPanel extends JPanel {
 		MainWindow.WineBrewDBFrame.getContentPane().add(AlcoholSubPanel, "cell 0 0,grow");
 		AlcoholSubPanel.setVisible(false);
 
-		AlcoholPanelStatus = "Initialized";
+		AlcoholPanelStatus = "Initialised";
 	}
 
-	
-	public static void DeInitializePanel(){
-		if(AlcoholPanelStatus.equals("Initialized")) {
+	/**
+	 * De-initialises the alcohol calculator panel so that it is not visible on screen.
+	 */
+	public static void deinitialisePanel(){
+		if(AlcoholPanelStatus.equals("Initialised")) {
 			AlcoholSubPanel.setVisible(false);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(AlcoholSubPanel);
-			AlcoholPanelStatus = "DeInitialized";
+			AlcoholPanelStatus = "DeInitialised";
 		}
 	}
 	
-	public static void CalculateAlcoholHMRC(){
+	/**
+	 * Calculates the alcoholic percentage based on the user entered values using the "HMRC" method.
+	 */
+	public static void calculateAlcoholHMRC(){
 		BigDecimal OG = new BigDecimal(fieldHStartingSG.getText()).multiply(new BigDecimal("1000"));
 		BigDecimal FG = new BigDecimal(fieldHFinishingSG.getText()).multiply(new BigDecimal("1000"));
 		BigDecimal Drop = OG.subtract(FG);
@@ -142,7 +154,10 @@ public class AlcoholPanel extends JPanel {
 		fieldHABV.setText(Result.toString());		
 	}
 	
-	public static void CalculateAlcoholCJJBerry(){
+	/**
+	 * Calculates the alcoholic percentage based on the user entered values using the "CJJ Berry" method.
+	 */
+	public static void calculateAlcoholCJJBerry(){
 		BigDecimal OG = new BigDecimal(fieldCStartingSG.getText()).multiply(new BigDecimal("1000"));
 		BigDecimal FG = new BigDecimal(fieldCFinishingSG.getText()).multiply(new BigDecimal("1000"));
 		BigDecimal Drop = OG.subtract(FG);

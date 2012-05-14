@@ -15,9 +15,14 @@ import javax.swing.JToggleButton;
 
 import uk.co.pori.winebrewdb.MainWindow;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the temperature adjusted SG calculator panel to be displayed as a tab on the main calculator panel tab bar.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class TemperatureAdjustedSGPanel extends JPanel {
 
 	private static final long serialVersionUID = -2859114835526520455L;
@@ -29,10 +34,12 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 	private static JFormattedTextField fieldHydrometerTemperature;
 	private static JFormattedTextField fieldSG;
 	private static JFormattedTextField fieldResult;
-	private static String TemperatureAdjustedSGPanelStatus = "DeInitialized";
+	private static String TemperatureAdjustedSGPanelStatus = "DeInitialised";
 
-	//public TemperatureAdjustedSGPanel() {
-	public static void InitializePanel(){
+	/**
+	 * Initialises the temperature adjusted SG calculator panel so that it can be viewed.
+	 */
+	public static void initialisePanel(){
 		
 		
 		//Subpanel
@@ -116,7 +123,7 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 		
 		btnCalculateTemperatureAdjustedSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculateTemperatureAdjustedSG();
+				calculateTemperatureAdjustedSG();
 			}
 		});
 		
@@ -124,20 +131,35 @@ public class TemperatureAdjustedSGPanel extends JPanel {
 		MainWindow.WineBrewDBFrame.getContentPane().add(TemperatureAdjustedSGSubPanel, "cell 0 0,grow");
 		TemperatureAdjustedSGSubPanel.setVisible(false);
 
-		TemperatureAdjustedSGPanelStatus = "Initialized";
+		TemperatureAdjustedSGPanelStatus = "Initialised";
 	}
 
-	
-	public static void DeInitializePanel(){
-		if(TemperatureAdjustedSGPanelStatus.equals("Initialized")) {
+	/**
+	 * De-initialises the temperature adjusted SG calculator panel so that it is not visible on screen.
+	 */	
+	public static void deinitialisePanel(){
+		if(TemperatureAdjustedSGPanelStatus.equals("Initialised")) {
 			TemperatureAdjustedSGSubPanel.setVisible(false);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(TemperatureAdjustedSGSubPanel);
-			TemperatureAdjustedSGPanelStatus = "DeInitialized";
+			TemperatureAdjustedSGPanelStatus = "DeInitialised";
 		}
 	}
 	
-	
-	public static void CalculateTemperatureAdjustedSG(){
+	/**
+	 * Calculates the temperature adjusted SG based on the user entered values.
+	 * 
+	 * Formula used as follows:
+	 * TemperatureAdjustedSG = r * ((1.00130346 - (0.000134722124 * t) + (0.00000204052596 * t^2) - (0.00000000232820948 * t^3)) / (1.00130346 - (0.000134722124 * c) + (0.00000204052596 * c^2) - (0.00000000232820948 * c^3)))
+	 * 
+	 * Where:
+	 * r = SG Reading
+	 * t = Current Temperature
+	 * c = Hydrometer Calibration Temperature
+	 * 
+	 * Note: Calculation uses °F, so temperature is converted first.
+	 * 
+	 */
+	public static void calculateTemperatureAdjustedSG(){
 		if(btnCelcius.isSelected()){
 			BigDecimal SpecificGravity = new BigDecimal(fieldSG.getText());
 			BigDecimal TemperatureCelcius = new BigDecimal(fieldTemperature.getText());
