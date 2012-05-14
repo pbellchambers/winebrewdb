@@ -301,8 +301,8 @@ public class BrewNotesPanel extends JPanel {
 								textBrewNoteDaysSinceStart.setText("");
 							}else {
 								textBrewNoteDaysSinceStart.setText(Dates.daysBetween(BrewDataPanel.chooserBrewDateStartedB.getDate(), chooserBrewNoteDate.getDate()));
-								textBrewNoteRef.setText(DBEngine.getNextBrewNoteRef());
 							}
+							textBrewNoteRef.setText(DBEngine.getNextBrewNoteRef());
 							DBEngine.addBrewNote();
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null,
