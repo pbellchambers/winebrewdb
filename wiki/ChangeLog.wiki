@@ -1,4 +1,9 @@
 #summary WineBrewDB Change Log
+=== v1.3.1: ===
+  * Fixed bug when adding brew notes to brews that don't yet have a start date
+  * Code refactoring (no functional changes)
+
+----
 === v1.3.0: ===
   * Made information tabs dynamic. You can add/edit your own tabs of data now (supports plain text or html).
   * Added icon to add tabs
@@ -7,7 +12,7 @@
 ----
 === v1.2.2: ===
   * Code refactoring (no functional changes)
-  * Slight re-wording on calculator descriptions
+  * Slight rewording on calculator descriptions
   * ~~Changed some launch parameters on the native Mac version~~ (still broken)
 
 ----
@@ -142,7 +147,7 @@
 ----
 === vAlpha0.1.1: ===
   * All calculator panels complete
-  * Added acknowledgements popup
+  * Added acknowledgements pop-up
   * Text changes
   * Icon added
   * Window open position set
