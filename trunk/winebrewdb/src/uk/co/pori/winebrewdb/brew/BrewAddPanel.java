@@ -20,15 +20,20 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
 import agiletrack.swing.JDateChooser;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the add new brew panel to be displayed as a tab on the main brew panel tab bar.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class BrewAddPanel extends JPanel {
 
 	private static final long serialVersionUID = -8501099200598952968L;
@@ -64,8 +69,10 @@ public class BrewAddPanel extends JPanel {
 	public static JTextField textBrewTotalCostAdd;
 	public static JTextField textBrewCostPerBottleAdd;
 	
-	
-	public static void InitializePanel(){
+	/**
+	 * Initialises the add brew panel so that it can be viewed.
+	 */
+	public static void initialisePanel(){
 		
 		tabbedBrewAddPanel = new JPanel();
 		tabbedBrewAddPanel.setBackground(Color.WHITE);
@@ -340,7 +347,7 @@ public class BrewAddPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textBrewNameAdd.setEditable(true);
 				comboBrewColourAdd.setEnabled(true);
 				textBrewRecipeAdd.setEditable(true);
@@ -382,7 +389,7 @@ public class BrewAddPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-				InitializeMenu.EnableAllMenuButtons();
+				InitialiseMenu.enableAllMenuButtons();
 				textBrewNameAdd.setEditable(false);
 				comboBrewColourAdd.setEnabled(false);
 				textBrewRecipeAdd.setEditable(false);
@@ -443,7 +450,7 @@ public class BrewAddPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
 					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textBrewNameAdd.setEditable(false);
 					comboBrewColourAdd.setEnabled(false);
 					textBrewRecipeAdd.setEditable(false);
@@ -473,7 +480,7 @@ public class BrewAddPanel extends JPanel {
 					textBrewGeneralNotesAdd.setBackground(UIManager.getColor("Panel.background"));
 					BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
 					BrewSearchPanel.BrewScrollPane.setViewportView(null);
-					BrewSearchPanel.initializeTable();
+					BrewSearchPanel.initialiseTable();
 					BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
 					clearBrewAddData();
 				}
@@ -481,6 +488,9 @@ public class BrewAddPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Clears all data from all fields on the add brew panel.
+	 */
 	public static void clearBrewAddData(){
 		textBrewRefAdd.setText("");
 		textBrewNameAdd.setText("");
@@ -511,6 +521,12 @@ public class BrewAddPanel extends JPanel {
 		textBrewCostPerBottleAdd.setText("0");
 	}
 	
+	/**
+	 * Converts a string to a boolean.
+	 * 
+	 * @param s String value (either 1 or 0).
+	 * @return Returns the boolean value of the string.
+	 */
 	public static boolean stringToBool(String s) {
 		  if (s.equals("1"))
 		    return true;

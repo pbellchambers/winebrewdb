@@ -32,12 +32,12 @@ public class InformationPanel extends JPanel {
 	private static JLabel InformationSubtitle;
 	public static JTabbedPane tabbedInformationPane;
 	private static Vector<Vector<Object>> InformationTabData;
-	private static String InformationPanelStatus = "DeInitialized";
+	private static String InformationPanelStatus = "DeInitialised";
 
 	/**
 	 * Initialises all the information panels (including dynamically adding tabs and getting all data) so that they are displayed on screen.
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		
 		InformationPanel = new JPanel();
 		InformationPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
@@ -68,19 +68,19 @@ public class InformationPanel extends JPanel {
 		InformationPanel.setVisible(false);
 
 		
-		InformationPanelStatus = "Initialized";
+		InformationPanelStatus = "Initialised";
 	}
 
 	/**
 	 * De-initialises all the information panels so that they are no longer displayed on screen.
 	 */
-	public static void DeInitializePanel(){
-		if(InformationPanelStatus.equals("Initialized")) {
+	public static void deinitialisePanel(){
+		if(InformationPanelStatus.equals("Initialised")) {
 			InformationPanel.setVisible(false);
 			tabbedInformationPane.removeAll();
 			InformationPanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(InformationPanel);
-			InformationPanelStatus = "DeInitialized";
+			InformationPanelStatus = "DeInitialised";
 		}
 	}
 	
@@ -126,7 +126,7 @@ public class InformationPanel extends JPanel {
 		}
 		
 		//Add/Edit tab gets added at end
-		InformationEditTab.InitializePanel();
+		InformationEditTab.initialisePanel();
 		tabbedInformationPane.addTab("Add/Edit Tabs", new ImageIcon(InformationPanel.class.getResource("/uk/co/pori/winebrewdb/images/new.png")), InformationEditTab.tabbedInformationEditTab, null);
 	}
 	

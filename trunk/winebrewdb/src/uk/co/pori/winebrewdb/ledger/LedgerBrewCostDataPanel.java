@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.NumberRenderer;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
@@ -60,7 +60,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 	/**
 	 * Initialises the ledger brew costs data panel so that it can be viewed (including populating the table and defining what buttons do).
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		
 		tabbedLedgerBrewCostPanel = new JPanel();
 		tabbedLedgerBrewCostPanel.setBackground(Color.WHITE);
@@ -159,7 +159,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(0, false);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(1, false);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textLedgerBrewCostLineItem.setEditable(true);
 				textLedgerBrewCostCost.setEditable(true);
 				textLedgerBrewCostSupplier.setEditable(true);
@@ -182,7 +182,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(0, false);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(1, false);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textLedgerBrewCostLineItem.setEditable(true);
 				textLedgerBrewCostCost.setEditable(true);
 				textLedgerBrewCostSupplier.setEditable(true);
@@ -219,19 +219,19 @@ public class LedgerBrewCostDataPanel extends JPanel {
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textLedgerBrewCostLineItem.setEditable(false);
 						textLedgerBrewCostCost.setEditable(false);
 						textLedgerBrewCostSupplier.setEditable(false);
 						LedgerBrewCostScrollPane.remove(LedgerBrewCostTable);
 						LedgerBrewCostScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostTable);
 						clearLedgerBrewCostData();
 						setBrewTotalCostData();
 						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.remove(LedgerBrewCostSearchPanel.LedgerBrewCostTable);
 						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.setViewportView(null);
-						LedgerBrewCostSearchPanel.initializeTable();
+						LedgerBrewCostSearchPanel.initialiseTable();
 						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostSearchPanel.LedgerBrewCostTable);
 				      				      
 				    } else if (response == JOptionPane.CLOSED_OPTION) {
@@ -249,7 +249,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 					mouseListenerIsActive = true;
 					LedgerBrewCostScrollPane.remove(LedgerBrewCostTable);
 					LedgerBrewCostScrollPane.setViewportView(null);
-					initializeTable();
+					initialiseTable();
 					LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostTable);
 					clearLedgerBrewCostData();
 					setBrewTotalCostData();
@@ -263,7 +263,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textLedgerBrewCostLineItem.setEditable(false);
 					textLedgerBrewCostCost.setEditable(false);
 					textLedgerBrewCostSupplier.setEditable(false);
@@ -281,7 +281,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textLedgerBrewCostLineItem.setEditable(false);
 					textLedgerBrewCostCost.setEditable(false);
 					textLedgerBrewCostSupplier.setEditable(false);
@@ -322,19 +322,19 @@ public class LedgerBrewCostDataPanel extends JPanel {
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textLedgerBrewCostLineItem.setEditable(false);
 						textLedgerBrewCostCost.setEditable(false);
 						textLedgerBrewCostSupplier.setEditable(false);
 						LedgerBrewCostScrollPane.remove(LedgerBrewCostTable);
 						LedgerBrewCostScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostTable);
 						clearLedgerBrewCostData();
 						setBrewTotalCostData();
 						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.remove(LedgerBrewCostSearchPanel.LedgerBrewCostTable);
 						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.setViewportView(null);
-						LedgerBrewCostSearchPanel.initializeTable();
+						LedgerBrewCostSearchPanel.initialiseTable();
 						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostSearchPanel.LedgerBrewCostTable);
 					}
 					
@@ -367,19 +367,19 @@ public class LedgerBrewCostDataPanel extends JPanel {
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textLedgerBrewCostLineItem.setEditable(false);
 						textLedgerBrewCostCost.setEditable(false);
 						textLedgerBrewCostSupplier.setEditable(false);
 						LedgerBrewCostScrollPane.remove(LedgerBrewCostTable);
 						LedgerBrewCostScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostTable);
 						clearLedgerBrewCostData();
 						setBrewTotalCostData();
 						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.remove(LedgerBrewCostSearchPanel.LedgerBrewCostTable);
 						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.setViewportView(null);
-						LedgerBrewCostSearchPanel.initializeTable();
+						LedgerBrewCostSearchPanel.initialiseTable();
 						LedgerBrewCostSearchPanel.LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostSearchPanel.LedgerBrewCostTable);
 					}
 				}
@@ -392,7 +392,7 @@ public class LedgerBrewCostDataPanel extends JPanel {
 	/**
 	 * Initialises the ledger brew costs data table on the ledger brew costs data tab so that it can be viewed (including getting the data from the database).
 	 */
-	public static void initializeTable() {
+	public static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<String> header; //used to store data header

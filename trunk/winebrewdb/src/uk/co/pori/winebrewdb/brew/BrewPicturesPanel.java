@@ -20,15 +20,18 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
-
-
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * This is the brew pictures panel to be displayed as a tab on the main brew panel tab bar. It shows the pictures for the currently selected brew.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class BrewPicturesPanel extends JPanel {
 	
 	private static final long serialVersionUID = -476275486314448039L;
@@ -52,8 +55,10 @@ public class BrewPicturesPanel extends JPanel {
 	private static JScrollPane BrewPictureScrollPane;
 	public static JLabel labelBrewPicture;
 
-	
-	public static void InitializePanel(){
+	/**
+	 * Initialises the brew pictures panel so that it can be viewed, including initialising the table.
+	 */
+	public static void initialisePanel(){
 		
 
 		tabbedBrewPicturesPanel = new JPanel();
@@ -61,8 +66,8 @@ public class BrewPicturesPanel extends JPanel {
 		tabbedBrewPicturesPanel.setLayout(new MigLayout("", "[grow][grow][grow][grow][grow][grow]", "[100px:100px:100px][grow][][10px:10px:10px][]"));
 
 		
-		//Initialize Table
-		initializeTable();
+		//Initialise Table
+		initialiseTable();
 		
 		
 		//ScrollPane
@@ -167,7 +172,7 @@ public class BrewPicturesPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textBrewPictureDescription.setEditable(true);
 		        
 			}
@@ -251,7 +256,7 @@ public class BrewPicturesPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textBrewPictureDescription.setEditable(true);
 			}
 		});
@@ -291,11 +296,11 @@ public class BrewPicturesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textBrewPictureDescription.setEditable(false);
 						BrewPicturesTableScrollPane.remove(BrewPicturesTable);
 						BrewPicturesTableScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						BrewPicturesTableScrollPane.setViewportView(BrewPicturesTable);
 						clearBrewPictureData();
 				      				      
@@ -315,7 +320,7 @@ public class BrewPicturesPanel extends JPanel {
 					mouseListenerIsActive = true;
 					BrewPicturesTableScrollPane.remove(BrewPicturesTable);
 					BrewPicturesTableScrollPane.setViewportView(null);
-					initializeTable();
+					initialiseTable();
 					BrewPicturesTableScrollPane.setViewportView(BrewPicturesTable);
 					clearBrewPictureData();
 					BrewPicturesTable.setEnabled(true);
@@ -333,7 +338,7 @@ public class BrewPicturesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textBrewPictureDescription.setEditable(false);
 				}else {
 					mouseListenerIsActive = true;
@@ -355,7 +360,7 @@ public class BrewPicturesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textBrewPictureDescription.setEditable(false);
 				}
 			}
@@ -399,11 +404,11 @@ public class BrewPicturesPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textBrewPictureDescription.setEditable(false);
 						BrewPicturesTableScrollPane.remove(BrewPicturesTable);
 						BrewPicturesTableScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						BrewPicturesTableScrollPane.setViewportView(BrewPicturesTable);
 						clearBrewPictureData();
 					}
@@ -435,11 +440,11 @@ public class BrewPicturesPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textBrewPictureDescription.setEditable(false);
 					BrewPicturesTableScrollPane.remove(BrewPicturesTable);
 					BrewPicturesTableScrollPane.setViewportView(null);
-					initializeTable();
+					initialiseTable();
 					BrewPicturesTableScrollPane.setViewportView(BrewPicturesTable);
 					clearBrewPictureData();
 
@@ -450,8 +455,10 @@ public class BrewPicturesPanel extends JPanel {
 		
 	}
 	
-	
-	public static void initializeTable() {
+	/**
+	 * Initialises the brew pictures table on the brew pictures tab so that it can be viewed (including getting the data from the database).
+	 */
+	public static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<Object> header; //used to store data header
@@ -492,6 +499,9 @@ public class BrewPicturesPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Adds the mouse listener to the brew pictures table that listens for mouse clicks.
+	 */
 	public static void addBrewPicturesMouseListener(){
 		mouseListenerIsActive = true;
 		
@@ -514,11 +524,16 @@ public class BrewPicturesPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Removes the mouse listener from the brew pictures table.
+	 */
 	public static void removeBrewPicturesMouseListener(){
 		mouseListenerIsActive = false;
 	}
 	
-
+	/**
+	 * Sets the data in the fields on the Brew Pictures tab to the currently selected brew picture, including showing the picture on screen.
+	 */
 	public static void setBrewPictureData(){
 		if(BrewPicturesSelectedRow != -1){
 			textBrewPictureRef.setText((String) BrewPicturesTable.getValueAt(BrewPicturesSelectedRow,0));
@@ -538,7 +553,9 @@ public class BrewPicturesPanel extends JPanel {
 		}
 	}
 	
-	
+	/**
+	 * Clears all data from all fields on the brew pictures tab.
+	 */
 	public static void clearBrewPictureData(){
 		textBrewPictureRef.setText("");
 		textBrewPictureDescription.setText("");

@@ -302,7 +302,7 @@ public class JDateChooser extends JPanel {
     // DATE ACCESSORS
     /** Set the current selected date of the date chooser.  The date may be null.
      * This will update the text field and the rest of the UI to reflect the change.
-     * @param the newly current selected date */
+     * @param date the newly current selected date */
     public void setDate(Date date) {
         if (date != null) {
             dateField.setText(currentDateFormat.format(date));

@@ -27,7 +27,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
-
+/**
+ * This handles generating the pdf file for the selected brew.
+ * 
+ * @author paul.bellchambers
+ *
+ */
 public class BrewPDF {
 	
 	private static Font heading1Font = new Font(Font.FontFamily.HELVETICA, 18,Font.BOLD);
@@ -37,7 +42,11 @@ public class BrewPDF {
 	private static Font smallNormal = new Font(Font.FontFamily.HELVETICA, 9,Font.NORMAL);
 	private static Font headerFoot = new Font(Font.FontFamily.HELVETICA, 7,Font.ITALIC,BaseColor.GRAY);
 	
-
+	/**
+	 * Attempts to automatically open the file at the specified location.
+	 * 
+	 * @param location File location.
+	 */
 	private static void openPDF(String location) {
  
 	  try {
@@ -65,11 +74,16 @@ public class BrewPDF {
 		ex.printStackTrace();
 	  }
  
-	}
+	}	
 	
-	//TODO: Make pictures print too
+	/**
+	 * Creates the physical pdf file at the specified location.
+	 * 
+	 * @param location File location.
+	 */
 	public static void createPDF(String location) {
-
+		//TODO: Make pictures print too
+		
 		try {
 				Document document = new Document();
 				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(location));
@@ -96,8 +110,11 @@ public class BrewPDF {
 		}
 
 
-
-	//iText allows to add metadata to the PDF which can be viewed in your Adobe Reader under File -> Properties
+	/**
+	 * Adds metadata to the document (iText allows to add metadata to the PDF which can be viewed in your Adobe Reader under File -> Properties). 
+	 * 
+	 * @param document The specified document (will always be "document" for this). 
+	 */
 	private static void addMetaData(Document document) {
 		document.addTitle(BrewDataPanel.textBrewNameB.getText());
 		document.addSubject("Brew Data for brew: " + BrewDataPanel.textBrewNameB.getText());
@@ -106,7 +123,12 @@ public class BrewPDF {
 		document.addCreator("WineBrewDB");
 	}
 	
-	
+	/**
+	 * Gets and adds the brew data to the specified document.
+	 * 
+	 * @param document The specified document (will always be "document" for this).
+	 * @throws DocumentException
+	 */
 	private static void addBrewData(Document document)
 			throws DocumentException {
 		Paragraph genericParagraph = new Paragraph();
@@ -224,7 +246,12 @@ public class BrewPDF {
 		document.newPage();
 	}
 	
-	
+	/**
+	 * Gets and adds the brew notes to the specified document.
+	 * 
+	 * @param document The specified document (will always be "document" for this).
+	 * @throws DocumentException
+	 */
 	private static void addBrewNotes(Document document) throws DocumentException {
 		Paragraph genericParagraph = new Paragraph();
 		//Empty Line
@@ -243,7 +270,12 @@ public class BrewPDF {
 	
 	}
 	
-	
+	/**
+	 * Gets and adds the brew costs to the specified document.
+	 * 
+	 * @param document The specified document (will always be "document" for this).
+	 * @throws DocumentException
+	 */
 	private static void addBrewCosts(Document document) throws DocumentException {
 		Paragraph genericParagraph = new Paragraph();
 		Chunk tab2 = new Chunk(new VerticalPositionMark(), 170, true);
@@ -291,6 +323,12 @@ public class BrewPDF {
 //	}
 //	
 	
+	/**
+	 * Loops through and creates the table containing all the brew notes.
+	 * 
+	 * @param preface The paragraph to which the table should be added (will always be "genericParagraph" for this).
+	 * @throws BadElementException
+	 */
 	private static void createNotesTable(Paragraph preface)
 			throws BadElementException {
 		PdfPTable table = new PdfPTable(4);
@@ -338,7 +376,12 @@ public class BrewPDF {
 	
 	}
 	
-	
+	/**
+	 * Loops through and creates the table containing all the brew costs.
+	 * 
+	 * @param preface The paragraph to which the table should be added (will always be "genericParagraph" for this).
+	 * @throws BadElementException
+	 */
 	private static void createCostsTable(Paragraph preface)
 			throws BadElementException {
 		PdfPTable table = new PdfPTable(3);
@@ -429,16 +472,29 @@ public class BrewPDF {
 //	
 //	}
 	
-	
+	/**
+	 * Adds a specified number of empty lines to a specified paragraph.
+	 * 
+	 * @param paragraph The specified paragraph (will always be "genericParagraph" for this).
+	 * @param number The number of empty lines.
+	 */
 	private static void addEmptyLine(Paragraph paragraph, int number) {
 		for (int i = 0; i < number; i++) {
 			paragraph.add(new Paragraph(" "));
 		}
 	}
 	
-
+	/**
+	 * Adds the header and footer to the document.
+	 * 
+	 * @author paul.bellchambers
+	 *
+	 */
 	static class HeaderFooter extends PdfPageEventHelper {
 
+		/**
+		 * Adds the header and footer to the document.
+		 */
         public void onEndPage (PdfWriter writer, Document document) {
             Rectangle rect = writer.getBoxSize("box");
             

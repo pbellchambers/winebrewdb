@@ -15,9 +15,14 @@ import javax.swing.JTextPane;
 
 import uk.co.pori.winebrewdb.MainWindow;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the dilution calculator panel to be displayed as a tab on the main calculator panel tab bar.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class DilutionPanel extends JPanel {
 
 	private static final long serialVersionUID = -5260637755405545904L;
@@ -30,10 +35,12 @@ public class DilutionPanel extends JPanel {
 	private static JFormattedTextField fieldVolumeAddedSG;
 	private static JFormattedTextField fieldCurrentSG;
 	private static JFormattedTextField fieldResultSG;
-	private static String DilutionPanelStatus = "DeInitialized";
+	private static String DilutionPanelStatus = "DeInitialised";
 
-	//public DilutionPanel() {
-	public static void InitializePanel(){
+	/**
+	 * Initialises the dilution calculator panel so that it can be viewed.
+	 */
+	public static void initialisePanel(){
 		
 		
 		//Subpanel
@@ -122,13 +129,13 @@ public class DilutionPanel extends JPanel {
 		//Add button listeners
 		btnCalculateDilutionABV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculateDilutionABV();
+				calculateDilutionABV();
 			}
 		});
 				
 		btnCalculateDilutionSG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CalculateDilutionSG();
+				calculateDilutionSG();
 			}
 		});
 				
@@ -137,20 +144,24 @@ public class DilutionPanel extends JPanel {
 		MainWindow.WineBrewDBFrame.getContentPane().add(DilutionSubPanel, "cell 0 0,grow");
 		DilutionSubPanel.setVisible(false);
 
-		DilutionPanelStatus = "Initialized";
+		DilutionPanelStatus = "Initialised";
 	}
 
-			
-	public static void DeInitializePanel(){
-		if(DilutionPanelStatus.equals("Initialized")) {
+	/**
+	 * De-initialises the dilution calculator panel so that it is not visible on screen.
+	 */		
+	public static void deinitialisePanel(){
+		if(DilutionPanelStatus.equals("Initialised")) {
 			DilutionSubPanel.setVisible(false);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(DilutionSubPanel);
-			DilutionPanelStatus = "DeInitialized";
+			DilutionPanelStatus = "DeInitialised";
 		}
 	}
 	
-
-	public static void CalculateDilutionABV(){
+	/**
+	 * Calculates the diluted ABV amount based on the user entered values.
+	 */
+	public static void calculateDilutionABV(){
 		BigDecimal StartingVolume = new BigDecimal(fieldStartingVolumeABV.getText());
 		BigDecimal VolumeAdded = new BigDecimal(fieldVolumeAddedABV.getText());
 		BigDecimal TotalNewVolume = StartingVolume.add(VolumeAdded);
@@ -170,7 +181,10 @@ public class DilutionPanel extends JPanel {
 		fieldResultABV.setText(Result.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 	}
 			
-	public static void CalculateDilutionSG(){
+	/**
+	 * Calculates the diluted SG amount based on the user entered values.
+	 */
+	public static void calculateDilutionSG(){
 		BigDecimal StartingVolume = new BigDecimal(fieldStartingVolumeSG.getText());
 		BigDecimal VolumeAdded = new BigDecimal(fieldVolumeAddedSG.getText());
 		BigDecimal TotalNewVolume = StartingVolume.add(VolumeAdded);

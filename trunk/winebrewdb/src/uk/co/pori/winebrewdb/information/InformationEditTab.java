@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
@@ -55,15 +55,15 @@ public class InformationEditTab extends JPanel {
 	/**
 	 * Initialises the information edit panel (including getting the table of data) so that it can be viewed.
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		
 		tabbedInformationEditTab = new JPanel();
 		tabbedInformationEditTab.setBackground(Color.WHITE);
 		tabbedInformationEditTab.setLayout(new MigLayout("", "[90px:90px:90px][grow][90px:90px:90px][grow][130px:130px:130px][grow]", "[100px:100px:100px][][][grow][10px:10px:10px][]"));
 		
 		
-		//Initialize Table
-		initializeTable();
+		//Initialise Table
+		initialiseTable();
 		
 		
 		//ScrollPane
@@ -142,7 +142,7 @@ public class InformationEditTab extends JPanel {
 					InformationPanel.tabbedInformationPane.setEnabledAt(currenttab, false);
 					currenttab = currenttab + 1;
 				}				
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textInformationTabID.setEditable(true);
 				textInformationTabName.setEditable(true);
 				textInformationTabContent.setEditable(true);
@@ -170,7 +170,7 @@ public class InformationEditTab extends JPanel {
 					InformationPanel.tabbedInformationPane.setEnabledAt(currenttab, false);
 					currenttab = currenttab + 1;
 				}		
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textInformationTabID.setEditable(true);
 				textInformationTabName.setEditable(true);
 				textInformationTabContent.setEditable(true);
@@ -211,7 +211,7 @@ public class InformationEditTab extends JPanel {
 							InformationPanel.tabbedInformationPane.setEnabledAt(currenttab, true);
 							currenttab = currenttab + 1;
 						}		
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textInformationTabID.setEditable(false);
 						textInformationTabName.setEditable(false);
 						textInformationTabContent.setEditable(false);
@@ -219,7 +219,7 @@ public class InformationEditTab extends JPanel {
 						checkboxInformationTabHTML.setEnabled(false);
 						InformationEditScrollPane.remove(InformationEditTable);
 						InformationEditScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						InformationEditScrollPane.setViewportView(InformationEditTable);
 						clearInformationTabData();
 						refreshInformationTabs();
@@ -239,7 +239,7 @@ public class InformationEditTab extends JPanel {
 					mouseListenerIsActive = true;
 					InformationEditScrollPane.remove(InformationEditTable);
 					InformationEditScrollPane.setViewportView(null);
-					initializeTable();
+					initialiseTable();
 					InformationEditScrollPane.setViewportView(InformationEditTable);
 					clearInformationTabData();
 					InformationEditTable.setEnabled(true);
@@ -255,7 +255,7 @@ public class InformationEditTab extends JPanel {
 						InformationPanel.tabbedInformationPane.setEnabledAt(currenttab, true);
 						currenttab = currenttab + 1;
 					}		
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textInformationTabID.setEditable(false);
 					textInformationTabName.setEditable(false);
 					textInformationTabContent.setEditable(false);
@@ -278,7 +278,7 @@ public class InformationEditTab extends JPanel {
 						InformationPanel.tabbedInformationPane.setEnabledAt(currenttab, true);
 						currenttab = currenttab + 1;
 					}		
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textInformationTabID.setEditable(false);
 					textInformationTabName.setEditable(false);
 					textInformationTabContent.setEditable(false);
@@ -322,7 +322,7 @@ public class InformationEditTab extends JPanel {
 							InformationPanel.tabbedInformationPane.setEnabledAt(currenttab, true);
 							currenttab = currenttab + 1;
 						}		
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textInformationTabID.setEditable(false);
 						textInformationTabName.setEditable(false);
 						textInformationTabContent.setEditable(false);
@@ -330,7 +330,7 @@ public class InformationEditTab extends JPanel {
 						checkboxInformationTabHTML.setEnabled(false);
 						InformationEditScrollPane.remove(InformationEditTable);
 						InformationEditScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						InformationEditScrollPane.setViewportView(InformationEditTable);
 						clearInformationTabData();
 						refreshInformationTabs();
@@ -367,7 +367,7 @@ public class InformationEditTab extends JPanel {
 							InformationPanel.tabbedInformationPane.setEnabledAt(currenttab, true);
 							currenttab = currenttab + 1;
 						}		
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textInformationTabID.setEditable(false);
 						textInformationTabName.setEditable(false);
 						textInformationTabContent.setEditable(false);
@@ -375,7 +375,7 @@ public class InformationEditTab extends JPanel {
 						checkboxInformationTabHTML.setEnabled(false);
 						InformationEditScrollPane.remove(InformationEditTable);
 						InformationEditScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						InformationEditScrollPane.setViewportView(InformationEditTable);
 						clearInformationTabData();
 						refreshInformationTabs();
@@ -390,7 +390,7 @@ public class InformationEditTab extends JPanel {
 	/**
 	 * Initialises the information tab data table so that it is visible (including getting the information from the database).
 	 */
-	public static void initializeTable() {
+	public static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<Object> header; //used to store data header

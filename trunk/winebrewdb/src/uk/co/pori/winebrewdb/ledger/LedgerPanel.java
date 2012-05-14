@@ -30,13 +30,13 @@ public class LedgerPanel extends JPanel {
 	private static JLabel LedgerHeader;
 	private static JLabel LedgerSubtitle;
 	static JTabbedPane tabbedLedgerPane;
-	private static String LedgerPanelStatus = "DeInitialized";
+	private static String LedgerPanelStatus = "DeInitialised";
 	public static JButton btnPrintLedger;
 
 	/**
 	 * Initialises all the ledger panels (including getting all data) so that they are displayed on screen.
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		
 		LedgerPanel = new JPanel();
 		LedgerPanel.setLayout(new MigLayout("", "[grow][65px:n:65px]", "[20px:n:20px][25px:n:25px][grow]"));
@@ -66,17 +66,17 @@ public class LedgerPanel extends JPanel {
 				
 		
 		//Ledger Search Tab
-		LedgerEquipmentPanel.InitializePanel();		
+		LedgerEquipmentPanel.initialisePanel();		
 		tabbedLedgerPane.addTab("Equipment & Non-brew-specific Costs", null, LedgerEquipmentPanel.tabbedLedgerEquipmentCostPanel, null);
 		
 		
 		//Ledger Data Tab
-		LedgerBrewCostSearchPanel.InitializePanel();		
+		LedgerBrewCostSearchPanel.initialisePanel();		
 		tabbedLedgerPane.addTab("Brew Cost Search", null, LedgerBrewCostSearchPanel.tabbedLedgerBrewCostSearchPanel, null);
 		
 		
 		//Add New Ledger Tab
-		LedgerBrewCostDataPanel.InitializePanel();
+		LedgerBrewCostDataPanel.initialisePanel();
 		tabbedLedgerPane.addTab("Brew Cost Data", null, LedgerBrewCostDataPanel.tabbedLedgerBrewCostPanel, null);
 		
 		
@@ -89,7 +89,7 @@ public class LedgerPanel extends JPanel {
 		LedgerPanel.setVisible(false);
 
 		
-		LedgerPanelStatus = "Initialized";
+		LedgerPanelStatus = "Initialised";
 		
 		
 		//Add print button listener
@@ -131,13 +131,13 @@ public class LedgerPanel extends JPanel {
 	/**
 	 * De-initialises all the ledger panels so that they are no longer displayed on screen.
 	 */
-	public static void DeInitializePanel(){
-		if(LedgerPanelStatus.equals("Initialized")) {
+	public static void deinitialisePanel(){
+		if(LedgerPanelStatus.equals("Initialised")) {
 			LedgerPanel.setVisible(false);
 			tabbedLedgerPane.removeAll();
 			LedgerPanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(LedgerPanel);
-			LedgerPanelStatus = "DeInitialized";
+			LedgerPanelStatus = "DeInitialised";
 		}
 	}
 	

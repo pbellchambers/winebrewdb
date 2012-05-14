@@ -23,15 +23,20 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import uk.co.pori.winebrewdb.Dates;
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
 import agiletrack.swing.JDateChooser;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the brew data panel to be displayed as a tab on the main brew panel tab bar. It shows the brew data for the currently selected brew.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class BrewDataPanel extends JPanel {
 
 	private static final long serialVersionUID = -844109213529915549L;
@@ -66,8 +71,10 @@ public class BrewDataPanel extends JPanel {
 	static JButton btnBrewDataDelete;
 	private static JButton btnBrewDataCancel;
 	
-	
-	public static void InitializePanel(){
+	/**
+	 * Initialises the brew data panel so that it can be viewed.
+	 */
+	public static void initialisePanel(){
 		
 		tabbedBrewDataPanel = new JPanel();
 		tabbedBrewDataPanel.setBackground(Color.WHITE);
@@ -379,7 +386,7 @@ public class BrewDataPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textBrewNameB.setEditable(true);
 				comboBrewColourB.setEnabled(true);
 				textBrewRecipeB.setEditable(true);
@@ -421,7 +428,7 @@ public class BrewDataPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-				InitializeMenu.EnableAllMenuButtons();
+				InitialiseMenu.enableAllMenuButtons();
 				textBrewNameB.setEditable(false);
 				comboBrewColourB.setEnabled(false);
 				textBrewRecipeB.setEditable(false);
@@ -483,7 +490,7 @@ public class BrewDataPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textBrewNameB.setEditable(false);
 					comboBrewColourB.setEnabled(false);
 					textBrewRecipeB.setEditable(false);
@@ -511,7 +518,7 @@ public class BrewDataPanel extends JPanel {
 					textBrewGeneralNotesB.setBackground(UIManager.getColor("Panel.background"));
 					BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
 					BrewSearchPanel.BrewScrollPane.setViewportView(null);
-					BrewSearchPanel.initializeTable();
+					BrewSearchPanel.initialiseTable();
 					BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
 				}
 			}
@@ -545,7 +552,7 @@ public class BrewDataPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
 						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textBrewNameB.setEditable(false);
 						comboBrewColourB.setEnabled(false);
 						textBrewRecipeB.setEditable(false);
@@ -574,7 +581,7 @@ public class BrewDataPanel extends JPanel {
 						BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
 						BrewSearchPanel.BrewScrollPane.setViewportView(null);
 						BrewAddPanel.clearBrewAddData();
-						BrewSearchPanel.initializeTable();
+						BrewSearchPanel.initialiseTable();
 						BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
 						clearBrewData();
 						BrewPanel.tabbedBrewPane.setSelectedIndex(0);
@@ -589,6 +596,9 @@ public class BrewDataPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Sets the data in the fields on the Brew Data tab to the currently selected brew.
+	 */
 	public static void setBrewData(){
 		BrewPanel.btnPrintBrew.setEnabled(true);
 		textBrewRefB.setText((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,0));
@@ -679,7 +689,9 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewDrunkB.setSelected((Boolean) stringToBool((String) BrewSearchPanel.BrewTable.getValueAt(BrewSearchPanel.BrewSearchSelectedRow,21)));
 	}
 	
-	
+	/**
+	 * Clears all data from all fields on the brew data tab.
+	 */
 	public static void clearBrewData(){
 		BrewPanel.btnPrintBrew.setEnabled(false);
 		textBrewRefB.setText("");
@@ -709,6 +721,12 @@ public class BrewDataPanel extends JPanel {
 		chckbxBrewDrunkB.setSelected(false);
 	}
 	
+	/**
+	 * Converts a string to a boolean.
+	 * 
+	 * @param s String value (either 1 or 0).
+	 * @return Returns the boolean value of the string.
+	 */
 	public static boolean stringToBool(String s) {
 		  if (s.equals("1"))
 		    return true;

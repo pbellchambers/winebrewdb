@@ -34,14 +34,14 @@ public class WelcomePanel extends JPanel {
 	public static JPanel WelcomePanel;
 	private static JLabel WelcomeText2;
 	private static JLabel WelcomeText3;
-	private static String WelcomePanelStatus = "DeInitialized";
+	private static String WelcomePanelStatus = "DeInitialised";
 
 	/**
 	 * Initialises the welcome panel so that it is displayed on screen.
 	 */
-	public static void InitializePanel(){		
+	public static void initialisePanel(){		
 		
-		InitializeMenu.DisableAllMenuButtons();
+		InitialiseMenu.disableAllMenuButtons();
 		
 		WelcomePanel = new JPanel();
 		WelcomePanel.setLayout(new MigLayout("", "[300px,grow][300px,grow]", "[30px:n:30px][30px:n:30px][30px:n:30px][50px:n:50px][100px:n:100px][grow]"));
@@ -83,7 +83,7 @@ public class WelcomePanel extends JPanel {
 			WelcomePanel.add(WelcomeText3, "cell 0 2 2,grow");
 			
 		}else{			
-			InitializeMenu.EnableAllMenuButtons();
+			InitialiseMenu.enableAllMenuButtons();
 			
 			WelcomeText2 = new JLabel();
 			WelcomeText2.setText("Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
@@ -136,7 +136,7 @@ public class WelcomePanel extends JPanel {
 			    	  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
 			    	  try {
 			    		  MainWindow.brewIni.store();
-			    		  InitializeMenu.EnableAllMenuButtons();
+			    		  InitialiseMenu.enableAllMenuButtons();
 				    	  WelcomeText2.setText("Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
 				    	  WelcomeText2.setFont(new Font("Arial", Font.PLAIN, 14));
 				    	  WelcomeText2.setForeground(Color.BLACK);
@@ -167,7 +167,7 @@ public class WelcomePanel extends JPanel {
 			    	  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
 			    	  try {
 			    		  MainWindow.brewIni.store();
-			    		  InitializeMenu.EnableAllMenuButtons();
+			    		  InitialiseMenu.enableAllMenuButtons();
 				    	  WelcomeText2.setText("Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
 				    	  WelcomeText2.setFont(new Font("Arial", Font.PLAIN, 14));
 				    	  WelcomeText2.setForeground(Color.BLACK);
@@ -189,18 +189,18 @@ public class WelcomePanel extends JPanel {
 		});
 
 		
-		WelcomePanelStatus = "Initialized";
+		WelcomePanelStatus = "Initialised";
 	}
 
 	/**
-	 * De-initialises the welcom panel so that it is no longer displayed on screen.
+	 * De-initialises the welcome panel so that it is no longer displayed on screen.
 	 */
-	public static void DeInitializePanel(){
-		if(WelcomePanelStatus.equals("Initialized")) {
+	public static void deinitialisePanel(){
+		if(WelcomePanelStatus.equals("Initialised")) {
 			WelcomePanel.remove(WelcomeText2);
 			WelcomePanel.remove(WelcomeText3);
 			MainWindow.WineBrewDBFrame.getContentPane().remove(WelcomePanel);
-			WelcomePanelStatus = "DeInitialized";
+			WelcomePanelStatus = "DeInitialised";
 		}
 	}
 	

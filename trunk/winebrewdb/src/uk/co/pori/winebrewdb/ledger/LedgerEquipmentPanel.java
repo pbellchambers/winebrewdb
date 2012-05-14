@@ -25,7 +25,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import uk.co.pori.winebrewdb.Dates;
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.NumberRenderer;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
@@ -72,7 +72,7 @@ public class LedgerEquipmentPanel extends JPanel {
 	/**
 	 * Initialises the ledger equipment panel so that it can be viewed (including populating the table).
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		tabbedLedgerEquipmentCostPanel = new JPanel();
 		tabbedLedgerEquipmentCostPanel.setBackground(Color.WHITE);
 		tabbedLedgerEquipmentCostPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][90px:90px:90px][grow][130px:130px:130px][grow]", "[95px:95px:95px][grow][][10px:10px:10px][][][10px:10px:10px][]"));
@@ -118,8 +118,8 @@ public class LedgerEquipmentPanel extends JPanel {
 		tabbedLedgerEquipmentCostPanel.add(LedgerEquipmentFilterPanel, "cell 0 0 6,grow");
 		
 		
-		//Initialize Table
-		initializeTable();
+		//Initialise Table
+		initialiseTable();
 		
 		
 		//ScrollPane
@@ -213,7 +213,7 @@ public class LedgerEquipmentPanel extends JPanel {
 				mouseListenerIsActive = true;
 				LedgerEquipmentCostScrollPane.remove(LedgerEquipmentCostTable);
 				LedgerEquipmentCostScrollPane.setViewportView(null);
-				initializeTable();
+				initialiseTable();
 				LedgerEquipmentCostScrollPane.setViewportView(LedgerEquipmentCostTable);
 				clearLedgerEquipmentCostData();
 				setBrewTotalCostData();
@@ -247,7 +247,7 @@ public class LedgerEquipmentPanel extends JPanel {
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(1, false);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(2, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textLedgerEquipmentCostLineItem.setEditable(true);
 				textLedgerEquipmentCostCost.setEditable(true);
 				textLedgerEquipmentCostSupplier.setEditable(true);
@@ -271,7 +271,7 @@ public class LedgerEquipmentPanel extends JPanel {
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(1, false);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(2, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textLedgerEquipmentCostLineItem.setEditable(true);
 				textLedgerEquipmentCostCost.setEditable(true);
 				textLedgerEquipmentCostSupplier.setEditable(true);
@@ -308,14 +308,14 @@ public class LedgerEquipmentPanel extends JPanel {
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textLedgerEquipmentCostLineItem.setEditable(false);
 						textLedgerEquipmentCostCost.setEditable(false);
 						textLedgerEquipmentCostSupplier.setEditable(false);
 						chooserLedgerEquipmentCostDate.setDisabled();
 						LedgerEquipmentCostScrollPane.remove(LedgerEquipmentCostTable);
 						LedgerEquipmentCostScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						LedgerEquipmentCostScrollPane.setViewportView(LedgerEquipmentCostTable);
 						clearLedgerEquipmentCostData();
 						setBrewTotalCostData();
@@ -335,7 +335,7 @@ public class LedgerEquipmentPanel extends JPanel {
 					mouseListenerIsActive = true;
 					LedgerEquipmentCostScrollPane.remove(LedgerEquipmentCostTable);
 					LedgerEquipmentCostScrollPane.setViewportView(null);
-					initializeTable();
+					initialiseTable();
 					LedgerEquipmentCostScrollPane.setViewportView(LedgerEquipmentCostTable);
 					clearLedgerEquipmentCostData();
 					setBrewTotalCostData();
@@ -349,7 +349,7 @@ public class LedgerEquipmentPanel extends JPanel {
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textLedgerEquipmentCostLineItem.setEditable(false);
 					textLedgerEquipmentCostCost.setEditable(false);
 					textLedgerEquipmentCostSupplier.setEditable(false);
@@ -368,7 +368,7 @@ public class LedgerEquipmentPanel extends JPanel {
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 					LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textLedgerEquipmentCostLineItem.setEditable(false);
 					textLedgerEquipmentCostCost.setEditable(false);
 					textLedgerEquipmentCostSupplier.setEditable(false);
@@ -408,14 +408,14 @@ public class LedgerEquipmentPanel extends JPanel {
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textLedgerEquipmentCostLineItem.setEditable(false);
 						textLedgerEquipmentCostCost.setEditable(false);
 						textLedgerEquipmentCostSupplier.setEditable(false);
 						chooserLedgerEquipmentCostDate.setDisabled();
 						LedgerEquipmentCostScrollPane.remove(LedgerEquipmentCostTable);
 						LedgerEquipmentCostScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						LedgerEquipmentCostScrollPane.setViewportView(LedgerEquipmentCostTable);
 						clearLedgerEquipmentCostData();
 						setBrewTotalCostData();
@@ -449,14 +449,14 @@ public class LedgerEquipmentPanel extends JPanel {
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 						LedgerPanel.tabbedLedgerPane.setEnabledAt(2, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textLedgerEquipmentCostLineItem.setEditable(false);
 						textLedgerEquipmentCostCost.setEditable(false);
 						textLedgerEquipmentCostSupplier.setEditable(false);
 						chooserLedgerEquipmentCostDate.setDisabled();
 						LedgerEquipmentCostScrollPane.remove(LedgerEquipmentCostTable);
 						LedgerEquipmentCostScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						LedgerEquipmentCostScrollPane.setViewportView(LedgerEquipmentCostTable);
 						clearLedgerEquipmentCostData();
 						setBrewTotalCostData();
@@ -474,7 +474,7 @@ public class LedgerEquipmentPanel extends JPanel {
 	/**
 	 * Initialises the ledger equipment costs table on the ledger equipment tab so that it can be viewed (including getting the data from the database).
 	 */
-	public static void initializeTable() {
+	public static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<String> header; //used to store data header

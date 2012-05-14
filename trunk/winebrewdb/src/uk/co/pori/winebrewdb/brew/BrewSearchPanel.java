@@ -27,10 +27,14 @@ import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.NumberRenderer;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
-
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * This is the brew search panel to be displayed as a tab on the main brew panel tab bar. It allows the user to search for brews.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class BrewSearchPanel extends JPanel {
 	
 
@@ -54,8 +58,10 @@ public class BrewSearchPanel extends JPanel {
 	static int BrewSearchSelectedRow;
 	private static String BrewTableFields;
 
-	
-	public static void InitializePanel(){
+	/**
+	 * Initialises the brew search panel so that it can be viewed.
+	 */
+	public static void initialisePanel(){
 		
 		BrewTableFields = "Summary";
 		
@@ -147,8 +153,8 @@ public class BrewSearchPanel extends JPanel {
 
 		tabbedBrewSearchPanel.add(BrewFilterPanel, "cell 0 0,grow");
 
-		//Initialize Table
-		initializeTable();
+		//Initialise Table
+		initialiseTable();
 		
 		//ScrollPane
 	    BrewScrollPane = new JScrollPane();
@@ -174,7 +180,7 @@ public class BrewSearchPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
-				initializeTable();
+				initialiseTable();
 				BrewScrollPane.setViewportView(BrewTable);
 			}
 		});
@@ -197,7 +203,7 @@ public class BrewSearchPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
-					initializeTable();
+					initialiseTable();
 					BrewScrollPane.setViewportView(BrewTable);
 				}
 				if (e.getStateChange() == ItemEvent.DESELECTED){
@@ -216,7 +222,7 @@ public class BrewSearchPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(2, false);
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, false);
-					initializeTable();
+					initialiseTable();
 					BrewScrollPane.setViewportView(BrewTable);
 				}
 			}
@@ -225,7 +231,10 @@ public class BrewSearchPanel extends JPanel {
 		
 	}
 	
-	public static void initializeTable() {
+	/**
+	 * Initialises the brews table on the brew search tab so that it can be viewed (including getting the data from the database).
+	 */
+	public static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<Object> header; //used to store data header
@@ -296,9 +305,9 @@ public class BrewSearchPanel extends JPanel {
 
 		
 		if (BrewTableFields.equals("Summary")){
-			showDefaultRows();
+			showDefaultColumns();
 		}else {
-			showAllRows();
+			showAllColumns();
 		}
 		
 		BrewTable.getTableHeader().setReorderingAllowed(false);
@@ -314,15 +323,15 @@ public class BrewSearchPanel extends JPanel {
 					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
 					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
 					BrewDataPanel.setBrewData();
-					BrewNotesPanel.initializeTable();
+					BrewNotesPanel.initialiseTable();
 					BrewNotesPanel.clearBrewNoteData();
 					BrewNotesPanel.btnBrewNoteEdit.setEnabled(false);
 					BrewNotesPanel.BrewNotesScrollPane.setViewportView(BrewNotesPanel.BrewNotesTable);
-					BrewPicturesPanel.initializeTable();
+					BrewPicturesPanel.initialiseTable();
 					BrewPicturesPanel.clearBrewPictureData();
 					BrewPicturesPanel.btnBrewPictureEdit.setEnabled(false);
 					BrewPicturesPanel.BrewPicturesTableScrollPane.setViewportView(BrewPicturesPanel.BrewPicturesTable);
-					BrewCostPanel.initializeTable();
+					BrewCostPanel.initialiseTable();
 					BrewCostPanel.clearBrewCostData();
 					BrewCostPanel.setBrewTotalCostData();
 					BrewCostPanel.btnBrewCostEdit.setEnabled(false);
@@ -339,15 +348,15 @@ public class BrewSearchPanel extends JPanel {
 					BrewDataPanel.btnBrewDataEdit.setEnabled(true);
 					BrewDataPanel.btnBrewDataDelete.setEnabled(false);
 					BrewDataPanel.setBrewData();
-					BrewNotesPanel.initializeTable();
+					BrewNotesPanel.initialiseTable();
 					BrewNotesPanel.clearBrewNoteData();
 					BrewNotesPanel.btnBrewNoteEdit.setEnabled(false);
 					BrewNotesPanel.BrewNotesScrollPane.setViewportView(BrewNotesPanel.BrewNotesTable);
-					BrewPicturesPanel.initializeTable();
+					BrewPicturesPanel.initialiseTable();
 					BrewPicturesPanel.clearBrewPictureData();
 					BrewPicturesPanel.btnBrewPictureEdit.setEnabled(false);
 					BrewPicturesPanel.BrewPicturesTableScrollPane.setViewportView(BrewPicturesPanel.BrewPicturesTable);
-					BrewCostPanel.initializeTable();
+					BrewCostPanel.initialiseTable();
 					BrewCostPanel.clearBrewCostData();
 					BrewCostPanel.setBrewTotalCostData();
 					BrewCostPanel.btnBrewCostEdit.setEnabled(false);
@@ -365,7 +374,10 @@ public class BrewSearchPanel extends JPanel {
 		
 	}
 	
-	public static void showAllRows(){
+	/**
+	 * Makes all columns visible on the brew search table.
+	 */
+	public static void showAllColumns(){
 		BrewTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		BrewTable.getColumnModel().getColumn(0).setPreferredWidth(80);
 		BrewTable.getColumnModel().getColumn(0).setMinWidth(5);
@@ -449,7 +461,10 @@ public class BrewSearchPanel extends JPanel {
 		BrewTable.getColumnModel().getColumn(26).setCellRenderer(NumberRenderer.getCurrencyRenderer());
 	}
 	
-	public static void showDefaultRows(){
+	/**
+	 * Makes only the default columns visible on the brew search table (by setting column width to 0 on the unneeded ones).
+	 */
+	public static void showDefaultColumns(){
 		BrewTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		BrewTable.getColumnModel().getColumn(0).setPreferredWidth(0);
 		BrewTable.getColumnModel().getColumn(0).setMinWidth(0);

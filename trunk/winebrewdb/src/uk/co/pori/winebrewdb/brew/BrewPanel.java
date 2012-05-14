@@ -15,9 +15,14 @@ import javax.swing.event.ChangeListener;
 
 import uk.co.pori.winebrewdb.MainWindow;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the main brew panel that contains all of the sub panels in a tab layout.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class BrewPanel extends JPanel {
 
 	private static final long serialVersionUID = 6339618777984753664L;
@@ -25,11 +30,13 @@ public class BrewPanel extends JPanel {
 	private static JLabel BrewHeader;
 	private static JLabel BrewSubtitle;
 	static JTabbedPane tabbedBrewPane;
-	private static String BrewPanelStatus = "DeInitialized";
+	private static String BrewPanelStatus = "DeInitialised";
 	public static JButton btnPrintBrew;
 
-	//public BrewPanel() {
-	public static void InitializePanel(){
+	/**
+	 * Initialises all the brew panels (including getting all data) so that they are displayed on screen.
+	 */
+	public static void initialisePanel(){
 		
 		BrewPanel = new JPanel();
 		BrewPanel.setLayout(new MigLayout("", "[grow][65px:n:65px]", "[20px:n:20px][25px:n:25px][grow]"));
@@ -60,32 +67,32 @@ public class BrewPanel extends JPanel {
 				
 		
 		//Brew Search Tab
-		BrewSearchPanel.InitializePanel();		
+		BrewSearchPanel.initialisePanel();		
 		tabbedBrewPane.addTab("Search", null, BrewSearchPanel.tabbedBrewSearchPanel, null);
 		
 		
 		//Brew Data Tab
-		BrewDataPanel.InitializePanel();		
+		BrewDataPanel.initialisePanel();		
 		tabbedBrewPane.addTab("Brew Data", null, BrewDataPanel.tabbedBrewDataPanel, null);
 		
 		
 		//Brew Notes Tab
-		BrewNotesPanel.InitializePanel();
+		BrewNotesPanel.initialisePanel();
 		tabbedBrewPane.addTab("Brew Notes", null, BrewNotesPanel.tabbedBrewNotesPanel, null);
 		
 		
 		//Brew Pictures Tab
-		BrewPicturesPanel.InitializePanel();
+		BrewPicturesPanel.initialisePanel();
 		tabbedBrewPane.addTab("Brew Pictures", null, BrewPicturesPanel.tabbedBrewPicturesPanel, null);
 		
 		
 		//Brew Pictures Tab
-		BrewCostPanel.InitializePanel();
+		BrewCostPanel.initialisePanel();
 		tabbedBrewPane.addTab("Brew Costs", null, BrewCostPanel.tabbedBrewCostPanel, null);
 				
 		
 		//Add New Brew Tab
-		BrewAddPanel.InitializePanel();
+		BrewAddPanel.initialisePanel();
 		tabbedBrewPane.addTab("Add New Brew", new ImageIcon(BrewPanel.class.getResource("/uk/co/pori/winebrewdb/images/new.png")), BrewAddPanel.tabbedBrewAddPanel, null);
 		
 		
@@ -101,7 +108,7 @@ public class BrewPanel extends JPanel {
 		BrewPanel.setVisible(false);
 
 		
-		BrewPanelStatus = "Initialized";
+		BrewPanelStatus = "Initialised";
 		
 		
 		//Add print button listener
@@ -139,14 +146,16 @@ public class BrewPanel extends JPanel {
 		});
 	}
 
-	
-	public static void DeInitializePanel(){
-		if(BrewPanelStatus.equals("Initialized")) {
+	/**
+	 * De-initialises all the brew panels so that they are no longer displayed on screen.
+	 */
+	public static void deinitialisePanel(){
+		if(BrewPanelStatus.equals("Initialised")) {
 			BrewPanel.setVisible(false);
 			tabbedBrewPane.removeAll();
 			BrewPanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(BrewPanel);
-			BrewPanelStatus = "DeInitialized";
+			BrewPanelStatus = "DeInitialised";
 		}
 	}
 	

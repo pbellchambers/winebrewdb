@@ -21,15 +21,19 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import uk.co.pori.winebrewdb.InitializeMenu;
+import uk.co.pori.winebrewdb.InitialiseMenu;
 import uk.co.pori.winebrewdb.MainWindow;
 import uk.co.pori.winebrewdb.NumberRenderer;
 import uk.co.pori.winebrewdb.sqlite.DBEngine;
 
-
 import net.miginfocom.swing.MigLayout;
 
-
+/**
+ * This is the brew cost panel to be displayed as a tab on the main brew panel tab bar. It shows the cost data for the currently selected brew.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class BrewCostPanel extends JPanel {
 	
 	private static final long serialVersionUID = -1974715040788382066L;
@@ -51,16 +55,18 @@ public class BrewCostPanel extends JPanel {
 	public static JFormattedTextField textBrewCostTotalCost;
 	public static JFormattedTextField textBrewCostCostPerBottle;
 
-	
-	public static void InitializePanel(){
+	/**
+	 * Initialises the brew cost panel so that it can be viewed, including initialising the table.
+	 */
+	public static void initialisePanel(){
 		
 		tabbedBrewCostPanel = new JPanel();
 		tabbedBrewCostPanel.setBackground(Color.WHITE);
 		tabbedBrewCostPanel.setLayout(new MigLayout("", "[90px:90px:90px][grow][grow][grow][130px:130px:130px][grow]", "[grow][][10px:10px:10px][][][10px:10px:10px][]"));
 		
 		
-		//Initialize Table
-		initializeTable();
+		//Initialise Table
+		initialiseTable();
 		
 		
 		//ScrollPane
@@ -150,7 +156,7 @@ public class BrewCostPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textBrewCostLineItem.setEditable(true);
 				textBrewCostCost.setEditable(true);
 				textBrewCostSupplier.setEditable(true);
@@ -176,7 +182,7 @@ public class BrewCostPanel extends JPanel {
 				BrewPanel.tabbedBrewPane.setEnabledAt(3, false);
 				BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 				BrewPanel.tabbedBrewPane.setEnabledAt(5, false);
-				InitializeMenu.DisableAllMenuButtons();
+				InitialiseMenu.disableAllMenuButtons();
 				textBrewCostLineItem.setEditable(true);
 				textBrewCostCost.setEditable(true);
 				textBrewCostSupplier.setEditable(true);
@@ -216,13 +222,13 @@ public class BrewCostPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textBrewCostLineItem.setEditable(false);
 						textBrewCostCost.setEditable(false);
 						textBrewCostSupplier.setEditable(false);
 						BrewCostScrollPane.remove(BrewCostTable);
 						BrewCostScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						BrewCostScrollPane.setViewportView(BrewCostTable);
 						clearBrewCostData();
 						setBrewTotalCostData();
@@ -242,7 +248,7 @@ public class BrewCostPanel extends JPanel {
 					mouseListenerIsActive = true;
 					BrewCostScrollPane.remove(BrewCostTable);
 					BrewCostScrollPane.setViewportView(null);
-					initializeTable();
+					initialiseTable();
 					BrewCostScrollPane.setViewportView(BrewCostTable);
 					clearBrewCostData();
 					setBrewTotalCostData();
@@ -259,7 +265,7 @@ public class BrewCostPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textBrewCostLineItem.setEditable(false);
 					textBrewCostCost.setEditable(false);
 					textBrewCostSupplier.setEditable(false);
@@ -280,7 +286,7 @@ public class BrewCostPanel extends JPanel {
 					BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 					BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-					InitializeMenu.EnableAllMenuButtons();
+					InitialiseMenu.enableAllMenuButtons();
 					textBrewCostLineItem.setEditable(false);
 					textBrewCostCost.setEditable(false);
 					textBrewCostSupplier.setEditable(false);
@@ -324,19 +330,19 @@ public class BrewCostPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textBrewCostLineItem.setEditable(false);
 						textBrewCostCost.setEditable(false);
 						textBrewCostSupplier.setEditable(false);
 						BrewCostScrollPane.remove(BrewCostTable);
 						BrewCostScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						BrewCostScrollPane.setViewportView(BrewCostTable);
 						clearBrewCostData();
 						setBrewTotalCostData();
 						BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
 						BrewSearchPanel.BrewScrollPane.setViewportView(null);
-						BrewSearchPanel.initializeTable();
+						BrewSearchPanel.initialiseTable();
 						BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
 					}
 					
@@ -372,19 +378,19 @@ public class BrewCostPanel extends JPanel {
 						BrewPanel.tabbedBrewPane.setEnabledAt(3, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(4, true);
 						BrewPanel.tabbedBrewPane.setEnabledAt(5, true);
-						InitializeMenu.EnableAllMenuButtons();
+						InitialiseMenu.enableAllMenuButtons();
 						textBrewCostLineItem.setEditable(false);
 						textBrewCostCost.setEditable(false);
 						textBrewCostSupplier.setEditable(false);
 						BrewCostScrollPane.remove(BrewCostTable);
 						BrewCostScrollPane.setViewportView(null);
-						initializeTable();
+						initialiseTable();
 						BrewCostScrollPane.setViewportView(BrewCostTable);
 						clearBrewCostData();
 						setBrewTotalCostData();
 						BrewSearchPanel.BrewScrollPane.remove(BrewSearchPanel.BrewTable);
 						BrewSearchPanel.BrewScrollPane.setViewportView(null);
-						BrewSearchPanel.initializeTable();
+						BrewSearchPanel.initialiseTable();
 						BrewSearchPanel.BrewScrollPane.setViewportView(BrewSearchPanel.BrewTable);
 					}
 				}
@@ -394,7 +400,10 @@ public class BrewCostPanel extends JPanel {
 		
 	}
 	
-	public static void initializeTable() {
+	/**
+	 * Initialises the brew costs table on the brew cost tab so that it can be viewed (including getting the data from the database).
+	 */
+	public static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<String> header; //used to store data header
@@ -462,6 +471,9 @@ public class BrewCostPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Adds the mouse listener to the brew costs table that listens for mouse clicks.
+	 */
 	public static void addBrewCostMouseListener(){
 		mouseListenerIsActive = true;
 		
@@ -482,10 +494,16 @@ public class BrewCostPanel extends JPanel {
 		});
 	}
 	
+	/**
+	 * Removes the mouse listener from the brew costs table.
+	 */
 	public static void removeBrewCostMouseListener(){
 		mouseListenerIsActive = false;
 	}
 	
+	/**
+	 * Sets the data in the fields on the Brew Costs tab to the currently selected brew cost.
+	 */
 	public static void setBrewCostData(){
 		if(BrewCostSelectedRow != -1){
 			textBrewCostRef.setText((String) BrewCostTable.getValueAt(BrewCostSelectedRow,0));
@@ -495,6 +513,9 @@ public class BrewCostPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Calculates and sets the brew total cost and cost per bottle.
+	 */
 	public static void setBrewTotalCostData(){
 		try {
 			textBrewCostTotalCost.setText(DBEngine.getTotalBrewCost(BrewDataPanel.textBrewRefB.getText()));
@@ -509,7 +530,9 @@ public class BrewCostPanel extends JPanel {
 	}
 
 
-	
+	/**
+	 * Clears all data from all fields on the brew costs tab.
+	 */
 	public static void clearBrewCostData(){
 		textBrewCostRef.setText("");
 		textBrewCostLineItem.setText("");

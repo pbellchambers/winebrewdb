@@ -8,9 +8,14 @@ import javax.swing.JTabbedPane;
 
 import uk.co.pori.winebrewdb.MainWindow;
 
-
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * This is the main calculators panel that contains all of the sub panels in a tab layout.
+ * 
+ * @author Paul.Bellchambers
+ *
+ */
 public class CalculatorsPanel extends JPanel {
 
 	private static final long serialVersionUID = 2339618745984753667L;
@@ -18,10 +23,12 @@ public class CalculatorsPanel extends JPanel {
 	private static JLabel CalculatorsHeader;
 	private static JLabel CalculatorsSubtitle;
 	public static JTabbedPane tabbedCalculatorsPane;
-	private static String CalculatorsPanelStatus = "DeInitialized";
+	private static String CalculatorsPanelStatus = "DeInitialised";
 
-	//public CalculatorsPanel() {
-	public static void InitializePanel(){
+	/**
+	 * Initialises all the calculators panels so that they are displayed on screen.
+	 */
+	public static void initialisePanel(){
 		
 		CalculatorsPanel = new JPanel();
 		CalculatorsPanel.setLayout(new MigLayout("", "[grow]", "[20px:n:20px][25px:n:25px][grow]"));
@@ -45,27 +52,27 @@ public class CalculatorsPanel extends JPanel {
 				
 		
 		//Alcohol % Tab
-		AlcoholPanel.InitializePanel();		
+		AlcoholPanel.initialisePanel();		
 		tabbedCalculatorsPane.addTab("Alcohol %", null, AlcoholPanel.AlcoholSubPanel, null);
 		
 		
 		//Dilution Tab
-		DilutionPanel.InitializePanel();		
+		DilutionPanel.initialisePanel();		
 		tabbedCalculatorsPane.addTab("Dilution", null, DilutionPanel.DilutionSubPanel, null);
 		
 		
 		//Measures Tab
-		MeasuresPanel.InitializePanel();
+		MeasuresPanel.initialisePanel();
 		tabbedCalculatorsPane.addTab("Measures", null, MeasuresPanel.MeasuresSubPanel, null);
 		
 		
 		//Calculators Pictures Tab
-		SugarToSGPanel.InitializePanel();
+		SugarToSGPanel.initialisePanel();
 		tabbedCalculatorsPane.addTab("Sugar to SG", null, SugarToSGPanel.SugarToSGSubPanel, null);
 		
 		
 		//Add New Calculators Tab
-		TemperatureAdjustedSGPanel.InitializePanel();
+		TemperatureAdjustedSGPanel.initialisePanel();
 		tabbedCalculatorsPane.addTab("Temperature Adjusted SG", null, TemperatureAdjustedSGPanel.TemperatureAdjustedSGSubPanel, null);
 		
 		
@@ -74,17 +81,19 @@ public class CalculatorsPanel extends JPanel {
 		CalculatorsPanel.setVisible(false);
 
 		
-		CalculatorsPanelStatus = "Initialized";
+		CalculatorsPanelStatus = "Initialised";
 	}
 
-	
-	public static void DeInitializePanel(){
-		if(CalculatorsPanelStatus.equals("Initialized")) {
+	/**
+	 * De-initialises all the calculators panels so that they are no longer displayed on screen.
+	 */
+	public static void deinitialisePanel(){
+		if(CalculatorsPanelStatus.equals("Initialised")) {
 			CalculatorsPanel.setVisible(false);
 			tabbedCalculatorsPane.removeAll();
 			CalculatorsPanel.removeAll();
 			MainWindow.WineBrewDBFrame.getContentPane().remove(CalculatorsPanel);
-			CalculatorsPanelStatus = "DeInitialized";
+			CalculatorsPanelStatus = "DeInitialised";
 		}
 	}
 	

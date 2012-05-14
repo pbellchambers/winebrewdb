@@ -52,7 +52,7 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 	/**
 	 * Initialises the ledger brew cost search panel so that it can be viewed (including populating the table).
 	 */
-	public static void InitializePanel(){
+	public static void initialisePanel(){
 		
 		LedgerBrewCostTableFields = "Summary";
 		
@@ -113,8 +113,8 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 
 		tabbedLedgerBrewCostSearchPanel.add(LedgerBrewCostFilterPanel, "cell 0 0,grow");
 
-		//Initialize Table
-		initializeTable();
+		//Initialise Table
+		initialiseTable();
 		
 		//ScrollPane
 	    LedgerBrewCostScrollPane = new JScrollPane();
@@ -133,7 +133,7 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(0, true);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(1, true);
 				LedgerPanel.tabbedLedgerPane.setEnabledAt(2, false);
-				initializeTable();
+				initialiseTable();
 				LedgerBrewCostScrollPane.setViewportView(LedgerBrewCostTable);
 			}
 		});
@@ -144,7 +144,7 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 	/**
 	 * Initialises the ledger brew costs table on the ledger brew costs search tab so that it can be viewed (including getting the data from the database).
 	 */
-	public static void initializeTable() {
+	public static void initialiseTable() {
 		//Get data for table
 	    Vector<Vector<Object>> data = null; //used for data from database
 	    Vector<Object> header; //used to store data header
@@ -211,7 +211,7 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 					LedgerBrewCostSearchSelectedRow = target.getSelectedRow();
 					LedgerBrewCostDataPanel.textLedgerBrewRef.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSearchSelectedRow,0));
 					LedgerBrewCostDataPanel.textLedgerBrewNumberBottles.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSearchSelectedRow,4));
-					LedgerBrewCostDataPanel.initializeTable();
+					LedgerBrewCostDataPanel.initialiseTable();
 					LedgerBrewCostDataPanel.clearLedgerBrewCostData();
 					LedgerBrewCostDataPanel.textLedgerBrewRef.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSearchSelectedRow,0));
 					LedgerBrewCostDataPanel.textLedgerBrewNumberBottles.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSearchSelectedRow,4));
@@ -229,7 +229,7 @@ public class LedgerBrewCostSearchPanel extends JPanel {
 					LedgerBrewCostSearchSelectedRow = target.getSelectedRow();
 					LedgerBrewCostDataPanel.textLedgerBrewRef.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSearchSelectedRow,0));
 					LedgerBrewCostDataPanel.textLedgerBrewNumberBottles.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSearchSelectedRow,4));
-					LedgerBrewCostDataPanel.initializeTable();
+					LedgerBrewCostDataPanel.initialiseTable();
 					LedgerBrewCostDataPanel.clearLedgerBrewCostData();
 					LedgerBrewCostDataPanel.textLedgerBrewRef.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSearchSelectedRow,0));
 					LedgerBrewCostDataPanel.textLedgerBrewNumberBottles.setText((String) LedgerBrewCostTable.getValueAt(LedgerBrewCostSearchSelectedRow,4));
