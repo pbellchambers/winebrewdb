@@ -4,10 +4,10 @@
 <property name="topbuild.dir" location="C:/workspace/BuildFolder" />
 <property name="lowerbuild.dir" value="/WineBrewDB/WineBrewDB" />
 <property name="project.dir" location="C:/workspace/WineBrewDB" />
-<property name="winebrewdb.version" value="1.3.1" />
+<property name="winebrewdb.version" value="1.3.2" />
 <property name="winebrewdb.mainclass" value="uk.co.pori.winebrewdb.MainWindow" />
 <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
-<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler"/>
+<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" classpath="${project.dir}/ThirdPartyJars/jarbundler-2.2.0.jar"/>
 	
 	<target name="buildAllWineBrewDB" depends="setVersion,createJar,zipJarVersion,createMacApp,zipMacVersion,createExe,zipExeVersion"/>
 	
