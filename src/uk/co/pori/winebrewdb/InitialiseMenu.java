@@ -1,46 +1,20 @@
 package uk.co.pori.winebrewdb;
 
-import java.awt.Desktop;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-
+import net.miginfocom.swing.MigLayout;
 import uk.co.pori.winebrewdb.brew.BrewPanel;
-import uk.co.pori.winebrewdb.calculators.AlcoholPanel;
-import uk.co.pori.winebrewdb.calculators.CalculatorsPanel;
-import uk.co.pori.winebrewdb.calculators.DilutionPanel;
-import uk.co.pori.winebrewdb.calculators.MeasuresPanel;
-import uk.co.pori.winebrewdb.calculators.SugarToSGPanel;
-import uk.co.pori.winebrewdb.calculators.TemperatureAdjustedSGPanel;
+import uk.co.pori.winebrewdb.calculators.*;
 import uk.co.pori.winebrewdb.information.InformationPanel;
 import uk.co.pori.winebrewdb.ledger.LedgerPanel;
 import uk.co.pori.winebrewdb.recipe.RecipePanel;
 
-
-import net.miginfocom.swing.MigLayout;
+import javax.swing.*;
+import java.awt.Desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * This handles all the menus (top and sidebar) for the application.
@@ -431,9 +405,9 @@ public class InitialiseMenu extends MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,
 						"WineBrewDB - " + WineBrewDBVersion + 
-						"\nhttp://code.google.com/p/winebrewdb/" +
-						"\n\nLicensed under The MIT License" +
-						"\nCopyright (c) 2012 Paul Bellchambers" +
+						"\nhttps://github.com/pbellchambers/winebrewdb/" +
+						"\n\nLicensed under The Apache v2.0 License" +
+						"\nCopyright (c) 2012-2015 Paul Bellchambers" +
 						"\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this " +
 						"\nsoftware and associated documentation files (the \"Software\"), to deal in the Software " +
 						"\nwithout restriction, including without limitation the rights to use, copy, modify, merge, " +
@@ -480,10 +454,10 @@ public class InitialiseMenu extends MainWindow {
 		final JMenuItem mntmReportBug = new JMenuItem("Report a bug");
 		mntmReportBug.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,"You will now be directed to the WineBrewDB Google Code page to report any bugs/feature requests.","",JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null,"You will now be directed to the WineBrewDB GitHub page to report any bugs/feature requests.","",JOptionPane.PLAIN_MESSAGE);
 				if (Desktop.isDesktopSupported()) {
 					try {
-						java.net.URI uri = new java.net.URI("http://code.google.com/p/winebrewdb/issues/list");
+						java.net.URI uri = new java.net.URI("https://github.com/pbellchambers/winebrewdb/issues");
 						java.awt.Desktop.getDesktop().browse(uri);
 					} catch (URISyntaxException e1) {
 						e1.printStackTrace();
@@ -492,7 +466,7 @@ public class InitialiseMenu extends MainWindow {
 					}
 				} else {
 					JOptionPane.showMessageDialog(null,
-							"Automatic URL opening is not supported on this system.\n\nYou will need to open the following URL yourself:\n\n" + "http://code.google.com/p/winebrewdb/issues/list",
+							"Automatic URL opening is not supported on this system.\n\nYou will need to open the following URL yourself:\n\n" + "https://github.com/pbellchambers/winebrewdb/issues",
 							"Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
@@ -508,13 +482,13 @@ public class InitialiseMenu extends MainWindow {
 		mntmCheckUpdates.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    try {
-			        URL url = new URL("http://winebrewdb.googlecode.com/svn/trunk/winebrewdb/VERSION.txt");
+			        URL url = new URL("https://raw.githubusercontent.com/pbellchambers/winebrewdb/master/VERSION.txt");
 			        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 			        String str;
 			        while ((str = in.readLine()) != null) {
 			        	if(str.equals("") || str == null){
 				        	JOptionPane.showMessageDialog(null,
-									"There was a problem accessing the URL, please check the website manually:\n\n" + "http://code.google.com/p/winebrewdb/",
+									"There was a problem accessing the URL, please check the website manually:\n\n" + "https://github.com/pbellchambers/winebrewdb/issues",
 									"Error",
 									JOptionPane.ERROR_MESSAGE);			        		
 			        	}
@@ -524,7 +498,7 @@ public class InitialiseMenu extends MainWindow {
 			        		JOptionPane.showMessageDialog(null,"The latest version is:  " + str + "\n\nYou will now be directed to the WineBrewDB website where you can download the latest version.","Out of Date",JOptionPane.PLAIN_MESSAGE);
 							if (Desktop.isDesktopSupported()) {
 								try {
-									java.net.URI uri = new java.net.URI("http://code.google.com/p/winebrewdb/downloads/list");
+									java.net.URI uri = new java.net.URI("https://github.com/pbellchambers/winebrewdb/releases");
 									java.awt.Desktop.getDesktop().browse(uri);
 								} catch (URISyntaxException e1) {
 									e1.printStackTrace();
@@ -533,7 +507,7 @@ public class InitialiseMenu extends MainWindow {
 								}
 							} else {
 								JOptionPane.showMessageDialog(null,
-										"Automatic URL opening is not supported on this system.\n\nYou will need to open the following URL yourself:\n\n" + "http://code.google.com/p/winebrewdb/downloads/list",
+										"Automatic URL opening is not supported on this system.\n\nYou will need to open the following URL yourself:\n\n" + "https://github.com/pbellchambers/winebrewdb/releases",
 										"Error",
 										JOptionPane.ERROR_MESSAGE);
 							}
@@ -542,13 +516,13 @@ public class InitialiseMenu extends MainWindow {
 			        in.close();
 			        } catch (MalformedURLException e1) {
 			        	JOptionPane.showMessageDialog(null,
-								"There was a problem accessing the URL, please check the website manually:\n\n" + "http://code.google.com/p/winebrewdb/",
+								"There was a problem accessing the URL, please check the website manually:\n\n" + "hhttps://github.com/pbellchambers/winebrewdb/",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 			        } catch (IOException e1) {
 			        	JOptionPane.showMessageDialog(null,
-			        			"There was a problem accessing the URL, please check the website manually:\n\n" + "http://code.google.com/p/winebrewdb/",
+			        			"There was a problem accessing the URL, please check the website manually:\n\n" + "https://github.com/pbellchambers/winebrewdb/",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
