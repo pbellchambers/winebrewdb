@@ -5,6 +5,10 @@
 - Moved code to github
 - Updated version of launch4j
 - Updated build scripts
+- Changed license to Apache v2.0
+- Updated references in code from google to github
+- Updated project package name
+- Removed javadocs
 
 ##v1.3.2
 

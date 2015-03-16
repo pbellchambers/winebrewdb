@@ -5,7 +5,7 @@
 <property name="lowerbuild.dir" value="/WineBrewDB/WineBrewDB" />
 <property name="project.dir" location="" />
 <property name="winebrewdb.version" value="2.0.0" />
-<property name="winebrewdb.mainclass" value="uk.co.pori.winebrewdb.MainWindow" />
+<property name="winebrewdb.mainclass" value="uk.co.pbellchambers.winebrewdb.MainWindow" />
 <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
 <taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" classpath="${project.dir}/ThirdPartyJars/jarbundler-2.2.0.jar"/>
 	
@@ -75,7 +75,7 @@
 		              mainclass="${winebrewdb.mainclass}"
 		              jar="${topbuild.dir}${lowerbuild.dir}/WineBrewDB.jar"		       
 		              jvmversion="1.6+"
-			          icon="${project.dir}/src/uk/co/pori/winebrewdb/images/winebrewdb.icns"
+			          icon="/uk/co/pbellchambers/winebrewdb/images/winebrewdb.icns"
 		              version="${winebrewdb.version}"
 		              infostring="WineBrewDB, Copyright (c) 2012 Paul Bellchambers"
 		              bundleid="${winebrewdb.mainclass}"> 
