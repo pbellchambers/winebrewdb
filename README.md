@@ -1,26 +1,14 @@
-===============================================================
-WineBrewDB
-https://github.com/pbellchambers/winebrewdb/
-===============================================================
+#WineBrewDB
+##https://github.com/pbellchambers/winebrewdb/
 
 
+###Instructions
 
-Instructions
----------------------------------------------------------------
 Run the jar file to launch the application.
 
-You require Java v1.6 (or newer) to run this. (http://java.com/download) 
+You require Java v1.6 (or newer) to run this. (http://java.com/download)
 
 
-
-
-
-
-
-
-
-
-
----------------------------------------------------------------
-Licensed under The MIT License
+---
+Licensed under The Apache v2.0 License
 Copyright (c) 2012-2015 Paul Bellchambers
