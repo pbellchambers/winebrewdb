@@ -1,6 +1,6 @@
 ===============================================================
 WineBrewDB
-https://code.google.com/p/winebrewdb/
+https://github.com/pbellchambers/winebrewdb/
 ===============================================================
 
 
@@ -23,4 +23,4 @@ You require Java v1.6 (or newer) to run this. (http://java.com/download)
 
 ---------------------------------------------------------------
 Licensed under The MIT License
-Copyright (c) 2012 Paul Bellchambers
+Copyright (c) 2012-2015 Paul Bellchambers
