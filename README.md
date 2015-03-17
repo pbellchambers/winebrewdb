@@ -3,7 +3,7 @@ A database that keeps track of all your brews, recipes, costs, and includes some
 
 
 ##Latest Version
-v1.3.2 - [https://github.com/pbellchambers/winebrewdb/releases](https://github.com/pbellchambers/winebrewdb/releases)
+v1.3.2 - [https://github.com/pbellchambers/winebrewdb/releases/tag/v1.3.2](https://github.com/pbellchambers/winebrewdb/releases/tag/v1.3.2)
 
 Changelog - [https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.md](https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.md)
 
@@ -25,11 +25,9 @@ Changelog - [https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.m
 Unzip and run the jar or exe file to launch the application.
 
 You require Java v1.6 (or newer) to run this. (http://java.com/download)
-&nbsp;
-&nbsp;
 
 
----
-Licensed under The Apache v2.0 License
+##License
+Licensed under the Apache v2.0 License
 
 Copyright (c) 2012-2015 Paul Bellchambers

@@ -2,7 +2,7 @@
 
 ##Required for v2.0.0:
 
-- Add all releases & tags from google code
+- Fix tags
 - Convert build to gradle
 - Dependency management
 - Sort out licenses
