@@ -3,7 +3,7 @@ A database that keeps track of all your brews, recipes, costs, and includes some
 
 
 ##Latest Version
-v1.3.2 - [https://github.com/pbellchambers/winebrewdb/releases/tag/v1.3.2](https://github.com/pbellchambers/winebrewdb/releases/tag/v1.3.2)
+v1.3.2 - [https://github.com/pbellchambers/winebrewdb/releases/](https://github.com/pbellchambers/winebrewdb/releases/)
 
 Changelog - [https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.md](https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.md)
 
