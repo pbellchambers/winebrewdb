@@ -2,7 +2,6 @@
 
 ##Required for v2.0.0:
 
-- Fix tags
 - Convert build to gradle
 - Dependency management
 - Sort out licenses
