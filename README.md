@@ -9,7 +9,7 @@ Changelog - [https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.m
 
 
 ##System Requirements
-[Java v1.6+](http://java.com/download)
+[Java 8+](http://java.com/download)
 
 
 ##Screenshots
@@ -24,10 +24,12 @@ Changelog - [https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.m
 
 Unzip and run the jar or exe file to launch the application.
 
-You require Java v1.6 (or newer) to run this. (http://java.com/download)
+You require Java 8 (or newer) to run this. (http://java.com/download)
 
 
 ##License
 Licensed under the Apache v2.0 License
 
 Copyright (c) 2012-2015 Paul Bellchambers
+
+https://github.com/pbellchambers/winebrewdb/

@@ -1,0 +1,82 @@
+apply plugin: 'java'
+apply plugin: 'distribution'
+apply plugin: 'idea'
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.ini4j:ini4j:0.5.2'
+    compile 'com.itextpdf:itextpdf:5.5.5'
+    compile 'joda-time:joda-time:2.7'
+    compile 'com.miglayout:miglayout-swing:4.2'
+    compile 'org.xerial:sqlite-jdbc:3.8.7'
+}
+
+version = new File('VERSION').text
+def mainClass = 'uk.co.pbellchambers.winebrewdb.MainWindow'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    archiveName = 'WineBrewDB.jar'
+    manifest {
+        attributes 'Implementation-Version' : version
+        attributes 'Main-Class' : mainClass
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task exe << {
+    new File('build/exe').mkdir()
+    ant.taskdef(name: 'launch4j',
+                classname: 'net.sf.launch4j.ant.Launch4jTask') {
+        classpath {
+            fileset(dir: 'launch4j', includes: 'launch4j.jar')
+            fileset(dir: 'launch4j/lib', includes: 'xstream.jar')
+        }
+    }
+    ant.launch4j(
+        configFile: 'launch4j.cfg.xml',
+        fileVersion: '2.0.0.0',
+        txtFileVersion: version,
+        productVersion: '2.0.0.0',
+        txtProductVersion: version) {
+    }
+}
+
+
+distributions {
+    jar {
+        baseName = 'WineBrewDB_OS-All'
+        contents {
+            from { 'build/libs' }
+            from { 'distribution' }
+        }
+    }
+
+    exe {
+        baseName = 'WineBrewDB_OS-Windows'
+        contents {
+            from { 'build/exe' }
+            from { 'distribution' }
+        }
+    }
+}
+
+jarDistTar.dependsOn 'jar'
+exe.dependsOn 'jarDistTar'
+exeDistTar.dependsOn 'exe'
+
+

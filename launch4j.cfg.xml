@@ -1,8 +1,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>build\WineBrewDB\WineBrewDB\WineBrewDB.jar</jar>
-  <outfile>build\WineBrewDB\WineBrewDB\WineBrewDB.exe</outfile>
+  <jar>build\libs\WineBrewDB.jar</jar>
+  <outfile>build\exe\WineBrewDB.exe</outfile>
   <errTitle>WineBrewDB: Error</errTitle>
   <cmdLine></cmdLine>
   <chdir></chdir>
@@ -12,10 +12,10 @@
   <customProcName>true</customProcName>
   <stayAlive>false</stayAlive>
   <manifest></manifest>
-  <icon>src\uk\co\pbellchambers\winebrewdb\images\WineBrewDB.ico</icon>
+  <icon>src\main\resources\images\WineBrewDB.ico</icon>
   <jre>
     <path></path>
-    <minVersion>1.6.0_00</minVersion>
+    <minVersion>1.8.0_00</minVersion>
     <maxVersion></maxVersion>
     <jdkPreference>preferJre</jdkPreference>
     <initialHeapSize>30</initialHeapSize>

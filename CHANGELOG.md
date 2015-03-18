@@ -3,12 +3,13 @@
 ##v2.0.0 (Not Released)
 
 - Moved code to github
-- Updated version of launch4j
-- Updated build scripts
-- Changed license to Apache v2.0
 - Updated references in code from google to github
-- Updated project package name
+- Moved build script and dependency management to gradle
+- Updated versions of dependencies
+- Updated java minimum version
+- Changed license to Apache v2.0
 - Removed javadocs
+- Tidied up project structure
 
 ##v1.3.2
 
