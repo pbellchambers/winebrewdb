@@ -20,11 +20,20 @@ Changelog - [https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.m
 ![Screenshot1](http://i.imgur.com/auRnf.png) ![Screenshot1](http://i.imgur.com/jylHd.png)
 
 
-##Instructions
+##Instructions for Running
 
 Unzip and run the jar or exe file to launch the application.
 
 You require Java 8 (or newer) to run this. (http://java.com/download)
+
+
+##Instructions for Building
+
+The project is built using gradle (tested with v2.3):
+
+```
+gradle build
+```
 
 
 ##License
