@@ -96,7 +96,7 @@ task renameFiles {
 
 jarDistTar.dependsOn 'jar'
 jarDistZip.dependsOn 'jar'
-exe.dependsOn 'jarDistTar'
+exe.dependsOn 'jar'
 exeDistTar.dependsOn 'exe'
 exeDistZip.dependsOn 'exe'
 createAppZip.dependsOn 'createApp'
