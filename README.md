@@ -1,4 +1,4 @@
-#WineBrewDB
+#WineBrewDB [![Build Status](https://travis-ci.org/pbellchambers/winebrewdb.svg?branch=master)](https://travis-ci.org/pbellchambers/winebrewdb)
 A database that keeps track of all your brews, recipes, costs, and includes some other handy tools for the home wine brewer.
 
 
@@ -13,11 +13,11 @@ Changelog - [https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.m
 
 
 ##Screenshots
-![Screenshot1](http://i.imgur.com/AKLYz.png) ![Screenshot1](http://i.imgur.com/NexZl.png)
+![Screenshot 1](http://i.imgur.com/AKLYz.png) ![Screenshot 2](http://i.imgur.com/NexZl.png)
 
-![Screenshot1](http://i.imgur.com/NbP8C.png) ![Screenshot1](http://i.imgur.com/F17wp.png)
+![Screenshot 3](http://i.imgur.com/NbP8C.png) ![Screenshot 4](http://i.imgur.com/F17wp.png)
 
-![Screenshot1](http://i.imgur.com/auRnf.png) ![Screenshot1](http://i.imgur.com/jylHd.png)
+![Screenshot 5](http://i.imgur.com/auRnf.png) ![Screenshot 6](http://i.imgur.com/jylHd.png)
 
 
 ##Instructions for Running
