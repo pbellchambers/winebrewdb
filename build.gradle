@@ -1,12 +1,23 @@
 apply plugin: 'java'
 apply plugin: 'distribution'
 apply plugin: 'idea'
+apply plugin: 'macAppBundle'
+
+version = new File('VERSION').text
+def exeVersion = '2.0.0.0'
+def mainClass = 'uk.co.pbellchambers.winebrewdb.MainWindow'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
         jcenter()
+    }
+
+    dependencies {
+        classpath 'edu.sc.seis.gradle:macappbundle:2.0.0'
     }
 }
 
@@ -21,11 +32,6 @@ dependencies {
     compile 'com.miglayout:miglayout-swing:4.2'
     compile 'org.xerial:sqlite-jdbc:3.8.7'
 }
-
-version = new File('VERSION').text
-def mainClass = 'uk.co.pbellchambers.winebrewdb.MainWindow'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 jar {
     archiveName = 'WineBrewDB.jar'
@@ -49,13 +55,12 @@ task exe << {
     }
     ant.launch4j(
         configFile: 'launch4j.cfg.xml',
-        fileVersion: '2.0.0.0',
+        fileVersion: exeVersion,
         txtFileVersion: version,
-        productVersion: '2.0.0.0',
+        productVersion: exeVersion,
         txtProductVersion: version) {
     }
 }
-
 
 distributions {
     jar {
@@ -75,8 +80,24 @@ distributions {
     }
 }
 
+macAppBundle {
+    mainClassName = mainClass
+    icon = 'src/main/resources/images/winebrewdb.icns'
+    javaProperties.put('apple.laf.useScreenMenuBar', 'true')
+    dmgName = 'WineBrewDB_' + version + '_OS-Mac'
+}
+
+task renameFiles {
+    doLast {
+        file('build/distributions/WineBrewDB_OS-All-' + version + '.zip').renameTo(file('build/distributions/WineBrewDB_' + version + '_OS-All.zip'))
+        file('build/distributions/WineBrewDB_OS-Windows-' + version + '.zip').renameTo(file('build/distributions/WineBrewDB_' + version + '_OS-Windows.zip'))
+    }
+}
+
 jarDistTar.dependsOn 'jar'
+jarDistZip.dependsOn 'jar'
 exe.dependsOn 'jarDistTar'
 exeDistTar.dependsOn 'exe'
-
-
+exeDistZip.dependsOn 'exe'
+createAppZip.dependsOn 'createApp'
+createDmg.enabled = false

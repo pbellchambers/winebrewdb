@@ -6,7 +6,6 @@
 - Add tests (TestFX)
 - Make sure gui works with high DPI
 - Output build artefacts to somewhere from travis-ci? (maybe)
-- mac app bundler: https://code.google.com/p/gradle-macappbundle/
 - Look at warnings
 - Refactor code to use decent coding standards ;)
 - Fix bugs
