@@ -3,4 +3,8 @@ language: java
 jdk:
   - oraclejdk8
 
+before_install:
+  - "chmod 777 /home/travis/build/pbellchambers/winebrewdb/launch4j/bin/windres"
+  - "chmod 777 /home/travis/build/pbellchambers/winebrewdb/launch4j/bin/ld"
+
 script: gradle clean build jarDistZip exeDistZip createAppZip renameFiles
