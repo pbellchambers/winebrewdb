@@ -1,40 +1,40 @@
 <launch4jConfig>
-  <dontWrapJar>false</dontWrapJar>
-  <headerType>gui</headerType>
-  <jar>build/libs/WineBrewDB.jar</jar>
-  <outfile>build/exe/WineBrewDB.exe</outfile>
-  <errTitle>WineBrewDB: Error</errTitle>
-  <cmdLine></cmdLine>
-  <chdir></chdir>
-  <priority>normal</priority>
-  <downloadUrl>http://java.com/download</downloadUrl>
-  <supportUrl>https://github.com/pbellchambers/winebrewdb</supportUrl>
-  <customProcName>true</customProcName>
-  <stayAlive>false</stayAlive>
-  <manifest></manifest>
-  <icon>src/main/resources/images/WineBrewDB.ico</icon>
-  <jre>
-    <path></path>
-    <minVersion>1.8.0_00</minVersion>
-    <maxVersion></maxVersion>
-    <jdkPreference>preferJre</jdkPreference>
-    <initialHeapSize>30</initialHeapSize>
-    <maxHeapSize>40</maxHeapSize>
-    <opt>-XX:MaxPermSize=40m</opt>
-  </jre>
-  <versionInfo>
-    <fileDescription>WineBrewDB</fileDescription>
-    <copyright>(c) 2012-2015 Paul Bellchambers</copyright>
-    <productName>WineBrewDB</productName>
-    <companyName></companyName>
-    <internalName>WineBrewDB</internalName>
-    <originalFilename>WineBrewDB.exe</originalFilename>
-  </versionInfo>
-  <messages>
-    <startupErr>An error occurred while starting the application.</startupErr>
-    <bundledJreErr>This application was configured to use a bundled Java Runtime Environment but the runtime is missing or corrupted.</bundledJreErr>
-    <jreVersionErr>This application requires a Java Runtime Environment.\n\nYou will now be directed to the java website.\n</jreVersionErr>
-    <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.\n\nPlease un-install and re-install java.</launcherErr>
-    <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
-  </messages>
+    <dontWrapJar>false</dontWrapJar>
+    <headerType>gui</headerType>
+    <jar>build/libs/WineBrewDB.jar</jar>
+    <outfile>build/exe/WineBrewDB.exe</outfile>
+    <errTitle>WineBrewDB: Error</errTitle>
+    <cmdLine/>
+    <chdir/>
+    <priority>normal</priority>
+    <downloadUrl>http://java.com/download</downloadUrl>
+    <supportUrl>https://github.com/pbellchambers/winebrewdb</supportUrl>
+    <customProcName>true</customProcName>
+    <stayAlive>false</stayAlive>
+    <manifest/>
+    <icon>src/main/resources/images/WineBrewDB.ico</icon>
+    <jre>
+        <path/>
+        <minVersion>1.8.0_00</minVersion>
+        <maxVersion/>
+        <jdkPreference>preferJre</jdkPreference>
+        <initialHeapSize>30</initialHeapSize>
+        <maxHeapSize>40</maxHeapSize>
+        <opt>-XX:MaxPermSize=40m</opt>
+    </jre>
+    <versionInfo>
+        <fileDescription>WineBrewDB</fileDescription>
+        <copyright>(c) 2012-2015 Paul Bellchambers</copyright>
+        <productName>WineBrewDB</productName>
+        <companyName/>
+        <internalName>WineBrewDB</internalName>
+        <originalFilename>WineBrewDB.exe</originalFilename>
+    </versionInfo>
+    <messages>
+        <startupErr>An error occurred while starting the application.</startupErr>
+        <bundledJreErr>This application was configured to use a bundled Java Runtime Environment but the runtime is missing or corrupted.</bundledJreErr>
+        <jreVersionErr>This application requires a Java Runtime Environment.\n\nYou will now be directed to the java website.\n</jreVersionErr>
+        <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.\n\nPlease un-install and re-install java.</launcherErr>
+        <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
+    </messages>
 </launch4jConfig>
