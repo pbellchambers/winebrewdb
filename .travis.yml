@@ -5,10 +5,7 @@ jdk:
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get -f -y install
-  - sudo apt-get install -y libgphoto2-2
-  - sudo apt-get install -y libsane
-  - sudo apt-get install -y ia32-libs-multiarch
   - sudo apt-get install -y ia32-libs
+  - sudo apt-get -f -y install
 
 script: gradle clean build jarDistZip exeDistZip createAppZip renameFiles
