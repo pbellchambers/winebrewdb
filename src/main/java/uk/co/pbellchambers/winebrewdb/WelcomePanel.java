@@ -43,7 +43,7 @@ public class WelcomePanel extends JPanel {
 		WelcomePanel.add(WelcomeText1, "cell 0 0 2,grow");
 		
 		JButton btnNewDatabase = new JButton();
-		btnNewDatabase.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/images/newbig.png")));
+		btnNewDatabase.setIcon(new ImageIcon(WelcomePanel.class.getResource("/images/newbig.png")));
 		btnNewDatabase.setText("New WineBrewDB Database");
 		btnNewDatabase.setHorizontalAlignment(SwingConstants.CENTER);
 		btnNewDatabase.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -51,14 +51,14 @@ public class WelcomePanel extends JPanel {
 		WelcomePanel.add(btnNewDatabase, "cell 0 4,alignx center");;
 		
 		JButton btnLoadDatabase = new JButton();
-		btnLoadDatabase.setIcon(new ImageIcon(SandboxTestPane.class.getResource("/images/loadbig.png")));
+		btnLoadDatabase.setIcon(new ImageIcon(WelcomePanel.class.getResource("/images/loadbig.png")));
 		btnLoadDatabase.setText("Load WineBrewDB Database");
 		btnLoadDatabase.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnLoadDatabase.setHorizontalTextPosition(SwingConstants.CENTER);
 		WelcomePanel.add(btnLoadDatabase, "cell 1 4,alignx center");;
 		
 		
-		if(MainWindow.DatabaseLocationFromIni.equals("") || MainWindow.DatabaseLocationFromIni == null){			
+		if(LegacyApp.DatabaseLocationFromIni.equals("") || LegacyApp.DatabaseLocationFromIni == null){
 			WelcomeText2 = new JLabel();
 			WelcomeText2.setText("Your current database is not set!");
 			WelcomeText2.setFont(new Font("Arial", Font.BOLD, 14));
@@ -76,7 +76,7 @@ public class WelcomePanel extends JPanel {
 			InitialiseMenu.enableAllMenuButtons();
 			
 			WelcomeText2 = new JLabel();
-			WelcomeText2.setText("Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
+			WelcomeText2.setText("Your current database is set to: " + LegacyApp.DatabaseLocationFromIni);
 			WelcomeText2.setFont(new Font("Arial", Font.PLAIN, 14));
 			WelcomeText2.setHorizontalAlignment(SwingConstants.CENTER);
 			WelcomePanel.add(WelcomeText2, "cell 0 1 2,grow");
@@ -90,17 +90,17 @@ public class WelcomePanel extends JPanel {
 	
 		
 		//Add it all to the main window
-		MainWindow.WineBrewDBFrame.getContentPane().add(WelcomePanel, "cell 0 0,grow");
+		LegacyApp.WineBrewDBFrame.getContentPane().add(WelcomePanel, "cell 0 0,grow");
 		WelcomePanel.setVisible(true);
 		
 		btnNewDatabase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser c = new JFileChooser();
-			      int rVal = c.showSaveDialog(MainWindow.WineBrewDBFrame);
+			      int rVal = c.showSaveDialog(LegacyApp.WineBrewDBFrame);
 			      if (rVal == JFileChooser.APPROVE_OPTION) {
 			    	  
-			    	InputStream content = MainWindow.class.getResourceAsStream("/sqlite/BlankWineBrewDBData.sqlite");
-					File filename = new File(c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".sqlite");
+			    	InputStream content = LegacyApp.class.getResourceAsStream("/sqlite/BlankWineBrewDBData.sqlite");
+					File filename = new File(c.getCurrentDirectory().toString() + LegacyApp.OSSlash + c.getSelectedFile().getName() + ".sqlite");
 			  		FileOutputStream fop;	
 			  		
 					try {
@@ -122,20 +122,20 @@ public class WelcomePanel extends JPanel {
 						exx.printStackTrace();
 					} 			    	  
 			    	  
-			    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName() + ".sqlite";
-			    	  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
+			    	  LegacyApp.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + LegacyApp.OSSlash + c.getSelectedFile().getName() + ".sqlite";
+			    	  LegacyApp.brewIni.put("WineBrewDB", "DatabaseLocation", LegacyApp.DatabaseLocationFromIni);
 			    	  try {
-			    		  MainWindow.brewIni.store();
+			    		  LegacyApp.brewIni.store();
 			    		  InitialiseMenu.enableAllMenuButtons();
-				    	  WelcomeText2.setText("Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
+				    	  WelcomeText2.setText("Your current database is set to: " + LegacyApp.DatabaseLocationFromIni);
 				    	  WelcomeText2.setFont(new Font("Arial", Font.PLAIN, 14));
 				    	  WelcomeText2.setForeground(Color.BLACK);
 				    	  WelcomeText3.setText("Select an option from the left to begin, and remember to ensure your database is backed up.");
 				    	  WelcomeText3.setFont(new Font("Arial", Font.PLAIN, 14));
-				    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
+				    	  LegacyApp.WineBrewDBFrame.setTitle("WineBrewDB " + LegacyApp.WineBrewDBVersion + " - Current Database: " + LegacyApp.DatabaseLocationFromIni);
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(null,
-								"Failed to save:\n" + MainWindow.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
+								"Failed to save:\n" + LegacyApp.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
 						ex.printStackTrace();
@@ -151,22 +151,22 @@ public class WelcomePanel extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser c = new JFileChooser();
-			      int rVal = c.showOpenDialog(MainWindow.WineBrewDBFrame);
+			      int rVal = c.showOpenDialog(LegacyApp.WineBrewDBFrame);
 			      if (rVal == JFileChooser.APPROVE_OPTION) {
-			    	  MainWindow.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + MainWindow.OSSlash + c.getSelectedFile().getName();
-			    	  MainWindow.brewIni.put("WineBrewDB", "DatabaseLocation", MainWindow.DatabaseLocationFromIni);
+			    	  LegacyApp.DatabaseLocationFromIni = c.getCurrentDirectory().toString() + LegacyApp.OSSlash + c.getSelectedFile().getName();
+			    	  LegacyApp.brewIni.put("WineBrewDB", "DatabaseLocation", LegacyApp.DatabaseLocationFromIni);
 			    	  try {
-			    		  MainWindow.brewIni.store();
+			    		  LegacyApp.brewIni.store();
 			    		  InitialiseMenu.enableAllMenuButtons();
-				    	  WelcomeText2.setText("Your current database is set to: " + MainWindow.DatabaseLocationFromIni);
+				    	  WelcomeText2.setText("Your current database is set to: " + LegacyApp.DatabaseLocationFromIni);
 				    	  WelcomeText2.setFont(new Font("Arial", Font.PLAIN, 14));
 				    	  WelcomeText2.setForeground(Color.BLACK);
 				    	  WelcomeText3.setText("Select an option from the left to begin, and remember to ensure your database is backed up.");
 				    	  WelcomeText3.setFont(new Font("Arial", Font.PLAIN, 14));
-				    	  MainWindow.WineBrewDBFrame.setTitle("WineBrewDB " + MainWindow.WineBrewDBVersion + " - Current Database: " + MainWindow.DatabaseLocationFromIni);
+				    	  LegacyApp.WineBrewDBFrame.setTitle("WineBrewDB " + LegacyApp.WineBrewDBVersion + " - Current Database: " + LegacyApp.DatabaseLocationFromIni);
 					} catch (IOException ex) {
 						JOptionPane.showMessageDialog(null,
-								"Failed to save:\n" + MainWindow.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
+								"Failed to save:\n" + LegacyApp.WineBrewDBConfigFile + "\n\nPlease check you have permission.",
 								"Error",
 								JOptionPane.ERROR_MESSAGE);
 						ex.printStackTrace();
@@ -189,7 +189,7 @@ public class WelcomePanel extends JPanel {
 		if(WelcomePanelStatus.equals("Initialised")) {
 			WelcomePanel.remove(WelcomeText2);
 			WelcomePanel.remove(WelcomeText3);
-			MainWindow.WineBrewDBFrame.getContentPane().remove(WelcomePanel);
+			LegacyApp.WineBrewDBFrame.getContentPane().remove(WelcomePanel);
 			WelcomePanelStatus = "DeInitialised";
 		}
 	}

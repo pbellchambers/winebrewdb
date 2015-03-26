@@ -1,11 +1,11 @@
 package uk.co.pbellchambers.winebrewdb;
 
 import net.miginfocom.swing.MigLayout;
-import uk.co.pbellchambers.winebrewdb.brew.BrewPanel;
-import uk.co.pbellchambers.winebrewdb.calculators.*;
-import uk.co.pbellchambers.winebrewdb.information.InformationPanel;
-import uk.co.pbellchambers.winebrewdb.ledger.LedgerPanel;
-import uk.co.pbellchambers.winebrewdb.recipe.RecipePanel;
+import uk.co.pbellchambers.winebrewdb.legacy.brew.BrewPanel;
+import uk.co.pbellchambers.winebrewdb.legacy.calculators.*;
+import uk.co.pbellchambers.winebrewdb.legacy.information.InformationPanel;
+import uk.co.pbellchambers.winebrewdb.legacy.ledger.LedgerPanel;
+import uk.co.pbellchambers.winebrewdb.legacy.recipe.RecipePanel;
 
 import javax.swing.*;
 import java.awt.Desktop;
@@ -22,7 +22,7 @@ import java.net.URL;
  * @author paul.bellchambers
  *
  */
-public class InitialiseMenu extends MainWindow {
+public class InitialiseMenu extends LegacyApp {
 	
 	private static JRadioButtonMenuItem radioSystemLAF;
 	private static JRadioButtonMenuItem radioJavaLAF;
@@ -60,7 +60,7 @@ public class InitialiseMenu extends MainWindow {
 			      int rVal = c.showSaveDialog(WineBrewDBFrame);
 			      if (rVal == JFileChooser.APPROVE_OPTION) {
 			    	  
-			    	InputStream content = MainWindow.class.getResourceAsStream("/sqlite/BlankWineBrewDBData.sqlite");
+			    	InputStream content = LegacyApp.class.getResourceAsStream("/sqlite/BlankWineBrewDBData.sqlite");
 					File filename = new File(c.getCurrentDirectory().toString() + OSSlash + c.getSelectedFile().getName() + ".sqlite");
 			  		FileOutputStream fop;	
 			  		
