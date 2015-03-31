@@ -2,11 +2,12 @@ package uk.co.pbellchambers.winebrewdb;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import uk.co.pbellchambers.winebrewdb.util.ViewLoader;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class MainApp extends Application {
     private String WineBrewDBVersion = MainApp.class.getPackage().getImplementationVersion();
     private String DatabaseLocationFromIni = "TODO";
     private Stage primaryStage;
-    private BorderPane rootLayout;
+    private static BorderPane rootLayout;
 
     /**
      * Constructor
@@ -24,32 +25,44 @@ public class MainApp extends Application {
 
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("WineBrewDB " + WineBrewDBVersion + " - Current Database: " + DatabaseLocationFromIni);
 
-        // Set the application icon.
-        this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/winebrewdb32.png")));
-
+        setTitle();
+        setIcons();
         initRootLayout();
         showWelcomeView();
+    }
+
+    private void setTitle() {
+        this.primaryStage.setTitle(
+            "WineBrewDB " + WineBrewDBVersion + " - Current Database: " + DatabaseLocationFromIni);
+    }
+
+    private void setIcons() {
+        this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/winebrewdb32.png")));
     }
 
     /**
      * Initializes the root layout.
      */
-    public void initRootLayout() {
+    private void initRootLayout() {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/RootLayout.fxml"));
-            rootLayout = loader.load();
+
+            rootLayout = new ViewLoader().loadBorderPane("RootLayout.fxml");
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,22 +71,21 @@ public class MainApp extends Application {
     /**
      * Shows the welcome view inside the root layout.
      */
-    public void showWelcomeView() {
+    private void showWelcomeView() {
         try {
-            // Load welcome view.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/welcomeView.fxml"));
-            AnchorPane welcomeView = loader.load();
+            // Load view
+            Node welcomeView = new ViewLoader().loadAnchorPane("welcomeView.fxml");
 
-            // Set person overview into the center of root layout.
-            rootLayout.setCenter(welcomeView);
+            // Set welcome view into the center of root layout.
+            setDisplayView(welcomeView);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public static void setDisplayView(Node node) {
+        rootLayout.setCenter(node);
     }
+
 }
