@@ -13,3 +13,5 @@
 - Sort out deprecated method usage on itextpdf
 - Check for updates on startup (config to make it go away)
 - Sort out image scaling for highdpi (support both)
+- figure out why buttons move slightly on first load after clicking, padding?
+- broken calculator view tab selection
