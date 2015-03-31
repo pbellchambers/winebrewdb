@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.RootController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -43,23 +43,23 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Data">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Brews" />
-                        <MenuItem mnemonicParsing="false" text="Ledger" />
-                        <MenuItem mnemonicParsing="false" text="Recipes" />
+                        <MenuItem mnemonicParsing="false" text="Brews" onAction="#showBrewRootView"/>
+                        <MenuItem mnemonicParsing="false" text="Ledger" onAction="#showLedgerRootView" />
+                        <MenuItem mnemonicParsing="false" text="Recipes" onAction="#showRecipeRootView" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Calculators">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Alcohol" />
-                        <MenuItem mnemonicParsing="false" text="Dilution" />
-                        <MenuItem mnemonicParsing="false" text="Measures" />
-                        <MenuItem mnemonicParsing="false" text="Sugar to SG" />
-                        <MenuItem mnemonicParsing="false" text="Temperature Adjusted SG" />
+                        <MenuItem mnemonicParsing="false" text="Alcohol" onAction="#showCalculatorAlcoholTab"/>
+                        <MenuItem mnemonicParsing="false" text="Dilution" onAction="#showCalculatorDilutionTab"/>
+                        <MenuItem mnemonicParsing="false" text="Measures" onAction="#showCalculatorMeasuresTab"/>
+                        <MenuItem mnemonicParsing="false" text="Sugar to SG" onAction="#showCalculatorSugarTab"/>
+                        <MenuItem mnemonicParsing="false" text="Temperature Adjusted SG" onAction="#showCalculatorSgTab"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Information">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Add/Edit" />
+                        <MenuItem mnemonicParsing="false" text="Add/Edit" onAction="#showInformationRootView"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -76,7 +76,7 @@
     <left>
         <VBox BorderPane.alignment="CENTER">
             <children>
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Brew">
+                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Brew" onAction="#showBrewRootView">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -91,7 +91,7 @@
                         <Tooltip text="Brews" />
                     </tooltip>
                 </Button>
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Ledger">
+                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Ledger" onAction="#showLedgerRootView">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -106,7 +106,7 @@
                         <Tooltip text="Ledger" />
                     </tooltip>
                 </Button>
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Recipes">
+                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Recipes" onAction="#showRecipeRootView">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -122,7 +122,7 @@
                     </tooltip>
                 </Button>
                 <Separator />
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Calculators">
+                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Calculators" onAction="#showCalculatorAlcoholTab">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -138,7 +138,7 @@
                     </tooltip>
                 </Button>
                 <Separator />
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Information">
+                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Information" onAction="#showInformationRootView">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
