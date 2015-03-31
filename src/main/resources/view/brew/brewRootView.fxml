@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-
+    <children>
+        <Label text="Brew" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+        </Label>
+        <Label text="Browse and edit the brew database." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0">
+            <font>
+                <Font name="System Italic" size="24.0" />
+            </font>
+        </Label>
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Print" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+            <graphic>
+                <ImageView pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="/images/print.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <tooltip>
+                <Tooltip text="Save current brew to printable format" />
+            </tooltip>
+        </Button>
+        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+            <tabs>
+                <Tab text="Search">
+                    <content>
+                        <AnchorPane/>
+                    </content>
+                </Tab>
+                <Tab disable="true" text="Brew Data">
+                    <content>
+                        <AnchorPane/>
+                    </content>
+                </Tab>
+                <Tab disable="true" text="Brew Notes">
+                    <content>
+                        <AnchorPane/>
+                    </content>
+                </Tab>
+                <Tab disable="true" text="Brew Pictures">
+                    <content>
+                        <AnchorPane/>
+                    </content>
+                </Tab>
+                <Tab disable="true" text="Brew Costs">
+                    <content>
+                        <AnchorPane/>
+                    </content>
+                </Tab>
+                <Tab text="Add New Brew">
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="/images/new.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <content>
+                        <AnchorPane/>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>
