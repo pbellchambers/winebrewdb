@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.ledger.LedgerRootController">
     <children>
         <Label text="Ledger" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
@@ -33,17 +33,17 @@
             <tabs>
                 <Tab text="Equipment &amp; Non-brew-specific Costs">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="equipmentView.fxml"/>
                     </content>
                 </Tab>
                 <Tab text="Brew Cost Search">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="brewCostSearchView.fxml"/>
                     </content>
                 </Tab>
-                <Tab text="Brew Cost Data">
+                <Tab disable="true" text="Brew Cost Data">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="brewCostDataView.fxml"/>
                     </content>
                 </Tab>
             </tabs>

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.calculator.CalculatorRootController">
     <children>
         <Label text="Calculators" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
@@ -15,31 +15,31 @@
                 <Font name="System Italic" size="24.0" />
             </font>
         </Label>
-        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <TabPane fx:id="calculatorTabPane" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
             <tabs>
-                <Tab text="Alcohol %">
+                <Tab fx:id="alcoholCalculatorTab" text="Alcohol %">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="alcoholCalculatorView.fxml"/>
                     </content>
                 </Tab>
-                <Tab text="Dilution">
+                <Tab fx:id="dilutionCalculatorTab" text="Dilution">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="dilutionCalculatorView.fxml"/>
                     </content>
                 </Tab>
-                <Tab text="Measures">
+                <Tab fx:id="measuresCalculatorTab" text="Measures">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="measuresCalculatorView.fxml"/>
                     </content>
                 </Tab>
-                <Tab text="Sugar to SG">
+                <Tab fx:id="sugarCalculatorTab" text="Sugar to SG">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="sugarCalculatorView.fxml"/>
                     </content>
                 </Tab>
-                <Tab text="Temperature Adjusted SG">
+                <Tab fx:id="sgCalculatorTab" text="Temperature Adjusted SG">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="sgCalculatorView.fxml"/>
                     </content>
                 </Tab>
             </tabs>

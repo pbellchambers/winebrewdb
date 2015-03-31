@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.brew.BrewRootController">
     <children>
         <Label text="Brew" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
             <font>
@@ -33,27 +33,27 @@
             <tabs>
                 <Tab text="Search">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="brewSearchView.fxml"/>
                     </content>
                 </Tab>
                 <Tab disable="true" text="Brew Data">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="brewDataView.fxml"/>
                     </content>
                 </Tab>
                 <Tab disable="true" text="Brew Notes">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="brewNotesView.fxml"/>
                     </content>
                 </Tab>
                 <Tab disable="true" text="Brew Pictures">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="brewPicturesView.fxml"/>
                     </content>
                 </Tab>
                 <Tab disable="true" text="Brew Costs">
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="brewCostsView.fxml"/>
                     </content>
                 </Tab>
                 <Tab text="Add New Brew">
@@ -65,7 +65,7 @@
                         </ImageView>
                     </graphic>
                     <content>
-                        <AnchorPane/>
+                        <fx:include source="addBrewView.fxml"/>
                     </content>
                 </Tab>
             </tabs>
