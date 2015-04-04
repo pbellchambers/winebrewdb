@@ -14,4 +14,4 @@
 - Check for updates on startup (config to make it go away)
 - Sort out image scaling for highdpi (support both)
 - figure out why buttons move slightly on first load after clicking, padding?
-- add error dialog
+- some sort of backup of database

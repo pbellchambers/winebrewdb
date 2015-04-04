@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import uk.co.pbellchambers.winebrewdb.controller.calculator.CalculatorRootController;
 import uk.co.pbellchambers.winebrewdb.util.ViewLoader;
 
-import java.io.IOException;
-
 public class RootController {
 
     @FXML
@@ -16,102 +14,61 @@ public class RootController {
 
     @FXML
     private void showAboutView() {
-        try {
-            new ViewLoader().showModalDialog("modal/aboutView.fxml", "About");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new ViewLoader().showModalDialog("modal/aboutView.fxml");
     }
 
     @FXML
      private void showBrewRootView() {
-        try {
-            new ViewLoader().loadPane("brew/brewRootView.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new ViewLoader().loadPane("brew/brewRootView.fxml");
     }
 
     @FXML
     private void showLedgerRootView() {
-        try {
-            new ViewLoader().loadPane("ledger/ledgerRootView.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new ViewLoader().loadPane("ledger/ledgerRootView.fxml");
     }
 
     @FXML
     private void showRecipeRootView() {
-        try {
-            new ViewLoader().loadPane("recipe/recipeRootView.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new ViewLoader().loadPane("recipe/recipeR2ootView.fxml");
     }
 
     @FXML
     private void showCalculatorAlcoholTab() {
-        try {
-            CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
-                "calculator/calculatorRootView.fxml");
-            calculatorRootController.setSelectedTab(0);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
+            "calculator/calculatorRootView.fxml");
+        calculatorRootController.setSelectedTab(0);
     }
 
     @FXML
     private void showCalculatorDilutionTab() {
-        try {
-            CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
-                "calculator/calculatorRootView.fxml");
-            calculatorRootController.setSelectedTab(1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
+            "calculator/calculatorRootView.fxml");
+        calculatorRootController.setSelectedTab(1);
     }
 
     @FXML
     private void showCalculatorMeasuresTab() {
-        try {
-            CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
-                "calculator/calculatorRootView.fxml");
-            calculatorRootController.setSelectedTab(2);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
+            "calculator/calculatorRootView.fxml");
+        calculatorRootController.setSelectedTab(2);
     }
 
     @FXML
     private void showCalculatorSugarTab() {
-        try {
-            CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
-                "calculator/calculatorRootView.fxml");
-            calculatorRootController.setSelectedTab(3);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
+            "calculator/calculatorRootView.fxml");
+        calculatorRootController.setSelectedTab(3);
     }
 
     @FXML
     private void showCalculatorSgTab() {
-        try {
-            CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
-                "calculator/calculatorRootView.fxml");
-            calculatorRootController.setSelectedTab(4);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CalculatorRootController calculatorRootController = (CalculatorRootController) new ViewLoader().loadPane(
+            "calculator/calculatorRootView.fxml");
+        calculatorRootController.setSelectedTab(4);
     }
 
     @FXML
     private void showInformationRootView() {
-        try {
-            new ViewLoader().loadPane("information/informationRootView.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new ViewLoader().loadPane("information/informationRootView.fxml");
     }
 }

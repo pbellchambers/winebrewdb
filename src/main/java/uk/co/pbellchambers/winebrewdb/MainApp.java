@@ -8,8 +8,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import uk.co.pbellchambers.winebrewdb.util.ViewLoader;
 
-import java.io.IOException;
-
 public class MainApp extends Application {
 
     private static MainApp instance;
@@ -58,28 +56,19 @@ public class MainApp extends Application {
      * Initialises the root layout.
      */
     private void initRootLayout() {
-        try {
-            rootLayout = new ViewLoader().loadRootPane("RootLayout.fxml");
+        rootLayout = new ViewLoader().loadRootPane("RootLayout.fxml");
 
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Show the scene containing the root layout.
+        Scene scene = new Scene(rootLayout);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     /**
      * Shows the welcome view inside the root layout.
      */
     private void showWelcomeView() {
-        try {
-            new ViewLoader().loadPane("welcomeView.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new ViewLoader().loadPane("welcomeView.fxml");
     }
 
     /**

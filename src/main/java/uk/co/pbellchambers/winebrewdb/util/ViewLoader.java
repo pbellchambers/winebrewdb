@@ -9,8 +9,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import uk.co.pbellchambers.winebrewdb.MainApp;
 
-import java.io.IOException;
-
 public class ViewLoader extends FXMLLoader {
 
     private static final String VIEW_LOCATION = "/view/";
@@ -29,11 +27,15 @@ public class ViewLoader extends FXMLLoader {
      *
      * @param view the fxml file to be loaded
      * @return the loaded BorderPane
-     * @throws IOException if fxml file is unable to be loaded
      */
-    public BorderPane loadRootPane(String view) throws IOException {
+    public BorderPane loadRootPane(String view) {
         fXMLLoader.setLocation(getClass().getResource(VIEW_LOCATION + view));
-        return fXMLLoader.load();
+        try {
+            return fXMLLoader.load();
+        } catch (Exception exception) {
+            new ErrorHandler("Unable to load view", exception);
+        }
+        return null;
     }
 
     /**
@@ -41,16 +43,25 @@ public class ViewLoader extends FXMLLoader {
      *
      * @param view the fxml file to be loaded
      * @return the controller of the loaded view
-     * @throws IOException if fxml file is unable to be loaded
      */
-    public Object loadPane(String view) throws IOException {
+    public Object loadPane(String view) {
         fXMLLoader.setLocation(getClass().getResource(VIEW_LOCATION + view));
-        Pane pane = fXMLLoader.load();
+        Pane pane = null;
+        try {
+            pane = fXMLLoader.load();
+        } catch (Exception exception) {
+            new ErrorHandler("Unable to load view", exception);
+        }
         mainApp.setDisplayView(pane);
         return fXMLLoader.getController();
     }
 
-    public void showModalDialog(String view, String title) throws IOException {
+    /**
+     * Shows a modal dialog view
+     *
+     * @param view the fxml file to be loaded
+     */
+    public void showModalDialog(String view) {
         BorderPane borderPane = loadRootPane(view);
         Stage primaryStage = MainApp.getInstance().getPrimaryStage();
         Stage newStage = new Stage();
@@ -61,7 +72,8 @@ public class ViewLoader extends FXMLLoader {
         newStage.initModality(Modality.APPLICATION_MODAL);
         newStage.initStyle(StageStyle.UTILITY);
         newStage.initOwner(primaryStage);
+        newStage.setX(primaryStage.getX() + (primaryStage.getWidth() / 2) - (borderPane.getPrefWidth() / 2));
+        newStage.setY(primaryStage.getY() + (primaryStage.getHeight() / 2) - (borderPane.getPrefHeight() / 2));
         newStage.showAndWait();
     }
-
 }
