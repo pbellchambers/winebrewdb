@@ -29,7 +29,7 @@ public class RootController {
 
     @FXML
     private void showRecipeRootView() {
-        new ViewLoader().loadPane("recipe/recipeR2ootView.fxml");
+        new ViewLoader().loadPane("recipe/recipeRootView.fxml");
     }
 
     @FXML
