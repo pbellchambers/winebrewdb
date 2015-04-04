@@ -1,5 +1,6 @@
 package uk.co.pbellchambers.winebrewdb.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import uk.co.pbellchambers.winebrewdb.controller.calculator.CalculatorRootController;
 import uk.co.pbellchambers.winebrewdb.util.ViewLoader;
@@ -7,6 +8,20 @@ import uk.co.pbellchambers.winebrewdb.util.ViewLoader;
 import java.io.IOException;
 
 public class RootController {
+
+    @FXML
+    private void exitApplication() {
+        Platform.exit();
+    }
+
+    @FXML
+    private void showAboutView() {
+        try {
+            new ViewLoader().showModalDialog("modal/aboutView.fxml", "About");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
      private void showBrewRootView() {

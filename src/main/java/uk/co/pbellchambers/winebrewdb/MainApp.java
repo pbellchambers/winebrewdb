@@ -13,8 +13,8 @@ import java.io.IOException;
 public class MainApp extends Application {
 
     private static MainApp instance;
-    private String WineBrewDBVersion = MainApp.class.getPackage().getImplementationVersion();
-    private String DatabaseLocationFromIni = "TODO";
+    private String wineBrewDBVersion = MainApp.class.getPackage().getImplementationVersion();
+    private String databaseLocationFromIni = "TODO";
     private Stage primaryStage;
     private BorderPane rootLayout;
 
@@ -44,7 +44,7 @@ public class MainApp extends Application {
      */
     private void setTitle() {
         this.primaryStage.setTitle(
-            "WineBrewDB " + WineBrewDBVersion + " - Current Database: " + DatabaseLocationFromIni);
+            "WineBrewDB " + wineBrewDBVersion + " - Current Database: " + databaseLocationFromIni);
     }
 
     /**
@@ -101,4 +101,21 @@ public class MainApp extends Application {
         return instance;
     }
 
+    /**
+     * Gets the primary stage
+     *
+     * @return primary stage
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    /**
+     * Gets the WineBrewDB version
+     *
+     * @return wineBrewDBVersion
+     */
+    public String getWineBrewDBVersion() {
+        return wineBrewDBVersion;
+    }
 }

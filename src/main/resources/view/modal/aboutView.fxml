@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.modal.AboutViewController">
+    <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="aboutVersion" layoutX="64.0" layoutY="51.0" text="WineBrewDB - version" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="aboutHyperlink" onAction="#clickHyperlink" text="http://www.github.com/pbellchambers/winebrewdb" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="75.0" />
+            <Label text="Licensed under the Apache v2.0 License" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0" />
+            <Label text="Copyright (c) 2012-2015 Paul Bellchambers" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="185.0" />
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+        <ImageView pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <image>
+                <Image url="/images/winebrewdb128.png" />
+            </image>
+         <BorderPane.margin>
+            <Insets right="25.0" />
+         </BorderPane.margin>
+        </ImageView>
+   </right>
+</BorderPane>
