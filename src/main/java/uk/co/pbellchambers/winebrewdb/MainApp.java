@@ -12,16 +12,17 @@ import java.io.IOException;
 
 public class MainApp extends Application {
 
+    private static MainApp instance;
     private String WineBrewDBVersion = MainApp.class.getPackage().getImplementationVersion();
     private String DatabaseLocationFromIni = "TODO";
     private Stage primaryStage;
-    private static BorderPane rootLayout;
+    private BorderPane rootLayout;
 
     /**
      * Constructor
      */
     public MainApp() {
-
+        instance = this;
     }
 
     public static void main(String[] args) {
@@ -38,17 +39,23 @@ public class MainApp extends Application {
         showWelcomeView();
     }
 
+    /**
+     * Set the title of the main window
+     */
     private void setTitle() {
         this.primaryStage.setTitle(
             "WineBrewDB " + WineBrewDBVersion + " - Current Database: " + DatabaseLocationFromIni);
     }
 
+    /**
+     * Set the icons for the main window
+     */
     private void setIcons() {
         this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/winebrewdb32.png")));
     }
 
     /**
-     * Initializes the root layout.
+     * Initialises the root layout.
      */
     private void initRootLayout() {
         try {
@@ -75,8 +82,23 @@ public class MainApp extends Application {
         }
     }
 
-    public static void setDisplayView(Node node) {
+    /**
+     * Sets the view currently being displayed in the centre node of the root layout
+     *
+     * @param node The node to be displayed
+     */
+    public void setDisplayView(Node node) {
         rootLayout.setCenter(node);
+    }
+
+
+    /**
+     * Method to get current instance of MainApp
+     *
+     * @return current instance of MainApp
+     */
+    public static MainApp getInstance() {
+        return instance;
     }
 
 }
