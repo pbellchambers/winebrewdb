@@ -1,7 +1,6 @@
 package uk.co.pbellchambers.winebrewdb;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -53,10 +52,7 @@ public class MainApp extends Application {
      */
     private void initRootLayout() {
         try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-
-            rootLayout = new ViewLoader().loadBorderPane("RootLayout.fxml");
+            rootLayout = new ViewLoader().loadRootPane("RootLayout.fxml");
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
@@ -73,12 +69,7 @@ public class MainApp extends Application {
      */
     private void showWelcomeView() {
         try {
-            // Load view
-            Node welcomeView = new ViewLoader().loadAnchorPane("welcomeView.fxml");
-
-            // Set welcome view into the center of root layout.
-            setDisplayView(welcomeView);
-
+            new ViewLoader().loadPane("welcomeView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -9,7 +9,6 @@ public class CalculatorRootController {
     private TabPane calculatorTabPane;
 
     public void setSelectedTab(int index) {
-        calculatorTabPane.getSelectionModel().clearSelection();
         calculatorTabPane.getSelectionModel().select(index);
     }
 }
