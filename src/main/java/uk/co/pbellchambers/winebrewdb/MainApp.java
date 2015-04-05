@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import uk.co.pbellchambers.winebrewdb.controller.RootController;
 import uk.co.pbellchambers.winebrewdb.util.Config;
 import uk.co.pbellchambers.winebrewdb.util.ViewLoader;
 
@@ -16,6 +17,7 @@ public class MainApp extends Application {
     private Config config;
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private RootController rootController;
 
     /**
      * Constructor
@@ -65,7 +67,7 @@ public class MainApp extends Application {
      * Initialises the root layout.
      */
     private void initRootLayout() {
-        rootLayout = (BorderPane) new ViewLoader().loadPane("rootLayout.fxml");
+        rootLayout = new ViewLoader().loadRootLayout("rootLayout.fxml");
 
         // Show the scene containing the root layout.
         Scene scene = new Scene(rootLayout);
@@ -124,5 +126,23 @@ public class MainApp extends Application {
      */
     public Config getConfig() {
         return config;
+    }
+
+    /**
+     * Gets the root controller
+     *
+     * @return RootController
+     */
+    public RootController getRootController() {
+        return rootController;
+    }
+
+    /**
+     * Sets the root controller
+     *
+     * @param rootController the RootController
+     */
+    public void setRootController(RootController rootController) {
+        this.rootController = rootController;
     }
 }

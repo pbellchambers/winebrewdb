@@ -2,13 +2,14 @@ package uk.co.pbellchambers.winebrewdb.util;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import uk.co.pbellchambers.winebrewdb.MainApp;
 
 public class ViewLoader extends FXMLLoader {
 
     private static final String VIEW_LOCATION = "/view/";
-    private FXMLLoader fXMLLoader = new FXMLLoader();
+    private FXMLLoader fxmlLoader = new FXMLLoader();
     private MainApp mainApp;
 
     /**
@@ -22,13 +23,13 @@ public class ViewLoader extends FXMLLoader {
      * Loads a pane and returns the loaded pane
      *
      * @param view the fxml file to be loaded
-     * @return the loaded pane
+     * @return Pane the loaded view
      */
     public Pane loadPane(String view) {
-        fXMLLoader.setLocation(getClass().getResource(VIEW_LOCATION + view));
+        fxmlLoader.setLocation(getClass().getResource(VIEW_LOCATION + view));
         Pane pane = null;
         try {
-            pane = fXMLLoader.load();
+            pane = fxmlLoader.load();
         } catch (Exception exception) {
             new ErrorHandler("Unable to load view", exception);
         }
@@ -44,7 +45,25 @@ public class ViewLoader extends FXMLLoader {
     public Object displayPane(String view) {
         Pane pane = loadPane(view);
         mainApp.setDisplayView(pane);
-        return fXMLLoader.getController();
+        return fxmlLoader.getController();
+    }
+
+    /**
+     * Loads and displays the root layout and sets the controller
+     *
+     * @param view the fxml file to be loaded
+     * @return BorderPane the loaded view
+     */
+    public BorderPane loadRootLayout(String view) {
+        fxmlLoader.setLocation(getClass().getResource(VIEW_LOCATION + view));
+        BorderPane pane = null;
+        try {
+            pane = fxmlLoader.load();
+            MainApp.getInstance().setRootController(fxmlLoader.getController());
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return pane;
     }
 
     /**

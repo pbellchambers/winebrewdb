@@ -28,7 +28,7 @@
                                 </ImageView>
                             </graphic>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Save Database As...">
+                        <MenuItem fx:id="rootSaveMenuItem" mnemonicParsing="false" text="Save Database As...">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -43,23 +43,23 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Data">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Brews" onAction="#showBrewRootView"/>
-                        <MenuItem mnemonicParsing="false" text="Ledger" onAction="#showLedgerRootView" />
-                        <MenuItem mnemonicParsing="false" text="Recipes" onAction="#showRecipeRootView" />
+                        <MenuItem fx:id="rootBrewMenuItem" mnemonicParsing="false" text="Brews" onAction="#showBrewRootView"/>
+                        <MenuItem fx:id="rootLedgerMenuItem" mnemonicParsing="false" text="Ledger" onAction="#showLedgerRootView" />
+                        <MenuItem fx:id="rootRecipeMenuItem" mnemonicParsing="false" text="Recipes" onAction="#showRecipeRootView" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Calculators">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Alcohol" onAction="#showCalculatorAlcoholTab"/>
-                        <MenuItem mnemonicParsing="false" text="Dilution" onAction="#showCalculatorDilutionTab"/>
-                        <MenuItem mnemonicParsing="false" text="Measures" onAction="#showCalculatorMeasuresTab"/>
-                        <MenuItem mnemonicParsing="false" text="Sugar to SG" onAction="#showCalculatorSugarTab"/>
-                        <MenuItem mnemonicParsing="false" text="Temperature Adjusted SG" onAction="#showCalculatorSgTab"/>
+                        <MenuItem fx:id="rootCalculatorAlcoholMenuItem" mnemonicParsing="false" text="Alcohol" onAction="#showCalculatorAlcoholTab"/>
+                        <MenuItem fx:id="rootCalculatorDilutionMenuItem" mnemonicParsing="false" text="Dilution" onAction="#showCalculatorDilutionTab"/>
+                        <MenuItem fx:id="rootCalculatorMeasuresMenuItem" mnemonicParsing="false" text="Measures" onAction="#showCalculatorMeasuresTab"/>
+                        <MenuItem fx:id="rootCalculatorSugarMenuItem" mnemonicParsing="false" text="Sugar to SG" onAction="#showCalculatorSugarTab"/>
+                        <MenuItem fx:id="rootCalculatorSgMenuItem" mnemonicParsing="false" text="Temperature Adjusted SG" onAction="#showCalculatorSgTab"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Information">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Add/Edit" onAction="#showInformationRootView"/>
+                        <MenuItem fx:id="rootInformationMenuItem" mnemonicParsing="false" text="Add/Edit" onAction="#showInformationRootView"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -76,7 +76,7 @@
     <left>
         <VBox BorderPane.alignment="CENTER">
             <children>
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Brew" onAction="#showBrewRootView">
+                <Button fx:id="rootBrewButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Brew" onAction="#showBrewRootView">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -91,7 +91,7 @@
                         <Tooltip text="Brews" />
                     </tooltip>
                 </Button>
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Ledger" onAction="#showLedgerRootView">
+                <Button fx:id="rootLedgerButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Ledger" onAction="#showLedgerRootView">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -106,7 +106,7 @@
                         <Tooltip text="Ledger" />
                     </tooltip>
                 </Button>
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Recipes" onAction="#showRecipeRootView">
+                <Button fx:id="rootRecipeButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Recipes" onAction="#showRecipeRootView">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -122,7 +122,7 @@
                     </tooltip>
                 </Button>
                 <Separator />
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Calculators" onAction="#showCalculatorAlcoholTab">
+                <Button fx:id="rootCalculatorButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Calculators" onAction="#showCalculatorAlcoholTab">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -138,7 +138,7 @@
                     </tooltip>
                 </Button>
                 <Separator />
-                <Button contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Information" onAction="#showInformationRootView">
+                <Button fx:id="rootInformationButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Information" onAction="#showInformationRootView">
                     <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true">
                             <image>
