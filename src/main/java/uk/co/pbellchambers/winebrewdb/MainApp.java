@@ -56,7 +56,7 @@ public class MainApp extends Application {
      * Initialises the root layout.
      */
     private void initRootLayout() {
-        rootLayout = new ViewLoader().loadRootPane("RootLayout.fxml");
+        rootLayout = new ViewLoader().loadRootPane("rootLayout.fxml");
 
         // Show the scene containing the root layout.
         Scene scene = new Scene(rootLayout);

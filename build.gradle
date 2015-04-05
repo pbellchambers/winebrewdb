@@ -5,7 +5,7 @@ apply plugin: 'macAppBundle'
 
 version = new File('VERSION').text
 def exeVersion = '2.0.0.0'
-def mainClass = 'uk.co.pbellchambers.winebrewdb.LegacyApp'
+def mainClass = 'uk.co.pbellchambers.winebrewdb.MainApp'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
