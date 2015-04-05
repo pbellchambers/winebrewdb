@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.modal.AboutViewController">
+    <center>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="The following were used in the making of this program:" />
+                <Label text="- Wine icon modified from &quot;Wine&quot; symbol by thenounproject.com, CC BY" GridPane.rowIndex="2" />
+                <Label text="- Icons from &quot;GO Green! Web&quot; icon set by Dawghouse Design Studio" GridPane.rowIndex="3" />
+                <Label text="- JDateChooser from Adam Lee / gimlisys.com, licensed under the Academic Free License" GridPane.rowIndex="4" />
+                <Label text="- Yeast Strains data compiled from information posted by &quot;goldseal&quot; and other membersof the winesathome.co.uk community" GridPane.rowIndex="5" />
+            </children>
+        </GridPane>
+    </center>
+</BorderPane>

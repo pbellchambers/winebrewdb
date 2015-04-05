@@ -16,10 +16,17 @@ public class RootController {
 
     @FXML
     private void showAboutView() {
-        new ViewLoader().showModalDialog(Alert.AlertType.INFORMATION,
-                                         "About",
+        new ViewLoader().showModalDialog(Alert.AlertType.INFORMATION, "About",
                                          "WineBrewDB - " + MainApp.getInstance().getWineBrewDBVersion(),
                                          "modal/aboutView.fxml");
+    }
+
+    @FXML
+    private void showCreditsView() {
+        new ViewLoader().showModalDialog(Alert.AlertType.INFORMATION,
+                                         "Credits",
+                                         "Credits",
+                                         "modal/creditsView.fxml");
     }
 
     @FXML
