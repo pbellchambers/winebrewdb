@@ -94,6 +94,13 @@ task renameFiles {
     }
 }
 
+task copyFiles(type: Sync) {
+    file('shippable').mkdir()
+    from 'build/distributions'
+    into 'shippable'
+    include '**/*.zip'
+}
+
 jarDistTar.dependsOn 'jar'
 jarDistZip.dependsOn 'jar'
 exe.dependsOn 'jar'
@@ -101,3 +108,4 @@ exeDistTar.dependsOn 'exe'
 exeDistZip.dependsOn 'exe'
 createAppZip.dependsOn 'createApp'
 createDmg.enabled = false
+copyFiles.dependsOn 'renameFiles'

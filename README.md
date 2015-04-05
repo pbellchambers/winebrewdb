@@ -1,4 +1,4 @@
-#WineBrewDB [![Build Status](https://travis-ci.org/pbellchambers/winebrewdb.svg?branch=master)](https://travis-ci.org/pbellchambers/winebrewdb)
+#WineBrewDB [![Build Status](https://api.shippable.com/projects/5521b1bc5ab6cc1352b899ad/badge?branchName=master)](https://app.shippable.com/projects/5521b1bc5ab6cc1352b899ad/builds/latest)
 A database that keeps track of all your brews, recipes, costs, and includes some other handy tools for the home wine brewer.
 
 
@@ -9,7 +9,7 @@ Changelog - [https://github.com/pbellchambers/winebrewdb/blob/master/CHANGELOG.m
 
 
 ##System Requirements
-[Java 8+](http://java.com/download)
+[Java 8 update 40+](http://java.com/download)
 
 
 ##Screenshots
