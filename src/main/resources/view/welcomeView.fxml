@@ -7,62 +7,62 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.WelcomeViewController">
-   <children>
-      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome to WineBrewDB" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="25.0" left="50.0" right="50.0" />
-               </VBox.margin>
-            </Label>
-            <Label alignment="CENTER" text="Your current database is not set!/Your current database is set to: TODO">
-               <VBox.margin>
-                  <Insets bottom="25.0" left="50.0" right="50.0" />
-               </VBox.margin>
-            </Label>
-            <Label alignment="CENTER" text="Please create a new database below to begin./Select an option from the left to begin, and remember to ensure your database is backed up.">
-               <VBox.margin>
-                  <Insets bottom="75.0" left="50.0" right="50.0" />
-               </VBox.margin>
-            </Label>
-            <HBox alignment="CENTER">
-               <children>
-                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="New WineBrewDB Database">
-                      <graphic>
-                          <ImageView pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                  <Image url="/images/newbig.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                      <tooltip>
-                          <Tooltip text="New WineBrewDB Database" />
-                      </tooltip>
-                     <HBox.margin>
+    <children>
+        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome to WineBrewDB" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                    <VBox.margin>
                         <Insets bottom="25.0" left="50.0" right="50.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="Load WineBrewDB Database">
-                      <graphic>
-                          <ImageView pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                  <Image url="/images/loadbig.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                      <tooltip>
-                          <Tooltip text="Load WineBrewDB Database" />
-                      </tooltip>
-                     <HBox.margin>
+                    </VBox.margin>
+                </Label>
+                <Label alignment="CENTER" text="Your current database is not set!/Your current database is set to: TODO">
+                    <VBox.margin>
                         <Insets bottom="25.0" left="50.0" right="50.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </children>
+                    </VBox.margin>
+                </Label>
+                <Label alignment="CENTER" text="Please create a new database below to begin./Select an option from the left to begin, and remember to ensure your database is backed up.">
+                    <VBox.margin>
+                        <Insets bottom="75.0" left="50.0" right="50.0" />
+                    </VBox.margin>
+                </Label>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="New WineBrewDB Database">
+                            <graphic>
+                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="/images/newbig.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <tooltip>
+                                <Tooltip text="New WineBrewDB Database" />
+                            </tooltip>
+                            <HBox.margin>
+                                <Insets bottom="25.0" left="50.0" right="50.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="Load WineBrewDB Database">
+                            <graphic>
+                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="/images/loadbig.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <tooltip>
+                                <Tooltip text="Load WineBrewDB Database" />
+                            </tooltip>
+                            <HBox.margin>
+                                <Insets bottom="25.0" left="50.0" right="50.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
