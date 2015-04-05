@@ -1,12 +1,8 @@
 package uk.co.pbellchambers.winebrewdb.util;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import uk.co.pbellchambers.winebrewdb.MainApp;
 
 public class ViewLoader extends FXMLLoader {
@@ -23,28 +19,12 @@ public class ViewLoader extends FXMLLoader {
     }
 
     /**
-     * Loads and returns a loaded BorderPane
+     * Loads a pane and returns the loaded pane
      *
      * @param view the fxml file to be loaded
-     * @return the loaded BorderPane
+     * @return the loaded pane
      */
-    public BorderPane loadRootPane(String view) {
-        fXMLLoader.setLocation(getClass().getResource(VIEW_LOCATION + view));
-        try {
-            return fXMLLoader.load();
-        } catch (Exception exception) {
-            new ErrorHandler("Unable to load view", exception);
-        }
-        return null;
-    }
-
-    /**
-     * Loads a pane and returns the controller
-     *
-     * @param view the fxml file to be loaded
-     * @return the controller of the loaded view
-     */
-    public Object loadPane(String view) {
+    public Pane loadPane(String view) {
         fXMLLoader.setLocation(getClass().getResource(VIEW_LOCATION + view));
         Pane pane = null;
         try {
@@ -52,28 +32,35 @@ public class ViewLoader extends FXMLLoader {
         } catch (Exception exception) {
             new ErrorHandler("Unable to load view", exception);
         }
+        return pane;
+    }
+
+    /**
+     * Loads and displays a pane and returns the controller
+     *
+     * @param view the fxml file to be loaded
+     * @return the controller of the loaded view
+     */
+    public Object displayPane(String view) {
+        Pane pane = loadPane(view);
         mainApp.setDisplayView(pane);
         return fXMLLoader.getController();
     }
 
     /**
-     * Shows a modal dialog view
+     * Shows a modal dialog using the specified view
      *
+     * @param alertType the type of the alert to display
+     * @param title the title of the dialog
+     * @param header the header of the dialog
      * @param view the fxml file to be loaded
      */
-    public void showModalDialog(String view) {
-        BorderPane borderPane = loadRootPane(view);
-        Stage primaryStage = MainApp.getInstance().getPrimaryStage();
-        Stage newStage = new Stage();
-        Scene scene = new Scene(borderPane);
-
-        newStage.setScene(scene);
-        newStage.setResizable(false);
-        newStage.initModality(Modality.APPLICATION_MODAL);
-        newStage.initStyle(StageStyle.UTILITY);
-        newStage.initOwner(primaryStage);
-        newStage.setX(primaryStage.getX() + (primaryStage.getWidth() / 2) - (borderPane.getPrefWidth() / 2));
-        newStage.setY(primaryStage.getY() + (primaryStage.getHeight() / 2) - (borderPane.getPrefHeight() / 2));
-        newStage.showAndWait();
+    public void showModalDialog(Alert.AlertType alertType, String title, String header, String view) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.getDialogPane().setContent(loadPane(view));
+        alert.initOwner(MainApp.getInstance().getPrimaryStage());
+        alert.showAndWait();
     }
 }

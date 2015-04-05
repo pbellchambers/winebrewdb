@@ -6,22 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<BorderPane prefHeight="245.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.modal.AboutViewController">
-    <center>
-      <AnchorPane BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="aboutVersion" layoutX="64.0" layoutY="51.0" text="WineBrewDB - version" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Hyperlink fx:id="aboutHyperlink" onAction="#clickHyperlink" text="http://www.github.com/pbellchambers/winebrewdb" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="75.0" />
-            <Label text="Licensed under the Apache v2.0 License" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="150.0" />
-            <Label text="Copyright (c) 2012-2015 Paul Bellchambers" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="185.0" />
-         </children>
-      </AnchorPane>
-   </center>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.modal.AboutViewController">
    <right>
         <ImageView pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
             <image>
@@ -32,4 +17,23 @@
          </BorderPane.margin>
         </ImageView>
    </right>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="15.0" prefWidth="15.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Hyperlink fx:id="aboutHyperlink" onAction="#clickHyperlink" text="http://www.github.com/pbellchambers/winebrewdb" />
+            <Label text="Licensed under the Apache v2.0 License" GridPane.rowIndex="2" />
+            <Label text="Copyright (c) 2012-2015 Paul Bellchambers" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+   </center>
 </BorderPane>
