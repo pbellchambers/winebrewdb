@@ -4,7 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
-import uk.co.pbellchambers.winebrewdb.util.Dates;
+import uk.co.pbellchambers.winebrewdb.legacy.util.Dates;
 
 import javax.swing.JOptionPane;
 import java.awt.Desktop;

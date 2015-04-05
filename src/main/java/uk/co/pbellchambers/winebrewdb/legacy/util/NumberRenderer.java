@@ -1,4 +1,4 @@
-package uk.co.pbellchambers.winebrewdb.util;
+package uk.co.pbellchambers.winebrewdb.legacy.util;
 
 import java.text.NumberFormat;
 

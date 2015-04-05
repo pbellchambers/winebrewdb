@@ -1,4 +1,4 @@
-package uk.co.pbellchambers.winebrewdb.util;
+package uk.co.pbellchambers.winebrewdb.legacy.util;
 
 import javax.swing.table.DefaultTableCellRenderer;
 import java.text.DateFormat;

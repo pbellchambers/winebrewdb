@@ -1,4 +1,4 @@
-package uk.co.pbellchambers.winebrewdb;
+package uk.co.pbellchambers.winebrewdb.legacy;
 
 import org.ini4j.InvalidFileFormatException;
 import org.ini4j.Wini;
@@ -32,7 +32,7 @@ public class LegacyApp {
 	private static File WineBrewDBConfigDirectory;
 	public static File WineBrewDBConfigFile;
 	public static String OSSlash;
-	static Wini brewIni;
+	public static Wini brewIni;
 	
 	/**
 	 * Starts the application. Including getting the users specified preferences or creating the default ones if they don't exist, and setting the application as appropriate. 

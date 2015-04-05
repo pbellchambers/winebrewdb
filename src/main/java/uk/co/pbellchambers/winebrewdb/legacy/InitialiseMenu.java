@@ -1,4 +1,4 @@
-package uk.co.pbellchambers.winebrewdb;
+package uk.co.pbellchambers.winebrewdb.legacy;
 
 import net.miginfocom.swing.MigLayout;
 import uk.co.pbellchambers.winebrewdb.legacy.brew.BrewPanel;

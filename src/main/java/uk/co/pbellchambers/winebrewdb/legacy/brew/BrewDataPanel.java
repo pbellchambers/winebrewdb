@@ -2,10 +2,10 @@ package uk.co.pbellchambers.winebrewdb.legacy.brew;
 
 import agiletrack.swing.JDateChooser;
 import net.miginfocom.swing.MigLayout;
-import uk.co.pbellchambers.winebrewdb.InitialiseMenu;
-import uk.co.pbellchambers.winebrewdb.LegacyApp;
-import uk.co.pbellchambers.winebrewdb.util.DBEngine;
-import uk.co.pbellchambers.winebrewdb.util.Dates;
+import uk.co.pbellchambers.winebrewdb.legacy.InitialiseMenu;
+import uk.co.pbellchambers.winebrewdb.legacy.LegacyApp;
+import uk.co.pbellchambers.winebrewdb.legacy.util.DBEngine;
+import uk.co.pbellchambers.winebrewdb.legacy.util.Dates;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

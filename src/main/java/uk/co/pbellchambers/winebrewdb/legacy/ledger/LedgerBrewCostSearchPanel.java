@@ -2,9 +2,9 @@ package uk.co.pbellchambers.winebrewdb.legacy.ledger;
 
 import agiletrack.swing.JDateChooser;
 import net.miginfocom.swing.MigLayout;
-import uk.co.pbellchambers.winebrewdb.LegacyApp;
-import uk.co.pbellchambers.winebrewdb.util.DBEngine;
-import uk.co.pbellchambers.winebrewdb.util.NumberRenderer;
+import uk.co.pbellchambers.winebrewdb.legacy.LegacyApp;
+import uk.co.pbellchambers.winebrewdb.legacy.util.DBEngine;
+import uk.co.pbellchambers.winebrewdb.legacy.util.NumberRenderer;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

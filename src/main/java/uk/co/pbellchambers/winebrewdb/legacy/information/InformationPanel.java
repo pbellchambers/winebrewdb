@@ -1,8 +1,8 @@
 package uk.co.pbellchambers.winebrewdb.legacy.information;
 
 import net.miginfocom.swing.MigLayout;
-import uk.co.pbellchambers.winebrewdb.LegacyApp;
-import uk.co.pbellchambers.winebrewdb.util.DBEngine;
+import uk.co.pbellchambers.winebrewdb.legacy.LegacyApp;
+import uk.co.pbellchambers.winebrewdb.legacy.util.DBEngine;
 
 import javax.swing.*;
 import javax.swing.text.html.HTMLEditorKit;

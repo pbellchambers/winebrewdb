@@ -1,6 +1,6 @@
-package uk.co.pbellchambers.winebrewdb.util;
+package uk.co.pbellchambers.winebrewdb.legacy.util;
 
-import uk.co.pbellchambers.winebrewdb.LegacyApp;
+import uk.co.pbellchambers.winebrewdb.legacy.LegacyApp;
 import uk.co.pbellchambers.winebrewdb.legacy.brew.*;
 import uk.co.pbellchambers.winebrewdb.legacy.information.InformationEditTab;
 import uk.co.pbellchambers.winebrewdb.legacy.ledger.LedgerBrewCostSearchPanel;

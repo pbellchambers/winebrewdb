@@ -1,7 +1,7 @@
 package uk.co.pbellchambers.winebrewdb.legacy.calculators;
 
 import net.miginfocom.swing.MigLayout;
-import uk.co.pbellchambers.winebrewdb.LegacyApp;
+import uk.co.pbellchambers.winebrewdb.legacy.LegacyApp;
 
 import javax.swing.*;
 import java.awt.Color;

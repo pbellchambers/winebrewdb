@@ -1,7 +1,7 @@
 package uk.co.pbellchambers.winebrewdb.legacy.brew;
 
 import net.miginfocom.swing.MigLayout;
-import uk.co.pbellchambers.winebrewdb.LegacyApp;
+import uk.co.pbellchambers.winebrewdb.legacy.LegacyApp;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
