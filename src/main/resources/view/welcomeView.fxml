@@ -18,17 +18,17 @@
                         <Insets bottom="25.0" left="50.0" right="50.0" />
                     </VBox.margin>
                 </Label>
-                <Label alignment="CENTER" text="Your current database is not set!/Your current database is set to: TODO">
+                <Label fx:id="welcomeDatabaseLocation" alignment="CENTER" text="Your current database is not set!/Your current database is set to: ">
                     <VBox.margin>
                         <Insets bottom="25.0" left="50.0" right="50.0" />
                     </VBox.margin>
                 </Label>
-                <Label alignment="CENTER" text="Please create a new database below to begin./Select an option from the left to begin, and remember to ensure your database is backed up.">
+                <Label fx:id="welcomeMessage" alignment="CENTER" text="Please create a new database below to begin./Select an option from the left to begin, and remember to ensure your database is backed up.">
                     <VBox.margin>
                         <Insets bottom="75.0" left="50.0" right="50.0" />
                     </VBox.margin>
                 </Label>
-                <HBox alignment="CENTER">
+                <HBox fx:id="welcomeButtonBox" alignment="CENTER">
                     <children>
                         <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="New WineBrewDB Database">
                             <graphic>

@@ -6,13 +6,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import uk.co.pbellchambers.winebrewdb.util.Config;
 import uk.co.pbellchambers.winebrewdb.util.ViewLoader;
 
 public class MainApp extends Application {
 
     private static MainApp instance;
     private String wineBrewDBVersion = MainApp.class.getPackage().getImplementationVersion();
-    private String databaseLocationFromIni = "TODO";
+    private Config config;
     private Stage primaryStage;
     private BorderPane rootLayout;
 
@@ -31,10 +32,18 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
+        initRootLayout();
+        loadConfig();
         setTitle();
         setIcons();
-        initRootLayout();
         showWelcomeView();
+    }
+
+    /**
+     * Loads the config from the ini file
+     */
+    private void loadConfig() {
+        config = new Config();
     }
 
     /**
@@ -42,7 +51,7 @@ public class MainApp extends Application {
      */
     private void setTitle() {
         this.primaryStage.setTitle(
-            "WineBrewDB " + wineBrewDBVersion + " - Current Database: " + databaseLocationFromIni);
+            "WineBrewDB " + wineBrewDBVersion + " - Current Database: " + config.getDatabaseLocation());
     }
 
     /**
@@ -106,5 +115,14 @@ public class MainApp extends Application {
      */
     public String getWineBrewDBVersion() {
         return wineBrewDBVersion;
+    }
+
+    /**
+     * Gets the current config
+     *
+     * @return config
+     */
+    public Config getConfig() {
+        return config;
     }
 }
