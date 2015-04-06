@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import uk.co.pbellchambers.winebrewdb.MainApp;
 import uk.co.pbellchambers.winebrewdb.controller.calculator.CalculatorRootController;
+import uk.co.pbellchambers.winebrewdb.util.UpdateChecker;
 import uk.co.pbellchambers.winebrewdb.util.ViewLoader;
 
 public class RootController {
@@ -78,6 +79,11 @@ public class RootController {
         new ViewLoader().showModalDialog(Alert.AlertType.INFORMATION, "Report a bug",
                                          "Report a bug",
                                          "modal/reportBugsView.fxml");
+    }
+
+    @FXML
+    private void checkForUpdates() {
+        new UpdateChecker().checkForUpdates();
     }
 
     @FXML

@@ -67,7 +67,7 @@
                         <MenuItem mnemonicParsing="false" text="About" onAction="#showAboutView" />
                         <MenuItem mnemonicParsing="false" text="Credits" onAction="#showCreditsView" />
                         <MenuItem mnemonicParsing="false" text="Report a bug" onAction="#showReportBugsView" />
-                        <MenuItem mnemonicParsing="false" text="Check for updates" />
+                        <MenuItem mnemonicParsing="false" text="Check for updates" onAction="#checkForUpdates" />
                     </items>
                 </Menu>
             </menus>
