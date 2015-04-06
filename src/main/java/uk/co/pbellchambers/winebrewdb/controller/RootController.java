@@ -74,6 +74,13 @@ public class RootController {
     }
 
     @FXML
+    private void showReportBugsView() {
+        new ViewLoader().showModalDialog(Alert.AlertType.INFORMATION, "Report a bug",
+                                         "Report a bug",
+                                         "modal/reportBugsView.fxml");
+    }
+
+    @FXML
      private void showBrewRootView() {
         new ViewLoader().displayPane("brew/brewRootView.fxml");
     }
