@@ -13,6 +13,9 @@ public class UpdateChecker {
     private static final String UPDATE_URL = "https://raw.githubusercontent.com/pbellchambers/winebrewdb/master/VERSION";
     private String latestVersion;
 
+    /**
+     * Checks whether there is a newer version of WineBrewDB available
+     */
     public void checkForUpdates() {
         latestVersion = getLatestVersion();
 
@@ -25,6 +28,11 @@ public class UpdateChecker {
         }
     }
 
+    /**
+     * Gets the latest version available from the update url
+     *
+     * @return String latest version
+     */
     private String getLatestVersion() {
         String version = "";
         try {
@@ -38,12 +46,18 @@ public class UpdateChecker {
         return version;
     }
 
+    /**
+     * Shows the update required modal dialog
+     */
     private void showUpdateRequiredDialog() {
         new ViewLoader().showModalDialog(Alert.AlertType.WARNING, "Update Check",
                                          "Version " + latestVersion + " available!",
                                          "modal/updateRequiredView.fxml");
     }
 
+    /**
+     * Shows the no update required modal dialog
+     */
     private void showNoUpdateRequiredDialog() {
         new ViewLoader().showModalDialog(Alert.AlertType.INFORMATION, "Update Check",
                                          "No newer version available",
@@ -51,6 +65,9 @@ public class UpdateChecker {
 
     }
 
+    /**
+     * Shows the problem checking update modal dialog
+     */
     private void showProblemCheckingUpdateDialog() {
         new ViewLoader().showModalDialog(Alert.AlertType.ERROR, "Error",
                                          "Error checking update",
