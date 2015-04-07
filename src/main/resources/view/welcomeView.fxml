@@ -30,7 +30,7 @@
                 </Label>
                 <HBox fx:id="welcomeButtonBox" alignment="CENTER">
                     <children>
-                        <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="New WineBrewDB Database">
+                        <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="New WineBrewDB Database" onAction="#newDatabase">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -45,7 +45,7 @@
                                 <Insets bottom="25.0" left="50.0" right="50.0" />
                             </HBox.margin>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="Load WineBrewDB Database">
+                        <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="Load WineBrewDB Database" onAction="#loadDatabase">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>

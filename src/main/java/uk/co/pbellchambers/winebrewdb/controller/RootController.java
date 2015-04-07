@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import uk.co.pbellchambers.winebrewdb.MainApp;
 import uk.co.pbellchambers.winebrewdb.controller.calculator.CalculatorRootController;
+import uk.co.pbellchambers.winebrewdb.util.DBEngine;
 import uk.co.pbellchambers.winebrewdb.util.UpdateChecker;
 import uk.co.pbellchambers.winebrewdb.util.ViewLoader;
 
@@ -60,6 +61,21 @@ public class RootController {
     @FXML
     private void exitApplication() {
         Platform.exit();
+    }
+
+    @FXML
+    private void newDatabase() {
+        new DBEngine().newDatabase();
+    }
+
+    @FXML
+    private void loadDatabase() {
+        new DBEngine().loadDatabase();
+    }
+
+    @FXML
+    private void saveDatabase() {
+        new DBEngine().saveDatabase();
     }
 
     @FXML

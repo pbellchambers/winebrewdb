@@ -4,9 +4,7 @@ import org.ini4j.InvalidFileFormatException;
 import org.ini4j.Wini;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class Config {
 
@@ -41,7 +39,7 @@ public class Config {
             configDirectory = new File(System.getProperty("user.home"));
         }
 
-        configFile = new File(configDirectory, File.separator + CONFIG_FILENAME);
+        configFile = new File(configDirectory, CONFIG_FILENAME);
     }
 
     /**
@@ -49,26 +47,9 @@ public class Config {
      */
     private void createConfigIni() {
         if (!configFile.exists()) {
-            InputStream inputStream = getClass().getResourceAsStream("/WineBrewDBConfig.ini");
-            FileOutputStream outputStream;
-
-            try {
-                if (!configDirectory.mkdirs() || !configFile.createNewFile()) {
-                    throw new IOException();
-                }
-
-                outputStream = new FileOutputStream(configFile);
-                byte buffer[]=new byte[1024];
-                int length;
-                while ((length=inputStream.read(buffer)) > 0) {
-                    outputStream.write(buffer,0,length);
-                }
-                outputStream.close();
-                inputStream.close();
-
-            } catch (IOException exception) {
-                new ErrorHandler("Error when creating config file: " + configFile, exception);
-            }
+            new FileUtils().createDirectory(configDirectory);
+            new FileUtils().saveDataFromStream(configFile, getClass().getResourceAsStream(
+                "/config/WineBrewDBConfig.ini"));
         }
     }
 
@@ -102,7 +83,13 @@ public class Config {
      * @param databaseLocation String database location
      */
     public void setDatabaseLocation(String databaseLocation) {
-        this.databaseLocation = databaseLocation;
+        try {
+            config.put("WineBrewDB", "DatabaseLocation", databaseLocation);
+            config.store();
+            this.databaseLocation = databaseLocation;
+        } catch (IOException exception) {
+            new ErrorHandler("Error saving settings, please try again: " + configFile, exception);
+        }
     }
 
 

@@ -51,7 +51,7 @@ public class MainApp extends Application {
     /**
      * Set the title of the main window
      */
-    private void setTitle() {
+    public void setTitle() {
         this.primaryStage.setTitle(
             "WineBrewDB " + wineBrewDBVersion + " - Current Database: " + config.getDatabaseLocation());
     }

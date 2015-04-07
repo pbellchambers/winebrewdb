@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import uk.co.pbellchambers.winebrewdb.MainApp;
+import uk.co.pbellchambers.winebrewdb.util.DBEngine;
 
 public class WelcomeViewController {
 
@@ -36,5 +37,15 @@ public class WelcomeViewController {
                 "Select an option from the left to begin, and remember to ensure your database is backed up.");
             welcomeButtonBox.setVisible(false);
         }
+    }
+
+    @FXML
+    private void newDatabase() {
+        new DBEngine().newDatabase();
+    }
+
+    @FXML
+    private void loadDatabase() {
+        new DBEngine().loadDatabase();
     }
 }

@@ -4,7 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import uk.co.pbellchambers.winebrewdb.MainApp;
+
+import java.io.File;
 
 public class ViewLoader extends FXMLLoader {
 
@@ -81,5 +84,31 @@ public class ViewLoader extends FXMLLoader {
         alert.getDialogPane().setContent(loadPane(view));
         alert.initOwner(MainApp.getInstance().getPrimaryStage());
         alert.showAndWait();
+    }
+
+    /**
+     * Shows a file open dialog and returns the selected file
+     *
+     * @return the selected file
+     */
+    public File showOpenDialog() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Load Database");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("SQLite Files", "*.sqlite"),
+                                                 new FileChooser.ExtensionFilter("All Files", "*.*"));
+        return fileChooser.showOpenDialog(MainApp.getInstance().getPrimaryStage());
+    }
+
+    /**
+     * Shows the file save dialog and returns the selected file
+     *
+     * @param title the dialog window title
+     * @return the selected file
+     */
+    public File showSaveDialog(String title) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(title);
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("SQLite Files", "*.sqlite"));
+        return fileChooser.showSaveDialog(MainApp.getInstance().getPrimaryStage());
     }
 }

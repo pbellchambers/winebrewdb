@@ -10,7 +10,7 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="New Database">
+                        <MenuItem mnemonicParsing="false" text="New Database" onAction="#newDatabase">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -19,7 +19,7 @@
                                 </ImageView>
                             </graphic>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Load Database">
+                        <MenuItem mnemonicParsing="false" text="Load Database" onAction="#loadDatabase">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -28,7 +28,7 @@
                                 </ImageView>
                             </graphic>
                         </MenuItem>
-                        <MenuItem fx:id="rootSaveMenuItem" mnemonicParsing="false" text="Save Database As...">
+                        <MenuItem fx:id="rootSaveMenuItem" mnemonicParsing="false" text="Save Database As..." onAction="#saveDatabase">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
