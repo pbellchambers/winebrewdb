@@ -76,7 +76,7 @@ public class LegacyApp {
 
 				//Check config exists and create it if not	
 				if(!WineBrewDBConfigFile.exists()){
-			    	InputStream content = LegacyApp.class.getResourceAsStream("/WineBrewDBConfig.ini");
+			    	InputStream content = LegacyApp.class.getResourceAsStream("/config/WineBrewDBConfig.ini");
 			  		FileOutputStream fop;	
 			  		
 		  			WineBrewDBConfigDirectory.mkdirs();
