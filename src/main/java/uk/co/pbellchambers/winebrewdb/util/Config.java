@@ -48,8 +48,8 @@ public class Config {
     private void createConfigIni() {
         if (!configFile.exists()) {
             new FileUtils().createDirectory(configDirectory);
-            new FileUtils().saveDataFromStream(configFile, getClass().getResourceAsStream(
-                "/config/WineBrewDBConfig.ini"));
+            new FileUtils().saveDataFromInputStream(configFile,
+                                                    getClass().getResourceAsStream("/config/WineBrewDBConfig.ini"));
         }
     }
 

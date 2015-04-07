@@ -3,6 +3,8 @@ package uk.co.pbellchambers.winebrewdb.util;
 import uk.co.pbellchambers.winebrewdb.MainApp;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class DBEngine {
 
@@ -13,8 +15,10 @@ public class DBEngine {
         File selectedFile = new ViewLoader().showSaveDialog("Create New Database as...");
 
         if (!(selectedFile == null)) {
-            new FileUtils().saveDataFromStream(selectedFile, getClass().getResourceAsStream("/sqlite/BlankWineBrewDBData.sqlite"));
+            new FileUtils().saveDataFromInputStream(selectedFile, getClass()
+                .getResourceAsStream("/sqlite/BlankWineBrewDBData.sqlite"));
             updateDatabaseLocation(selectedFile.toString());
+            new ViewLoader().displayPane("welcomeView.fxml");
         }
     }
 
@@ -25,6 +29,7 @@ public class DBEngine {
         File selectedFile = new ViewLoader().showOpenDialog();
         if (!(selectedFile == null)) {
             updateDatabaseLocation(selectedFile.toString());
+            new ViewLoader().displayPane("welcomeView.fxml");
         }
     }
 
@@ -34,7 +39,14 @@ public class DBEngine {
     public void saveDatabase() {
         File selectedFile = new ViewLoader().showSaveDialog("Save Database as...");
         if (!(selectedFile == null)) {
-
+            try {
+                new FileUtils().saveDataFromFileInputStream(selectedFile,
+                new FileInputStream(new File(MainApp.getInstance().getConfig().getDatabaseLocation())));
+                updateDatabaseLocation(selectedFile.toString());
+                new ViewLoader().displayPane("welcomeView.fxml");
+            } catch (FileNotFoundException exception) {
+                new ErrorHandler("Error accessing current database", exception);
+            }
         }
     }
 
