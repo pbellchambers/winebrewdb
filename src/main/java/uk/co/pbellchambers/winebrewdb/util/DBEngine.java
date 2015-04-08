@@ -40,7 +40,7 @@ public class DBEngine {
         File selectedFile = new ViewLoader().showSaveDialog("Save Database as...");
         if (!(selectedFile == null)) {
             try {
-                new FileUtils().saveDataFromFileInputStream(selectedFile,
+                new FileUtils().saveDataFromInputStream(selectedFile,
                 new FileInputStream(new File(MainApp.getInstance().getConfig().getDatabaseLocation())));
                 updateDatabaseLocation(selectedFile.toString());
                 new ViewLoader().displayPane("welcomeView.fxml");

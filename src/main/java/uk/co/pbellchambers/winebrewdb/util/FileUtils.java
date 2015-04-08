@@ -1,6 +1,9 @@
 package uk.co.pbellchambers.winebrewdb.util;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class FileUtils {
 
@@ -18,25 +21,6 @@ public class FileUtils {
             }
             outputStream.close();
             inputStream.close();
-        } catch (IOException exception) {
-            new ErrorHandler("Error saving file: " + file, exception);
-        }
-    }
-
-    public void saveDataFromFileInputStream(File file, FileInputStream fileInputStream) {
-        FileOutputStream outputStream;
-        try {
-            if (!file.createNewFile()) {
-                throw new IOException("Unable to create new file");
-            }
-            outputStream = new FileOutputStream(file);
-            byte buffer[] = new byte[1024];
-            int length;
-            while ((length = fileInputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, length);
-            }
-            outputStream.close();
-            fileInputStream.close();
         } catch (IOException exception) {
             new ErrorHandler("Error saving file: " + file, exception);
         }
