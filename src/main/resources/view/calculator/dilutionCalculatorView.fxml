@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <Label text="The following calculators are to be used when you are diluting your brew. The first is for when you are topping up with water after fermentation is complete and you know the ABV %, the second is for calculating the adjusted starting SG when you are topping up with water during fermentation. " wrapText="true">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </Label>
+                <Label text="Note: If you are topping up during fermentation with sugar containing liquid that is the same as the Starting SG then you do not need to calculate any adjustments. If you are topping up with sugar containing liquid that is different to the starting SG then that is currently out of the scope of this calculator." wrapText="true">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </Label>
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="75.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="25.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="75.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="25.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="5.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Diluted ABV %">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="Starting Volume (litres)" GridPane.rowIndex="1" />
+                        <Label text="Current ABV %" GridPane.rowIndex="2" />
+                        <Label text="Volume Added (litres)" GridPane.rowIndex="3" />
+                        <Label text="Diluted SG" GridPane.columnIndex="3">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="Starting Volume (litres)" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label text="Starting SG" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label text="Volume Added (litres)" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Label text="Diluted ABV %" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                            <GridPane.margin>
+                                <Insets right="5.0" />
+                            </GridPane.margin>
+                        </Label>
+                        <Label text="Diluted Starting SG" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                            <GridPane.margin>
+                                <Insets right="5.0" />
+                            </GridPane.margin>
+                        </Label>
+                        <TextField promptText="0.000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField promptText="0.000" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button mnemonicParsing="false" text="Calculate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField promptText="0.000" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <TextField promptText="1.000" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <TextField promptText="0.000" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <Button mnemonicParsing="false" text="Calculate" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <TextField disable="true" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </GridPane>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
