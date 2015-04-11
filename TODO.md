@@ -13,3 +13,4 @@
 - Sort out image scaling for highdpi (support both)
 - figure out why buttons move slightly on first load after clicking, padding?
 - some sort of backup of database
+- fix high dpi layout
