@@ -1,10 +1,12 @@
 package uk.co.pbellchambers.winebrewdb;
 
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import uk.co.pbellchambers.winebrewdb.controller.RootController;
 import uk.co.pbellchambers.winebrewdb.util.Config;
@@ -72,7 +74,18 @@ public class MainApp extends Application {
         // Show the scene containing the root layout.
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
+        setInitialStageSize();
         primaryStage.show();
+    }
+
+    /**
+     * Sets the initial primaryStage size at 80% of screen size
+     */
+    private void setInitialStageSize() {
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+
+        primaryStage.setWidth(bounds.getWidth() / 1.5);
+        primaryStage.setHeight(bounds.getHeight() / 1.25);
     }
 
     /**
