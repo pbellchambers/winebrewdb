@@ -2,20 +2,11 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.calculator.CalculatorRootController">
     <children>
-        <Label text="Calculators" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-            <font>
-                <Font name="System Bold" size="28.0" />
-            </font>
-        </Label>
-        <Label text="Various useful calculators." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0">
-            <font>
-                <Font name="System Italic" size="24.0" />
-            </font>
-        </Label>
-        <TabPane fx:id="calculatorTabPane" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <Label text="Calculators" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" style="-fx-font-size: 1.6em; -fx-font-weight: bold" />
+        <Label text="Various useful calculators." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0" style="-fx-font-style: italic" />
+        <TabPane fx:id="calculatorTabPane" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
             <tabs>
                 <Tab fx:id="alcoholCalculatorTab" text="Alcohol %">
                     <content>

@@ -4,19 +4,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.recipe.RecipeRootController">
     <children>
-        <Label text="Recipe" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-            <font>
-                <Font name="System Bold" size="28.0" />
-            </font>
-        </Label>
-        <Label text="Browse and edit the recipe database." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0">
-            <font>
-                <Font name="System Italic" size="24.0" />
-            </font>
-        </Label>
+        <Label text="Recipe" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" style="-fx-font-size: 1.6em; -fx-font-weight: bold" />
+        <Label text="Browse and edit the recipe database." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0" style="-fx-font-style: italic" />
         <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Print" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
             <graphic>
                 <ImageView pickOnBounds="true" preserveRatio="true">
@@ -29,7 +20,7 @@
                 <Tooltip text="Save current brew to printable format" />
             </tooltip>
         </Button>
-        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
             <tabs>
                 <Tab text="Search">
                     <content>
