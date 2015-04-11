@@ -5,15 +5,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.WelcomeViewController">
     <children>
         <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome to WineBrewDB" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
-                    <font>
-                        <Font name="System Bold" size="36.0" />
-                    </font>
+                <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome to WineBrewDB" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS" style="-fx-font-size: 2em; -fx-font-weight: bold">
                     <VBox.margin>
                         <Insets bottom="25.0" left="50.0" right="50.0" />
                     </VBox.margin>
