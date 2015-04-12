@@ -4,13 +4,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.RootController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.RootController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="New Database" onAction="#newDatabase">
+                        <MenuItem mnemonicParsing="false" onAction="#newDatabase" text="New Database">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -19,7 +19,7 @@
                                 </ImageView>
                             </graphic>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" text="Load Database" onAction="#loadDatabase">
+                        <MenuItem mnemonicParsing="false" onAction="#loadDatabase" text="Load Database">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -28,7 +28,7 @@
                                 </ImageView>
                             </graphic>
                         </MenuItem>
-                        <MenuItem fx:id="rootSaveMenuItem" mnemonicParsing="false" text="Save Database As..." onAction="#saveDatabase">
+                        <MenuItem fx:id="rootSaveMenuItem" mnemonicParsing="false" onAction="#saveDatabase" text="Save Database As...">
                             <graphic>
                                 <ImageView pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -38,122 +38,127 @@
                             </graphic>
                         </MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Exit" onAction="#exitApplication" />
+                        <MenuItem mnemonicParsing="false" onAction="#exitApplication" text="Exit" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Data">
                     <items>
-                        <MenuItem fx:id="rootBrewMenuItem" mnemonicParsing="false" text="Brews" onAction="#showBrewRootView"/>
-                        <MenuItem fx:id="rootLedgerMenuItem" mnemonicParsing="false" text="Ledger" onAction="#showLedgerRootView" />
-                        <MenuItem fx:id="rootRecipeMenuItem" mnemonicParsing="false" text="Recipes" onAction="#showRecipeRootView" />
+                        <MenuItem fx:id="rootBrewMenuItem" mnemonicParsing="false" onAction="#showBrewRootView" text="Brews" />
+                        <MenuItem fx:id="rootLedgerMenuItem" mnemonicParsing="false" onAction="#showLedgerRootView" text="Ledger" />
+                        <MenuItem fx:id="rootRecipeMenuItem" mnemonicParsing="false" onAction="#showRecipeRootView" text="Recipes" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Calculators">
                     <items>
-                        <MenuItem fx:id="rootCalculatorAlcoholMenuItem" mnemonicParsing="false" text="Alcohol" onAction="#showCalculatorAlcoholTab"/>
-                        <MenuItem fx:id="rootCalculatorDilutionMenuItem" mnemonicParsing="false" text="Dilution" onAction="#showCalculatorDilutionTab"/>
-                        <MenuItem fx:id="rootCalculatorMeasuresMenuItem" mnemonicParsing="false" text="Measures" onAction="#showCalculatorMeasuresTab"/>
-                        <MenuItem fx:id="rootCalculatorSugarMenuItem" mnemonicParsing="false" text="Sugar to SG" onAction="#showCalculatorSugarTab"/>
-                        <MenuItem fx:id="rootCalculatorSgMenuItem" mnemonicParsing="false" text="Temperature Adjusted SG" onAction="#showCalculatorSgTab"/>
+                        <MenuItem fx:id="rootCalculatorAlcoholMenuItem" mnemonicParsing="false" onAction="#showCalculatorAlcoholTab" text="Alcohol" />
+                        <MenuItem fx:id="rootCalculatorDilutionMenuItem" mnemonicParsing="false" onAction="#showCalculatorDilutionTab" text="Dilution" />
+                        <MenuItem fx:id="rootCalculatorMeasuresMenuItem" mnemonicParsing="false" onAction="#showCalculatorMeasuresTab" text="Measures" />
+                        <MenuItem fx:id="rootCalculatorSugarMenuItem" mnemonicParsing="false" onAction="#showCalculatorSugarTab" text="Sugar to SG" />
+                        <MenuItem fx:id="rootCalculatorSgMenuItem" mnemonicParsing="false" onAction="#showCalculatorSgTab" text="Temperature Adjusted SG" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Information">
                     <items>
-                        <MenuItem fx:id="rootInformationMenuItem" mnemonicParsing="false" text="Add/Edit" onAction="#showInformationRootView"/>
+                        <MenuItem fx:id="rootInformationMenuItem" mnemonicParsing="false" onAction="#showInformationRootView" text="Add/Edit" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" onAction="#showAboutView" />
-                        <MenuItem mnemonicParsing="false" text="Credits" onAction="#showCreditsView" />
-                        <MenuItem mnemonicParsing="false" text="Report a bug" onAction="#showReportBugsView" />
-                        <MenuItem mnemonicParsing="false" text="Check for updates" onAction="#checkForUpdates" />
+                        <MenuItem mnemonicParsing="false" onAction="#showAboutView" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#showCreditsView" text="Credits" />
+                        <MenuItem mnemonicParsing="false" onAction="#showReportBugsView" text="Report a bug" />
+                        <MenuItem mnemonicParsing="false" onAction="#checkForUpdates" text="Check for updates" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
     </top>
-    <left>
-        <VBox BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="rootBrewButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Brew" onAction="#showBrewRootView">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="/images/brew.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                    <tooltip>
-                        <Tooltip text="Brews" />
-                    </tooltip>
-                </Button>
-                <Button fx:id="rootLedgerButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Ledger" onAction="#showLedgerRootView">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="/images/ledger.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                    </VBox.margin>
-                    <tooltip>
-                        <Tooltip text="Ledger" />
-                    </tooltip>
-                </Button>
-                <Button fx:id="rootRecipeButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Recipes" onAction="#showRecipeRootView">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="/images/recipe.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
-                    </VBox.margin>
-                    <tooltip>
-                        <Tooltip text="Recipes" />
-                    </tooltip>
-                </Button>
-                <Separator />
-                <Button fx:id="rootCalculatorButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Calculators" onAction="#showCalculatorAlcoholTab">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="/images/calculator.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                    <tooltip>
-                        <Tooltip text="Calculators" />
-                    </tooltip>
-                </Button>
-                <Separator />
-                <Button fx:id="rootInformationButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" text="Information" onAction="#showInformationRootView">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="/images/information.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                    <tooltip>
-                        <Tooltip text="Notes &amp; Information" />
-                    </tooltip>
-                </Button>
+   <left>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+              <VBox>
+                  <children>
+                      <Button fx:id="rootBrewButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#showBrewRootView" text="Brew">
+                          <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="/images/brew.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                          </VBox.margin>
+                          <tooltip>
+                              <Tooltip text="Brews" />
+                          </tooltip>
+                      </Button>
+                      <Button fx:id="rootLedgerButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#showLedgerRootView" text="Ledger">
+                          <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="/images/ledger.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                          </VBox.margin>
+                          <tooltip>
+                              <Tooltip text="Ledger" />
+                          </tooltip>
+                      </Button>
+                      <Button fx:id="rootRecipeButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#showRecipeRootView" text="Recipes">
+                          <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="/images/recipe.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                          </VBox.margin>
+                          <tooltip>
+                              <Tooltip text="Recipes" />
+                          </tooltip>
+                      </Button>
+                      <Separator />
+                      <Button fx:id="rootCalculatorButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#showCalculatorAlcoholTab" text="Calculators">
+                          <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="/images/calculator.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                          </VBox.margin>
+                          <tooltip>
+                              <Tooltip text="Calculators" />
+                          </tooltip>
+                      </Button>
+                      <Separator />
+                      <Button fx:id="rootInformationButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#showInformationRootView" text="Information">
+                          <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="/images/information.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                          </VBox.margin>
+                          <tooltip>
+                              <Tooltip text="Notes &amp; Information" />
+                          </tooltip>
+                      </Button>
+               </children>
+            </VBox>
+            <Separator disable="true" orientation="VERTICAL" />
          </children>
-      </VBox>
+      </HBox>
    </left>
 </BorderPane>
