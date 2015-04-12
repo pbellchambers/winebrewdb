@@ -6,9 +6,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.brew.BrewRootController">
     <children>
-        <Label text="Brew" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" style="-fx-font-size: 1.6em; -fx-font-weight: bold" />
-        <Label text="Browse and edit the brew database." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0" style="-fx-font-style: italic" />
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Print" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Print" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
             <graphic>
                 <ImageView pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -20,46 +18,52 @@
                 <Tooltip text="Save current brew to printable format" />
             </tooltip>
         </Button>
-        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
-            <tabs>
-                <Tab text="Search">
-                    <content>
-                        <fx:include source="brewSearchView.fxml"/>
-                    </content>
-                </Tab>
-                <Tab disable="true" text="Brew Data">
-                    <content>
-                        <fx:include source="brewDataView.fxml"/>
-                    </content>
-                </Tab>
-                <Tab disable="true" text="Brew Notes">
-                    <content>
-                        <fx:include source="brewNotesView.fxml"/>
-                    </content>
-                </Tab>
-                <Tab disable="true" text="Brew Pictures">
-                    <content>
-                        <fx:include source="brewPicturesView.fxml"/>
-                    </content>
-                </Tab>
-                <Tab disable="true" text="Brew Costs">
-                    <content>
-                        <fx:include source="brewCostsView.fxml"/>
-                    </content>
-                </Tab>
-                <Tab text="Add New Brew">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="/images/new.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <content>
-                        <fx:include source="addBrewView.fxml"/>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
+        <VBox spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <Label text="Brew" style="-fx-font-size: 1.6em; -fx-font-weight: bold" />
+                <Label text="Browse and edit the brew database." style="-fx-font-style: italic" />
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Search">
+                            <content>
+                                <fx:include source="brewSearchView.fxml"/>
+                            </content>
+                        </Tab>
+                        <Tab disable="true" text="Brew Data">
+                            <content>
+                                <fx:include source="brewDataView.fxml"/>
+                            </content>
+                        </Tab>
+                        <Tab disable="true" text="Brew Notes">
+                            <content>
+                                <fx:include source="brewNotesView.fxml"/>
+                            </content>
+                        </Tab>
+                        <Tab disable="true" text="Brew Pictures">
+                            <content>
+                                <fx:include source="brewPicturesView.fxml"/>
+                            </content>
+                        </Tab>
+                        <Tab disable="true" text="Brew Costs">
+                            <content>
+                                <fx:include source="brewCostsView.fxml"/>
+                            </content>
+                        </Tab>
+                        <Tab text="Add New Brew">
+                            <graphic>
+                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="/images/new.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <content>
+                                <fx:include source="addBrewView.fxml"/>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

@@ -6,9 +6,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.ledger.LedgerRootController">
     <children>
-        <Label text="Ledger" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" style="-fx-font-size: 1.6em; -fx-font-weight: bold" />
-        <Label text="Browse and edit the ledger data." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0" style="-fx-font-style: italic" />
-        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Print" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Print" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
             <graphic>
                 <ImageView pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -20,24 +18,30 @@
                 <Tooltip text="Save current brew to printable format" />
             </tooltip>
         </Button>
-        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
-            <tabs>
-                <Tab text="Equipment &amp; Non-brew-specific Costs">
-                    <content>
-                        <fx:include source="equipmentView.fxml"/>
-                    </content>
-                </Tab>
-                <Tab text="Brew Cost Search">
-                    <content>
-                        <fx:include source="brewCostSearchView.fxml"/>
-                    </content>
-                </Tab>
-                <Tab disable="true" text="Brew Cost Data">
-                    <content>
-                        <fx:include source="brewCostDataView.fxml"/>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
+        <VBox spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <Label text="Ledger" style="-fx-font-size: 1.6em; -fx-font-weight: bold" />
+                <Label text="Browse and edit the ledger data." style="-fx-font-style: italic" />
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Equipment &amp; Non-brew-specific Costs">
+                            <content>
+                                <fx:include source="equipmentView.fxml"/>
+                            </content>
+                        </Tab>
+                        <Tab text="Brew Cost Search">
+                            <content>
+                                <fx:include source="brewCostSearchView.fxml"/>
+                            </content>
+                        </Tab>
+                        <Tab disable="true" text="Brew Cost Data">
+                            <content>
+                                <fx:include source="brewCostDataView.fxml"/>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

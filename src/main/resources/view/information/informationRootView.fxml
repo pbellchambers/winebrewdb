@@ -8,23 +8,27 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.pbellchambers.winebrewdb.controller.information.InformationRootController">
     <children>
-        <Label text="Information" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" style="-fx-font-size: 1.6em; -fx-font-weight: bold" />
-        <Label text="Add your own notes and information to be displayed in tabs here." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0" style="-fx-font-style: italic" />
-        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
-            <tabs>
-                <Tab text="Add/Edit Tabs">
-                    <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="/images/new.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <content>
-                        <fx:include source="addEditInformationView.fxml"/>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
+        <VBox spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <Label text="Information" style="-fx-font-size: 1.6em; -fx-font-weight: bold" />
+                <Label text="Add your own notes and information to be displayed in tabs here." style="-fx-font-style: italic" />
+                <TabPane tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Add/Edit Tabs">
+                            <graphic>
+                                <ImageView pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="/images/new.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <content>
+                                <fx:include source="addEditInformationView.fxml"/>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </VBox>
     </children>
 </AnchorPane>
