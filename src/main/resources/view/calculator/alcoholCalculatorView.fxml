@@ -26,13 +26,6 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="25.0"/>
                         <ColumnConstraints hgrow="ALWAYS" minWidth="10" />
                     </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
                     <children>
                         <Label text="HMRC Method" style="-fx-font-weight: bold" />
                         <Label text="Starting SG" GridPane.rowIndex="1" />

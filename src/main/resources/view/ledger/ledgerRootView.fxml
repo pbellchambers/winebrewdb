@@ -18,11 +18,11 @@
                 <Tooltip text="Save current brew to printable format" />
             </tooltip>
         </Button>
-        <VBox spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+        <VBox spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0">
             <children>
                 <Label text="Ledger" style="-fx-font-size: 1.6em; -fx-font-weight: bold" />
                 <Label text="Browse and edit the ledger data." style="-fx-font-style: italic" />
-                <TabPane tabClosingPolicy="UNAVAILABLE">
+                <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                     <tabs>
                         <Tab text="Equipment &amp; Non-brew-specific Costs">
                             <content>
